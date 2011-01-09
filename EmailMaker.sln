@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Domain", "EmailMaker.Domain\EmailMaker.Domain.csproj", "{09698B3F-4CF5-49DC-BA64-27790733B2D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Domain.Tests", "Tests\UnitTests\EmailMaker.Domain.Tests\EmailMaker.Domain.Tests.csproj", "{1C2AD3E5-5E93-4F29-B6E0-9761D458AD46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore", "DddCore\DddCore.csproj", "{A4AF92A0-F275-411F-A771-D89168FB8E91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9997BD56-3B10-4ACD-94AA-3B87664C4A8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DddCore.Tests", "DddCore.Tests\DddCore.Tests.csproj", "{C4F5D92A-8E83-4215-8B84-79A28A8BB366}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{FA14C9DE-5A95-43FA-90B8-C0FAB4BF5DD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09698B3F-4CF5-49DC-BA64-27790733B2D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09698B3F-4CF5-49DC-BA64-27790733B2D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09698B3F-4CF5-49DC-BA64-27790733B2D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09698B3F-4CF5-49DC-BA64-27790733B2D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C2AD3E5-5E93-4F29-B6E0-9761D458AD46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C2AD3E5-5E93-4F29-B6E0-9761D458AD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C2AD3E5-5E93-4F29-B6E0-9761D458AD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C2AD3E5-5E93-4F29-B6E0-9761D458AD46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4AF92A0-F275-411F-A771-D89168FB8E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4AF92A0-F275-411F-A771-D89168FB8E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4AF92A0-F275-411F-A771-D89168FB8E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4AF92A0-F275-411F-A771-D89168FB8E91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F5D92A-8E83-4215-8B84-79A28A8BB366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F5D92A-8E83-4215-8B84-79A28A8BB366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F5D92A-8E83-4215-8B84-79A28A8BB366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F5D92A-8E83-4215-8B84-79A28A8BB366}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1C2AD3E5-5E93-4F29-B6E0-9761D458AD46} = {9997BD56-3B10-4ACD-94AA-3B87664C4A8A}
+		{C4F5D92A-8E83-4215-8B84-79A28A8BB366} = {9997BD56-3B10-4ACD-94AA-3B87664C4A8A}
+		{A4AF92A0-F275-411F-A771-D89168FB8E91} = {FA14C9DE-5A95-43FA-90B8-C0FAB4BF5DD2}
+		{09698B3F-4CF5-49DC-BA64-27790733B2D2} = {FA14C9DE-5A95-43FA-90B8-C0FAB4BF5DD2}
+	EndGlobalSection
+EndGlobal
