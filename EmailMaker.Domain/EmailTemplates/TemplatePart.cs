@@ -6,4 +6,5 @@ namespace EmailMaker.Domain.EmailTemplates
     {
         public int Position { get; set; }
     }
+
 }

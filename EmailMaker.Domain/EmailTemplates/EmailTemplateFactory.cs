@@ -2,9 +2,9 @@
 {
     public static class EmailTemplateFactory
     {
-        public static EmailTemplates.EmailTemplate CreateEmailTemplate()
+        public static EmailTemplate CreateEmailTemplate()
         {
-            return new EmailTemplates.EmailTemplate();
+            return new EmailTemplate();
         }
     }
 }

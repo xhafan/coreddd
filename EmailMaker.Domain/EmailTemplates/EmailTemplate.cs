@@ -1,6 +1,8 @@
-﻿namespace EmailMaker.Domain.EmailTemplates
+﻿using DddCore;
+
+namespace EmailMaker.Domain.EmailTemplates
 {
-    public class EmailTemplate : TemplatePartContainer
+    public class EmailTemplate : TemplatePartContainer, IAggregateRoot
     {
         public EmailTemplate()
         {

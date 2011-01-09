@@ -20,8 +20,9 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
         public void email_template_created_correctly()
         {
             _emailTemplate.Parts.Count.ShouldBe(1);
-            var htmlTemplatePart = _emailTemplate.Parts.First() as HtmlTemplatePart;
-            htmlTemplatePart.ShouldNotBe(null);
+            var htmlTemplatePart = (HtmlTemplatePart) _emailTemplate.Parts.First();
+            htmlTemplatePart.Position.ShouldBe(0);
+            htmlTemplatePart.Html.ShouldBe(string.Empty);
         }
     }
 }

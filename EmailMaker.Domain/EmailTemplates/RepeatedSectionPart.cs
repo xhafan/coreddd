@@ -1,7 +1,6 @@
 ﻿namespace EmailMaker.Domain.EmailTemplates
 {
-    public class RepeatedSectionPart : TemplatePart
+    public class RepeatedSectionPart : TemplatePartContainer
     {
-        
     }
 }
