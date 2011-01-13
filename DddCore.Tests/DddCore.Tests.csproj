@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="IdentityTests\AnotherEntity.cs" />
     <Compile Include="IdentityTests\Entity.cs" />
+    <Compile Include="IdentityTests\when_adding_entity_into_a_hashset.cs" />
     <Compile Include="IdentityTests\when_comparing_transient_entities_of_the_same_type_and_of_the_same_id.cs" />
     <Compile Include="IdentityTests\when_comparing_entities_of_the_different_type_and_of_the_same_id.cs" />
     <Compile Include="IdentityTests\when_comparing_entities_of_the_same_type_and_of_the_different_id.cs" />
@@ -59,6 +60,10 @@
     <ProjectReference Include="..\DddCore\DddCore.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>DddCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestHelper\TestHelper.csproj">
+      <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>
+      <Name>TestHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

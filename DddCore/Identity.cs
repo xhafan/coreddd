@@ -28,9 +28,14 @@ namespace DddCore
             return Id == tobj.Id;
         }
 
+        private int? _originalHashCode = null;
         public override int GetHashCode()
         {
-            return Id == default(int) ? base.GetHashCode() : Id;
+            if (!_originalHashCode.HasValue)
+            {
+                _originalHashCode = Id == default(int) ? base.GetHashCode() : Id;
+            }
+            return _originalHashCode.Value; // hashset/dictionary requires that GetHashCode() returns the same value for the lifetime of the object
         }
 
         public static bool operator ==(Identity<T> entityOne, Identity<T> entityTwo)
