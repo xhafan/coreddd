@@ -6,7 +6,7 @@ namespace DddCore
     {
         protected int _id = default(int);
 
-        public int Id
+        public virtual int Id
         {
             get
             {

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</ProjectGuid>
+    <ProjectGuid>{10790F2C-1370-4050-A0BF-7B0D4B509AF3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailMaker.Domain</RootNamespace>
-    <AssemblyName>EmailMaker.Domain</AssemblyName>
+    <RootNamespace>EmailMaker.IntegrationTests</RootNamespace>
+    <AssemblyName>EmailMaker.IntegrationTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,13 +31,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\Libraries\FluentNHibernate.dll</HintPath>
+    <Reference Include="FluentNHibernate, Version=1.2.0.694, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL" />
+    <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\..\..\Libraries\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\Libraries\NHibernate.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\Libraries\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Shouldly">
+      <HintPath>..\..\..\Libraries\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,22 +52,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmailTemplates\EmailTemplate.cs" />
-    <Compile Include="EmailTemplates\EmailTemplateFactory.cs" />
-    <Compile Include="EmailTemplates\HtmlEmailTemplatePart.cs" />
-    <Compile Include="EmailTemplates\RepeatedSectionEmailTemplatePart.cs" />
-    <Compile Include="NHibernateMappings\EmailTemplateMap.cs" />
-    <Compile Include="NHibernateMappings\EmailTemplatePartMap.cs" />
-    <Compile Include="NHibernateMappings\HtmlEmailTemplatePartMap.cs" />
+    <Compile Include="DatabaseTests\EntityPersistenceTests\when_persisting_email_template.cs" />
+    <Compile Include="DatabaseTests\when_generating_database_schema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EmailTemplates\EmailTemplatePart.cs" />
-    <Compile Include="EmailTemplates\VariableEmailTemplatePart.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DddCore\DddCore.csproj">
+    <ProjectReference Include="..\..\..\DddCore\DddCore.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>DddCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
+      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
+      <Name>EmailMaker.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TestHelper\TestHelper.csproj">
+      <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>
+      <Name>TestHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="connectionStrings.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

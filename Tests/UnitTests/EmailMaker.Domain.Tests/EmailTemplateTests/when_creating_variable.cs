@@ -24,10 +24,10 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
         [Test]
         public void variable_created_correctly()
         {
-            _emailTemplate.Parts.Count.ShouldBe(3);
-            var htmlBefore = (HtmlTemplatePart)_emailTemplate.Parts.First();
-            var variable = (VariableTemplatePart)_emailTemplate.Parts.ElementAt(1);
-            var htmlAfter = (HtmlTemplatePart)_emailTemplate.Parts.Last();
+            _emailTemplate.Parts.Count().ShouldBe(3);
+            var htmlBefore = (HtmlEmailTemplatePart)_emailTemplate.Parts.First();
+            var variable = (VariableEmailTemplatePart)_emailTemplate.Parts.ElementAt(1);
+            var htmlAfter = (HtmlEmailTemplatePart)_emailTemplate.Parts.Last();
             htmlBefore.Html.ShouldBe("this ");
             variable.Value.ShouldBe("initial");
             htmlAfter.Html.ShouldBe(" html");
