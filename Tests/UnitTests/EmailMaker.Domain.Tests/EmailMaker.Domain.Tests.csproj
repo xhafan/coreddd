@@ -52,6 +52,9 @@
     <Compile Include="EmailTemplateTests\when_creating_variable_with_incorrect_html_template_part.cs" />
     <Compile Include="EmailTemplateTests\when_creating_variable_with_incorrect_string_index.cs" />
     <Compile Include="EmailTemplateTests\when_creating_variable_with_incorrect_string_length.cs" />
+    <Compile Include="EmailTemplateTests\when_deleting_variable.cs" />
+    <Compile Include="EmailTemplateTests\when_deleting_variable_with_html_part_id.cs" />
+    <Compile Include="EmailTemplateTests\when_deleting_variable_with_invalid_variable_id.cs" />
     <Compile Include="EmailTemplateTests\when_setting_html_for_html_template_part.cs" />
     <Compile Include="EmailTemplateTests\when_setting_html_for_html_template_part_with_incorrect_html_template_part_id.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +67,10 @@
     <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
       <Name>EmailMaker.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
+      <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
+      <Name>EmailMaker.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\TestHelper\TestHelper.csproj">
       <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>

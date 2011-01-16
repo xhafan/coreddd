@@ -13,6 +13,7 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
         public void Context()
         {
             var emailTemplate = EmailTemplateBuilder.New
+                .WithFakeIds()
                 .WithInitialHtml("html")
                 .Build();
             var htmlTeplatePartId = emailTemplate.Parts.First().Id;
