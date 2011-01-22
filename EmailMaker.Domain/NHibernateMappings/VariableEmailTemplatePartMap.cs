@@ -8,6 +8,7 @@ namespace EmailMaker.Domain.NHibernateMappings
         public VariableEmailTemplatePartMap()
         {
             KeyColumn("Id");
+            References(x => x.VariableType, "VariableTypeId");
             Map(x => x.Value).Length(10000);
         }
     }

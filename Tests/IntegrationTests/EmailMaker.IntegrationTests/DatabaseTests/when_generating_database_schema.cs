@@ -17,7 +17,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests
         [SetUp]
         public void Context()
         {
-            _databaseSchemaFileName = "EmailMaker_database_schema.sql";
+            _databaseSchemaFileName = "..\\..\\..\\..\\..\\EmailMaker.Database\\EmailMaker_generated_database_schema.sql";
             File.Delete(_databaseSchemaFileName);
 
             _configuration = new Configuration();
