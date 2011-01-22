@@ -30,15 +30,12 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
             
             var beforeHtmlPart = _template.Parts.First() as HtmlEmailTemplatePart;
             beforeHtmlPart.Html.ShouldBe("123");
-            beforeHtmlPart.Position.ShouldBe(0);
             
             var variablePart = _template.Parts.ElementAt(1) as VariableEmailTemplatePart;
             variablePart.Value.ShouldBe("4");
-            variablePart.Position.ShouldBe(1);
             
             var afterHtmlPart = _template.Parts.Last() as HtmlEmailTemplatePart;
             afterHtmlPart.Html.ShouldBe("5");
-            afterHtmlPart.Position.ShouldBe(2);
         }
     }
 }

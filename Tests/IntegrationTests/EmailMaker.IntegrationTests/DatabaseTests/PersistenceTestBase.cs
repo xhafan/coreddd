@@ -2,6 +2,7 @@
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Utilities.Extensions;
 using FluentNHibernate;
+using HibernatingRhinos.Profiler.Appender.NHibernate;
 using NHibernate;
 using NHibernate.Cfg;
 using NUnit.Framework;
@@ -12,22 +13,16 @@ namespace EmailMaker.IntegrationTests.DatabaseTests
     {
         protected ISession Session;
 
-        public abstract void PersistenceContext();
-
-        public abstract void PersistenceQuery();
-      
+        public abstract void Context();
+     
         [TestFixtureSetUp]
-        public void Context()
+        public void SetUp()
         {
             _ConfigureNHibernate();
 
             _ClearDatabase();
-            
-            PersistenceContext();
 
-            Session.Clear();
-
-            PersistenceQuery();           
+            Context();
         }
 
         protected void Save(params IAggregateRootEntity[] aggregateRootEntitites)
@@ -52,6 +47,9 @@ namespace EmailMaker.IntegrationTests.DatabaseTests
 
         private void _ConfigureNHibernate()
         {
+#if(DEBUG)
+            NHibernateProfiler.Initialize();
+#endif
             var configuration = new Configuration();
             configuration.Configure();
             var persistenceModel = new PersistenceModel();

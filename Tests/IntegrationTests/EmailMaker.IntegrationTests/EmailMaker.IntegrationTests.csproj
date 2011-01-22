@@ -32,6 +32,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentNHibernate, Version=1.2.0.694, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL" />
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
+      <HintPath>..\..\..\Libraries\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\Libraries\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\..\Libraries\NHibernate.ByteCode.Castle.dll</HintPath>
@@ -52,8 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseTests\EntityPersistenceTests\when_persisting_email_template_while_creating_and_deleting_variables.cs" />
     <Compile Include="DatabaseTests\PersistenceTestBase.cs" />
     <Compile Include="DatabaseTests\EntityPersistenceTests\when_persisting_email_template.cs" />
+    <Compile Include="DatabaseTests\SimplePersistenceTestBase.cs" />
     <Compile Include="DatabaseTests\when_generating_database_schema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

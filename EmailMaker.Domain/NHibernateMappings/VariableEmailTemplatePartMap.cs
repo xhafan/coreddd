@@ -3,12 +3,12 @@ using FluentNHibernate.Mapping;
 
 namespace EmailMaker.Domain.NHibernateMappings
 {
-    public class HtmlEmailTemplatePartMap : SubclassMap<HtmlEmailTemplatePart>
+    public class VariableEmailTemplatePartMap : SubclassMap<VariableEmailTemplatePart>
     {
-        public HtmlEmailTemplatePartMap()
+        public VariableEmailTemplatePartMap()
         {
             KeyColumn("Id");
-            Map(x => x.Html).Length(10000);
+            Map(x => x.Value).Length(10000);
         }
     }
 }

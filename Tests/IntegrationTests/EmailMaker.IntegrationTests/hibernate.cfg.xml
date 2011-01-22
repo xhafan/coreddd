@@ -5,7 +5,7 @@
     <property name="dialect">NHibernate.Dialect.MsSql2008Dialect</property>
     <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
     <property name="connection.connection_string_name">EmailMakerConnection</property>
-    <property name="show_sql">true</property>
+    <property name="show_sql">false</property>
     <property name="proxyfactory.factory_class">NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle</property>
 
   </session-factory>

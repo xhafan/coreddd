@@ -2,7 +2,9 @@
 {
     public class VariableEmailTemplatePart : EmailTemplatePart
     {
-        public string Value { get; private set; }
+        public virtual string Value { get; private set; }
+
+        protected VariableEmailTemplatePart() {}
 
         public VariableEmailTemplatePart(string value)
         {

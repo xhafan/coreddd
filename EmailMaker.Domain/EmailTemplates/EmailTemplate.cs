@@ -40,8 +40,6 @@ namespace EmailMaker.Domain.EmailTemplates
             htmlTemplatePart.SetHtml(htmlBefore);
             _parts.Add(new VariableEmailTemplatePart(variableValue));
             _parts.Add(new HtmlEmailTemplatePart(htmlAfter));
-
-            _RefreshPartPositions();
         }
 
         public virtual void DeleteVariable(int variableTemplatePartId)
@@ -60,16 +58,6 @@ namespace EmailMaker.Domain.EmailTemplates
 
             _parts.RemoveAt(i + 1);
             _parts.RemoveAt(i);
-
-            _RefreshPartPositions();        
-        }
-
-        private void _RefreshPartPositions()
-        {
-            for (var i = 0; i < _parts.Count; i++)
-            {
-                _parts[i].SetPosition(i);
-            }
         }
 
         private HtmlEmailTemplatePart GetHtmlTemplatePart(int htmlTemplatePartId)
