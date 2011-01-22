@@ -12,7 +12,6 @@ namespace TestHelper.Builders.EmailTemplates
         private string _initialHtml;
         private int _nextPartId;
         private IList<Tuple<int, int>> _variables = new List<Tuple<int, int>>();
-        private bool _fakeIds;
 
         private int NextPartId
         {
@@ -43,35 +42,23 @@ namespace TestHelper.Builders.EmailTemplates
             return this;
         }
 
-        public EmailTemplateBuilder WithFakeIds()
-        {
-            _fakeIds = true;
-            return this;
-        }
-
         public EmailTemplate Build()
         {
             var emailTemplate = new EmailTemplate();
             var htmlPart = emailTemplate.Parts.Single();
             var htmlPartId = htmlPart.Id;
-            if (_fakeIds)
-            {
-                htmlPartId = NextPartId;
-                htmlPart.SetPrivateAttribute("_id", htmlPartId);
-            }
+            htmlPartId = NextPartId;
+            htmlPart.SetPrivateAttribute("_id", htmlPartId);
             emailTemplate.SetHtml(htmlPartId, _initialHtml);
 
             _variables.Each(variable =>
                                 {
                                     emailTemplate.CreateVariable(htmlPartId, variable.Item1, variable.Item2);
-                                    if (_fakeIds)
-                                    {
-                                        var count = emailTemplate.Parts.Count();
-                                        var variablePart = emailTemplate.Parts.ElementAt(count - 2);
-                                        variablePart.SetPrivateAttribute("_id", NextPartId);
-                                        htmlPartId = NextPartId;
-                                        emailTemplate.Parts.ElementAt(count - 1).SetPrivateAttribute("_id", htmlPartId);
-                                    }
+                                    var count = emailTemplate.Parts.Count();
+                                    var variablePart = emailTemplate.Parts.ElementAt(count - 2);
+                                    variablePart.SetPrivateAttribute("_id", NextPartId);
+                                    htmlPartId = NextPartId;
+                                    emailTemplate.Parts.ElementAt(count - 1).SetPrivateAttribute("_id", htmlPartId);
                                 });
 
             return emailTemplate;

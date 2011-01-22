@@ -5,7 +5,7 @@ using EmailMaker.Utilities;
 
 namespace EmailMaker.Domain.EmailTemplates
 {
-    public class EmailTemplate : Identity<EmailTemplate>, IAggregateRoot
+    public class EmailTemplate : Identity<EmailTemplate>, IAggregateRootEntity
     {
         private readonly IList<EmailTemplatePart> _parts;
         
@@ -17,6 +17,11 @@ namespace EmailMaker.Domain.EmailTemplates
         public EmailTemplate()
         {
             _parts = new List<EmailTemplatePart> { new HtmlEmailTemplatePart() };
+        }
+
+        public EmailTemplate(string html)
+        {
+            _parts = new List<EmailTemplatePart> { new HtmlEmailTemplatePart(html) };
         }
 
         public virtual void SetHtml(int htmlTemplatePartId, string html)

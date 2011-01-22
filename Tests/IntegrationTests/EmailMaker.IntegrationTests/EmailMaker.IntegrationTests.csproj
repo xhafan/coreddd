@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseTests\PersistenceTestBase.cs" />
     <Compile Include="DatabaseTests\EntityPersistenceTests\when_persisting_email_template.cs" />
     <Compile Include="DatabaseTests\when_generating_database_schema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +65,10 @@
     <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
       <Name>EmailMaker.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
+      <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
+      <Name>EmailMaker.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\TestHelper\TestHelper.csproj">
       <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>

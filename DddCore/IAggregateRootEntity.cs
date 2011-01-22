@@ -1,6 +1,6 @@
 ﻿namespace DddCore
 {
-    public interface IAggregateRoot
+    public interface IAggregateRootEntity
     {
         int Id { get; }
     }

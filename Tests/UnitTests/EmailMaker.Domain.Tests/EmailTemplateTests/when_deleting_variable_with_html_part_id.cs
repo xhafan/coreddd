@@ -16,7 +16,6 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
         public void Context()
         {
             _template = EmailTemplateBuilder.New
-                .WithFakeIds()
                 .WithInitialHtml("123")
                 .WithVariable(1, 1)
                 .Build();

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailTemplateTests\when_creating_email_template.cs" />
+    <Compile Include="EmailTemplateTests\when_creating_email_template_with_initial_html.cs" />
     <Compile Include="EmailTemplateTests\when_creating_variable.cs" />
     <Compile Include="EmailTemplateTests\when_creating_variable_with_incorrect_html_template_part.cs" />
     <Compile Include="EmailTemplateTests\when_creating_variable_with_incorrect_string_index.cs" />
