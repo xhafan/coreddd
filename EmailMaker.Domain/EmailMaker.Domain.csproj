@@ -46,10 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Emails\Email.cs" />
+    <Compile Include="Emails\EmailPart.cs" />
+    <Compile Include="Emails\HtmlEmailPart.cs" />
     <Compile Include="EmailTemplates\EmailTemplate.cs" />
     <Compile Include="EmailTemplates\EmailTemplateFactory.cs" />
     <Compile Include="EmailTemplates\HtmlEmailTemplatePart.cs" />
     <Compile Include="EmailTemplates\RepeatedSectionEmailTemplatePart.cs" />
+    <Compile Include="Emails\VariableEmailPart.cs" />
     <Compile Include="EmailTemplates\VariableTypes\AutoTextVariableType.cs" />
     <Compile Include="EmailTemplates\VariableTypes\InputTextVariableType.cs" />
     <Compile Include="EmailTemplates\VariableTypes\ListVariableType.cs" />
