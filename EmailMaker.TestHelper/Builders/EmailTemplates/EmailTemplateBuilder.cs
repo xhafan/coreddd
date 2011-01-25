@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.TestHelper.Extensions;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Utilities.Extensions;
-using TestHelper.Extensions;
 
-namespace TestHelper.Builders.EmailTemplates
+namespace EmailMaker.TestHelper.Builders.EmailTemplates
 {
     public class EmailTemplateBuilder
     {       

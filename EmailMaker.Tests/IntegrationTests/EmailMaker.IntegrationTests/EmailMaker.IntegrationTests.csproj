@@ -31,14 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate, Version=1.2.0.694, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL" />
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\..\Libraries\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
       <HintPath>..\..\..\Libraries\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\..\Libraries\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\Libraries\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\..\Libraries\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
@@ -66,7 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DddCore\DddCore.csproj">
+    <ProjectReference Include="..\..\..\..\..\CoreNet\trunk\DddCore\DddCore.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>DddCore</Name>
     </ProjectReference>
@@ -77,10 +81,6 @@
     <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
       <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
       <Name>EmailMaker.Utilities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\TestHelper\TestHelper.csproj">
-      <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>
-      <Name>TestHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

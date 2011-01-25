@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Core.TestHelper.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.TestHelper.Builders.EmailTemplates;
 using EmailMaker.Utilities;
 using NUnit.Framework;
-using TestHelper.Builders.EmailTemplates;
-using TestHelper.Extensions;
 
 namespace EmailMaker.Domain.Tests.EmailTests
 {

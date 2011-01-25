@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.TestHelper.Builders.EmailTemplates;
 using NUnit.Framework;
 using Shouldly;
-using TestHelper.Builders.EmailTemplates;
 
 namespace EmailMaker.Domain.Tests.EmailTemplateTests
 {

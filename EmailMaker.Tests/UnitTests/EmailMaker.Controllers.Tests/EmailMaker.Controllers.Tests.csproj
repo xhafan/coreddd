@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\..\Libraries\nunit.framework.dll</HintPath>
+      <HintPath>..\..\IntegrationTests\EmailMaker.IntegrationTests\bin\Debug\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Shouldly">
-      <HintPath>..\..\..\Libraries\Shouldly.dll</HintPath>
+      <HintPath>..\..\IntegrationTests\EmailMaker.IntegrationTests\bin\Debug\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
