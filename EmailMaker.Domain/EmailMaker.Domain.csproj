@@ -69,7 +69,7 @@
     <Compile Include="EmailTemplates\VariableEmailTemplatePart.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CoreNet\trunk\DddCore\DddCore.csproj">
+    <ProjectReference Include="..\Core\DddCore\DddCore.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>DddCore</Name>
     </ProjectReference>
