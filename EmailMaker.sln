@@ -21,6 +21,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Utilities", "Ema
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.IntegrationTests", "Tests\IntegrationTests\EmailMaker.IntegrationTests\EmailMaker.IntegrationTests.csproj", "{10790F2C-1370-4050-A0BF-7B0D4B509AF3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DFCB5F76-273C-4889-B7DC-387C676DF1D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Website", "EmailMaker.Website\EmailMaker.Website.csproj", "{BA9916C7-48D4-4824-A4ED-2D3FEF5CA9F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Controllers", "EmailMaker.Controllers\EmailMaker.Controllers.csproj", "{A34ED149-1B63-44AC-B72A-A81C5FD42190}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +61,14 @@ Global
 		{10790F2C-1370-4050-A0BF-7B0D4B509AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10790F2C-1370-4050-A0BF-7B0D4B509AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10790F2C-1370-4050-A0BF-7B0D4B509AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9916C7-48D4-4824-A4ED-2D3FEF5CA9F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9916C7-48D4-4824-A4ED-2D3FEF5CA9F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9916C7-48D4-4824-A4ED-2D3FEF5CA9F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9916C7-48D4-4824-A4ED-2D3FEF5CA9F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A34ED149-1B63-44AC-B72A-A81C5FD42190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A34ED149-1B63-44AC-B72A-A81C5FD42190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A34ED149-1B63-44AC-B72A-A81C5FD42190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A34ED149-1B63-44AC-B72A-A81C5FD42190}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,5 +81,7 @@ Global
 		{E1F1BD03-EC27-4AE8-8021-4580560A0E29} = {9997BD56-3B10-4ACD-94AA-3B87664C4A8A}
 		{10790F2C-1370-4050-A0BF-7B0D4B509AF3} = {9997BD56-3B10-4ACD-94AA-3B87664C4A8A}
 		{AC889EB1-719B-4FFD-B179-514F0AC5F5CE} = {CB618308-8C71-42C9-BD2F-9C1B397F0672}
+		{BA9916C7-48D4-4824-A4ED-2D3FEF5CA9F1} = {DFCB5F76-273C-4889-B7DC-387C676DF1D9}
+		{A34ED149-1B63-44AC-B72A-A81C5FD42190} = {DFCB5F76-273C-4889-B7DC-387C676DF1D9}
 	EndGlobalSection
 EndGlobal
