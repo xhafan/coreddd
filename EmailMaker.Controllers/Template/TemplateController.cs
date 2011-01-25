@@ -4,13 +4,15 @@ namespace EmailMaker.Controllers.Template
 {
     public class TemplateController : Controller
     {
-        //
-        // GET: /Template/
-
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult New()
+        {
+            return View();
+        }
+    
     }
 }
