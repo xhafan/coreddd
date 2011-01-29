@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DddCore
+﻿namespace Core.Ddd
 {
     public abstract class Identity<T> where T : Identity<T>
     {

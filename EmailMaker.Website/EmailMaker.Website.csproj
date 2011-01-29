@@ -33,6 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core" />
+    <Reference Include="Castle.Windsor" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages" />
     <Reference Include="System.Web.Helpers" />
@@ -110,6 +112,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.Web\Core.Web.csproj">
+      <Project>{25582672-6A5F-42BA-A968-213EBB05E735}</Project>
+      <Name>Core.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\CoreIoC\CoreIoC.csproj">
+      <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
+      <Name>CoreIoC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Controllers\EmailMaker.Controllers.csproj">
       <Project>{A34ED149-1B63-44AC-B72A-A81C5FD42190}</Project>
       <Name>EmailMaker.Controllers</Name>

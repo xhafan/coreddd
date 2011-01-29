@@ -32,25 +32,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentNHibernate">
-      <HintPath>..\..\..\Libraries\FluentNHibernate.dll</HintPath>
+      <HintPath>..\..\..\SharedLibs\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
-      <HintPath>..\..\..\Libraries\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+      <HintPath>..\..\..\SharedLibs\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\..\..\Libraries\log4net.dll</HintPath>
+      <HintPath>..\..\..\SharedLibs\log4net.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
-      <HintPath>..\..\..\Libraries\NHibernate.dll</HintPath>
+      <HintPath>..\..\..\SharedLibs\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\..\..\Libraries\NHibernate.ByteCode.Castle.dll</HintPath>
+      <HintPath>..\..\..\SharedLibs\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\..\Libraries\nunit.framework.dll</HintPath>
+      <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Shouldly">
-      <HintPath>..\..\..\Libraries\Shouldly.dll</HintPath>
+      <HintPath>..\..\..\SharedLibs\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -70,9 +70,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\DddCore\DddCore.csproj">
+    <ProjectReference Include="..\..\..\Core\Core.Ddd\Core.Ddd.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>DddCore</Name>
+      <Name>Core.Ddd</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>

@@ -1,4 +1,4 @@
-﻿using DddCore;
+﻿using Core.Ddd;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Utilities.Extensions;
 using FluentNHibernate;

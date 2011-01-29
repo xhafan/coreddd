@@ -1,4 +1,4 @@
-﻿using DddCore;
+﻿using Core.Ddd;
 
 namespace EmailMaker.Domain.EmailTemplates
 {

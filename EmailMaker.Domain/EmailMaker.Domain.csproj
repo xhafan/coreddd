@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentNHibernate">
-      <HintPath>..\Libraries\FluentNHibernate.dll</HintPath>
+      <HintPath>..\SharedLibs\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
-      <HintPath>..\Libraries\NHibernate.dll</HintPath>
+      <HintPath>..\SharedLibs\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,9 +69,9 @@
     <Compile Include="EmailTemplates\VariableEmailTemplatePart.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\DddCore\DddCore.csproj">
+    <ProjectReference Include="..\Core\Core.Ddd\Core.Ddd.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>DddCore</Name>
+      <Name>Core.Ddd</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
       <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>

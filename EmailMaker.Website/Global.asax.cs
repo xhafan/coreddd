@@ -1,16 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Castle.Core;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using Core.Web;
+using CoreIoC;
+using EmailMaker.Controllers.Template;
 
 namespace EmailMaker.Website
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -35,6 +38,25 @@ namespace EmailMaker.Website
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+
+            var container = new WindsorContainer();
+            //BooReader.Read(container, "windsor.boo");
+            _RegisterControllersInContainer(container);
+            IoC.Initialize(container);
+
+            ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory());
+        }
+
+        private void _RegisterControllersInContainer(IWindsorContainer container)
+        {
+            var controllerTypes = from t in Assembly.GetAssembly(typeof(TemplateController)).GetTypes()
+                                  where typeof(IController).IsAssignableFrom(t)
+                                  select t;
+            foreach (var controllerType in controllerTypes)
+            {
+                container.Register(Component.For(controllerType).Named(controllerType.FullName).LifeStyle.Is(LifestyleType.Transient));
+            }            
         }
     }
 }
