@@ -17,7 +17,7 @@ namespace CoreIoC
             return _container.Resolve(service);
         }
 
-        public static object Resolve<T>()
+        public static T Resolve<T>()
         {
             return _container.Resolve<T>();
         }
