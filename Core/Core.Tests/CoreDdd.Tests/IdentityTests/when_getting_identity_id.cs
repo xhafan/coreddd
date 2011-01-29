@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Shouldly;
 
-namespace DddCore.Tests.IdentityTests
+namespace CoreDdd.Tests.IdentityTests
 {
     [TestFixture]
     public class when_getting_identity_id

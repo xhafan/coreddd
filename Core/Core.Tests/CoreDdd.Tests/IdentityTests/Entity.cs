@@ -1,6 +1,6 @@
 ﻿using Core.Ddd;
 
-namespace DddCore.Tests.IdentityTests
+namespace CoreDdd.Tests.IdentityTests
 {
     internal class Entity : Identity<Entity>
     {

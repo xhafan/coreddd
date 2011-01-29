@@ -2,7 +2,7 @@
 
 namespace Core.Queries
 {
-    public interface IQueryMessageHandler<TQueryMessage> where TQueryMessage : IQueryMessage
+    public interface IQueryMessageHandler<in TQueryMessage> where TQueryMessage : IQueryMessage
     {
         IEnumerable<TResult> Handle<TResult>(TQueryMessage queryMessage);
     }

@@ -1,6 +1,6 @@
-﻿namespace EmailMaker.IntegrationTests.DatabaseTests
+﻿namespace Core.TestHelper.Persistence
 {
-    public abstract class SimplePersistenceTestBase : PersistenceTestBase
+    public abstract class BaseSimplePersistenceTest : BasePersistenceTest
     {
         public abstract void PersistenceContext();
 

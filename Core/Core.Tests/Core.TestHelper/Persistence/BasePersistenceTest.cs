@@ -7,9 +7,9 @@ using NHibernate;
 using NHibernate.Cfg;
 using NUnit.Framework;
 
-namespace EmailMaker.IntegrationTests.DatabaseTests
+namespace Core.TestHelper.Persistence
 {
-    public abstract class PersistenceTestBase
+    public abstract class BasePersistenceTest
     {
         protected ISession Session;
 

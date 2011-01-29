@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\..\SharedLibs\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
+      <HintPath>..\..\..\SharedLibs\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\SharedLibs\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +53,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Persistence\BasePersistenceTest.cs" />
+    <Compile Include="Persistence\BaseSimplePersistenceTest.cs" />
+    <Compile Include="Persistence\base_when_generating_database_schema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
+      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
+      <Name>EmailMaker.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
+      <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
+      <Name>EmailMaker.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core.Ddd\Core.Ddd.csproj">
+      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
+      <Name>Core.Ddd</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

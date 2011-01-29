@@ -40,8 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Messages\GetEmailTemplateQueryMessage.cs" />
+    <Compile Include="Handlers\GetEmailTemplateQueryMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.Queries\Core.Queries.csproj">
+      <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
+      <Name>Core.Queries</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
