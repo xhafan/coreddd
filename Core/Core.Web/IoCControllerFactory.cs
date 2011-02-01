@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
-using CoreIoC;
+using Core.Commons;
 
 namespace Core.Web
 {
@@ -9,6 +9,10 @@ namespace Core.Web
     {
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
+            if (controllerType == null)
+            {
+                return base.GetControllerInstance(requestContext, controllerType);
+            }
             return (IController)IoC.Resolve(controllerType);
         }
 

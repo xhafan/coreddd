@@ -1,4 +1,4 @@
-﻿namespace EmailMaker.Utilities
+﻿namespace Core.Utilities
 {
     public static class Guard
     {
@@ -6,7 +6,7 @@
         {
             if (!condition)
             {
-                throw new EmailMakerException(message);
+                throw new CoreException(message);
             }
         }
     }

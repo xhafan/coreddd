@@ -71,6 +71,10 @@
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>Core.Ddd</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core.Utilities\Core.Utilities.csproj">
+      <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
+      <Name>Core.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

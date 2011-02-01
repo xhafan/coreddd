@@ -7,8 +7,8 @@ using System.Web.Routing;
 using Castle.Core;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using Core.Commons;
 using Core.Web;
-using CoreIoC;
 using EmailMaker.Controllers.Template;
 
 namespace EmailMaker.Website

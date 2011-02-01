@@ -40,10 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmailMakerException.cs" />
-    <Compile Include="Guard.cs" />
-    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="CoreException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.Utilities\Core.Utilities.csproj">
+      <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
+      <Name>Core.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

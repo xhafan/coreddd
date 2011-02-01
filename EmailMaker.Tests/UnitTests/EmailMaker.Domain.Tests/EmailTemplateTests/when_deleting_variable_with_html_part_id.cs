@@ -1,7 +1,7 @@
 ﻿using System.Linq;
+using Core.Utilities;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.TestHelper.Builders.EmailTemplates;
-using EmailMaker.Utilities;
 using NUnit.Framework;
 
 namespace EmailMaker.Domain.Tests.EmailTemplateTests
@@ -12,7 +12,7 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
         private EmailTemplate _template;
 
         [Test]
-        [ExpectedException(typeof(EmailMakerException), ExpectedMessage = "Part is not a variable, Id: 3")]
+        [ExpectedException(typeof(CoreException), ExpectedMessage = "Part is not a variable, Id: 3")]
         public void Context()
         {
             _template = EmailTemplateBuilder.New

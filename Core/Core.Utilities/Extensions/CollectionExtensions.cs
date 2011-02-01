@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EmailMaker.Utilities.Extensions
+namespace Core.Utilities.Extensions
 {
     public static class CollectionExtensions
     {

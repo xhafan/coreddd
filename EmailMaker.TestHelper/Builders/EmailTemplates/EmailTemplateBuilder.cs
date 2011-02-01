@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.TestHelper.Extensions;
+using Core.Utilities.Extensions;
 using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.Utilities.Extensions;
 
 namespace EmailMaker.TestHelper.Builders.EmailTemplates
 {

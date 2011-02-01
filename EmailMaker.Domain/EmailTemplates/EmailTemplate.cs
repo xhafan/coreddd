@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Core.Ddd;
+using Core.Utilities;
 using EmailMaker.Utilities;
 
 namespace EmailMaker.Domain.EmailTemplates

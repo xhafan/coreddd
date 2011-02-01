@@ -1,6 +1,6 @@
-﻿using EmailMaker.Domain.EmailTemplates;
+﻿using Core.Utilities;
+using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.TestHelper.Builders.EmailTemplates;
-using EmailMaker.Utilities;
 using NUnit.Framework;
 
 namespace EmailMaker.Domain.Tests.EmailTemplateTests
@@ -11,7 +11,7 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
         private EmailTemplate _template;
 
         [Test]
-        [ExpectedException(typeof(EmailMakerException), ExpectedMessage = "Invalid variable part Id: 23")]
+        [ExpectedException(typeof(CoreException), ExpectedMessage = "Invalid variable part Id: 23")]
         public void Context()
         {
             _template = EmailTemplateBuilder.New.Build();

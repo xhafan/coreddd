@@ -112,13 +112,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.Commons\Core.Commons.csproj">
+      <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
+      <Name>Core.Commons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.Web\Core.Web.csproj">
       <Project>{25582672-6A5F-42BA-A968-213EBB05E735}</Project>
       <Name>Core.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\CoreIoC\CoreIoC.csproj">
-      <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
-      <Name>CoreIoC</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Controllers\EmailMaker.Controllers.csproj">
       <Project>{A34ED149-1B63-44AC-B72A-A81C5FD42190}</Project>

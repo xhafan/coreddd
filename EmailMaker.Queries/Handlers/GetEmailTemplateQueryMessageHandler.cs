@@ -7,7 +7,7 @@ namespace EmailMaker.Queries.Handlers
 {
     public class GetEmailTemplateQueryMessageHandler : IQueryMessageHandler<GetEmailTemplateQueryMessage>
     {
-        public IEnumerable<TResult> Handle<TResult>(GetEmailTemplateQueryMessage queryMessage)
+        public IEnumerable<TResult> Execute<TResult>(GetEmailTemplateQueryMessage queryMessage)
         {
             throw new NotImplementedException();
         }

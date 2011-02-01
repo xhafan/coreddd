@@ -1,10 +1,8 @@
 ﻿using Core.Ddd;
-using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.Utilities.Extensions;
-using FluentNHibernate;
-using HibernatingRhinos.Profiler.Appender.NHibernate;
+using Core.Utilities;
+using Core.Utilities.Extensions;
+using Core.Utilities.NHibernate;
 using NHibernate;
-using NHibernate.Cfg;
 using NUnit.Framework;
 
 namespace Core.TestHelper.Persistence
@@ -47,15 +45,7 @@ namespace Core.TestHelper.Persistence
 
         private void _ConfigureNHibernate()
         {
-#if(DEBUG)
-            NHibernateProfiler.Initialize();
-#endif
-            var configuration = new Configuration();
-            configuration.Configure();
-            var persistenceModel = new PersistenceModel();
-            persistenceModel.AddMappingsFromAssembly(typeof(EmailTemplate).Assembly);
-            persistenceModel.Configure(configuration);
-            var sessionFactory = configuration.BuildSessionFactory();
+            var sessionFactory = NHibernateUtilities.ConfigureNHibernate();
             Session = sessionFactory.OpenSession();
         }
     }

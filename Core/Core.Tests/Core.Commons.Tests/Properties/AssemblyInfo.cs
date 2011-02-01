@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Core.Utilities.NHibernate;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EmailMaker.Domain")]
+[assembly: AssemblyTitle("Core.Commons.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("EmailMaker.Domain")]
+[assembly: AssemblyProduct("Core.Commons.Tests")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +20,7 @@ using Core.Utilities.NHibernate;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4be6b7ac-f0d2-4306-8f2c-f573d89767e5")]
+[assembly: Guid("9bc56902-a7b8-45c1-8b0a-ae7edb2390ba")]
 
 // Version information for an assembly consists of the following four values:
 //

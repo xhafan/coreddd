@@ -2,6 +2,7 @@
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Utilities;
 
+
 namespace EmailMaker.Domain.Emails
 {
     public class Email

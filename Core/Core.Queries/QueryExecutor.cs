@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CoreIoC;
+using Core.Commons;
 
 namespace Core.Queries
 {
@@ -8,7 +8,7 @@ namespace Core.Queries
         public IEnumerable<TResult> Execute<TQueryMessage, TResult>(TQueryMessage queryMessage) where TQueryMessage : IQueryMessage
         {
             var queryHandler = IoC.Resolve<IQueryMessageHandler<TQueryMessage>>();
-            return queryHandler.Handle<TResult>(queryMessage);
+            return queryHandler.Execute<TResult>(queryMessage);
         }
     }
 }
