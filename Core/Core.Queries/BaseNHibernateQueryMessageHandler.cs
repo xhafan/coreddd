@@ -13,6 +13,6 @@ namespace Core.Queries
             Session = UnitOfWork.CurrentSession;
         }
 
-        public abstract IEnumerable<TResult> Execute<TResult>(TQueryMessage queryMessage);
+        public abstract IEnumerable<TResult> Execute<TResult>(TQueryMessage message);
     }
 }

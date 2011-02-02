@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Messages\GetEmailTemplateQueryMessage.cs" />
-    <Compile Include="Handlers\GetEmailTemplateQueryMessageHandler.cs" />
+    <Compile Include="Handlers\GetEmailTemplateQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,9 +50,17 @@
       <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
       <Name>Core.Commons</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Core.Ddd\Core.Ddd.csproj">
+      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
+      <Name>Core.Ddd</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.Queries\Core.Queries.csproj">
       <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
       <Name>Core.Queries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
+      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
+      <Name>EmailMaker.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
