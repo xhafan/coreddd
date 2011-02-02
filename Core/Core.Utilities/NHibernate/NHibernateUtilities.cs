@@ -11,6 +11,8 @@ namespace Core.Utilities.NHibernate
 {
     public static class NHibernateUtilities
     {
+        private const string NHibernateMappingDllFileExtension = "NHibernateMappings.dll";
+
         public static ISessionFactory ConfigureNHibernate()
         {
 #if(DEBUG)
@@ -28,12 +30,9 @@ namespace Core.Utilities.NHibernate
 
         private static IEnumerable<Assembly> _GetAssembliesWithMapping()
         {
-            //todo: fix this
+            var files = Directory.GetFiles(".", "*." + NHibernateMappingDllFileExtension);
             var assembliesWithMapping = new List<Assembly>();
-            if (File.Exists("EmailMaker.Domain.dll"))
-            {
-                assembliesWithMapping.Add(Assembly.LoadFrom("EmailMaker.Domain.dll"));
-            }
+            files.Each(file => assembliesWithMapping.Add(Assembly.LoadFrom(file)));
             return assembliesWithMapping;
         }
 

@@ -5,9 +5,9 @@ using EmailMaker.Queries.Messages;
 
 namespace EmailMaker.Queries.Handlers
 {
-    public class GetEmailTemplateQueryMessageHandler : IQueryMessageHandler<GetEmailTemplateQueryMessage>
+    public class GetEmailTemplateQueryMessageHandler : BaseNHibernateQueryMessageHandler<GetEmailTemplateQueryMessage>
     {
-        public IEnumerable<TResult> Execute<TResult>(GetEmailTemplateQueryMessage queryMessage)
+        public override IEnumerable<TResult> Execute<TResult>(GetEmailTemplateQueryMessage queryMessage)
         {
             throw new NotImplementedException();
         }

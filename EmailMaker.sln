@@ -47,6 +47,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Commons", "Core\Core.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Commons.Tests", "Core\Core.Tests\Core.Commons.Tests\Core.Commons.Tests.csproj", "{62E7DFCB-35DC-4B55-849C-51D7B2BFBC86}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{2079061A-B619-4022-B211-D2C815DD39F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Domain.NHibernateMappings", "EmailMaker.Domain.NHibernateMappings\EmailMaker.Domain.NHibernateMappings.csproj", "{78FD90F4-DD12-425D-B9F4-B262B99FA247}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +125,10 @@ Global
 		{62E7DFCB-35DC-4B55-849C-51D7B2BFBC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62E7DFCB-35DC-4B55-849C-51D7B2BFBC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62E7DFCB-35DC-4B55-849C-51D7B2BFBC86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78FD90F4-DD12-425D-B9F4-B262B99FA247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78FD90F4-DD12-425D-B9F4-B262B99FA247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78FD90F4-DD12-425D-B9F4-B262B99FA247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78FD90F4-DD12-425D-B9F4-B262B99FA247}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,5 +150,7 @@ Global
 		{63E6B983-C183-4180-8FE3-B75FC33BFC85} = {60540F8D-B802-4F58-98B1-6C21812D7A45}
 		{C4F5D92A-8E83-4215-8B84-79A28A8BB366} = {60540F8D-B802-4F58-98B1-6C21812D7A45}
 		{62E7DFCB-35DC-4B55-849C-51D7B2BFBC86} = {60540F8D-B802-4F58-98B1-6C21812D7A45}
+		{09698B3F-4CF5-49DC-BA64-27790733B2D2} = {2079061A-B619-4022-B211-D2C815DD39F1}
+		{78FD90F4-DD12-425D-B9F4-B262B99FA247} = {2079061A-B619-4022-B211-D2C815DD39F1}
 	EndGlobalSection
 EndGlobal

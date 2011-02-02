@@ -8,21 +8,21 @@ namespace Core.Commons
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ISession _session;
+        private ISession _session;
 
         [ThreadStatic]
-        private static IUnitOfWork _threadUnitOfWork;
+        private static UnitOfWork _threadUnitOfWork;
         private static readonly object UnitOfWorkKey = new object();
 
         private static ISessionFactory _sessionFactory;
         private static readonly object SessionFactoryLock = new object();
 
-        public UnitOfWork(ISession session)
+        private UnitOfWork(ISession session)
         {
             _session = session;
         }
 
-        public static IUnitOfWork Current
+        public static UnitOfWork Current
         {
             get
             {
@@ -30,7 +30,7 @@ namespace Core.Commons
                 {
                     return _threadUnitOfWork ?? (_threadUnitOfWork = Create());
                 }
-                var httpContextUnitOfWork = HttpContext.Current.Items[UnitOfWorkKey] as IUnitOfWork;
+                var httpContextUnitOfWork = HttpContext.Current.Items[UnitOfWorkKey] as UnitOfWork;
                 if (httpContextUnitOfWork == null)
                 {
                     httpContextUnitOfWork = Create();
@@ -51,7 +51,13 @@ namespace Core.Commons
             }
         }
 
-        private static IUnitOfWork Create()
+        public static ISession CurrentSession
+        {
+            get { return Current._session; }
+            internal set { Current._session = value; }
+        }
+
+        private static UnitOfWork Create()
         {
             var session = SessionFactory.OpenSession();
             return new UnitOfWork(session);

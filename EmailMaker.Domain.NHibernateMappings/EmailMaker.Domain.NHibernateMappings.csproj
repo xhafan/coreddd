@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{53C39A0D-69E8-498D-AFDB-82EB65470295}</ProjectGuid>
+    <ProjectGuid>{78FD90F4-DD12-425D-B9F4-B262B99FA247}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.Queries</RootNamespace>
-    <AssemblyName>Core.Queries</AssemblyName>
+    <RootNamespace>EmailMaker.Domain.NHibernateMappings</RootNamespace>
+    <AssemblyName>EmailMaker.Domain.NHibernateMappings</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NHibernate" />
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\SharedLibs\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\SharedLibs\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,17 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseNHibernateQueryMessageHandler.cs" />
-    <Compile Include="IQueryExecutor.cs" />
-    <Compile Include="IQueryMessage.cs" />
-    <Compile Include="IQueryMessageHandler.cs" />
+    <Compile Include="EmailTemplateMap.cs" />
+    <Compile Include="EmailTemplatePartMap.cs" />
+    <Compile Include="HtmlEmailTemplatePartMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryExecutor.cs" />
+    <Compile Include="VariableEmailTemplatePartMap.cs" />
+    <Compile Include="VariableTypeMap.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.Commons\Core.Commons.csproj">
-      <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
-      <Name>Core.Commons</Name>
+    <ProjectReference Include="..\Core\Core.Ddd\Core.Ddd.csproj">
+      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
+      <Name>Core.Ddd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
+      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
+      <Name>EmailMaker.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

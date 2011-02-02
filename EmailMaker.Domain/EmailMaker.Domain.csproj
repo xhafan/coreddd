@@ -59,11 +59,6 @@
     <Compile Include="EmailTemplates\VariableTypes\ListVariableType.cs" />
     <Compile Include="EmailTemplates\VariableTypes\TranslationVariableType.cs" />
     <Compile Include="EmailTemplates\VariableTypes\VariableType.cs" />
-    <Compile Include="NHibernateMappings\EmailTemplateMap.cs" />
-    <Compile Include="NHibernateMappings\EmailTemplatePartMap.cs" />
-    <Compile Include="NHibernateMappings\HtmlEmailTemplatePartMap.cs" />
-    <Compile Include="NHibernateMappings\VariableEmailTemplatePartMap.cs" />
-    <Compile Include="NHibernateMappings\VariableTypeMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EmailTemplates\EmailTemplatePart.cs" />
     <Compile Include="EmailTemplates\VariableEmailTemplatePart.cs" />
