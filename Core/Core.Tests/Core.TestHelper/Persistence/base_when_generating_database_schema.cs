@@ -4,6 +4,7 @@ using FluentNHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
+using Shouldly;
 
 namespace Core.TestHelper.Persistence
 {
@@ -33,7 +34,8 @@ namespace Core.TestHelper.Persistence
         [Test]
         public void database_schema_generated()
         {
-            File.Exists(DatabaseSchemaFileName);
+            File.Exists(DatabaseSchemaFileName).ShouldBe(true);
+            (new FileInfo(DatabaseSchemaFileName).Length).ShouldBeGreaterThan(0);
         }
     }
 }

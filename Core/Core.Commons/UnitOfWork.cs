@@ -17,7 +17,7 @@ namespace Core.Commons
         private static ISessionFactory _sessionFactory;
         private static readonly object SessionFactoryLock = new object();
 
-        private UnitOfWork(ISession session)
+        internal UnitOfWork(ISession session)
         {
             _session = session;
         }
@@ -73,11 +73,6 @@ namespace Core.Commons
             _session.Flush();
         }
 
-        public bool IsInActiveTransaction
-        {
-            get { return _session.Transaction.IsActive; }
-        }
-
         public ITransaction BeginTransaction()
         {
             return _session.BeginTransaction();
@@ -98,7 +93,6 @@ namespace Core.Commons
             var tx = BeginTransaction(isolationLevel);
             try
             {
-                //forces a flush of the current unit of work
                 tx.Commit();
             }
             catch

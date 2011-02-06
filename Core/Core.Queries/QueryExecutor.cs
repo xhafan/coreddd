@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Core.Commons;
 
 namespace Core.Queries
@@ -9,6 +10,11 @@ namespace Core.Queries
         {
             var queryHandler = IoC.Resolve<IQueryMessageHandler<TQueryMessage>>();
             return queryHandler.Execute<TResult>(queryMessage);
+        }
+
+        public IEnumerable<TResult> Execute<TQueryMessage, TResult, TTransformResult>(TQueryMessage queryMessage, Func<TResult, TTransformResult> transform) where TQueryMessage : IQueryMessage
+        {
+            throw new NotImplementedException();
         }
     }
 }

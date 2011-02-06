@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Shouldly;
 
-namespace Core.Commons.Tests
+namespace Core.Commons.Tests.UnitOfWorkTests
 {
     [TestFixture]
     public class when_getting_current_unit_of_work_for_the_same_thread : base_when_getting_current_unit_of_work

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{62E7DFCB-35DC-4B55-849C-51D7B2BFBC86}</ProjectGuid>
+    <ProjectGuid>{3556F985-5FCA-4655-B2BE-47FC35F896B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.Commons.Tests</RootNamespace>
-    <AssemblyName>Core.Commons.Tests</AssemblyName>
+    <RootNamespace>Core.Queries.Tests</RootNamespace>
+    <AssemblyName>Core.Queries.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,10 +33,6 @@
   <ItemGroup>
     <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
     <Reference Include="Castle.Windsor, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
-    <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
-    <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\..\..\SharedLibs\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>
@@ -48,7 +44,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,31 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitOfWorkTests\base_when_getting_current_unit_of_work.cs" />
-    <Compile Include="IoCTests\when_getting_container_without_initialization.cs" />
-    <Compile Include="IoCTests\when_initializing_ioc.cs" />
-    <Compile Include="IoCTests\when_releasing_service_instance.cs" />
-    <Compile Include="IoCTests\when_resolving_service.cs" />
-    <Compile Include="IoCTests\when_resolving_service_generic.cs" />
-    <Compile Include="UnitOfWorkTests\when_beginning_transaction.cs" />
-    <Compile Include="UnitOfWorkTests\when_beginning_transaction_with_isolation_level.cs" />
-    <Compile Include="UnitOfWorkTests\when_disposing_unit_of_work.cs" />
-    <Compile Include="UnitOfWorkTests\when_flushing_unit_of_work.cs" />
-    <Compile Include="UnitOfWorkTests\when_getting_current_session.cs" />
-    <Compile Include="UnitOfWorkTests\when_getting_current_unit_of_work_for_different_http_requests.cs" />
-    <Compile Include="UnitOfWorkTests\when_getting_current_unit_of_work_for_different_threads.cs" />
+    <Compile Include="when_executing_query.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitOfWorkTests\when_getting_current_unit_of_work_for_the_same_http_request.cs" />
-    <Compile Include="UnitOfWorkTests\when_getting_current_unit_of_work_for_the_same_thread.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core.Commons\Core.Commons.csproj">
       <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
       <Name>Core.Commons</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core.Utilities\Core.Utilities.csproj">
-      <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
-      <Name>Core.Utilities</Name>
+    <ProjectReference Include="..\..\Core.Queries\Core.Queries.csproj">
+      <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
+      <Name>Core.Queries</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

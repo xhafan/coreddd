@@ -7,7 +7,6 @@ namespace Core.Commons
     public interface IUnitOfWork : IDisposable
     {
         void Flush();
-        bool IsInActiveTransaction { get; }
 
         ITransaction BeginTransaction();
         ITransaction BeginTransaction(IsolationLevel isolationLevel);

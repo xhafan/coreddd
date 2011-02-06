@@ -12,7 +12,7 @@ namespace Core.Commons
             _container = container;
         }
 
-        private static IWindsorContainer Container
+        internal static IWindsorContainer Container
         {
             get
             {

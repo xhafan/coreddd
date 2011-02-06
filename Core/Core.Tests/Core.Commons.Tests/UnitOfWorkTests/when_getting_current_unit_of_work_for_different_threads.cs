@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Shouldly;
 
-namespace Core.Commons.Tests
+namespace Core.Commons.Tests.UnitOfWorkTests
 {
     [TestFixture]
     public class when_getting_current_unit_of_work_for_different_threads : base_when_getting_current_unit_of_work
@@ -20,7 +20,7 @@ namespace Core.Commons.Tests
         }
 
         [Test]
-        public void unit_of_works_are_the_same()
+        public void unit_of_works_are_different()
         {
             _threadOneCurrentUnitOfWork.ShouldNotBe(_threadTwoCurrentUnitOfWork);
         }

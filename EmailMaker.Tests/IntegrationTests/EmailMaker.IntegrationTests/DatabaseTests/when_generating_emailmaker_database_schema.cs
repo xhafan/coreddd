@@ -1,5 +1,5 @@
 ﻿using Core.TestHelper.Persistence;
-using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.Domain.NHibernateMappings;
 using NUnit.Framework;
 
 namespace EmailMaker.IntegrationTests.DatabaseTests
@@ -10,7 +10,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests
         protected override void SetUp()
         {
             DatabaseSchemaFileName = "..\\..\\..\\..\\..\\EmailMaker.Database\\EmailMaker_generated_database_schema.sql";
-            AssemblyWithMappings = typeof (EmailTemplate).Assembly;
+            AssemblyWithMappings = typeof (EmailTemplateMap).Assembly;
         }
     }
 }
