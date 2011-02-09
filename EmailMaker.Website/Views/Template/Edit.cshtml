@@ -1,0 +1,26 @@
+﻿@model EmailMaker.Controllers.ViewModels.EmailTemplateEditModel
+@using EmailMaker.Web;
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var model = {
+            emailTemplate: @Html.Raw(Html.ToJson(Model.EmailTemplate))
+        };
+        ko.applyBindings(model);
+    });
+</script>
+
+<h2>Edit</h2>
+
+<div data-bind="template: { name: 'emailTemplateKoTemplate', foreach: emailTemplate.Parts }"></div>
+
+<script id="emailTemplateKoTemplate" type="text/html">
+    <textarea>
+        hello world
+    </textarea>
+</script>
+
