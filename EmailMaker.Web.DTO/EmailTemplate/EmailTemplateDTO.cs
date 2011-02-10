@@ -6,6 +6,5 @@ namespace EmailMaker.Web.DTO.EmailTemplate
     {
         public int EmailTemplateId { get; set; }
         public IEnumerable<EmailPartDTO> Parts { get; set; }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.Web.DTO.EmailTemplate;
@@ -36,13 +37,19 @@ namespace EmailMaker.Controllers.Template
                                                             {
                                                                 Html = "html2"
                                                             },
-                                                    }
+                                                    }.ToList()
                                     };
             var model = new EmailTemplateEditModel
                             {
                                 EmailTemplate = emailTemplate
                             };
             return View(model);
+        }
+
+        [HttpPost]
+        public void Save(EmailTemplateDTO emailTemplate)
+        {
+            
         }
     }
 }

@@ -8,7 +8,15 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var model = {
-            emailTemplate: @Html.Raw(Html.ToJson(Model.EmailTemplate))
+            emailTemplate: @Html.Raw(Html.ToJson(Model.EmailTemplate)),
+            saveTemplate: function() {
+                $.ajax({
+                    url: "/Template/Save",
+                    type: "POST",
+                    data: JSON.stringify(this.emailTemplate),
+                    contentType: "application/json; charset=utf-8"
+                });
+            }
         };
         ko.applyBindings(model);
     });
@@ -16,11 +24,22 @@
 
 <h2>Edit</h2>
 
-<div data-bind="template: { name: 'emailTemplateKoTemplate', foreach: emailTemplate.Parts }"></div>
+<div data-bind="template: { name: 'emailTemplateKoTemplate', foreach: emailTemplate.Parts }">
+    <button data-bind="click: saveTemplate">Save</button>
+</div>
 
 <script id="emailTemplateKoTemplate" type="text/html">
-    <textarea>
-        hello world
-    </textarea>
+    {{if Html}} 
+        <div class="htmlBlock">
+            <label>Html block</label>
+            <textarea>${Html}</textarea>
+        </div>
+    {{/if}}
+    {{if VariableValue}} 
+        <div class="variable">
+            <label>Variable</label>
+            <button>${VariableValue}</botton>
+        </div>
+    {{/if}}
 </script>
 
