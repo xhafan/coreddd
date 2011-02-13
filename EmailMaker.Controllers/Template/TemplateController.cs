@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.Web.DTO.EmailTemplate;
 
@@ -20,25 +21,7 @@ namespace EmailMaker.Controllers.Template
 
         public ActionResult Edit(int id)
         {
-            var emailTemplate = new EmailTemplateDTO
-                                    {
-                                        EmailTemplateId = id,
-                                        Parts = new[]
-                                                    {
-                                                        new EmailPartDTO
-                                                            {
-                                                                Html = "html1"
-                                                            },
-                                                        new EmailPartDTO
-                                                            {
-                                                                VariableValue = "value1"
-                                                            },
-                                                        new EmailPartDTO
-                                                            {
-                                                                Html = "html2"
-                                                            },
-                                                    }.ToList()
-                                    };
+            var emailTemplate = _GetEmailTemplate(id);
             var model = new EmailTemplateEditModel
                             {
                                 EmailTemplate = emailTemplate
@@ -46,10 +29,49 @@ namespace EmailMaker.Controllers.Template
             return View(model);
         }
 
+        private EmailTemplateDTO _GetEmailTemplate(int id)
+        {
+            return new EmailTemplateDTO
+                       {
+                           EmailTemplateId = id,
+                           Parts = new[]
+                                       {
+                                           new EmailTemplatePartDTO
+                                               {
+                                                   PartId = 1,
+                                                   Html = "html1"
+                                               },
+                                           new EmailTemplatePartDTO
+                                               {
+                                                   PartId = 2,
+                                                   VariableValue = "value1"
+                                               },
+                                           new EmailTemplatePartDTO
+                                               {
+                                                   PartId = 3,
+                                                   Html = "html2"
+                                               },
+                                       }.ToList()
+                       };
+        }
+
         [HttpPost]
         public void Save(EmailTemplateDTO emailTemplate)
         {
             
         }
+
+        [HttpPost]
+        public void CreateVariable(CreateVariableCommand command)
+        {
+
+        }
+
+        [HttpPost]
+        public ActionResult GetEmailTemplate(int id)
+        {
+            return Json(_GetEmailTemplate(id));
+        }
+
     }
 }

@@ -68,6 +68,16 @@ textarea
 }
 
 .htmlBlock label {
-    display:block;
+    display: block;
+    font-weight: bold;
+}
+
+.variable label {
+    display: block;
+    font-weight: bold;
+}
+
+.htmlBlock button {
+    display: block;
 }
 

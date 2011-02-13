@@ -5,6 +5,6 @@ namespace EmailMaker.Web.DTO.EmailTemplate
     public class EmailTemplateDTO
     {
         public int EmailTemplateId { get; set; }
-        public IEnumerable<EmailPartDTO> Parts { get; set; }
+        public IEnumerable<EmailTemplatePartDTO> Parts { get; set; }
     }
 }

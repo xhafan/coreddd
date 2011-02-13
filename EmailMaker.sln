@@ -59,6 +59,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Web.DTO", "Email
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Web", "EmailMaker.Web\EmailMaker.Web.csproj", "{6AC005D9-720A-4B14-BE9A-75BB10A78BE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Commands", "EmailMaker.Commands\EmailMaker.Commands.csproj", "{DB6DC588-8415-4184-8B4B-6485374A2E68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -149,6 +151,10 @@ Global
 		{6AC005D9-720A-4B14-BE9A-75BB10A78BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AC005D9-720A-4B14-BE9A-75BB10A78BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AC005D9-720A-4B14-BE9A-75BB10A78BE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB6DC588-8415-4184-8B4B-6485374A2E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB6DC588-8415-4184-8B4B-6485374A2E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB6DC588-8415-4184-8B4B-6485374A2E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB6DC588-8415-4184-8B4B-6485374A2E68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,26 +6,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script type="text/javascript">
+    var editTemplateModel;
+
     $(document).ready(function () {
-        var model = {
-            emailTemplate: @Html.Raw(Html.ToJson(Model.EmailTemplate)),
+        editTemplateModel = {
+            emailTemplate: ko.observable(@Html.Raw(Html.ToJson(Model.EmailTemplate))),
             saveTemplate: function() {
-                $.ajax({
-                    url: "/Template/Save",
-                    type: "POST",
-                    data: JSON.stringify(this.emailTemplate),
-                    contentType: "application/json; charset=utf-8"
+                $.postJson("@Url.Content("~/Template/Save")", this.emailTemplate);
+            },
+            createVariable: function() {
+                $.postJson("@Url.Content("~/Template/CreateVariable")", { 
+                    HtmlTemplatePartId: this.PartId, 
+                    HtmlStartIndex: 1,
+                    Length: 1,
+                    EmailTemplate: editTemplateModel.emailTemplate()
+                }, function() {
+                    $.post("@Url.Content("~/Template/GetEmailTemplate")", { id: editTemplateModel.emailTemplate().EmailTemplateId }, function(data) {
+                        editTemplateModel.emailTemplate(data);
+                    });
                 });
             }
         };
-        ko.applyBindings(model);
+        ko.applyBindings(editTemplateModel, document.getElementById("editEmailTemplate"));
     });
 </script>
 
 <h2>Edit</h2>
 
-<div data-bind="template: { name: 'emailTemplateKoTemplate', foreach: emailTemplate.Parts }">
+<div id="editEmailTemplate" data-bind="template: { name: 'emailTemplateKoTemplate', foreach: emailTemplate().Parts }">
     <button data-bind="click: saveTemplate">Save</button>
+    <button data-bind="click: createVariable">test</button>
 </div>
 
 <script id="emailTemplateKoTemplate" type="text/html">
@@ -33,13 +43,25 @@
         <div class="htmlBlock">
             <label>Html block</label>
             <textarea data-bind="value: Html"></textarea>
+            <button data-bind="click: editTemplateModel.createVariable" data-part-id="${PartId}">Create variable</button>
         </div>
     {{/if}}
     {{if VariableValue}} 
         <div class="variable">
             <label>Variable</label>
-            <button>${VariableValue}</botton>
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Default value</td>
+                    <td><input type="text" data-bind="value: VariableValue" /></td>
+                </tr>
+            </table>
+            <button>Delete variable</button>
         </div>
     {{/if}}
 </script>
+
 
