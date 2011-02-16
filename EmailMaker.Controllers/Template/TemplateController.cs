@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
@@ -73,5 +72,9 @@ namespace EmailMaker.Controllers.Template
             return Json(_GetEmailTemplate(id));
         }
 
+        public ActionResult Edit2()
+        {
+            return View();
+        }
     }
 }

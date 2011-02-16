@@ -1,5 +1,6 @@
 ﻿@model EmailMaker.Controllers.ViewModels.EmailTemplateEditModel
 @using EmailMaker.Web;
+@using EmailMaker.Controllers.Template;
 
 @{
     ViewBag.Title = "Edit";
@@ -12,19 +13,20 @@
         editTemplateModel = {
             emailTemplate: ko.observable(@Html.Raw(Html.ToJson(Model.EmailTemplate))),
             saveTemplate: function() {
-                $.postJson("@Url.Content("~/Template/Save")", this.emailTemplate);
+                $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.Save(null)))", this.emailTemplate);
             },
             createVariable: function() {
-                $.postJson("@Url.Content("~/Template/CreateVariable")", { 
+                $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.CreateVariable(null)))", { 
                     HtmlTemplatePartId: this.PartId, 
                     HtmlStartIndex: 1,
                     Length: 1,
                     EmailTemplate: editTemplateModel.emailTemplate()
-                }, function() {
-                    $.post("@Url.Content("~/Template/GetEmailTemplate")", { id: editTemplateModel.emailTemplate().EmailTemplateId }, function(data) {
-                        editTemplateModel.emailTemplate(data);
-                    });
-                });
+                }, editTemplateModel.reloadEmailTemplate);
+            },
+            reloadEmailTemplate: function() {
+                $.post("@(Html.UrlFromControllerMethod<TemplateController>(c => c.GetEmailTemplate(default(int))))", { id: editTemplateModel.emailTemplate().EmailTemplateId }, function(data) {
+                    editTemplateModel.emailTemplate(data);
+                });            
             }
         };
         ko.applyBindings(editTemplateModel, document.getElementById("editEmailTemplate"));
