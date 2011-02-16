@@ -47,5 +47,4 @@ namespace Core.Queries.Tests
         }
     
     }
-
 }
