@@ -1,4 +1,4 @@
-﻿namespace Core.Ddd
+﻿namespace Core.Domain
 {
     public interface IAggregateRootEntity
     {

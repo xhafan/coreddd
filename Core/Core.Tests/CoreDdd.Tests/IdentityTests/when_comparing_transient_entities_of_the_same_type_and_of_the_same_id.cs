@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Tests.IdentityTests
+namespace Core.Domain.Tests.IdentityTests
 {
     [TestFixture]
     public class when_comparing_transient_entities_of_the_same_type_and_of_the_same_id

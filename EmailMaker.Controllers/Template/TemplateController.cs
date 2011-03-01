@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Core.Commands;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.Web.DTO.EmailTemplate;
@@ -8,6 +9,13 @@ namespace EmailMaker.Controllers.Template
 {
     public class TemplateController : Controller
     {
+        private ICommandExecutor _commandExecutor;
+
+        public TemplateController(ICommandExecutor commandExecutor)
+        {
+            _commandExecutor = commandExecutor;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -57,13 +65,13 @@ namespace EmailMaker.Controllers.Template
         [HttpPost]
         public void Save(EmailTemplateDTO emailTemplate)
         {
-            
+            throw new System.NotImplementedException();
         }
 
         [HttpPost]
         public void CreateVariable(CreateVariableCommand command)
         {
-
+            _commandExecutor.Execute(command);
         }
 
         [HttpPost]

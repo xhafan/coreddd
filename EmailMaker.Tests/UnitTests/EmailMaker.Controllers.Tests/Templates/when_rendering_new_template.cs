@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Core.TestHelper.Controllers;
 using EmailMaker.Controllers.Template;
 using NUnit.Framework;
 using Shouldly;
@@ -6,14 +7,13 @@ using Shouldly;
 namespace EmailMaker.Controllers.Tests.Templates
 {
     [TestFixture]
-    public class when_rendering_new_template
+    public class when_rendering_new_template : BaseControllerTest
     {
         private ActionResult _result;
 
-        [SetUp]
-        public void Context()
-        {
-            var controller = new TemplateController();
+        public override void Context()
+        {                        
+            var controller = new TemplateController(CommandExecutor);
             _result = controller.New();
         }
 

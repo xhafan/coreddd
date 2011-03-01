@@ -14,5 +14,10 @@ namespace EmailMaker.Domain.EmailTemplates
             VariableType = VariableType.InputText;
             Value = value;
         }
+
+        public virtual void SetValue(string value)
+        {
+            Value = value;
+        }
     }
 }

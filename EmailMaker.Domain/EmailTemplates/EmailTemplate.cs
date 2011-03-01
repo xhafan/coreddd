@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Core.Ddd;
+using Core.Domain;
 using Core.Utilities;
 
 namespace EmailMaker.Domain.EmailTemplates
@@ -26,13 +26,13 @@ namespace EmailMaker.Domain.EmailTemplates
 
         public virtual void SetHtml(int htmlTemplatePartId, string html)
         {
-            var htmlTemplatePart = GetHtmlTemplatePart(htmlTemplatePartId);
+            var htmlTemplatePart = _GetHtmlPart(htmlTemplatePartId);
             htmlTemplatePart.SetHtml(html);
         }
 
         public virtual void CreateVariable(int htmlTemplatePartId, int htmlStartIndex, int length)
         {
-            var htmlTemplatePart = GetHtmlTemplatePart(htmlTemplatePartId);
+            var htmlTemplatePart = _GetHtmlPart(htmlTemplatePartId);
             var html = htmlTemplatePart.Html;
             var htmlBefore = html.Substring(0, htmlStartIndex);
             var variableValue = html.Substring(htmlStartIndex, length);
@@ -60,10 +60,24 @@ namespace EmailMaker.Domain.EmailTemplates
             _parts.RemoveAt(i);
         }
 
-        private HtmlEmailTemplatePart GetHtmlTemplatePart(int htmlTemplatePartId)
+        private HtmlEmailTemplatePart _GetHtmlPart(int htmlTemplatePartId)
         {
-            return (HtmlEmailTemplatePart)Parts.First(x => x.Id == htmlTemplatePartId);
+            return (HtmlEmailTemplatePart) _GetPart(htmlTemplatePartId);
         }
 
+        private VariableEmailTemplatePart _GetVariablePart(int variablePartId)
+        {
+            return (VariableEmailTemplatePart) _GetPart(variablePartId);
+        }
+
+        private EmailTemplatePart _GetPart(int partId)
+        {
+            return Parts.First(x => x.Id == partId);
+        }
+
+        public virtual void SetVariableValue(int variablePartId, string value)
+        {
+            _GetVariablePart(variablePartId).SetValue(value);
+        }
     }
 }

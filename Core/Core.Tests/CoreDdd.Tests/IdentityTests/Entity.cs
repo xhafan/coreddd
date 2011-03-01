@@ -1,6 +1,6 @@
-﻿using Core.Ddd;
+﻿using Core.Domain;
 
-namespace CoreDdd.Tests.IdentityTests
+namespace Core.Domain.Tests.IdentityTests
 {
     internal class Entity : Identity<Entity>
     {

@@ -1,6 +1,4 @@
-﻿using Core.Ddd;
-
-namespace CoreDdd.Tests.IdentityTests
+﻿namespace Core.Domain.Tests.IdentityTests
 {
     internal class AnotherEntity : Identity<Entity>
     {

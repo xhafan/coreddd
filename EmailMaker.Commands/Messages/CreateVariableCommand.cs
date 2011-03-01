@@ -1,8 +1,9 @@
-﻿using EmailMaker.Web.DTO.EmailTemplate;
+﻿using Core.Commands;
+using EmailMaker.Web.DTO.EmailTemplate;
 
 namespace EmailMaker.Commands.Messages
 {
-    public class CreateVariableCommand
+    public class CreateVariableCommand : ICommandMessage
     {
         public int HtmlTemplatePartId { get; set; }
         public int HtmlStartIndex { get; set; }

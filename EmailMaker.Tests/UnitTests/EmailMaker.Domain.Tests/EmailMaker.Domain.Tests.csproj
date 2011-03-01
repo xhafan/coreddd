@@ -58,14 +58,15 @@
     <Compile Include="EmailTemplateTests\when_deleting_variable_with_invalid_variable_id.cs" />
     <Compile Include="EmailTemplateTests\when_setting_html_for_html_template_part.cs" />
     <Compile Include="EmailTemplateTests\when_setting_html_for_html_template_part_with_incorrect_html_template_part_id.cs" />
+    <Compile Include="EmailTemplateTests\when_setting_value_for_variable_part.cs" />
     <Compile Include="EmailTests\when_creating_email.cs" />
     <Compile Include="EmailTests\when_creating_email_with_unknown_email_template_part_type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Core.Ddd\Core.Ddd.csproj">
+    <ProjectReference Include="..\..\..\Core\Core.Ddd\Core.Domain.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>Core.Ddd</Name>
+      <Name>Core.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Core\Core.Tests\Core.TestHelper\Core.TestHelper.csproj">
       <Project>{63E6B983-C183-4180-8FE3-B75FC33BFC85}</Project>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Web;
 using Core.Utilities.Extensions;
 using FluentNHibernate;
 using HibernatingRhinos.Profiler.Appender.NHibernate;
@@ -30,7 +31,10 @@ namespace Core.Utilities.NHibernate
 
         private static IEnumerable<Assembly> _GetAssembliesWithMapping()
         {
-            var files = Directory.GetFiles(".", "*." + NHibernateMappingDllFileExtension);
+            var files = Directory.GetFiles(HttpContext.Current != null 
+                                                ? HttpContext.Current.Request.PhysicalApplicationPath + "\\bin" 
+                                                : ".", 
+                                           "*." + NHibernateMappingDllFileExtension);
             var assembliesWithMapping = new List<Assembly>();
             files.Each(file => assembliesWithMapping.Add(Assembly.LoadFrom(file)));
             return assembliesWithMapping;

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C4F5D92A-8E83-4215-8B84-79A28A8BB366}</ProjectGuid>
+    <ProjectGuid>{55EC48BE-EE6D-48A6-90DA-4BF52ED69190}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoreDdd.Tests</RootNamespace>
-    <AssemblyName>CoreDdd.Tests</AssemblyName>
+    <RootNamespace>EmailMaker.Commands.Tests</RootNamespace>
+    <AssemblyName>EmailMaker.Commands.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,13 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.3.9345, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharedLibs\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Shouldly, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharedLibs\Shouldly.dll</HintPath>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\..\Core\Core.Tests\Core.TestHelper\bin\Debug\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,24 +46,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IdentityTests\AnotherEntity.cs" />
-    <Compile Include="IdentityTests\Entity.cs" />
-    <Compile Include="IdentityTests\when_adding_entity_into_a_hashset.cs" />
-    <Compile Include="IdentityTests\when_comparing_transient_entities_of_the_same_type_and_of_the_same_id.cs" />
-    <Compile Include="IdentityTests\when_comparing_entities_of_the_different_type_and_of_the_same_id.cs" />
-    <Compile Include="IdentityTests\when_comparing_entities_of_the_same_type_and_of_the_different_id.cs" />
-    <Compile Include="IdentityTests\when_comparing_entities_of_the_same_type_and_of_the_same_id.cs" />
-    <Compile Include="IdentityTests\when_getting_identity_id.cs" />
+    <Compile Include="EmailTemplates\when_executing_create_variable_command.cs" />
+    <Compile Include="EmailTemplates\when_executing_create_variable_command_with_incorrect_email_template_structure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core.Ddd\Core.Ddd.csproj">
-      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>Core.Ddd</Name>
+    <ProjectReference Include="..\..\..\Core.Commands\Core.Commands.csproj">
+      <Project>{07CA4978-6610-4B8D-9E5A-BA8E83A48412}</Project>
+      <Name>Core.Commands</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.TestHelper\Core.TestHelper.csproj">
-      <Project>{63E6B983-C183-4180-8FE3-B75FC33BFC85}</Project>
-      <Name>Core.TestHelper</Name>
+    <ProjectReference Include="..\..\..\Core\Core.Ddd\Core.Domain.csproj">
+      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
+      <Name>Core.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Core.Utilities\Core.Utilities.csproj">
+      <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
+      <Name>Core.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Commands\EmailMaker.Commands.csproj">
+      <Project>{DB6DC588-8415-4184-8B4B-6485374A2E68}</Project>
+      <Name>EmailMaker.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
+      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
+      <Name>EmailMaker.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
+      <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
+      <Name>EmailMaker.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Web.DTO\EmailMaker.Web.DTO.csproj">
+      <Project>{9EC89380-5186-450A-BFCE-A08CF74BE535}</Project>
+      <Name>EmailMaker.Web.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

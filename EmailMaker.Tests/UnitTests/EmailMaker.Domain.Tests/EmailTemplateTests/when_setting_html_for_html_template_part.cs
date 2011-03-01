@@ -23,7 +23,7 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
         }
 
         [Test]
-        public void html_is_set_correctly()
+        public void html_was_set_correctly()
         {
             var htmlTemplatePart = _emailTemplate.Parts.First() as HtmlEmailTemplatePart;
             htmlTemplatePart.Html.ShouldBe(_html);

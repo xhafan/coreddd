@@ -50,9 +50,9 @@
       <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
       <Name>Core.Commons</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Core.Ddd\Core.Ddd.csproj">
+    <ProjectReference Include="..\Core\Core.Ddd\Core.Domain.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>Core.Ddd</Name>
+      <Name>Core.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.Queries\Core.Queries.csproj">
       <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>

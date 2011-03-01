@@ -46,6 +46,10 @@
     <Compile Include="ViewModels\EmailTemplateEditModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core.Commands\Core.Commands.csproj">
+      <Project>{07CA4978-6610-4B8D-9E5A-BA8E83A48412}</Project>
+      <Name>Core.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Commands\EmailMaker.Commands.csproj">
       <Project>{DB6DC588-8415-4184-8B4B-6485374A2E68}</Project>
       <Name>EmailMaker.Commands</Name>

@@ -64,9 +64,9 @@
     <Compile Include="EmailTemplates\VariableEmailTemplatePart.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.Ddd\Core.Ddd.csproj">
+    <ProjectReference Include="..\Core\Core.Ddd\Core.Domain.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>Core.Ddd</Name>
+      <Name>Core.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.Utilities\Core.Utilities.csproj">
       <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>

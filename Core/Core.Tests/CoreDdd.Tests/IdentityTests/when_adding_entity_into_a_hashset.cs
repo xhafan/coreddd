@@ -3,7 +3,7 @@ using Core.TestHelper.Extensions;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Tests.IdentityTests
+namespace Core.Domain.Tests.IdentityTests
 {
     [TestFixture]
     public class when_adding_entity_into_a_hashset

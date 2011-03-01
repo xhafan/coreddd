@@ -2,6 +2,6 @@
 {
     public interface ICommandMessageHandler<in TCommandMessage> where TCommandMessage: ICommandMessage
     {
-        void Execute(TCommandMessage message);
+        void Execute(TCommandMessage command);
     }
 }

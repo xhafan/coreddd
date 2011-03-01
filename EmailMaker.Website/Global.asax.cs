@@ -5,11 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.Core;
-using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Core.Commons;
 using Core.Web;
 using EmailMaker.Controllers.Template;
+using Rhino.Commons.Binsor;
+using Component = Castle.MicroKernel.Registration.Component;
 
 namespace EmailMaker.Website
 {
@@ -23,6 +24,7 @@ namespace EmailMaker.Website
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
 
             routes.MapRoute(
                 "Default", // Route name
@@ -43,6 +45,7 @@ namespace EmailMaker.Website
             var container = new WindsorContainer();
             //BooReader.Read(container, "windsor.boo");
             _RegisterControllersInContainer(container);
+            BooReader.Read(container, "windsor.boo");
             IoC.Initialize(container);
 
             ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory());
@@ -50,13 +53,13 @@ namespace EmailMaker.Website
 
         private void _RegisterControllersInContainer(IWindsorContainer container)
         {
-            var controllerTypes = from t in Assembly.GetAssembly(typeof(TemplateController)).GetTypes()
-                                  where typeof(IController).IsAssignableFrom(t)
-                                  select t;
-            foreach (var controllerType in controllerTypes)
-            {
-                container.Register(Component.For(controllerType).Named(controllerType.FullName).LifeStyle.Is(LifestyleType.Transient));
-            }            
+//            var controllerTypes = from t in Assembly.GetAssembly(typeof(TemplateController)).GetTypes()
+//                                  where typeof(IController).IsAssignableFrom(t)
+//                                  select t;
+//            foreach (var controllerType in controllerTypes)
+//            {
+//                container.Register(Component.For(controllerType).Named(controllerType.FullName).LifeStyle.Is(LifestyleType.Transient));
+//            }            
         }
     }
 }
