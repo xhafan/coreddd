@@ -53,7 +53,7 @@
     <Compile Include="Templates\when_creating_a_variable.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core.Commands\Core.Commands.csproj">
+    <ProjectReference Include="..\..\..\Core\Core.Commands\Core.Commands.csproj">
       <Project>{07CA4978-6610-4B8D-9E5A-BA8E83A48412}</Project>
       <Name>Core.Commands</Name>
     </ProjectReference>

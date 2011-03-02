@@ -53,13 +53,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core.Ddd\Core.Domain.csproj">
-      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>Core.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core.Domain.Persistence\Core.Domain.Persistence.csproj">
       <Project>{39623D17-0598-413E-B717-20058EFDA907}</Project>
       <Name>Core.Domain.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core.Domain\Core.Domain.csproj">
+      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
+      <Name>Core.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

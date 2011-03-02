@@ -64,10 +64,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core.Commands\Core.Commands.csproj">
-      <Project>{07CA4978-6610-4B8D-9E5A-BA8E83A48412}</Project>
-      <Name>Core.Commands</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
       <Name>EmailMaker.Domain</Name>
@@ -76,13 +72,17 @@
       <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
       <Name>EmailMaker.Utilities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core.Ddd\Core.Domain.csproj">
-      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>Core.Domain</Name>
+    <ProjectReference Include="..\..\Core.Commands\Core.Commands.csproj">
+      <Project>{07CA4978-6610-4B8D-9E5A-BA8E83A48412}</Project>
+      <Name>Core.Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core.Domain.Persistence\Core.Domain.Persistence.csproj">
       <Project>{39623D17-0598-413E-B717-20058EFDA907}</Project>
       <Name>Core.Domain.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core.Domain\Core.Domain.csproj">
+      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
+      <Name>Core.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core.Queries\Core.Queries.csproj">
       <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>

@@ -9,7 +9,7 @@ namespace EmailMaker.Controllers.Template
 {
     public class TemplateController : Controller
     {
-        private ICommandExecutor _commandExecutor;
+        private readonly ICommandExecutor _commandExecutor;
 
         public TemplateController(ICommandExecutor commandExecutor)
         {

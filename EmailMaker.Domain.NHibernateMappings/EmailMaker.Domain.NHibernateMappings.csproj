@@ -54,7 +54,7 @@
     <Compile Include="VariableTypeMap.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.Ddd\Core.Domain.csproj">
+    <ProjectReference Include="..\Core\Core.Domain\Core.Domain.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>Core.Domain</Name>
     </ProjectReference>

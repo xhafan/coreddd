@@ -49,7 +49,7 @@
       <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
       <Name>Core.Commons</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.Ddd\Core.Domain.csproj">
+    <ProjectReference Include="..\Core.Domain\Core.Domain.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>Core.Domain</Name>
     </ProjectReference>
