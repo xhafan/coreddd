@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core.Commons;
 
 namespace Core.Queries
@@ -12,9 +13,11 @@ namespace Core.Queries
             return queryHandler.Execute<TResult>(queryMessage);
         }
 
-        public IEnumerable<TResult> Execute<TQueryMessage, TResult, TTransformResult>(TQueryMessage queryMessage, Func<TResult, TTransformResult> transform) where TQueryMessage : IQueryMessage
+        public IEnumerable<TTransformResult> Execute<TQueryMessage, TResult, TTransformResult>(TQueryMessage queryMessage, Func<TResult, TTransformResult> transform) where TQueryMessage : IQueryMessage
         {
-            throw new NotImplementedException();
+            var queryHandler = IoC.Resolve<IQueryMessageHandler<TQueryMessage>>();
+            var result = queryHandler.Execute<TResult>(queryMessage);
+            return result.Select(transform);
         }
     }
 }

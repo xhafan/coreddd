@@ -11,7 +11,7 @@ namespace EmailMaker.Queries.Handlers
         {
             return Session.QueryOver<EmailTemplate>()
                 .Where(e => e.Id == message.TemplateId)
-                .Fetch(p => p.Parts).Eager
+                //.Fetch(p => p.Parts).Eager
                 .UnderlyingCriteria;
         }
     }

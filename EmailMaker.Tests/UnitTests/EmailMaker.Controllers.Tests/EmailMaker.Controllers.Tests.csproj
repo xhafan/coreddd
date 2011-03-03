@@ -57,6 +57,10 @@
       <Project>{07CA4978-6610-4B8D-9E5A-BA8E83A48412}</Project>
       <Name>Core.Commands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Core.Queries\Core.Queries.csproj">
+      <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
+      <Name>Core.Queries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\Core.Tests\Core.TestHelper\Core.TestHelper.csproj">
       <Project>{63E6B983-C183-4180-8FE3-B75FC33BFC85}</Project>
       <Name>Core.TestHelper</Name>

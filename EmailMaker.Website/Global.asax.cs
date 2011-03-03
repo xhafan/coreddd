@@ -1,20 +1,15 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
+﻿using System.Data;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Castle.Core;
 using Castle.Windsor;
 using Core.Commons;
 using Core.Web;
-using EmailMaker.Controllers.Template;
 using Rhino.Commons.Binsor;
-using Component = Castle.MicroKernel.Registration.Component;
 
 namespace EmailMaker.Website
 {
-    public class MvcApplication : HttpApplication
+    public class UnitOfWorkApplication : HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -43,23 +38,21 @@ namespace EmailMaker.Website
 
 
             var container = new WindsorContainer();
-            //BooReader.Read(container, "windsor.boo");
-            _RegisterControllersInContainer(container);
             BooReader.Read(container, "windsor.boo");
             IoC.Initialize(container);
 
             ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory());
         }
 
-        private void _RegisterControllersInContainer(IWindsorContainer container)
+        public virtual void Application_BeginRequest()
         {
-//            var controllerTypes = from t in Assembly.GetAssembly(typeof(TemplateController)).GetTypes()
-//                                  where typeof(IController).IsAssignableFrom(t)
-//                                  select t;
-//            foreach (var controllerType in controllerTypes)
-//            {
-//                container.Register(Component.For(controllerType).Named(controllerType.FullName).LifeStyle.Is(LifestyleType.Transient));
-//            }            
+            UnitOfWork.Current.BeginTransaction(IsolationLevel.ReadCommitted);
+        }
+
+        public virtual void Application_EndRequest()
+        {
+            UnitOfWork.Current.TransactionalFlush();
+            UnitOfWork.Current.Dispose();
         }
     }
 }

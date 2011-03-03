@@ -38,8 +38,9 @@ namespace EmailMaker.Domain.EmailTemplates
             var variableValue = html.Substring(htmlStartIndex, length);
             var htmlAfter = html.Substring(htmlStartIndex + length);
             htmlTemplatePart.SetHtml(htmlBefore);
-            _parts.Add(new VariableEmailTemplatePart(variableValue));
-            _parts.Add(new HtmlEmailTemplatePart(htmlAfter));
+            var indexOfHtmlPart = _parts.IndexOf(htmlTemplatePart);
+            _parts.Insert(indexOfHtmlPart + 1, new VariableEmailTemplatePart(variableValue));
+            _parts.Insert(indexOfHtmlPart + 2, new HtmlEmailTemplatePart(htmlAfter));
         }
 
         public virtual void DeleteVariable(int variableTemplatePartId)

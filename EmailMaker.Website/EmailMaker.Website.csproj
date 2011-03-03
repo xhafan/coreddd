@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="Castle.Core" />
     <Reference Include="Castle.Windsor" />
+    <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\SharedLibs\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
@@ -178,7 +179,9 @@
     <Content Include="Views\Template\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="connectionStrings.config" />
+    <Content Include="connectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="windsor.boo" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

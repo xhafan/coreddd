@@ -14,7 +14,7 @@ namespace EmailMaker.Controllers.Tests.Templates
 
         public override void Context()
         {
-            var controller = new TemplateController(CommandExecutor);
+            var controller = new TemplateController(CommandExecutor, null);
             _createVariableCommand = new CreateVariableCommand();
             controller.CreateVariable(_createVariableCommand);
         }

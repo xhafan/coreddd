@@ -15,22 +15,27 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
         public void Context()
         {
             _emailTemplate = EmailTemplateBuilder.New
-                .WithInitialHtml("this initial html")
+                .WithInitialHtml("this is an initial html")
                 .Build();
             var htmlTeplatePartId = _emailTemplate.Parts.First().Id;
-            _emailTemplate.CreateVariable(htmlTeplatePartId, 5, 7);
+            _emailTemplate.CreateVariable(htmlTeplatePartId, 8, 2);
+            _emailTemplate.CreateVariable(htmlTeplatePartId, 5, 2);
         }
 
         [Test]
         public void variable_created_correctly()
         {
-            _emailTemplate.Parts.Count().ShouldBe(3);
-            var htmlBefore = (HtmlEmailTemplatePart)_emailTemplate.Parts.First();
-            var variable = (VariableEmailTemplatePart)_emailTemplate.Parts.ElementAt(1);
-            var htmlAfter = (HtmlEmailTemplatePart)_emailTemplate.Parts.Last();
-            htmlBefore.Html.ShouldBe("this ");
-            variable.Value.ShouldBe("initial");
-            htmlAfter.Html.ShouldBe(" html");
+            _emailTemplate.Parts.Count().ShouldBe(5);
+            var htmlOne = (HtmlEmailTemplatePart)_emailTemplate.Parts.First();
+            var variableOne = (VariableEmailTemplatePart)_emailTemplate.Parts.ElementAt(1);
+            var htmlTwo = (HtmlEmailTemplatePart)_emailTemplate.Parts.ElementAt(2);
+            var variableTwo = (VariableEmailTemplatePart)_emailTemplate.Parts.ElementAt(3);
+            var htmlThree = (HtmlEmailTemplatePart)_emailTemplate.Parts.Last();
+            htmlOne.Html.ShouldBe("this ");
+            variableOne.Value.ShouldBe("is");
+            htmlTwo.Html.ShouldBe(" ");
+            variableTwo.Value.ShouldBe("an");
+            htmlThree.Html.ShouldBe(" initial html");
         }
     }
 }

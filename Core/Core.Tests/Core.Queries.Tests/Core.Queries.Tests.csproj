@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="when_executing_query.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="when_executing_query_with_result_transformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core.Commons\Core.Commons.csproj">
