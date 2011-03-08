@@ -10,34 +10,31 @@ using Rhino.Mocks;
 namespace EmailMaker.Commands.Tests.EmailTemplates
 {
     [TestFixture]
-    public class when_executing_create_variable_command
+    public class when_executing_delete_variable_command
     {
         private EmailTemplate _emailTemplate;
-        private int _htmlTemplatePartId;
-        private int _htmlStartIndex;
-        private int _length;
         private EmailTemplatePartDTO[] _emailTemplatePartDtos;
+        private int _variablePartId;
 
         [SetUp]
         public void Context()
         {
             _emailTemplate = MockRepository.GenerateMock<EmailTemplate>();
-            
+
             var emailTemplateId = 23;
             var emailTemplateRepository = MockRepository.GenerateStub<IRepository<EmailTemplate>>();
             emailTemplateRepository.Stub(a => a.GetById(emailTemplateId)).Return(_emailTemplate);
 
-            _htmlTemplatePartId = 47;
-            _htmlStartIndex = 56;
-            _length = 65;
+            _variablePartId = 46;
             _emailTemplatePartDtos = new[]
                                          {
                                              new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Html, PartId = 45, Html = "html1"},
-                                             new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Variable, PartId = 46, VariableValue = "value1"},
-                                             new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Html, PartId = _htmlTemplatePartId, Html = "html2"},
+                                             new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Variable, PartId = _variablePartId, VariableValue = "value1"},
+                                             new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Html, PartId = 47, Html = "html2"},
                                          };
-            var command = new CreateVariableCommand
+            var command = new DeleteVariableCommand
                               {
+                                  VariablePartId = _variablePartId,
                                   EmailTemplate =
                                       new EmailTemplateDTO
                                           {
@@ -45,11 +42,8 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
                                               Parts =
                                                   _emailTemplatePartDtos
                                           },
-                                  HtmlStartIndex = _htmlStartIndex,
-                                  HtmlTemplatePartId = _htmlTemplatePartId,
-                                  Length = _length
                               };
-            var handler = new CreateVariableCommandHandler(emailTemplateRepository);
+            var handler = new DeleteVariableCommandHandler(emailTemplateRepository);
             handler.Execute(command);
         }
 
@@ -66,14 +60,15 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
                                                 {
                                                     _emailTemplate.AssertWasCalled(a => a.SetVariableValue(part.PartId, part.VariableValue));
                                                 }
+
                                             });
         }
 
         [Test]
         public void create_variable_method_was_called()
         {
-            _emailTemplate.AssertWasCalled(a => a.CreateVariable(_htmlTemplatePartId, _htmlStartIndex, _length));
+            _emailTemplate.AssertWasCalled(a => a.DeleteVariable(_variablePartId));
         }
-    
+
     }
 }

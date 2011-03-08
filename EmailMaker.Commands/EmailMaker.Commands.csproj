@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handlers\CreateVariableCommandHandler.cs" />
+    <Compile Include="Handlers\DeleteVariableCommandHandler.cs" />
     <Compile Include="Messages\CreateVariableCommand.cs" />
+    <Compile Include="Messages\DeleteVariableCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

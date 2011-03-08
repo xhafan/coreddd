@@ -8,16 +8,16 @@ using EmailMaker.Web.DTO.EmailTemplate;
 
 namespace EmailMaker.Commands.Handlers
 {
-    public class CreateVariableCommandHandler : ICommandMessageHandler<CreateVariableCommand>
+    public class DeleteVariableCommandHandler : ICommandMessageHandler<DeleteVariableCommand>
     {
         private readonly IRepository<EmailTemplate> _emailTemplateRepository;
 
-        public CreateVariableCommandHandler(IRepository<EmailTemplate> emailTemplateRepository)
+        public DeleteVariableCommandHandler(IRepository<EmailTemplate> emailTemplateRepository)
         {
             _emailTemplateRepository = emailTemplateRepository;
         }
 
-        public void Execute(CreateVariableCommand command)
+        public void Execute(DeleteVariableCommand command)
         {
             var emailTemplate = _emailTemplateRepository.GetById(command.EmailTemplate.EmailTemplateId);
             command.EmailTemplate.Parts.Each(part =>
@@ -35,7 +35,7 @@ namespace EmailMaker.Commands.Handlers
                                                          throw new EmailMakerException("Unknown email template part, email template id: " + command.EmailTemplate.EmailTemplateId);
                                                      }
                                                  });
-            emailTemplate.CreateVariable(command.HtmlTemplatePartId, command.HtmlStartIndex, command.Length);
+            emailTemplate.DeleteVariable(command.VariablePartId);
         }
     }
 }

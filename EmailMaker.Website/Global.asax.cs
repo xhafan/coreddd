@@ -5,6 +5,7 @@ using System.Web.Routing;
 using Castle.Windsor;
 using Core.Commons;
 using Core.Web;
+using Core.Web.ModelBinders;
 using Rhino.Commons.Binsor;
 
 namespace EmailMaker.Website
@@ -42,6 +43,7 @@ namespace EmailMaker.Website
             IoC.Initialize(container);
 
             ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory());
+            ModelBinders.Binders.DefaultBinder = new EnumConverterModelBinder();
         }
 
         public virtual void Application_BeginRequest()

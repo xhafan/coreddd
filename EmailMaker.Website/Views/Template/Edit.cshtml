@@ -16,10 +16,12 @@
                 $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.Save(null)))", this.emailTemplate);
             },
             createVariable: function() {
+                var htmlBlockTextArea = document.getElementById("partId_" + this.PartId);
+                var textSelectionInfo = getTextSelectionIndexesFromTextArea(htmlBlockTextArea);
                 $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.CreateVariable(null)))", { 
                     HtmlTemplatePartId: this.PartId, 
-                    HtmlStartIndex: 1,
-                    Length: 1,
+                    HtmlStartIndex: textSelectionInfo.startIndex,
+                    Length: textSelectionInfo.endIndex - textSelectionInfo.startIndex,
                     EmailTemplate: editTemplateModel.emailTemplate()
                 }, editTemplateModel.reloadEmailTemplate);
             },
@@ -27,6 +29,12 @@
                 $.post("@(Html.UrlFromControllerMethod<TemplateController>(c => c.GetEmailTemplate(default(int))))", { id: editTemplateModel.emailTemplate().EmailTemplateId }, function(data) {
                     editTemplateModel.emailTemplate(data);
                 });            
+            },
+            deleteVariable: function() {
+                $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.DeleteVariable(null)))", { 
+                    VariablePartId: this.PartId, 
+                    EmailTemplate: editTemplateModel.emailTemplate()
+                }, editTemplateModel.reloadEmailTemplate);
             }
         };
         ko.applyBindings(editTemplateModel, document.getElementById("editEmailTemplate"));
@@ -41,16 +49,16 @@
 </div>
 
 <script id="emailTemplateKoTemplate" type="text/html">
-    {{if Html}} 
-        <div class="htmlBlock">
-            <label>Html block</label>
-            <textarea data-bind="value: Html"></textarea>
-            <button data-bind="click: editTemplateModel.createVariable" data-part-id="${PartId}">Create variable</button>
-        </div>
+    {{if Html != null}} 
+        <fieldset class="htmlBlock">
+            <legend>Html block</legend>
+            <textarea data-bind="value: Html" id="partId_${PartId}"></textarea>
+            <button data-bind="click: editTemplateModel.createVariable">Create variable</button>
+        </fieldset>
     {{/if}}
-    {{if VariableValue}} 
-        <div class="variable">
-            <label>Variable</label>
+    {{if VariableValue != null}} 
+        <fieldset class="variable">
+            <legend>Variable</legend>
             <table>
                 <tr>
                     <td>Name</td>
@@ -61,8 +69,8 @@
                     <td><input type="text" data-bind="value: VariableValue" /></td>
                 </tr>
             </table>
-            <button>Delete variable</button>
-        </div>
+            <button data-bind="click: editTemplateModel.deleteVariable">Delete variable</button>
+        </fieldset>
     {{/if}}
 </script>
 

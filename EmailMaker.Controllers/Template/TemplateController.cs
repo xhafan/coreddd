@@ -56,12 +56,12 @@ namespace EmailMaker.Controllers.Template
                                                          if (part is HtmlEmailTemplatePart)
                                                          {
                                                              var htmlPart = (HtmlEmailTemplatePart)part;
-                                                             parts.Add(new EmailTemplatePartDTO { PartId = part.Id, Html = htmlPart.Html });
+                                                             parts.Add(new EmailTemplatePartDTO { EmailTemplatePartType = EmailTemplatePartType.Html, PartId = part.Id, Html = htmlPart.Html });
                                                          }
                                                          if (part is VariableEmailTemplatePart)
                                                          {
                                                              var variablePart = (VariableEmailTemplatePart)part;
-                                                             parts.Add(new EmailTemplatePartDTO { PartId = part.Id, VariableValue = variablePart.Value });
+                                                             parts.Add(new EmailTemplatePartDTO { EmailTemplatePartType = EmailTemplatePartType.Variable, PartId = part.Id, VariableValue = variablePart.Value });
                                                          }
                                                      });
                         return templateDTO;
@@ -78,6 +78,12 @@ namespace EmailMaker.Controllers.Template
 
         [HttpPost]
         public void CreateVariable(CreateVariableCommand command)
+        {
+            _commandExecutor.Execute(command);
+        }
+
+        [HttpPost]
+        public void DeleteVariable(DeleteVariableCommand command)
         {
             _commandExecutor.Execute(command);
         }

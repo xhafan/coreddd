@@ -90,6 +90,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\js\emailmaker.jquery.extensions.js" />
     <Content Include="Content\js\emailmaker.utilities.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Site.css" />
