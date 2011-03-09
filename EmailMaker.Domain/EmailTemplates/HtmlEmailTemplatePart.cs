@@ -6,17 +6,22 @@
 
         public HtmlEmailTemplatePart()
         {
-            Html = string.Empty;
+            _SetHtml(string.Empty);
         }
 
         public HtmlEmailTemplatePart(string html)
         {
-            Html = html;
+            _SetHtml(html);
         }
 
         public virtual void SetHtml(string html)
         {
-            Html = html;
+            _SetHtml(html);
+        }
+
+        private void _SetHtml(string html)
+        {
+            Html = html ?? string.Empty;
         }
     }
 }

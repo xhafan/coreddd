@@ -11,13 +11,19 @@ namespace EmailMaker.Domain.EmailTemplates
 
         public VariableEmailTemplatePart(string value)
         {
-            VariableType = VariableType.InputText;
-            Value = value;
+            //VariableType = VariableType.InputText;
+            _SetValue(value);
         }
 
         public virtual void SetValue(string value)
         {
-            Value = value;
+            _SetValue(value);
         }
+
+        private void _SetValue(string value)
+        {
+            Value = value ?? string.Empty;
+        }
+
     }
 }
