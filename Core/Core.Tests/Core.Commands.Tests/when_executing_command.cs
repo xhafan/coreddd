@@ -1,17 +1,36 @@
-﻿using Castle.Windsor;
+﻿using System;
+using Castle.Windsor;
 using Core.Commons;
 using NUnit.Framework;
 using Rhino.Mocks;
+using Shouldly;
 
 namespace Core.Commands.Tests
 {
     [TestFixture]
     public class when_executing_command
-    {
-        private ICommandMessageHandler<TestCommandMessage> _testCommandMessageHandler;
-        private TestCommandMessage _testCommandMessage;
+    {        
+        public class TestCommand : ICommand { }
+        public class TestCommandHandler : ICommandHandler<TestCommand>
+        {
+            public bool CommandWasExecuted;
+            public bool EventHandlerWasAssigned
+            {
+                get
+                {
+                    return CommandExecuted != null;
+                }
+            }
+            
+            public void Execute(TestCommand command)
+            {
+                CommandWasExecuted = true;
+            }
 
-        public class TestCommandMessage : ICommandMessage { }
+            public event EventHandler<CommandExecutedArgs> CommandExecuted;
+        }
+
+        private TestCommandHandler _testCommandHandler;
 
         [SetUp]
         public void Context()
@@ -19,19 +38,27 @@ namespace Core.Commands.Tests
             var container = MockRepository.GenerateStub<IWindsorContainer>();
             IoC.Initialize(container);
 
-            _testCommandMessageHandler = MockRepository.GenerateMock<ICommandMessageHandler<TestCommandMessage>>();
-            _testCommandMessage = new TestCommandMessage();
+            _testCommandHandler = new TestCommandHandler();
+            var testCommand = new TestCommand();
 
-            container.Stub(a => a.Resolve<ICommandMessageHandler<TestCommandMessage>>()).Return(_testCommandMessageHandler);
+            container.Stub(a => a.Resolve<ICommandHandler<TestCommand>>()).Return(_testCommandHandler);
 
             var commandExecutor = new CommandExecutor();
-            commandExecutor.Execute(_testCommandMessage);
+            commandExecutor.CommandExecuted += (sender, args) => {};
+            commandExecutor.Execute(testCommand);
         }
 
         [Test]
         public void command_was_executed_by_handler()
         {
-            _testCommandMessageHandler.AssertWasCalled(a => a.Execute(_testCommandMessage));
+            _testCommandHandler.CommandWasExecuted.ShouldBe(true);
         }
+
+        [Test]
+        public void event_handlers_was_correctly_set()
+        {
+            _testCommandHandler.EventHandlerWasAssigned.ShouldBe(true);
+        }
+    
     }
 }

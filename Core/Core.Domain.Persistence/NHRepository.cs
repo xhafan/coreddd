@@ -36,7 +36,7 @@ namespace Core.Domain.Persistence
 
         public void Save(T objectToSave)
         {
-            throw new NotImplementedException();
+            _session.Save(objectToSave);
         }
 
         public void Delete(T objectToDelete)

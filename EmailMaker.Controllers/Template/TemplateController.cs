@@ -6,6 +6,7 @@ using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.DTO.EmailTemplate;
 using EmailMaker.Queries.Messages;
+using MvcContrib;
 
 namespace EmailMaker.Controllers.Template
 {
@@ -27,16 +28,25 @@ namespace EmailMaker.Controllers.Template
 
         public ActionResult New()
         {
-            return View();
+            var emailTemplate = new EmailTemplateDTO{ Parts = new[] {new EmailTemplatePartDTO { EmailTemplatePartType = EmailTemplatePartType.Html }}};
+            var model = new EmailTemplateEditModel {EmailTemplate = emailTemplate};
+            return View(model);
+        }
+
+        public ActionResult Create()
+        {
+            var createdEmailTemplateId = default(int);
+            var command = new CreateEmailTemplateCommand();
+            _commandExecutor.CommandExecuted += (sender, args) => createdEmailTemplateId = (int) args.Args;
+            _commandExecutor.Execute(command);
+
+            return this.RedirectToAction(a => a.Edit(createdEmailTemplateId));
         }
 
         public ActionResult Edit(int id)
         {
             var emailTemplate = _GetEmailTemplate(id);
-            var model = new EmailTemplateEditModel
-                            {
-                                EmailTemplate = emailTemplate
-                            };
+            var model = new EmailTemplateEditModel {EmailTemplate = emailTemplate};
             return View(model);
         }
 
@@ -44,8 +54,10 @@ namespace EmailMaker.Controllers.Template
         {
             var templateMessage = new GetEmailTemplateQueryMessage {EmailTemplateId = id};
             var templatePartMessage = new GetEmailTemplatePartsQueryMessage { EmailTemplateId = id };
+
             var emailTemplateDTOs = _queryExecutor.Execute<GetEmailTemplateQueryMessage, EmailTemplateDTO>(templateMessage);
             var emailTemplatePartDTOs = _queryExecutor.Execute<GetEmailTemplatePartsQueryMessage, EmailTemplatePartDTO>(templatePartMessage);
+            
             var emailTemplateDTO = emailTemplateDTOs.Single();
             emailTemplateDTO.Parts = emailTemplatePartDTOs;
 

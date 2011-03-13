@@ -37,6 +37,9 @@
     <Reference Include="Rhino.Mocks">
       <HintPath>..\..\..\Core\Core.Tests\Core.TestHelper\bin\Debug\Rhino.Mocks.dll</HintPath>
     </Reference>
+    <Reference Include="Shouldly">
+      <HintPath>..\..\..\SharedLibs\Shouldly.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailTemplates\when_executing_create_email_template_command.cs" />
     <Compile Include="EmailTemplates\when_executing_create_variable_command.cs" />
     <Compile Include="EmailTemplates\when_executing_create_variable_command_with_incorrect_email_template_structure.cs" />
     <Compile Include="EmailTemplates\when_executing_delete_variable_command.cs" />

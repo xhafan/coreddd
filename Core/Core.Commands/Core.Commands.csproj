@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseCommandHandler.cs" />
+    <Compile Include="CommandExecutedArgs.cs" />
     <Compile Include="CommandExecutor.cs" />
     <Compile Include="ICommandExecutor.cs" />
-    <Compile Include="ICommandMessage.cs" />
-    <Compile Include="ICommandMessageHandler.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="ICommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

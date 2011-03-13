@@ -3,7 +3,7 @@ using EmailMaker.DTO.EmailTemplate;
 
 namespace EmailMaker.Commands.Messages
 {
-    public class CreateVariableCommand : ICommandMessage
+    public class CreateVariableCommand : ICommand
     {
         public int HtmlTemplatePartId { get; set; }
         public int HtmlStartIndex { get; set; }

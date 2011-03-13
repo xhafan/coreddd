@@ -8,7 +8,7 @@ using EmailMaker.Utilities;
 
 namespace EmailMaker.Commands.Handlers
 {
-    public class DeleteVariableCommandHandler : ICommandMessageHandler<DeleteVariableCommand>
+    public class DeleteVariableCommandHandler : BaseCommandHandler<DeleteVariableCommand>
     {
         private readonly IRepository<EmailTemplate> _emailTemplateRepository;
 
@@ -17,7 +17,7 @@ namespace EmailMaker.Commands.Handlers
             _emailTemplateRepository = emailTemplateRepository;
         }
 
-        public void Execute(DeleteVariableCommand command)
+        public override void Execute(DeleteVariableCommand command)
         {
             var emailTemplate = _emailTemplateRepository.GetById(command.EmailTemplate.EmailTemplateId);
             command.EmailTemplate.Parts.Each(part =>

@@ -43,6 +43,9 @@
     <Reference Include="Rhino.Mocks">
       <HintPath>..\..\..\SharedLibs\Rhino.Mocks.dll</HintPath>
     </Reference>
+    <Reference Include="Shouldly">
+      <HintPath>..\..\..\SharedLibs\Shouldly.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

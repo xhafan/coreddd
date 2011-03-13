@@ -1,6 +1,6 @@
 ﻿namespace Core.Commands
 {
-    public interface ICommandMessage
+    public interface ICommand
     {
     }
 }

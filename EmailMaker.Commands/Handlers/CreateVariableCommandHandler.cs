@@ -8,7 +8,7 @@ using EmailMaker.Utilities;
 
 namespace EmailMaker.Commands.Handlers
 {
-    public class CreateVariableCommandHandler : ICommandMessageHandler<CreateVariableCommand>
+    public class CreateVariableCommandHandler : BaseCommandHandler<CreateVariableCommand>
     {
         private readonly IRepository<EmailTemplate> _emailTemplateRepository;
 
@@ -17,7 +17,7 @@ namespace EmailMaker.Commands.Handlers
             _emailTemplateRepository = emailTemplateRepository;
         }
 
-        public void Execute(CreateVariableCommand command)
+        public override void Execute(CreateVariableCommand command)
         {
             var emailTemplate = _emailTemplateRepository.GetById(command.EmailTemplate.EmailTemplateId);
             command.EmailTemplate.Parts.Each(part =>

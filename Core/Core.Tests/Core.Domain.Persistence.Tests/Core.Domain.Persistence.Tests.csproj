@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Repositories\when_getting_aggregate_root_entity_by_id.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\when_saving_aggregate_root_entity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core.Domain.Persistence\Core.Domain.Persistence.csproj">

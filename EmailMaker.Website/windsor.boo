@@ -9,7 +9,7 @@ import System.Web.Mvc
 for type in AllTypesBased[of Controller]("EmailMaker.Controllers"):
 	component type : @lifestyle=LifestyleType.Transient
 
-component ICommandExecutor, CommandExecutor
+component ICommandExecutor, CommandExecutor : @lifestyle=LifestyleType.Transient
 component IQueryExecutor, QueryExecutor
 component IRepository, NHRepository : @lifestyle=LifestyleType.Transient
 
