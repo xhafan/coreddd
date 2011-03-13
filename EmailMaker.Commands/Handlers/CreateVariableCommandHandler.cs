@@ -3,8 +3,8 @@ using Core.Domain;
 using Core.Utilities.Extensions;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.DTO.EmailTemplate;
 using EmailMaker.Utilities;
-using EmailMaker.Web.DTO.EmailTemplate;
 
 namespace EmailMaker.Commands.Handlers
 {

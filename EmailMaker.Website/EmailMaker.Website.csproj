@@ -165,6 +165,10 @@
       <Project>{78FD90F4-DD12-425D-B9F4-B262B99FA247}</Project>
       <Name>EmailMaker.Domain.NHibernateMappings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.DTO.NHibernateMappings\EmailMaker.DTO.NHibernateMappings.csproj">
+      <Project>{3E04110E-A54D-4FFC-858E-40EBCFE78555}</Project>
+      <Name>EmailMaker.DTO.NHibernateMappings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Web\EmailMaker.Web.csproj">
       <Project>{6AC005D9-720A-4B14-BE9A-75BB10A78BE1}</Project>
       <Name>EmailMaker.Web</Name>

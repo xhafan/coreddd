@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DB6DC588-8415-4184-8B4B-6485374A2E68}</ProjectGuid>
+    <ProjectGuid>{3E04110E-A54D-4FFC-858E-40EBCFE78555}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailMaker.Commands</RootNamespace>
-    <AssemblyName>EmailMaker.Commands</AssemblyName>
+    <RootNamespace>EmailMaker.DTO.NHibernateMappings</RootNamespace>
+    <AssemblyName>EmailMaker.DTO.NHibernateMappings</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\SharedLibs\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,33 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Handlers\CreateVariableCommandHandler.cs" />
-    <Compile Include="Handlers\DeleteVariableCommandHandler.cs" />
-    <Compile Include="Messages\CreateVariableCommand.cs" />
-    <Compile Include="Messages\DeleteVariableCommand.cs" />
+    <Compile Include="EmailTemplateDTOMap.cs" />
+    <Compile Include="EmailTemplatePartDTOMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.Commands\Core.Commands.csproj">
-      <Project>{07CA4978-6610-4B8D-9E5A-BA8E83A48412}</Project>
-      <Name>Core.Commands</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.Domain\Core.Domain.csproj">
-      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>Core.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.Utilities\Core.Utilities.csproj">
-      <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
-      <Name>Core.Utilities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
-      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
-      <Name>EmailMaker.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
-      <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
-      <Name>EmailMaker.Utilities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Web.DTO\EmailMaker.DTO.csproj">
       <Project>{9EC89380-5186-450A-BFCE-A08CF74BE535}</Project>
       <Name>EmailMaker.DTO</Name>

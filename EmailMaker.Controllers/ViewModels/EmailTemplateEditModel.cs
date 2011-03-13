@@ -1,4 +1,4 @@
-﻿using EmailMaker.Web.DTO.EmailTemplate;
+﻿using EmailMaker.DTO.EmailTemplate;
 
 namespace EmailMaker.Controllers.ViewModels
 {

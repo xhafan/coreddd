@@ -65,6 +65,7 @@
     <Compile Include="DatabaseTests\EntityPersistenceTests\when_persisting_email_template_while_creating_and_deleting_variables.cs" />
     <Compile Include="DatabaseTests\EntityPersistenceTests\when_persisting_email_template.cs" />
     <Compile Include="DatabaseTests\QueryTests\when_querying_email_template.cs" />
+    <Compile Include="DatabaseTests\QueryTests\when_querying_email_template_parts.cs" />
     <Compile Include="DatabaseTests\when_generating_emailmaker_database_schema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,13 +90,25 @@
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
       <Name>EmailMaker.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.DTO.NHibernateMappings\EmailMaker.DTO.NHibernateMappings.csproj">
+      <Project>{3E04110E-A54D-4FFC-858E-40EBCFE78555}</Project>
+      <Name>EmailMaker.DTO.NHibernateMappings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Queries\EmailMaker.Queries.csproj">
       <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
       <Name>EmailMaker.Queries</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.TestHelper\EmailMaker.TestHelper.csproj">
+      <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>
+      <Name>EmailMaker.TestHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
       <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
       <Name>EmailMaker.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Web.DTO\EmailMaker.DTO.csproj">
+      <Project>{9EC89380-5186-450A-BFCE-A08CF74BE535}</Project>
+      <Name>EmailMaker.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

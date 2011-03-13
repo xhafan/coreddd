@@ -8,8 +8,8 @@
     <ProjectGuid>{9EC89380-5186-450A-BFCE-A08CF74BE535}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailMaker.Web.DTO</RootNamespace>
-    <AssemblyName>EmailMaker.Web.DTO</AssemblyName>
+    <RootNamespace>EmailMaker.DTO</RootNamespace>
+    <AssemblyName>EmailMaker.DTO</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

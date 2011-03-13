@@ -2,6 +2,7 @@
 using System.Linq;
 using Core.TestHelper.Persistence;
 using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.DTO.EmailTemplate;
 using EmailMaker.Queries.Handlers;
 using EmailMaker.Queries.Messages;
 using NUnit.Framework;
@@ -13,35 +14,27 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
     public class when_querying_email_template : BaseSimplePersistenceTest
     {
         private EmailTemplate _emailTemplate;
-        private IEnumerable<EmailTemplate> _result;
+        private IEnumerable<EmailTemplateDTO> _result;
 
         public override void PersistenceContext()
         {
             _emailTemplate = new EmailTemplate("html");
-            Save(_emailTemplate);
+            var anotherEmailTemplate = new EmailTemplate("another html");
+            Save(_emailTemplate, anotherEmailTemplate);
         }
 
         public override void PersistenceQuery()
         {
             var query = new GetEmailTemplateQuery();
-            _result = query.Execute<EmailTemplate>(new GetEmailTemplateQueryMessage {TemplateId = _emailTemplate.Id});
+            _result = query.Execute<EmailTemplateDTO>(new GetEmailTemplateQueryMessage {EmailTemplateId = _emailTemplate.Id});
         }
 
         [Test]
         public void email_template_correctly_retrieved()
         {
             _result.Count().ShouldBe(1);
-            var retrievedEmailTemplate = _result.First();
-            retrievedEmailTemplate.Id.ShouldBe(_emailTemplate.Id);
-            retrievedEmailTemplate.Parts.Count().ShouldBe(_emailTemplate.Parts.Count());
-            foreach (var retrievedPart in retrievedEmailTemplate.Parts)
-            {
-                var htmlRetrievedPart = retrievedPart as HtmlEmailTemplatePart;
-                var htmlPart = _emailTemplate.Parts.First(x => x.Id == htmlRetrievedPart.Id) as HtmlEmailTemplatePart;
-                htmlRetrievedPart.Position.ShouldBe(htmlPart.Position);
-                htmlRetrievedPart.Html.ShouldBe(htmlPart.Html);
-            }
-
+            var retrievedEmailTemplateDTO = _result.First();
+            retrievedEmailTemplateDTO.EmailTemplateId.ShouldBe(_emailTemplate.Id);
         }
     }
 }

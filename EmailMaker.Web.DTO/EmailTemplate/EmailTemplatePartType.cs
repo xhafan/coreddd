@@ -1,4 +1,4 @@
-﻿namespace EmailMaker.Web.DTO.EmailTemplate
+﻿namespace EmailMaker.DTO.EmailTemplate
 {
     public enum EmailTemplatePartType
     {

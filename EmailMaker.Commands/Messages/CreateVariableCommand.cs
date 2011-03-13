@@ -1,5 +1,5 @@
 ﻿using Core.Commands;
-using EmailMaker.Web.DTO.EmailTemplate;
+using EmailMaker.DTO.EmailTemplate;
 
 namespace EmailMaker.Commands.Messages
 {

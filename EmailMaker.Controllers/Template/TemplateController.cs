@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Core.Commands;
 using Core.Queries;
-using Core.Utilities.Extensions;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
-using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.DTO.EmailTemplate;
 using EmailMaker.Queries.Messages;
-using EmailMaker.Web.DTO.EmailTemplate;
 
 namespace EmailMaker.Controllers.Template
 {
@@ -45,29 +42,14 @@ namespace EmailMaker.Controllers.Template
 
         private EmailTemplateDTO _GetEmailTemplate(int id)
         {
-            var message = new GetEmailTemplateQueryMessage {TemplateId = id};
-            var emailTemplateDTO = _queryExecutor.Execute<GetEmailTemplateQueryMessage, EmailTemplate, EmailTemplateDTO>(message,
-                emailTemplate =>
-                    {
-                        var parts = new List<EmailTemplatePartDTO>();
-                        var templateDTO = new EmailTemplateDTO { EmailTemplateId = emailTemplate.Id, Parts = parts};
-                        emailTemplate.Parts.Each(part =>
-                                                     {
-                                                         if (part is HtmlEmailTemplatePart)
-                                                         {
-                                                             var htmlPart = (HtmlEmailTemplatePart)part;
-                                                             parts.Add(new EmailTemplatePartDTO { EmailTemplatePartType = EmailTemplatePartType.Html, PartId = part.Id, Html = htmlPart.Html });
-                                                         }
-                                                         if (part is VariableEmailTemplatePart)
-                                                         {
-                                                             var variablePart = (VariableEmailTemplatePart)part;
-                                                             parts.Add(new EmailTemplatePartDTO { EmailTemplatePartType = EmailTemplatePartType.Variable, PartId = part.Id, VariableValue = variablePart.Value });
-                                                         }
-                                                     });
-                        return templateDTO;
-                    });
+            var templateMessage = new GetEmailTemplateQueryMessage {EmailTemplateId = id};
+            var templatePartMessage = new GetEmailTemplatePartsQueryMessage { EmailTemplateId = id };
+            var emailTemplateDTOs = _queryExecutor.Execute<GetEmailTemplateQueryMessage, EmailTemplateDTO>(templateMessage);
+            var emailTemplatePartDTOs = _queryExecutor.Execute<GetEmailTemplatePartsQueryMessage, EmailTemplatePartDTO>(templatePartMessage);
+            var emailTemplateDTO = emailTemplateDTOs.Single();
+            emailTemplateDTO.Parts = emailTemplatePartDTOs;
 
-            return emailTemplateDTO.Single();
+            return emailTemplateDTO;
         }
 
         [HttpPost]

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace EmailMaker.Web.DTO.EmailTemplate
+namespace EmailMaker.DTO.EmailTemplate
 {
     public class EmailTemplateDTO
     {
-        public int EmailTemplateId { get; set; }
-        public IEnumerable<EmailTemplatePartDTO> Parts { get; set; }
+        public virtual int EmailTemplateId { get; set; }
+        public virtual IEnumerable<EmailTemplatePartDTO> Parts { get; set; }
     }
 }
