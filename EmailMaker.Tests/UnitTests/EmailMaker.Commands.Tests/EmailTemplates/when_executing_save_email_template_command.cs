@@ -9,38 +9,29 @@ using Rhino.Mocks;
 namespace EmailMaker.Commands.Tests.EmailTemplates
 {
     [TestFixture]
-    public class when_executing_create_variable_command
+    public class when_executing_save_email_template_command
     {
         private EmailTemplate _emailTemplate;
-        private int _htmlTemplatePartId;
-        private int _htmlStartIndex;
-        private int _length;
         private EmailTemplateDTO _emailTemplateDTO;
 
         [SetUp]
         public void Context()
         {
             _emailTemplate = MockRepository.GenerateMock<EmailTemplate>();
-            
+
             var emailTemplateId = 23;
             var emailTemplateRepository = MockRepository.GenerateStub<IRepository<EmailTemplate>>();
             emailTemplateRepository.Stub(a => a.GetById(emailTemplateId)).Return(_emailTemplate);
 
-            _htmlTemplatePartId = 47;
-            _htmlStartIndex = 56;
-            _length = 65;
             _emailTemplateDTO = new EmailTemplateDTO
                                     {
                                         EmailTemplateId = emailTemplateId,
                                     };
-            var command = new CreateVariableCommand
+            var command = new SaveEmailTemplateCommand
                               {
                                   EmailTemplate = _emailTemplateDTO,
-                                  HtmlStartIndex = _htmlStartIndex,
-                                  HtmlTemplatePartId = _htmlTemplatePartId,
-                                  Length = _length
                               };
-            var handler = new CreateVariableCommandHandler(emailTemplateRepository);
+            var handler = new SaveEmailTemplateCommandHandler(emailTemplateRepository);
             handler.Execute(command);
         }
 
@@ -50,11 +41,5 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
             _emailTemplate.AssertWasCalled(a => a.Update(_emailTemplateDTO));
         }
 
-        [Test]
-        public void create_variable_method_was_called()
-        {
-            _emailTemplate.AssertWasCalled(a => a.CreateVariable(_htmlTemplatePartId, _htmlStartIndex, _length));
-        }
-    
     }
 }

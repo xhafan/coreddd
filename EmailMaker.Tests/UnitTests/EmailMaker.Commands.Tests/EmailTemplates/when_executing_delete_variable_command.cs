@@ -13,7 +13,6 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
     public class when_executing_delete_variable_command
     {
         private EmailTemplate _emailTemplate;
-        private EmailTemplatePartDTO[] _emailTemplatePartDtos;
         private int _variablePartId;
         private EmailTemplateDTO _emailTemplateDTO;
 
@@ -27,17 +26,9 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
             emailTemplateRepository.Stub(a => a.GetById(emailTemplateId)).Return(_emailTemplate);
 
             _variablePartId = 46;
-            _emailTemplatePartDtos = new[]
-                                         {
-                                             new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Html, PartId = 45, Html = "html1"},
-                                             new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Variable, PartId = _variablePartId, VariableValue = "value1"},
-                                             new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Html, PartId = 47, Html = "html2"},
-                                         };
             _emailTemplateDTO = new EmailTemplateDTO
                                     {
                                         EmailTemplateId = emailTemplateId,
-                                        Parts =
-                                            _emailTemplatePartDtos
                                     };
             var command = new DeleteVariableCommand
                               {

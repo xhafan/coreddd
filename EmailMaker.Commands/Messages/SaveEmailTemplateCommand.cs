@@ -3,7 +3,7 @@ using EmailMaker.DTO.EmailTemplate;
 
 namespace EmailMaker.Commands.Messages
 {
-    public class SaveTemplateCommand : ICommand
+    public class SaveEmailTemplateCommand : ICommand
     {
         public EmailTemplateDTO EmailTemplate { get; set; }
     }

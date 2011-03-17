@@ -14,7 +14,9 @@
         editTemplateModel = {
             emailTemplate: ko.observable(@Html.Raw(Html.ToJson(Model.EmailTemplate))),
             saveTemplate: function() {
-                $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.Save(null)))", this.emailTemplate);
+                $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.Save(null)))", {
+                    EmailTemplate: editTemplateModel.emailTemplate()
+                });
             },
             createVariable: function() {
                 var htmlBlockTextArea = document.getElementById("partId_" + this.PartId);
@@ -46,7 +48,6 @@
 
 <div id="editEmailTemplate" data-bind="template: { name: 'emailTemplateKoTemplate', foreach: emailTemplate().Parts }">
     <button data-bind="click: saveTemplate">Save</button>
-    <button data-bind="click: createVariable">test</button>
 </div>
 
 <script id="emailTemplateKoTemplate" type="text/html">

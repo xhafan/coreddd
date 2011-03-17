@@ -43,10 +43,11 @@
     <Compile Include="Handlers\CreateEmailTemplateCommandHandler.cs" />
     <Compile Include="Handlers\CreateVariableCommandHandler.cs" />
     <Compile Include="Handlers\DeleteVariableCommandHandler.cs" />
+    <Compile Include="Handlers\SaveEmailTemplateCommandHandler.cs" />
     <Compile Include="Messages\CreateEmailTemplateCommand.cs" />
     <Compile Include="Messages\CreateVariableCommand.cs" />
     <Compile Include="Messages\DeleteVariableCommand.cs" />
-    <Compile Include="Messages\SaveTemplateCommand.cs" />
+    <Compile Include="Messages\SaveEmailTemplateCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
