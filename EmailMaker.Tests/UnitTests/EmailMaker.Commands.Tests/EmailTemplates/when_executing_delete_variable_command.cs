@@ -15,6 +15,7 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
         private EmailTemplate _emailTemplate;
         private EmailTemplatePartDTO[] _emailTemplatePartDtos;
         private int _variablePartId;
+        private EmailTemplateDTO _emailTemplateDTO;
 
         [SetUp]
         public void Context()
@@ -32,16 +33,16 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
                                              new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Variable, PartId = _variablePartId, VariableValue = "value1"},
                                              new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Html, PartId = 47, Html = "html2"},
                                          };
+            _emailTemplateDTO = new EmailTemplateDTO
+                                    {
+                                        EmailTemplateId = emailTemplateId,
+                                        Parts =
+                                            _emailTemplatePartDtos
+                                    };
             var command = new DeleteVariableCommand
                               {
                                   VariablePartId = _variablePartId,
-                                  EmailTemplate =
-                                      new EmailTemplateDTO
-                                          {
-                                              EmailTemplateId = emailTemplateId,
-                                              Parts =
-                                                  _emailTemplatePartDtos
-                                          },
+                                  EmailTemplate = _emailTemplateDTO,
                               };
             var handler = new DeleteVariableCommandHandler(emailTemplateRepository);
             handler.Execute(command);
@@ -50,18 +51,7 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
         [Test]
         public void html_and_variable_values_were_set()
         {
-            _emailTemplatePartDtos.Each(part =>
-                                            {
-                                                if (part.EmailTemplatePartType == EmailTemplatePartType.Html)
-                                                {
-                                                    _emailTemplate.AssertWasCalled(a => a.SetHtml(part.PartId, part.Html));
-                                                }
-                                                else if (part.EmailTemplatePartType == EmailTemplatePartType.Variable)
-                                                {
-                                                    _emailTemplate.AssertWasCalled(a => a.SetVariableValue(part.PartId, part.VariableValue));
-                                                }
-
-                                            });
+            _emailTemplate.AssertWasCalled(a => a.Update(_emailTemplateDTO));
         }
 
         [Test]

@@ -46,6 +46,7 @@
     <Compile Include="Messages\CreateEmailTemplateCommand.cs" />
     <Compile Include="Messages\CreateVariableCommand.cs" />
     <Compile Include="Messages\DeleteVariableCommand.cs" />
+    <Compile Include="Messages\SaveTemplateCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

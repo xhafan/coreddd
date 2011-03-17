@@ -187,7 +187,6 @@
     <Content Include="connectionStrings.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Shared\EmailTemplateEdit.cshtml" />
     <None Include="windsor.boo" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

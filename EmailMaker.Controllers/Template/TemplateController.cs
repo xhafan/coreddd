@@ -65,9 +65,10 @@ namespace EmailMaker.Controllers.Template
         }
 
         [HttpPost]
-        public void Save(EmailTemplateDTO emailTemplate)
+        public void Save(SaveTemplateCommand command)
         {
             throw new System.NotImplementedException();
+            _commandExecutor.Execute(command);
         }
 
         [HttpPost]

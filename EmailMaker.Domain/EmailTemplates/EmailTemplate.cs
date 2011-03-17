@@ -2,6 +2,9 @@
 using System.Linq;
 using Core.Domain;
 using Core.Utilities;
+using Core.Utilities.Extensions;
+using EmailMaker.DTO.EmailTemplate;
+using EmailMaker.Utilities;
 
 namespace EmailMaker.Domain.EmailTemplates
 {
@@ -79,6 +82,26 @@ namespace EmailMaker.Domain.EmailTemplates
         public virtual void SetVariableValue(int variablePartId, string value)
         {
             _GetVariablePart(variablePartId).SetValue(value);
+        }
+
+        public virtual void Update(EmailTemplateDTO emailTemplateDTO)
+        {
+            Guard.Hope(Id == emailTemplateDTO.EmailTemplateId, "Invalid email template id");
+            emailTemplateDTO.Parts.Each(part =>
+            {
+                if (part.EmailTemplatePartType == EmailTemplatePartType.Html)
+                {
+                    SetHtml(part.PartId, part.Html);
+                }
+                else if (part.EmailTemplatePartType == EmailTemplatePartType.Variable)
+                {
+                    SetVariableValue(part.PartId, part.VariableValue);
+                }
+                else
+                {
+                    throw new EmailMakerException("Unknown email template part type: " + part.EmailTemplatePartType);
+                }
+            });
         }
     }
 }

@@ -12,6 +12,7 @@ namespace EmailMaker.TestHelper.Builders.EmailTemplates
         private string _initialHtml;
         private int _nextPartId;
         private IList<Tuple<int, int>> _variables = new List<Tuple<int, int>>();
+        private int _id;
 
         private int NextPartId
         {
@@ -42,9 +43,16 @@ namespace EmailMaker.TestHelper.Builders.EmailTemplates
             return this;
         }
 
+        public EmailTemplateBuilder WithId(int id)
+        {
+            _id = id;
+            return this;
+        }
+
         public EmailTemplate Build()
         {
             var emailTemplate = new EmailTemplate();
+            emailTemplate.SetPrivateAttribute("_id", _id);
             var htmlPart = emailTemplate.Parts.Single();
             var htmlPartId = htmlPart.Id;
             htmlPartId = NextPartId;

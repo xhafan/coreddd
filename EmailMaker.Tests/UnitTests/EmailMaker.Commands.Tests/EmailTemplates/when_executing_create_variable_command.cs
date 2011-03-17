@@ -1,5 +1,4 @@
 ﻿using Core.Domain;
-using Core.Utilities.Extensions;
 using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.EmailTemplates;
@@ -17,6 +16,7 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
         private int _htmlStartIndex;
         private int _length;
         private EmailTemplatePartDTO[] _emailTemplatePartDtos;
+        private EmailTemplateDTO _emailTemplateDTO;
 
         [SetUp]
         public void Context()
@@ -36,15 +36,15 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
                                              new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Variable, PartId = 46, VariableValue = "value1"},
                                              new EmailTemplatePartDTO {EmailTemplatePartType = EmailTemplatePartType.Html, PartId = _htmlTemplatePartId, Html = "html2"},
                                          };
+            _emailTemplateDTO = new EmailTemplateDTO
+                                    {
+                                        EmailTemplateId = emailTemplateId,
+                                        Parts =
+                                            _emailTemplatePartDtos
+                                    };
             var command = new CreateVariableCommand
                               {
-                                  EmailTemplate =
-                                      new EmailTemplateDTO
-                                          {
-                                              EmailTemplateId = emailTemplateId,
-                                              Parts =
-                                                  _emailTemplatePartDtos
-                                          },
+                                  EmailTemplate = _emailTemplateDTO,
                                   HtmlStartIndex = _htmlStartIndex,
                                   HtmlTemplatePartId = _htmlTemplatePartId,
                                   Length = _length
@@ -56,17 +56,7 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
         [Test]
         public void html_and_variable_values_were_set()
         {
-            _emailTemplatePartDtos.Each(part =>
-                                            {
-                                                if (part.EmailTemplatePartType == EmailTemplatePartType.Html)
-                                                {
-                                                    _emailTemplate.AssertWasCalled(a => a.SetHtml(part.PartId, part.Html));
-                                                }
-                                                else if (part.EmailTemplatePartType == EmailTemplatePartType.Variable)
-                                                {
-                                                    _emailTemplate.AssertWasCalled(a => a.SetVariableValue(part.PartId, part.VariableValue));
-                                                }
-                                            });
+            _emailTemplate.AssertWasCalled(a => a.Update(_emailTemplateDTO));
         }
 
         [Test]
