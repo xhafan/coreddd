@@ -39,6 +39,7 @@ namespace Core.TestHelper.Persistence
         {
             using (var tx = Session.BeginTransaction())
             {
+                Session.Delete("from Email");
                 Session.Delete("from EmailTemplate");
                 tx.Commit();
             }

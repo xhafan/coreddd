@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\CreateEmailCommandHandler.cs" />
     <Compile Include="Handlers\CreateEmailTemplateCommandHandler.cs" />
     <Compile Include="Handlers\CreateVariableCommandHandler.cs" />
     <Compile Include="Handlers\DeleteVariableCommandHandler.cs" />
     <Compile Include="Handlers\SaveEmailTemplateCommandHandler.cs" />
+    <Compile Include="Messages\CreateEmailCommand.cs" />
     <Compile Include="Messages\CreateEmailTemplateCommand.cs" />
     <Compile Include="Messages\CreateVariableCommand.cs" />
     <Compile Include="Messages\DeleteVariableCommand.cs" />

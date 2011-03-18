@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailTemplates\when_executing_create_email_command.cs" />
     <Compile Include="EmailTemplates\when_executing_create_email_template_command.cs" />
     <Compile Include="EmailTemplates\when_executing_create_variable_command.cs" />
     <Compile Include="EmailTemplates\when_executing_delete_variable_command.cs" />

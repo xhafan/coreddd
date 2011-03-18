@@ -16,7 +16,7 @@ namespace EmailMaker.Commands.Handlers
 
         public override void Execute(CreateEmailTemplateCommand command)
         {
-            var newEmailTemplate = EmailTemplateFactory.CreateEmailTemplate();
+            var newEmailTemplate = new EmailTemplate();
             _emailTemplateRepository.Save(newEmailTemplate);
             RaiseEvent(new CommandExecutedArgs { Args = newEmailTemplate.Id });
         }

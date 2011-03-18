@@ -8,7 +8,7 @@ using EmailMaker.DTO.EmailTemplate;
 using EmailMaker.Queries.Messages;
 using MvcContrib;
 
-namespace EmailMaker.Controllers.Template
+namespace EmailMaker.Controllers
 {
     public class TemplateController : Controller
     {
@@ -33,6 +33,7 @@ namespace EmailMaker.Controllers.Template
             return View(model);
         }
 
+        // todo: make httppost
         public ActionResult Create()
         {
             var createdEmailTemplateId = default(int);

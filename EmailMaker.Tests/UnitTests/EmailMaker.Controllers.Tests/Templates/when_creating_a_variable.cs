@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using Core.TestHelper.Controllers;
 using EmailMaker.Commands.Messages;
-using EmailMaker.Controllers.Template;
 using NUnit.Framework;
 using Shouldly;
 

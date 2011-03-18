@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 <%@ Import Namespace="Core.Web.Extensions" %>
+<%@ Import Namespace="EmailMaker.Controllers" %>
 <%@ Import Namespace="EmailMaker.Controllers.Template" %>
 
 <!DOCTYPE html>
