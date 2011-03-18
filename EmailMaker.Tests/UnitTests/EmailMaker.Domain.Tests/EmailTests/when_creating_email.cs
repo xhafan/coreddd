@@ -24,7 +24,13 @@ namespace EmailMaker.Domain.Tests.EmailTests
         }
 
         [Test]
-        public void Test()
+        public void email_template_was_correctly_set()
+        {
+            _email.EmailTemplate.ShouldBe(_template);
+        }
+
+        [Test]
+        public void parts_are_correctly_set()
         {
             _email.Parts.Count().ShouldBe(_template.Parts.Count());
 

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Core.Domain;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Utilities;
 
 
 namespace EmailMaker.Domain.Emails
 {
-    public class Email
+    public class Email : Identity<Email>, IAggregateRootEntity
     {
         public virtual EmailTemplate EmailTemplate { get; private set; }
 
@@ -20,6 +21,7 @@ namespace EmailMaker.Domain.Emails
 
         public Email(EmailTemplate emailTemplate)
         {
+            EmailTemplate = emailTemplate;
             _parts = new List<EmailPart>();
             foreach (var emailTemplatePart in emailTemplate.Parts)
             {

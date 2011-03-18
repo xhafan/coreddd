@@ -46,10 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailMap.cs" />
+    <Compile Include="EmailPartMap.cs" />
     <Compile Include="EmailTemplateMap.cs" />
     <Compile Include="EmailTemplatePartMap.cs" />
+    <Compile Include="HtmlEmailPartMap.cs" />
     <Compile Include="HtmlEmailTemplatePartMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VariableEmailPartMap.cs" />
     <Compile Include="VariableEmailTemplatePartMap.cs" />
     <Compile Include="VariableTypeMap.cs" />
   </ItemGroup>
