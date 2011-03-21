@@ -2,7 +2,7 @@
 using System.Linq;
 using Core.TestHelper.Persistence;
 using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.DTO.EmailTemplate;
+using EmailMaker.DTO.EmailTemplates;
 using EmailMaker.Queries.Handlers;
 using EmailMaker.Queries.Messages;
 using NUnit.Framework;

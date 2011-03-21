@@ -1,7 +1,7 @@
 ﻿@model EmailMaker.Controllers.ViewModels.EmailTemplateEditModel
 @using EmailMaker.Web;
 @using EmailMaker.Controllers;
-@using EmailMaker.DTO.EmailTemplate;
+@using EmailMaker.DTO;
 
 @{
     ViewBag.Title = "Edit";
@@ -51,14 +51,14 @@
 </div>
 
 <script id="emailTemplateKoTemplate" type="text/html">
-    {{if EmailTemplatePartType == @((int)EmailTemplatePartType.Html)}} 
+    {{if PartType == @((int)PartType.Html)}} 
         <fieldset class="htmlBlock">
             <legend>Html block</legend>
             <textarea data-bind="value: Html" id="partId_${PartId}"></textarea>
             <button data-bind="click: editTemplateModel.createVariable">Create variable</button>
         </fieldset>
     {{/if}}
-    {{if EmailTemplatePartType == @((int)EmailTemplatePartType.Variable)}} 
+    {{if PartType == @((int)PartType.Variable)}} 
         <fieldset class="variable">
             <legend>Variable</legend>
             <table>

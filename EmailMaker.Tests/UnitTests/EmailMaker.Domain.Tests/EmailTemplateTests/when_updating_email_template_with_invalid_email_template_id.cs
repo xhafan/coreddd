@@ -1,5 +1,5 @@
 ﻿using Core.Utilities;
-using EmailMaker.DTO.EmailTemplate;
+using EmailMaker.DTO.EmailTemplates;
 using EmailMaker.TestHelper.Builders.EmailTemplates;
 using NUnit.Framework;
 

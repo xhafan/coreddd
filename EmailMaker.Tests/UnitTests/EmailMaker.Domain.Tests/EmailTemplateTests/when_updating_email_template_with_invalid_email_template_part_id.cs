@@ -1,5 +1,6 @@
 ﻿using System;
-using EmailMaker.DTO.EmailTemplate;
+using EmailMaker.DTO;
+using EmailMaker.DTO.EmailTemplates;
 using EmailMaker.TestHelper.Builders.EmailTemplates;
 using NUnit.Framework;
 
@@ -19,7 +20,7 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
             var emailTemplateDTO = new EmailTemplateDTO
                                        {
                                            EmailTemplateId = 45,
-                                           Parts = new[] { new EmailTemplatePartDTO { EmailTemplatePartType = EmailTemplatePartType.Html, PartId = 567}}
+                                           Parts = new[] { new EmailTemplatePartDTO { PartType = PartType.Html, PartId = 567}}
                                        };
             template.Update(emailTemplateDTO);
         }

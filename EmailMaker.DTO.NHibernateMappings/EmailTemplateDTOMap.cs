@@ -1,4 +1,4 @@
-﻿using EmailMaker.DTO.EmailTemplate;
+﻿using EmailMaker.DTO.EmailTemplates;
 using FluentNHibernate.Mapping;
 
 namespace EmailMaker.DTO.NHibernateMappings

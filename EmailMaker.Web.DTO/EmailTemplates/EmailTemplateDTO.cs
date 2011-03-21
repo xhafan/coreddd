@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EmailMaker.DTO.EmailTemplate
+namespace EmailMaker.DTO.EmailTemplates
 {
     public class EmailTemplateDTO
     {

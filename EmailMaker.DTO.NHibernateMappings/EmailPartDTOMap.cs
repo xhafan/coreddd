@@ -1,15 +1,15 @@
-﻿using EmailMaker.DTO.EmailTemplates;
+﻿using EmailMaker.DTO.Emails;
 using FluentNHibernate.Mapping;
 
 namespace EmailMaker.DTO.NHibernateMappings
 {
-    public class EmailTemplatePartDTOMap : ClassMap<EmailTemplatePartDTO>
+    public class EmailPartDTOMap : ClassMap<EmailPartDTO>
     {
-        public EmailTemplatePartDTOMap()
+        public EmailPartDTOMap()
         {
-            Table("vw_EmailTemplatePart");
+            Table("vw_EmailPart");
             CompositeId()
-                .KeyProperty(x => x.EmailTemplateId)
+                .KeyProperty(x => x.EmailId)
                 .KeyProperty(x => x.PartId);
             Map(x => x.PartType);
             Map(x => x.Html);

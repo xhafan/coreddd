@@ -1,6 +1,4 @@
 ﻿using Core.Domain;
-using Core.Domain.Persistence;
-using Core.Utilities;
 using Core.Utilities.Extensions;
 using Core.Utilities.NHibernate;
 using NHibernate;

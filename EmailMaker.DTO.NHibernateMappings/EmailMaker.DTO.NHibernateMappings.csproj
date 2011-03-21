@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailDTOMap.cs" />
+    <Compile Include="EmailPartDTOMap.cs" />
     <Compile Include="EmailTemplateDTOMap.cs" />
     <Compile Include="EmailTemplatePartDTOMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

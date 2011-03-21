@@ -1,7 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Core.Commands;
 using Core.Queries;
 using EmailMaker.Commands.Messages;
+using EmailMaker.Controllers.ViewModels;
+using EmailMaker.DTO.Emails;
+using EmailMaker.Queries.Messages;
 using MvcContrib;
 
 namespace EmailMaker.Controllers
@@ -30,7 +34,23 @@ namespace EmailMaker.Controllers
 
         public ActionResult Edit(int id)
         {
-            throw new System.NotImplementedException();
+            var email = _GetEmail(id);
+            var model = new EmailEditModel { Email = email };
+            return View(model);
+        }
+
+        private EmailDTO _GetEmail(int id)
+        {
+            var message = new GetEmailQueryMessage { EmailId = id };
+            var partMessage = new GetEmailPartsQueryMessage { EmailId = id };
+
+            var emailDTOs = _queryExecutor.Execute<GetEmailQueryMessage, EmailDTO>(message);
+            var emailPartDTOs = _queryExecutor.Execute<GetEmailPartsQueryMessage, EmailPartDTO>(partMessage);
+
+            var emailDTO = emailDTOs.Single();
+            emailDTO.Parts = emailPartDTOs;
+
+            return emailDTO;
         }
     }
 }

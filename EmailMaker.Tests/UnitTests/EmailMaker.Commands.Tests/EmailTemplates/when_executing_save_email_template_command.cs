@@ -2,7 +2,7 @@
 using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.DTO.EmailTemplate;
+using EmailMaker.DTO.EmailTemplates;
 using NUnit.Framework;
 using Rhino.Mocks;
 

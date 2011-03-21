@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Core.TestHelper.Persistence;
+using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.DTO;
-using EmailMaker.DTO.EmailTemplates;
+using EmailMaker.DTO.Emails;
 using EmailMaker.Queries.Handlers;
 using EmailMaker.Queries.Messages;
 using NUnit.Framework;
@@ -12,50 +13,55 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
 {
     [TestFixture]
-    public class when_querying_email_template_parts : BaseSimplePersistenceTest
+    public class when_querying_email_parts : BaseSimplePersistenceTest
     {
-        private EmailTemplate _emailTemplate;
-        private IEnumerable<EmailTemplatePartDTO> _result;
+        private IEnumerable<EmailPartDTO> _result;
+        private Email _email;
 
         public override void PersistenceContext()
         {
-            _emailTemplate = new EmailTemplate("123");
-            Save(_emailTemplate);
-            _emailTemplate.CreateVariable(_emailTemplate.Parts.First().Id, 1, 1);
+            var emailTemplate = new EmailTemplate("123");
+            Save(emailTemplate);
+            emailTemplate.CreateVariable(emailTemplate.Parts.First().Id, 1, 1);
+            Save(emailTemplate);
+
             var anotherEmailTemplate = new EmailTemplate("another html");
-            Save(_emailTemplate, anotherEmailTemplate);
+            Save(anotherEmailTemplate);
+
+            _email = new Email(emailTemplate);
+            Save(_email);
         }
 
         public override void PersistenceQuery()
         {
-            var query = new GetEmailTemplatePartsQuery();
-            _result = query.Execute<EmailTemplatePartDTO>(new GetEmailTemplatePartsQueryMessage { EmailTemplateId = _emailTemplate.Id });
+            var query = new GetEmailPartsQuery();
+            _result = query.Execute<EmailPartDTO>(new GetEmailPartsQueryMessage { EmailId = _email.Id });
         }
 
         [Test]
         public void email_template_parts_correctly_retrieved()
         {
             _result.Count().ShouldBe(3);
-            
-            var htmlPart = _emailTemplate.Parts.First() as HtmlEmailTemplatePart;
+
+            var htmlPart = _email.Parts.First() as HtmlEmailPart;
             var partDTO = _result.First();
-            partDTO.EmailTemplateId.ShouldBe(_emailTemplate.Id);
+            partDTO.EmailId.ShouldBe(_email.Id);
             partDTO.PartId.ShouldBe(htmlPart.Id);
             partDTO.PartType.ShouldBe(PartType.Html);
             partDTO.Html.ShouldBe(htmlPart.Html);
             partDTO.VariableValue.ShouldBe(null);
 
-            var variablePart = _emailTemplate.Parts.ElementAt(1) as VariableEmailTemplatePart;
+            var variablePart = _email.Parts.ElementAt(1) as VariableEmailPart;
             partDTO = _result.ElementAt(1);
-            partDTO.EmailTemplateId.ShouldBe(_emailTemplate.Id);
+            partDTO.EmailId.ShouldBe(_email.Id);
             partDTO.PartId.ShouldBe(variablePart.Id);
             partDTO.PartType.ShouldBe(PartType.Variable);
             partDTO.Html.ShouldBe(null);
             partDTO.VariableValue.ShouldBe(variablePart.Value);
 
-            htmlPart = _emailTemplate.Parts.Last() as HtmlEmailTemplatePart;
+            htmlPart = _email.Parts.Last() as HtmlEmailPart;
             partDTO = _result.Last();
-            partDTO.EmailTemplateId.ShouldBe(_emailTemplate.Id);
+            partDTO.EmailId.ShouldBe(_email.Id);
             partDTO.PartId.ShouldBe(htmlPart.Id);
             partDTO.PartType.ShouldBe(PartType.Html);
             partDTO.Html.ShouldBe(htmlPart.Html);

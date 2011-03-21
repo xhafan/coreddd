@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.DTO.EmailTemplate;
+using EmailMaker.DTO;
+using EmailMaker.DTO.EmailTemplates;
 using EmailMaker.TestHelper.Builders.EmailTemplates;
 using NUnit.Framework;
 using Shouldly;
@@ -31,19 +32,19 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
                                                            new EmailTemplatePartDTO
                                                                {
                                                                    PartId = _template.Parts.First().Id,
-                                                                   EmailTemplatePartType = EmailTemplatePartType.Html,
+                                                                   PartType = PartType.Html,
                                                                    Html = "A"
                                                                },
                                                            new EmailTemplatePartDTO
                                                                {
                                                                    PartId = _template.Parts.ElementAt(3).Id,
-                                                                   EmailTemplatePartType = EmailTemplatePartType.Variable,
+                                                                   PartType = PartType.Variable,
                                                                    VariableValue = "B"
                                                                },
                                                            new EmailTemplatePartDTO
                                                                {
                                                                    PartId = _template.Parts.ElementAt(4).Id,
-                                                                   EmailTemplatePartType = EmailTemplatePartType.Html,
+                                                                   PartType = PartType.Html,
                                                                    Html = "C"
                                                                },
                                                        }                                                       

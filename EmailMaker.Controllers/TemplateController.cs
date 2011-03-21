@@ -4,7 +4,8 @@ using Core.Commands;
 using Core.Queries;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
-using EmailMaker.DTO.EmailTemplate;
+using EmailMaker.DTO;
+using EmailMaker.DTO.EmailTemplates;
 using EmailMaker.Queries.Messages;
 using MvcContrib;
 
@@ -28,7 +29,7 @@ namespace EmailMaker.Controllers
 
         public ActionResult New()
         {
-            var emailTemplate = new EmailTemplateDTO{ Parts = new[] {new EmailTemplatePartDTO { EmailTemplatePartType = EmailTemplatePartType.Html }}};
+            var emailTemplate = new EmailTemplateDTO{ Parts = new[] {new EmailTemplatePartDTO { PartType = PartType.Html }}};
             var model = new EmailTemplateEditModel {EmailTemplate = emailTemplate};
             return View(model);
         }

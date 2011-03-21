@@ -3,7 +3,7 @@ create view vw_EmailTemplatePart
 as
 select 
 et.Id as EmailTemplateId,
-case when hetp.Id is not null then ''Html'' else ''Variable'' end as EmailTemplatePartType,
+case when hetp.Id is not null then ''Html'' else ''Variable'' end as PartType,
 etp.Id as PartId,
 hetp.Html,
 vetp.Value as VariableValue
