@@ -42,13 +42,13 @@ namespace EmailMaker.Controllers
         private EmailDTO _GetEmail(int id)
         {
             var message = new GetEmailQueryMessage { EmailId = id };
-            var partMessage = new GetEmailPartsQueryMessage { EmailId = id };
+            var variablePartMessage = new GetEmailVariablePartsQueryMessage { EmailId = id };
 
             var emailDTOs = _queryExecutor.Execute<GetEmailQueryMessage, EmailDTO>(message);
-            var emailPartDTOs = _queryExecutor.Execute<GetEmailPartsQueryMessage, EmailPartDTO>(partMessage);
+            var variableEmailPartDTOs = _queryExecutor.Execute<GetEmailVariablePartsQueryMessage, EmailPartDTO>(variablePartMessage);
 
             var emailDTO = emailDTOs.Single();
-            emailDTO.Parts = emailPartDTOs;
+            emailDTO.Parts = variableEmailPartDTOs;
 
             return emailDTO;
         }
@@ -56,7 +56,6 @@ namespace EmailMaker.Controllers
         [HttpPost]
         public void UpdateVariables(UpdateEmailVariablesCommand command)
         {
-            throw new System.NotImplementedException();
             _commandExecutor.Execute(command);
         }
 

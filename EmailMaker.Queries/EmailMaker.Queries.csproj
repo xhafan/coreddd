@@ -46,11 +46,13 @@
     <Compile Include="Handlers\GetEmailPartsQuery.cs" />
     <Compile Include="Handlers\GetEmailQuery.cs" />
     <Compile Include="Handlers\GetEmailTemplatePartsQuery.cs" />
+    <Compile Include="Handlers\GetEmailVariablePartsQuery.cs" />
     <Compile Include="Messages\GetEmailPartsQueryMessage.cs" />
     <Compile Include="Messages\GetEmailQueryMessage.cs" />
     <Compile Include="Messages\GetEmailTemplatePartsQueryMessage.cs" />
     <Compile Include="Messages\GetEmailTemplateQueryMessage.cs" />
     <Compile Include="Handlers\GetEmailTemplateQuery.cs" />
+    <Compile Include="Messages\GetEmailVariablePartsQueryMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
