@@ -52,5 +52,18 @@ namespace EmailMaker.Controllers
 
             return emailDTO;
         }
+
+        [HttpPost]
+        public void UpdateVariables(UpdateEmailVariablesCommand command)
+        {
+            throw new System.NotImplementedException();
+            _commandExecutor.Execute(command);
+        }
+
+        [HttpPost]
+        public ActionResult GetEmail(int id)
+        {
+            return Json(_GetEmail(id));
+        }
     }
 }

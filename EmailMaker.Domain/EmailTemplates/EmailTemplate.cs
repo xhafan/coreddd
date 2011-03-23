@@ -28,7 +28,7 @@ namespace EmailMaker.Domain.EmailTemplates
             _parts = new List<EmailTemplatePart> { new HtmlEmailTemplatePart(html) };
         }
 
-        public virtual void SetHtml(int htmlTemplatePartId, string html)
+        private void _SetHtml(int htmlTemplatePartId, string html)
         {
             var htmlTemplatePart = _GetHtmlPart(htmlTemplatePartId);
             htmlTemplatePart.SetHtml(html);
@@ -80,7 +80,7 @@ namespace EmailMaker.Domain.EmailTemplates
             return Parts.First(x => x.Id == partId);
         }
 
-        public virtual void SetVariableValue(int variablePartId, string value)
+        private void _SetVariableValue(int variablePartId, string value)
         {
             _GetVariablePart(variablePartId).SetValue(value);
         }
@@ -92,11 +92,11 @@ namespace EmailMaker.Domain.EmailTemplates
             {
                 if (part.PartType == PartType.Html)
                 {
-                    SetHtml(part.PartId, part.Html);
+                    _SetHtml(part.PartId, part.Html);
                 }
                 else if (part.PartType == PartType.Variable)
                 {
-                    SetVariableValue(part.PartId, part.VariableValue);
+                    _SetVariableValue(part.PartId, part.VariableValue);
                 }
                 else
                 {

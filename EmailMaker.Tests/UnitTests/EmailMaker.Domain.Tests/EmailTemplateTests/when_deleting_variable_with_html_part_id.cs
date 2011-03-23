@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Core.Utilities;
 using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.TestHelper.Builders.EmailTemplates;
+using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 
 namespace EmailMaker.Domain.Tests.EmailTemplateTests

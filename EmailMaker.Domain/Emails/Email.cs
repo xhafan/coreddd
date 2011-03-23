@@ -1,6 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Core.Domain;
+using Core.Utilities;
+using Core.Utilities.Extensions;
 using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.DTO;
+using EmailMaker.DTO.Emails;
 using EmailMaker.Utilities;
 
 
@@ -41,6 +46,37 @@ namespace EmailMaker.Domain.Emails
                 }
             }
             
+        }
+
+        public virtual void UpdateVariables(EmailDTO emailDTO)
+        {
+            Guard.Hope(Id == emailDTO.EmailId, "Invalid email id");
+            emailDTO.Parts.Each(part =>
+            {
+                if (part.PartType == PartType.Variable)
+                {
+                    _SetVariableValue(part.PartId, part.VariableValue);
+                }
+                else
+                {
+                    throw new EmailMakerException("Unknown email part type: " + part.PartType);
+                }
+            });
+        }
+
+        private VariableEmailPart _GetVariablePart(int variablePartId)
+        {
+            return (VariableEmailPart)_GetPart(variablePartId);
+        }
+
+        private EmailPart _GetPart(int partId)
+        {
+            return Parts.First(x => x.Id == partId);
+        }
+
+        private void _SetVariableValue(int variablePartId, string value)
+        {
+            _GetVariablePart(variablePartId).SetValue(value);
         }
     }
 }

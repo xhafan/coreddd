@@ -5,7 +5,7 @@ using Core.TestHelper.Extensions;
 using Core.Utilities.Extensions;
 using EmailMaker.Domain.EmailTemplates;
 
-namespace EmailMaker.TestHelper.Builders.EmailTemplates
+namespace EmailMaker.TestHelper.Builders
 {
     public class EmailTemplateBuilder
     {       
@@ -51,13 +51,11 @@ namespace EmailMaker.TestHelper.Builders.EmailTemplates
 
         public EmailTemplate Build()
         {
-            var emailTemplate = new EmailTemplate();
+            var emailTemplate = new EmailTemplate(_initialHtml);
             emailTemplate.SetPrivateAttribute("_id", _id);
             var htmlPart = emailTemplate.Parts.Single();
-            var htmlPartId = htmlPart.Id;
-            htmlPartId = NextPartId;
+            var htmlPartId = NextPartId;
             htmlPart.SetPrivateAttribute("_id", htmlPartId);
-            emailTemplate.SetHtml(htmlPartId, _initialHtml);
 
             _variables.Each(variable =>
                                 {

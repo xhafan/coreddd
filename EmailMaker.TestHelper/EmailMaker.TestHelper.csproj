@@ -40,7 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\EmailTemplates\EmailTemplateBuilder.cs" />
+    <Compile Include="Builders\EmailBuilder.cs" />
+    <Compile Include="Builders\EmailTemplateBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

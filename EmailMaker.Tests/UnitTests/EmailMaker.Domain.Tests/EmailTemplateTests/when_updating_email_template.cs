@@ -2,7 +2,7 @@
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.DTO;
 using EmailMaker.DTO.EmailTemplates;
-using EmailMaker.TestHelper.Builders.EmailTemplates;
+using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 

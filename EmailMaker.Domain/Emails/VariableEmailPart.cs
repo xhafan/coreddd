@@ -14,5 +14,15 @@ namespace EmailMaker.Domain.Emails
             VariableType = variableType;
             Value = value;
         }
+
+        public virtual void SetValue(string value)
+        {
+            _SetValue(value);
+        }
+
+        private void _SetValue(string value)
+        {
+            Value = value ?? string.Empty;
+        }
     }
 }

@@ -57,7 +57,7 @@
     <Compile Include="EmailTemplates\VariableTypes\InputTextVariableType.cs" />
     <Compile Include="EmailTemplates\VariableTypes\ListVariableType.cs" />
     <Compile Include="EmailTemplates\VariableTypes\TranslationVariableType.cs" />
-    <Compile Include="EmailTemplates\VariableTypes\VariableType.cs" />
+    <Compile Include="VariableType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EmailTemplates\EmailTemplatePart.cs" />
     <Compile Include="EmailTemplates\VariableEmailTemplatePart.cs" />

@@ -2,7 +2,7 @@
 using Core.TestHelper.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.TestHelper.Builders.EmailTemplates;
+using EmailMaker.TestHelper.Builders;
 using EmailMaker.Utilities;
 using NUnit.Framework;
 

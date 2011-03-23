@@ -56,15 +56,18 @@
     <Compile Include="EmailTemplateTests\when_deleting_variable.cs" />
     <Compile Include="EmailTemplateTests\when_deleting_variable_with_html_part_id.cs" />
     <Compile Include="EmailTemplateTests\when_deleting_variable_with_invalid_variable_id.cs" />
-    <Compile Include="EmailTemplateTests\when_setting_html_for_html_template_part.cs" />
-    <Compile Include="EmailTemplateTests\when_setting_html_for_html_template_part_with_incorrect_html_template_part_id.cs" />
-    <Compile Include="EmailTemplateTests\when_setting_value_for_variable_part.cs" />
+    <Compile Include="EmailTests\when_creating_variable_email_part.cs" />
+    <Compile Include="EmailTests\when_setting_value_for_variable_email_part.cs" />
+    <Compile Include="EmailTests\when_updating_email_variables.cs" />
     <Compile Include="EmailTemplateTests\when_updating_email_template.cs" />
     <Compile Include="EmailTemplateTests\when_updating_email_template_with_invalid_email_template_id.cs" />
     <Compile Include="EmailTemplateTests\when_updating_email_template_with_invalid_email_template_part_id.cs" />
     <Compile Include="EmailTemplateTests\when_updating_email_template_with_invalid_email_template_part_type.cs" />
     <Compile Include="EmailTests\when_creating_email.cs" />
     <Compile Include="EmailTests\when_creating_email_with_unknown_email_template_part_type.cs" />
+    <Compile Include="EmailTests\when_updating_email_variables_with_invalid_email_id.cs" />
+    <Compile Include="EmailTests\when_updating_email_variables_with_invalid_part_type.cs" />
+    <Compile Include="EmailTests\when_updating_email_variables_with_invalid_variable_id.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

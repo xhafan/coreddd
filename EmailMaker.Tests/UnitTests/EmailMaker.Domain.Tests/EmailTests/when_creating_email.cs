@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.TestHelper.Builders.EmailTemplates;
+using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 

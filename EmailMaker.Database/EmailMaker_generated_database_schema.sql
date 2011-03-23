@@ -15,8 +15,8 @@ alter table [HtmlEmailPart]  drop constraint FKC187ECA4EBD3F1E8
 alter table [VariableEmailPart]  drop constraint FK5655592DEBD3F1E8
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK5655592D326ED16A]') AND parent_object_id = OBJECT_ID('[VariableEmailPart]'))
-alter table [VariableEmailPart]  drop constraint FK5655592D326ED16A
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK5655592DCBEDA9AC]') AND parent_object_id = OBJECT_ID('[VariableEmailPart]'))
+alter table [VariableEmailPart]  drop constraint FK5655592DCBEDA9AC
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC644F053C3BA1A19]') AND parent_object_id = OBJECT_ID('[EmailTemplatePart]'))
@@ -31,8 +31,8 @@ alter table [HtmlEmailTemplatePart]  drop constraint FKE07F3D8E84A755C8
 alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE184A755C8
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK2A9FDCE1326ED16A]') AND parent_object_id = OBJECT_ID('[VariableEmailTemplatePart]'))
-alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1326ED16A
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK2A9FDCE1CBEDA9AC]') AND parent_object_id = OBJECT_ID('[VariableEmailTemplatePart]'))
+alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
 
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Email]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Email]
@@ -133,7 +133,7 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1326ED16A
         references [EmailPart]
 
     alter table [VariableEmailPart] 
-        add constraint FK5655592D326ED16A 
+        add constraint FK5655592DCBEDA9AC 
         foreign key (VariableTypeId) 
         references [VariableType]
 
@@ -153,7 +153,7 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1326ED16A
         references [EmailTemplatePart]
 
     alter table [VariableEmailTemplatePart] 
-        add constraint FK2A9FDCE1326ED16A 
+        add constraint FK2A9FDCE1CBEDA9AC 
         foreign key (VariableTypeId) 
         references [VariableType]
 

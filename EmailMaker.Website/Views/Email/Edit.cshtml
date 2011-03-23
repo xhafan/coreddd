@@ -1,7 +1,48 @@
-﻿@{
+﻿@model EmailMaker.Controllers.ViewModels.EmailEditModel
+@using EmailMaker.Web;
+@using EmailMaker.Controllers;
+@using EmailMaker.DTO;
+
+@{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script type="text/javascript">
+    var editEmailModel;
+
+    $(document).ready(function () {
+        editEmailModel = {
+            Email: ko.observable(@Html.Raw(Html.ToJson(Model.Email))),
+            updateVariables: function() {
+                $.postJson("@(Html.UrlFromControllerMethod<EmailController>(c => c.UpdateVariables(null)))", {
+                    Email: editEmailModel.Email()
+                });
+            },
+            reloadEmail: function() {
+                $.post("@(Html.UrlFromControllerMethod<EmailController>(c => c.GetEmail(default(int))))", { id: editEmailModel.Email().EmailId }, function(data) {
+                    editEmailModel.Email(data);
+                });            
+            }
+        };
+        ko.applyBindings(editEmailModel, document.getElementById("editEmail"));
+    });
+</script>
 
 <h2>Edit</h2>
+
+<table>
+    <div id="editEmail" data-bind="template: { name: 'EmailKoTemplate', foreach: Email().Parts }">
+        <button data-bind="click: updateVariables">Save</button>
+    </div>
+</table>
+
+<script id="EmailKoTemplate" type="text/html">
+    {{if PartType == @((int)PartType.Variable)}} 
+        <tr>
+            <td>Value</td>
+            <td><input type="text" data-bind="value: VariableValue" /></td>
+        </tr>
+    {{/if}}
+</script>
+
 
