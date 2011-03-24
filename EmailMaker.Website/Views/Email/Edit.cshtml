@@ -16,12 +16,9 @@
             updateVariables: function() {
                 $.postJson("@(Html.UrlFromControllerMethod<EmailController>(c => c.UpdateVariables(null)))", {
                     Email: editEmailModel.Email()
+                }, function() {
+                    reloadIframe("emailHtml");
                 });
-            },
-            reloadEmail: function() {
-                $.post("@(Html.UrlFromControllerMethod<EmailController>(c => c.GetEmail(default(int))))", { id: editEmailModel.Email().EmailId }, function(data) {
-                    editEmailModel.Email(data);
-                });            
             }
         };
         ko.applyBindings(editEmailModel, document.getElementById("editEmail"));
@@ -30,11 +27,13 @@
 
 <h2>Edit</h2>
 
-<table>
-    <div id="editEmail" data-bind="template: { name: 'EmailKoTemplate', foreach: Email().Parts }">
-        <button data-bind="click: updateVariables">Save</button>
-    </div>
-</table>
+<div id="editEmail">
+    <table data-bind="template: { name: 'EmailKoTemplate', foreach: Email().Parts }">
+    </table>
+    <button data-bind="click: updateVariables">Save</button>
+</div>
+<iframe id="emailHtml" src="@(Html.UrlFromControllerMethod<EmailController>(c => c.GetHtml(default(int))))/@(Model.Email.EmailId)" width="900" height="800">
+</iframe>
 
 <script id="EmailKoTemplate" type="text/html">
     {{if PartType == @((int)PartType.Variable)}} 

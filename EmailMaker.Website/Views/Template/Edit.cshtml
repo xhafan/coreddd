@@ -16,6 +16,8 @@
             saveTemplate: function() {
                 $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.Save(null)))", {
                     EmailTemplate: editTemplateModel.emailTemplate()
+                }, function() {
+                    reloadIframe("templateHtml");
                 });
             },
             createVariable: function() {
@@ -49,6 +51,8 @@
 <div id="editEmailTemplate" data-bind="template: { name: 'emailTemplateKoTemplate', foreach: emailTemplate().Parts }">
     <button data-bind="click: saveTemplate">Save</button>
 </div>
+<iframe id="templateHtml" src="@(Html.UrlFromControllerMethod<TemplateController>(c => c.GetHtml(default(int))))/@(Model.EmailTemplate.EmailTemplateId)" width="900" height="800">
+</iframe>
 
 <script id="emailTemplateKoTemplate" type="text/html">
     {{if PartType == @((int)PartType.Html)}} 

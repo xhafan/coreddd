@@ -1,12 +1,15 @@
 ﻿using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 using Core.Commands;
 using Core.Queries;
+using Core.Utilities.Extensions;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.DTO;
 using EmailMaker.DTO.EmailTemplates;
 using EmailMaker.Queries.Messages;
+using EmailMaker.Utilities;
 using MvcContrib;
 
 namespace EmailMaker.Controllers
@@ -94,5 +97,31 @@ namespace EmailMaker.Controllers
         {
             return View();
         }
+
+        public string GetHtml(int id)
+        {
+            var partMessage = new GetEmailTemplatePartsQueryMessage { EmailTemplateId = id };
+            var emailTemplatePartDTOs = _queryExecutor.Execute<GetEmailTemplatePartsQueryMessage, EmailTemplatePartDTO>(partMessage);
+
+            var sb = new StringBuilder();
+            emailTemplatePartDTOs.Each(part =>
+            {
+                if (part.PartType == PartType.Html)
+                {
+                    sb.Append(part.Html);
+                }
+                else if (part.PartType == PartType.Variable)
+                {
+                    sb.Append(part.VariableValue);
+                }
+                else
+                {
+                    throw new EmailMakerException("Unknown part type:" + part.PartType);
+                }
+
+            });
+            return sb.ToString();
+        }
+    
     }
 }

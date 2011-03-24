@@ -32,3 +32,7 @@
     result.textLength = textArea.value.length;
     return result;
 }
+
+function reloadIframe(id) {
+    document.getElementById(id).contentWindow.location.reload();
+}
