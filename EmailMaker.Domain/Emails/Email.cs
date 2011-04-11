@@ -78,5 +78,10 @@ namespace EmailMaker.Domain.Emails
         {
             _GetVariablePart(variablePartId).SetValue(value);
         }
+
+        public virtual void SetFromAddressAndRecipients(string fromAddress, IEnumerable<string> toAddresses)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

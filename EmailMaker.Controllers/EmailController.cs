@@ -64,9 +64,10 @@ namespace EmailMaker.Controllers
         }
 
         [HttpPost]
-        public ActionResult SendEmail(object o)
+        public ActionResult SaveRecipients(SaveEmailRecipientsCommand command)
         {
-            throw new System.NotImplementedException();
+            _commandExecutor.Execute(command);
+            return new EmptyResult();
         }
 
         private EmailDTO _GetEmail(int id)
