@@ -92,6 +92,10 @@
   <ItemGroup>
     <Content Include="Content\js\emailmaker.jquery.extensions.js" />
     <Content Include="Content\js\emailmaker.utilities.js" />
+    <Content Include="Content\js\jquery.tmpl.js" />
+    <Content Include="Content\js\knockout-1.1.2.js" />
+    <Content Include="Content\js\underscore-min.js" />
+    <Content Include="Content\js\underscore.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\themes\base\jquery-ui.css" />
@@ -187,8 +191,11 @@
     <Content Include="connectionStrings.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Email\Edit.cshtml" />
-    <None Include="windsor.boo" />
+    <Content Include="Views\Email\EditVariables.cshtml" />
+    <Content Include="windsor.boo" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Email\EditRecipients.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

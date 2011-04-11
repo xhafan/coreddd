@@ -33,14 +33,40 @@ namespace EmailMaker.Controllers
             _commandExecutor.CommandExecuted += (sender, args) => createdEmailId = (int)args.Args;
             _commandExecutor.Execute(command);
 
-            return this.RedirectToAction(a => a.Edit(createdEmailId));
+            return this.RedirectToAction(a => a.EditVariables(createdEmailId));
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult EditVariables(int id)
         {
             var email = _GetEmail(id);
-            var model = new EmailEditModel { Email = email };
+            var model = new EmailEditVariablesModel { Email = email };
             return View(model);
+        }
+
+        public ActionResult EditRecipients(int id)
+        {
+            var model = new EmailEditRecipientsModel
+                            {
+                                EmailId = id,
+                                FromAddresses = new[]
+                                                    {
+                                                        "Martin Havlista <xhafan@gmail.com>",
+                                                        "Tomas Marny <xhafan@gmail.com>"
+                                                    },
+                                ToAddresses = new[]
+                                                  {
+                                                      "Tomas Marny <haslik@centrum.cz>",
+                                                      "Tomas Marny <xhafan@gmail.com>"
+                                                  },
+                                Subject = "subject"
+                            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SendEmail(object o)
+        {
+            throw new System.NotImplementedException();
         }
 
         private EmailDTO _GetEmail(int id)

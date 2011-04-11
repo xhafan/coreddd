@@ -2,7 +2,7 @@
 
 namespace EmailMaker.Controllers.ViewModels
 {
-    public class EmailEditModel
+    public class EmailEditVariablesModel
     {
         public EmailDTO Email { get; set; }
     }
