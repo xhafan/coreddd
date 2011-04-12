@@ -3,6 +3,7 @@ using System.Linq;
 using Core.Domain;
 using Core.Utilities;
 using Core.Utilities.Extensions;
+using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.DTO;
 using EmailMaker.DTO.Emails;
@@ -14,13 +15,16 @@ namespace EmailMaker.Domain.Emails
     public class Email : Identity<Email>, IAggregateRootEntity
     {
         public virtual EmailTemplate EmailTemplate { get; private set; }
-
         private readonly IList<EmailPart> _parts;
-
         public virtual IEnumerable<EmailPart> Parts
         {
             get { return _parts; }
         }
+
+        public virtual string FromAddress { get; private set; }
+        public virtual IEnumerable<string> ToAddresses { get; private set; }
+        public virtual string Subject { get; private set; }
+        public virtual EmailState State { get; private set; }
 
         protected Email() {}
 
@@ -79,9 +83,13 @@ namespace EmailMaker.Domain.Emails
             _GetVariablePart(variablePartId).SetValue(value);
         }
 
-        public virtual void SetFromAddressAndRecipients(string fromAddress, IEnumerable<string> toAddresses)
+        public virtual void EnqueueEmailToBeSent(string fromAddress, IEnumerable<string> toAddresses, string subject)
         {
-            throw new System.NotImplementedException();
+            Guard.Hope(State.CanSend, "cannot enqeue email in the current state: " + State.Name);
+            State = EmailState.ToBeSent;
+            FromAddress = fromAddress;
+            ToAddresses = toAddresses;
+            Subject = subject;
         }
     }
 }

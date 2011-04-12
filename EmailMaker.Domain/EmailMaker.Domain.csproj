@@ -48,6 +48,10 @@
   <ItemGroup>
     <Compile Include="Emails\Email.cs" />
     <Compile Include="Emails\EmailPart.cs" />
+    <Compile Include="Emails\EmailStates\Draft.cs" />
+    <Compile Include="Emails\EmailStates\EmailState.cs" />
+    <Compile Include="Emails\EmailStates\Sent.cs" />
+    <Compile Include="Emails\EmailStates\ToBeSent.cs" />
     <Compile Include="Emails\HtmlEmailPart.cs" />
     <Compile Include="EmailTemplates\EmailTemplate.cs" />
     <Compile Include="EmailTemplates\HtmlEmailTemplatePart.cs" />

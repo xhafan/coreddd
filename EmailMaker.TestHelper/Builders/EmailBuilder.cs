@@ -1,6 +1,7 @@
 using Core.TestHelper.Extensions;
 using Core.Utilities.Extensions;
 using EmailMaker.Domain.Emails;
+using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;
 
 namespace EmailMaker.TestHelper.Builders
@@ -11,6 +12,7 @@ namespace EmailMaker.TestHelper.Builders
         private int _nextPartId;
         private int _id;
         private EmailTemplate _emailTemplate;
+        private EmailState _state = EmailState.Draft;
 
         private int NextPartId
         {
@@ -41,11 +43,18 @@ namespace EmailMaker.TestHelper.Builders
             return this;
         }
 
+        public EmailBuilder WithState(EmailState state)
+        {
+            _state = state;
+            return this;
+        }
+
         public Email Build()
         {
             var email = new Email(_emailTemplate);
             email.SetPrivateAttribute("_id", _id);
             email.Parts.Each(part => part.SetPrivateAttribute("_id", NextPartId));
+            email.SetPrivateProperty("State", _state);
             return email;
         }
     }

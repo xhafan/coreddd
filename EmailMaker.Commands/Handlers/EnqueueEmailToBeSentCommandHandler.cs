@@ -7,20 +7,20 @@ using EmailMaker.Domain.Emails;
 
 namespace EmailMaker.Commands.Handlers
 {
-    public class SaveEmailRecipientsCommandHandler : BaseCommandHandler<SaveEmailRecipientsCommand>
+    public class EnqueueEmailToBeSentCommandHandler : BaseCommandHandler<EnqueueEmailToBeSentCommand>
     {
         private readonly IRepository<Email> _emailRepository;
 
-        public SaveEmailRecipientsCommandHandler(IRepository<Email> emailRepository)
+        public EnqueueEmailToBeSentCommandHandler(IRepository<Email> emailRepository)
         {
             _emailRepository = emailRepository;
         }
 
-        public override void Execute(SaveEmailRecipientsCommand command)
+        public override void Execute(EnqueueEmailToBeSentCommand command)
         {
             var email = _emailRepository.GetById(command.EmailId);
             var toAddresses = command.ToAddressesStr.Split(new[]{","}, StringSplitOptions.RemoveEmptyEntries).Select(addr => addr.Trim());
-            email.SetFromAddressAndRecipients(command.FromAddress, toAddresses);
+            email.EnqueueEmailToBeSent(command.FromAddress, toAddresses, command.Subject);
         }
     }
 }

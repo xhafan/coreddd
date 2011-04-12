@@ -9,7 +9,7 @@ namespace EmailMaker.TestHelper.Builders
 {
     public class EmailTemplateBuilder
     {       
-        private string _initialHtml;
+        private string _initialHtml = "html";
         private int _nextPartId;
         private IList<Tuple<int, int>> _variables = new List<Tuple<int, int>>();
         private int _id;

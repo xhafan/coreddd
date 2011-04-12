@@ -64,7 +64,7 @@ namespace EmailMaker.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveRecipients(SaveEmailRecipientsCommand command)
+        public ActionResult SaveRecipients(EnqueueEmailToBeSentCommand command)
         {
             _commandExecutor.Execute(command);
             return new EmptyResult();

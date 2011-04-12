@@ -1,5 +1,4 @@
-﻿using EmailMaker.Domain.EmailTemplates.VariableTypes;
-using FluentNHibernate.Mapping;
+﻿using FluentNHibernate.Mapping;
 
 namespace EmailMaker.Domain.NHibernateMappings
 {

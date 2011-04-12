@@ -35,6 +35,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL" />
     <Reference Include="Shouldly">
       <HintPath>..\..\..\SharedLibs\Shouldly.dll</HintPath>
     </Reference>
@@ -57,6 +58,8 @@
     <Compile Include="EmailTemplateTests\when_deleting_variable_with_html_part_id.cs" />
     <Compile Include="EmailTemplateTests\when_deleting_variable_with_invalid_variable_id.cs" />
     <Compile Include="EmailTests\when_creating_variable_email_part.cs" />
+    <Compile Include="EmailTests\when_enqueueing_email_to_be_sent.cs" />
+    <Compile Include="EmailTests\when_enqueueing_email_to_be_sent_which_cannot_be_sent.cs" />
     <Compile Include="EmailTests\when_setting_value_for_variable_email_part.cs" />
     <Compile Include="EmailTests\when_updating_email_variables.cs" />
     <Compile Include="EmailTemplateTests\when_updating_email_template.cs" />

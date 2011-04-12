@@ -44,14 +44,14 @@
     <Compile Include="Handlers\CreateEmailTemplateCommandHandler.cs" />
     <Compile Include="Handlers\CreateVariableCommandHandler.cs" />
     <Compile Include="Handlers\DeleteVariableCommandHandler.cs" />
-    <Compile Include="Handlers\SaveEmailRecipientsCommandHandler.cs" />
+    <Compile Include="Handlers\EnqueueEmailToBeSentCommandHandler.cs" />
     <Compile Include="Handlers\UpdateEmailVariablesCommandHandler.cs" />
     <Compile Include="Handlers\SaveEmailTemplateCommandHandler.cs" />
     <Compile Include="Messages\CreateEmailCommand.cs" />
     <Compile Include="Messages\CreateEmailTemplateCommand.cs" />
     <Compile Include="Messages\CreateVariableCommand.cs" />
     <Compile Include="Messages\DeleteVariableCommand.cs" />
-    <Compile Include="Messages\SaveEmailRecipientsCommand.cs" />
+    <Compile Include="Messages\EnqueueEmailToBeSentCommand.cs" />
     <Compile Include="Messages\UpdateEmailVariablesCommand.cs" />
     <Compile Include="Messages\SaveEmailTemplateCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
