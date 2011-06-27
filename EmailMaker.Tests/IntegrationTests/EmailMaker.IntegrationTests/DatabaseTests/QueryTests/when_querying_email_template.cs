@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Core.TestHelper.Persistence;
 using EmailMaker.Domain.EmailTemplates;

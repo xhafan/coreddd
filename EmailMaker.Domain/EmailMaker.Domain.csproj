@@ -53,6 +53,7 @@
     <Compile Include="Emails\EmailStates\Sent.cs" />
     <Compile Include="Emails\EmailStates\ToBeSent.cs" />
     <Compile Include="Emails\HtmlEmailPart.cs" />
+    <Compile Include="EmailTemplates\EmailTemplateCulture.cs" />
     <Compile Include="EmailTemplates\EmailTemplate.cs" />
     <Compile Include="EmailTemplates\HtmlEmailTemplatePart.cs" />
     <Compile Include="EmailTemplates\RepeatedSectionEmailTemplatePart.cs" />

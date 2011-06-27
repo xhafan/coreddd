@@ -27,11 +27,16 @@ namespace EmailMaker.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDTO>(new GetAllEmailTemplateQueryMessage());
+           
+            var model = new EmailTemplateModel { EmailTemplate = emailTemplates };
+
+            return View(model);
         }
 
         public ActionResult New()
         {
+            
             var emailTemplate = new EmailTemplateDTO{ Parts = new[] {new EmailTemplatePartDTO { PartType = PartType.Html }}};
             var model = new EmailTemplateEditModel {EmailTemplate = emailTemplate};
             return View(model);

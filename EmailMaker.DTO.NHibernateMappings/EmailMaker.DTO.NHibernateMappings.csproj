@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="EmailDTOMap.cs" />
     <Compile Include="EmailPartDTOMap.cs" />
+    <Compile Include="EmailTemplateDetailsDTOMap.cs" />
     <Compile Include="EmailTemplateDTOMap.cs" />
     <Compile Include="EmailTemplatePartDTOMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

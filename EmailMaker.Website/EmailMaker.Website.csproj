@@ -46,7 +46,10 @@
       <HintPath>..\SharedLibs\Boo.Lang.Parser.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core" />
-    <Reference Include="Castle.Windsor" />
+    <Reference Include="Castle.Windsor, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\SharedLibs\NHibernate.ByteCode.Castle.dll</HintPath>
@@ -96,6 +99,7 @@
     <Content Include="Content\js\knockout-1.1.2.js" />
     <Content Include="Content\js\underscore-min.js" />
     <Content Include="Content\js\underscore.js" />
+    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\themes\base\jquery-ui.css" />
@@ -145,6 +149,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.Commands\Core.Commands.csproj">
+      <Project>{07CA4978-6610-4B8D-9E5A-BA8E83A48412}</Project>
+      <Name>Core.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.Commons\Core.Commons.csproj">
       <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
       <Name>Core.Commons</Name>
@@ -179,9 +187,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Template\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Template\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +201,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Email\EditRecipients.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Template\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -212,12 +220,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>8452</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/EmailMaker</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

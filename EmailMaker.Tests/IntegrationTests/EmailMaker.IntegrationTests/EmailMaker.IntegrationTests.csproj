@@ -34,9 +34,6 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\..\SharedLibs\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
-      <HintPath>..\..\..\SharedLibs\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
-    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\..\SharedLibs\log4net.dll</HintPath>
     </Reference>
@@ -65,6 +62,7 @@
     <Compile Include="DatabaseTests\EmailPersistenceTests\when_persisting_email.cs" />
     <Compile Include="DatabaseTests\EmailTemplatePersistenceTests\when_persisting_email_template_while_creating_and_deleting_variables.cs" />
     <Compile Include="DatabaseTests\EmailTemplatePersistenceTests\when_persisting_email_template.cs" />
+    <Compile Include="DatabaseTests\QueryTests\when_querying_all_email_template_details.cs" />
     <Compile Include="DatabaseTests\QueryTests\when_querying_email.cs" />
     <Compile Include="DatabaseTests\QueryTests\when_querying_email_parts.cs" />
     <Compile Include="DatabaseTests\QueryTests\when_querying_email_template.cs" />
@@ -126,6 +124,7 @@
     <Content Include="..\..\..\EmailMaker.Website\hibernate.cfg.xml">
       <Link>hibernate.cfg.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

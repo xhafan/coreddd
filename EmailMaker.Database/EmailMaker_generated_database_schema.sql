@@ -73,6 +73,14 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
        Html NVARCHAR(MAX) null,
        primary key (Id)
     )
+    
+     create table [EmailTemplateForCulture](
+		Id int IDENTITY(1,1) NOT NULL,
+		Culture nvarchar(5) NULL,
+		Name nvarchar(255) NULL,
+		EmailTemplateId int NULL,
+		primary key (Id)
+	)
 
     create table [VariableEmailPart] (
         Id INT not null,
@@ -157,6 +165,11 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
         foreign key (VariableTypeId) 
         references [VariableType]
 
+    alter table [EmailTemplateForCulture]  
+		add constraint [FK_EmailTemplateForCulture_EmailTemplate1] 
+		foreign key([EmailTemplateId])
+		references [EmailTemplate]
+		
     create table hibernate_unique_key (
          next_hi INT 
     )

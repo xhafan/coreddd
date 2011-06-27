@@ -53,6 +53,7 @@
     <Compile Include="ViewModels\EmailEditRecipientsModel.cs" />
     <Compile Include="ViewModels\EmailEditVariablesModel.cs" />
     <Compile Include="ViewModels\EmailTemplateEditModel.cs" />
+    <Compile Include="ViewModels\EmailTemplateModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.Commands\Core.Commands.csproj">

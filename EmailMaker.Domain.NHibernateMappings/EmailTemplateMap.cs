@@ -1,4 +1,5 @@
-﻿using EmailMaker.Domain.EmailTemplates;
+﻿using System.Globalization;
+using EmailMaker.Domain.EmailTemplates;
 using FluentNHibernate.Mapping;
 
 namespace EmailMaker.Domain.NHibernateMappings
@@ -15,6 +16,13 @@ namespace EmailMaker.Domain.NHibernateMappings
                 .Access.ReadOnlyPropertyThroughCamelCaseField(Prefix.Underscore)
                 .KeyColumn("EmailTemplateId")
                 .AsList(a => a.Column("Position"))
+                .Cascade.AllDeleteOrphan();
+
+            HasMany(x => x.Names)
+                .Table("EmailTemplateForCulture")
+                .KeyColumn("EmailTemplateId")
+                .Element("Name")
+                .AsMap<CultureInfo>("Culture")
                 .Cascade.AllDeleteOrphan();
         }
     }

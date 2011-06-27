@@ -35,7 +35,7 @@
       <HintPath>..\..\SharedLibs\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
-      <HintPath>..\..\SharedLibs\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+      <HintPath>..\..\..\NHibernate.Profiler-Build-883\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\SharedLibs\NHibernate.dll</HintPath>

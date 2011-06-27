@@ -1,7 +1,41 @@
-﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model EmailMaker.Controllers.ViewModels.EmailTemplateModel
+@using EmailMaker.Web;
+@using EmailMaker.Controllers;
+@using EmailMaker.DTO;
 
-<h2>Index</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "New")
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>Template Name</th>
+            <th>Locale</th>
+        </tr>
+    
+    @foreach (var item in Model.EmailTemplate)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EmailTemplateId }) 
+            </td>
+            <td>
+               @item.Name
+            </td>
+             <td>
+               @item.Culture.TwoLetterISOLanguageName
+            </td>
+        </tr>
+        
+    }
+    
+    </table>
+</body>
+</html>

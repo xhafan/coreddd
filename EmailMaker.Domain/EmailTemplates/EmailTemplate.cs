@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Core.Domain;
 using Core.Utilities;
@@ -12,6 +13,8 @@ namespace EmailMaker.Domain.EmailTemplates
     public class EmailTemplate : Identity<EmailTemplate>, IAggregateRootEntity
     {
         private readonly IList<EmailTemplatePart> _parts;
+
+        public virtual IDictionary<CultureInfo, string> Names { get; set; }
         
         public virtual IEnumerable<EmailTemplatePart> Parts
         {
@@ -26,6 +29,11 @@ namespace EmailMaker.Domain.EmailTemplates
         public EmailTemplate(string html)
         {
             _parts = new List<EmailTemplatePart> { new HtmlEmailTemplatePart(html) };
+        }
+
+        public EmailTemplate(IDictionary<CultureInfo, string> names)
+        {
+            Names = names;
         }
 
         private void _SetHtml(int htmlTemplatePartId, string html)
