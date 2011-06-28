@@ -19,6 +19,10 @@ alter table [VariableEmailPart]  drop constraint FK5655592DEBD3F1E8
 alter table [VariableEmailPart]  drop constraint FK5655592DCBEDA9AC
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK6167A38FC3BA1A19]') AND parent_object_id = OBJECT_ID('EmailTemplateForCulture'))
+alter table EmailTemplateForCulture  drop constraint FK6167A38FC3BA1A19
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC644F053C3BA1A19]') AND parent_object_id = OBJECT_ID('[EmailTemplatePart]'))
 alter table [EmailTemplatePart]  drop constraint FKC644F053C3BA1A19
 
@@ -44,6 +48,8 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
     if exists (select * from dbo.sysobjects where id = object_id(N'[VariableEmailPart]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VariableEmailPart]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplate]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplate]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'EmailTemplateForCulture') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table EmailTemplateForCulture
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplatePart]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplatePart]
 
@@ -73,14 +79,6 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
        Html NVARCHAR(MAX) null,
        primary key (Id)
     )
-    
-     create table [EmailTemplateForCulture](
-		Id int IDENTITY(1,1) NOT NULL,
-		Culture nvarchar(5) NULL,
-		Name nvarchar(255) NULL,
-		EmailTemplateId int NULL,
-		primary key (Id)
-	)
 
     create table [VariableEmailPart] (
         Id INT not null,
@@ -92,6 +90,13 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
     create table [EmailTemplate] (
         Id INT not null,
        primary key (Id)
+    )
+
+    create table EmailTemplateForCulture (
+        EmailTemplateId INT not null,
+       Name NVARCHAR(255) null,
+       Culture NVARCHAR(5) not null,
+       primary key (EmailTemplateId, Culture)
     )
 
     create table [EmailTemplatePart] (
@@ -145,6 +150,11 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
         foreign key (VariableTypeId) 
         references [VariableType]
 
+    alter table EmailTemplateForCulture 
+        add constraint FK6167A38FC3BA1A19 
+        foreign key (EmailTemplateId) 
+        references [EmailTemplate]
+
     alter table [EmailTemplatePart] 
         add constraint FKC644F053C3BA1A19 
         foreign key (EmailTemplateId) 
@@ -165,11 +175,6 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
         foreign key (VariableTypeId) 
         references [VariableType]
 
-    alter table [EmailTemplateForCulture]  
-		add constraint [FK_EmailTemplateForCulture_EmailTemplate1] 
-		foreign key([EmailTemplateId])
-		references [EmailTemplate]
-		
     create table hibernate_unique_key (
          next_hi INT 
     )

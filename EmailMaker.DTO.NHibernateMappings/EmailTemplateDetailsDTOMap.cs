@@ -8,10 +8,9 @@ namespace EmailMaker.DTO.NHibernateMappings
         public EmailTemplateDetailsDTOMap()
         {
             Table("vw_GetAllEmailTemplates");
-            Id(x => x.Id);
+            Id(x => x.EmailTemplateId);
             Map(x => x.Culture);
             Map(x => x.Name);
-            Map(x => x.EmailTemplateId);
         }
     }
 }
