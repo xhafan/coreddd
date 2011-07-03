@@ -12,7 +12,7 @@ namespace EmailMaker.Controllers.Tests.Templates
 
         public override void Context()
         {
-            var controller = new TemplateController(null, null);
+            var controller = new TemplateController(null, QueryExecutor);
             _result = controller.Index();
         }
 
