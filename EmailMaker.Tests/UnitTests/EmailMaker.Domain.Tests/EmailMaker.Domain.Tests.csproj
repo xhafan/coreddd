@@ -75,6 +75,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Core.Domain.Events\Core.Domain.Events.csproj">
+      <Project>{934B2562-1CF2-4650-8CD1-0B1A5F0F0E1D}</Project>
+      <Name>Core.Domain.Events</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\Core.Domain\Core.Domain.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>Core.Domain</Name>

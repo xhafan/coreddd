@@ -31,12 +31,16 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
         }
 
         [Test]
-        public void email_template_correctly_retrieved()
+        public void email_correctly_retrieved()
         {
             _retrievedEmail.Id.ShouldBe(_email.Id);
             _retrievedEmail.EmailTemplate.ShouldBe(_emailTemplate);
             _retrievedEmail.Parts.Count().ShouldBe(_emailTemplate.Parts.Count());
+        }
 
+        [Test]
+        public void email_parts_correctly_retrieved()
+        {
             var htmlRetrievedPart = _retrievedEmail.Parts.ElementAt(0) as HtmlEmailPart;
             var htmlTemplatePart = _emailTemplate.Parts.ElementAt(0) as HtmlEmailTemplatePart;
             htmlRetrievedPart.Html.ShouldBe(htmlTemplatePart.Html);

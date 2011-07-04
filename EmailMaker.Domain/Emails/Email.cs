@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Core.Domain;
+using Core.Domain.Events;
 using Core.Utilities;
 using Core.Utilities.Extensions;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.DTO;
 using EmailMaker.DTO.Emails;
+using EmailMaker.Domain.Emails.Events;
 using EmailMaker.Utilities;
 
 
@@ -90,6 +92,8 @@ namespace EmailMaker.Domain.Emails
             FromAddress = fromAddress;
             ToAddresses = toAddresses;
             Subject = subject;
+
+            DomainEvents.RaiseEvent(new EmailEnqueuedToBeSentEvent());
         }
     }
 }

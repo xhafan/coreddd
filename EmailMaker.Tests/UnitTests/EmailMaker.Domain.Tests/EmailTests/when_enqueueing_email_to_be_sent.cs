@@ -1,6 +1,8 @@
 using System.Linq;
+using Core.TestHelper.DomainEvents;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
+using EmailMaker.Domain.Emails.Events;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
@@ -8,7 +10,7 @@ using Shouldly;
 namespace EmailMaker.Domain.Tests.EmailTests
 {
     [TestFixture]
-    public class when_enqueueing_email_to_be_sent
+    public class when_enqueueing_email_to_be_sent : BaseDomainEventTest<EmailEnqueuedToBeSentEvent>
     {
         private Email _email;
         private string _fromAddress = "from address";
@@ -34,6 +36,12 @@ namespace EmailMaker.Domain.Tests.EmailTests
             _email.ToAddresses.ShouldContain(_toAddress1);
             _email.ToAddresses.ShouldContain(_toAddress2);
             _email.Subject.ShouldBe(_subject);            
+        }
+
+        [Test]
+        public void event_was_raised()
+        {
+            Assert.IsNotNull(RaisedDomainEvent);
         }
     }
 }

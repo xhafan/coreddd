@@ -31,6 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
+    <Reference Include="Castle.Windsor, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
     <Reference Include="FluentNHibernate">
       <HintPath>..\..\..\SharedLibs\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -57,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BaseControllerTest.cs" />
+    <Compile Include="DomainEvents\BaseDomainEventTest.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Persistence\BasePersistenceTest.cs" />
     <Compile Include="Persistence\BaseSimplePersistenceTest.cs" />
@@ -75,6 +78,14 @@
     <ProjectReference Include="..\..\Core.Commands\Core.Commands.csproj">
       <Project>{07CA4978-6610-4B8D-9E5A-BA8E83A48412}</Project>
       <Name>Core.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core.Commons\Core.Commons.csproj">
+      <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
+      <Name>Core.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core.Domain.Events\Core.Domain.Events.csproj">
+      <Project>{934B2562-1CF2-4650-8CD1-0B1A5F0F0E1D}</Project>
+      <Name>Core.Domain.Events</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core.Domain.Persistence\Core.Domain.Persistence.csproj">
       <Project>{39623D17-0598-413E-B717-20058EFDA907}</Project>
