@@ -38,13 +38,13 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
         public void email_from_address_and_recipients_was_saved()
         {
             throw new System.NotImplementedException();
-            _email.AssertWasCalled(a => a.EnqueueEmailToBeSent(Arg<string>.Matches(p => p == _fromAddress),
-                                                          Arg<IEnumerable<string>>.Matches(p =>
-                                                                                           p.Count() == 2
-                                                                                           && p.First() == "address1"
-                                                                                           && p.Last() == "address2"
-                                                                                           ),
-                                                          Arg<string>.Matches(p => p == _subject)));
+//            _email.AssertWasCalled(a => a.EnqueueEmailToBeSent(Arg<string>.Matches(p => p == _fromAddress),
+//                                                          Arg<IEnumerable<string>>.Matches(p =>
+//                                                                                           p.Count() == 2
+//                                                                                           && p.First() == "address1"
+//                                                                                           && p.Last() == "address2"
+//                                                                                           ),
+//                                                          Arg<string>.Matches(p => p == _subject)));
         }
 
     }
