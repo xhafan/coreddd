@@ -52,8 +52,8 @@
     <Compile Include="Emails\EmailStates\EmailState.cs" />
     <Compile Include="Emails\EmailStates\Sent.cs" />
     <Compile Include="Emails\EmailStates\ToBeSent.cs" />
-    <Compile Include="Emails\Events\EmailEnqueuedToBeSentEvent.cs" />
     <Compile Include="Emails\HtmlEmailPart.cs" />
+    <Compile Include="Emails\Recipient.cs" />
     <Compile Include="EmailTemplates\EmailTemplateCulture.cs" />
     <Compile Include="EmailTemplates\EmailTemplate.cs" />
     <Compile Include="EmailTemplates\HtmlEmailTemplatePart.cs" />
@@ -80,6 +80,10 @@
     <ProjectReference Include="..\Core\Core.Utilities\Core.Utilities.csproj">
       <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
       <Name>Core.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Domain.Events\EmailMaker.Domain.Events.csproj">
+      <Project>{0F7267F2-246B-4FC7-B862-F84A659D1C68}</Project>
+      <Name>EmailMaker.Domain.Events</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
       <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>

@@ -20,7 +20,7 @@
             toAddresses: ko.observable(toAddresses),
             toAddressesStr: ko.observable(toAddressesStr),
             sendEmail: function() {
-                $.postJson("@(Html.UrlFromControllerMethod<EmailController>(c => c.SaveRecipients(null)))", {
+                $.postJson("@(Html.UrlFromControllerMethod<EmailController>(c => c.EnqueueEmailToBeSent(null)))", {
                     EmailId: @(Model.EmailId),
                     FromAddress: editRecipientsModel.selectedFromAddress(),
                     ToAddressesStr: editRecipientsModel.toAddressesStr()

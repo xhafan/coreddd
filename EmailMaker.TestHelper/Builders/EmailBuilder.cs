@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using Core.TestHelper.Extensions;
 using Core.Utilities.Extensions;
 using EmailMaker.Domain.Emails;
@@ -13,6 +15,7 @@ namespace EmailMaker.TestHelper.Builders
         private int _id;
         private EmailTemplate _emailTemplate;
         private EmailState _state = EmailState.Draft;
+        private IDictionary<string, Recipient> _recipients = new Dictionary<string, Recipient>();
 
         private int NextPartId
         {
@@ -49,12 +52,19 @@ namespace EmailMaker.TestHelper.Builders
             return this;
         }
 
+        public EmailBuilder WithRecipient(string emailAddress, string name)
+        {
+            _recipients[emailAddress] = new Recipient(emailAddress, name);
+            return this;
+        }
+
         public Email Build()
         {
             var email = new Email(_emailTemplate);
             email.SetPrivateAttribute("_id", _id);
             email.Parts.Each(part => part.SetPrivateAttribute("_id", NextPartId));
             email.SetPrivateProperty("State", _state);
+            email.SetPrivateProperty("Recipients", _recipients);
             return email;
         }
     }

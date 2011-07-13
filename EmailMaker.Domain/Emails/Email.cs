@@ -8,32 +8,32 @@ using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.DTO;
 using EmailMaker.DTO.Emails;
-using EmailMaker.Domain.Emails.Events;
+using EmailMaker.Domain.Events.Emails;
 using EmailMaker.Utilities;
-
 
 namespace EmailMaker.Domain.Emails
 {
     public class Email : Identity<Email>, IAggregateRootEntity
     {
         public virtual EmailTemplate EmailTemplate { get; private set; }
-        private readonly IList<EmailPart> _parts;
+        
+        private readonly IList<EmailPart> _parts = new List<EmailPart>();
         public virtual IEnumerable<EmailPart> Parts
         {
             get { return _parts; }
         }
 
         public virtual string FromAddress { get; private set; }
-        public virtual IEnumerable<string> ToAddresses { get; private set; }
         public virtual string Subject { get; private set; }
         public virtual EmailState State { get; private set; }
+        public virtual IDictionary<string, Recipient> Recipients { get; private set; }
 
         protected Email() {}
 
-        public Email(EmailTemplate emailTemplate)
+        public Email(EmailTemplate emailTemplate) // todo: test missing
         {
             EmailTemplate = emailTemplate;
-            _parts = new List<EmailPart>();
+
             foreach (var emailTemplatePart in emailTemplate.Parts)
             {
                 if (emailTemplatePart is HtmlEmailTemplatePart)
@@ -51,7 +51,9 @@ namespace EmailMaker.Domain.Emails
                     throw new EmailMakerException("Unsupported email template part: " + emailTemplatePart.GetType());
                 }
             }
-            
+
+            State = EmailState.Draft;
+            Recipients = new Dictionary<string, Recipient>();            
         }
 
         public virtual void UpdateVariables(EmailDTO emailDTO)
@@ -85,15 +87,27 @@ namespace EmailMaker.Domain.Emails
             _GetVariablePart(variablePartId).SetValue(value);
         }
 
-        public virtual void EnqueueEmailToBeSent(string fromAddress, IEnumerable<string> toAddresses, string subject)
+        public virtual void EnqueueEmailToBeSent(string fromAddress, IDictionary<string, Recipient> recipientByEmailAddress, string subject)
         {
             Guard.Hope(State.CanSend, "cannot enqeue email in the current state: " + State.Name);
             State = EmailState.ToBeSent;
             FromAddress = fromAddress;
-            ToAddresses = toAddresses;
             Subject = subject;
 
-            DomainEvents.RaiseEvent(new EmailEnqueuedToBeSentEvent());
+            var emailAddressesToBeRemoved = Recipients.Keys.Except(recipientByEmailAddress.Keys).ToArray();
+            emailAddressesToBeRemoved.Each(emailAddress => Recipients.Remove(emailAddress));
+            recipientByEmailAddress.Keys.Each(emailAddress =>
+                                     {
+                                         if (!Recipients.ContainsKey(emailAddress))
+                                         {
+                                             Recipients.Add(emailAddress, recipientByEmailAddress[emailAddress]);
+                                         }
+                                     });
+
+            DomainEvents.RaiseEvent(new EmailEnqueuedToBeSentEvent
+                                        {
+                                            EmailId = Id
+                                        });
         }
     }
 }

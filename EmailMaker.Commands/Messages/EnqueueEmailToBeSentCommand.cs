@@ -6,7 +6,7 @@ namespace EmailMaker.Commands.Messages
     {
         public int EmailId { get; set; }
         public string FromAddress { get; set; }
-        public string ToAddressesStr { get; set; }
+        public string RecipientsStr { get; set; }
         public string Subject { get; set; }
     }
 }

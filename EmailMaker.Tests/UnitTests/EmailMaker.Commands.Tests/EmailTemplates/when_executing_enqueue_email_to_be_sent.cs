@@ -29,7 +29,7 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
                                 {
                                     EmailId = emailId,
                                     FromAddress = _fromAddress,
-                                    ToAddressesStr = "address1, address2",
+                                    RecipientsStr = "address1, address2",
                                     Subject = _subject
                                 });
         }
@@ -37,6 +37,7 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
         [Test]
         public void email_from_address_and_recipients_was_saved()
         {
+            throw new System.NotImplementedException();
             _email.AssertWasCalled(a => a.EnqueueEmailToBeSent(Arg<string>.Matches(p => p == _fromAddress),
                                                           Arg<IEnumerable<string>>.Matches(p =>
                                                                                            p.Count() == 2

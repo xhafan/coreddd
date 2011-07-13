@@ -17,6 +17,17 @@ namespace EmailMaker.Domain.NHibernateMappings
                 .KeyColumn("EmailId")
                 .AsList(a => a.Column("Position"))
                 .Cascade.AllDeleteOrphan();
+            Map(x => x.FromAddress);
+            Map(x => x.Subject);
+            References(x => x.State, "EmailStateId");
+
+            HasManyToMany<Recipient>(x => x.Recipients)
+                .Table("EmailRecipient")
+                .ParentKeyColumn("EmailId")
+                .ChildKeyColumn("RecipientId")
+                .AsMap<string>("EmailAddress")
+                .Cascade.None();
+
         }
     }
 }

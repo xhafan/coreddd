@@ -19,8 +19,9 @@ namespace EmailMaker.Commands.Handlers
         public override void Execute(EnqueueEmailToBeSentCommand command)
         {
             var email = _emailRepository.GetById(command.EmailId);
-            var toAddresses = command.ToAddressesStr.Split(new[]{","}, StringSplitOptions.RemoveEmptyEntries).Select(addr => addr.Trim());
-            email.EnqueueEmailToBeSent(command.FromAddress, toAddresses, command.Subject);
+            throw new System.NotImplementedException();
+            //var recipients = command.RecipientsStr.Split(new[]{","}, StringSplitOptions.RemoveEmptyEntries).Select(addr => addr.Trim());
+            email.EnqueueEmailToBeSent(command.FromAddress, null, command.Subject);
         }
     }
 }

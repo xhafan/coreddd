@@ -91,6 +91,10 @@
       <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
       <Name>Core.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Domain.Events\EmailMaker.Domain.Events.csproj">
+      <Project>{0F7267F2-246B-4FC7-B862-F84A659D1C68}</Project>
+      <Name>EmailMaker.Domain.Events</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
       <Name>EmailMaker.Domain</Name>

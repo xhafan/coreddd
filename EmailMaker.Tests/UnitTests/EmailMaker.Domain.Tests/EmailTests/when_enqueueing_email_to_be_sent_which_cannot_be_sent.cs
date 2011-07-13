@@ -28,7 +28,7 @@ namespace EmailMaker.Domain.Tests.EmailTests
                 .WithEmailTemplate(template)
                 .WithState(state)
                 .Build();
-            _email.EnqueueEmailToBeSent(_fromAddress, new[]{ _toAddress1, _toAddress2}, _subject);
+            _email.EnqueueEmailToBeSent(_fromAddress, null, _subject);
         }
     }
 }

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{78FD90F4-DD12-425D-B9F4-B262B99FA247}</ProjectGuid>
+    <ProjectGuid>{8D6D61D1-87EA-4B64-96A7-EC21C985F0F4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailMaker.Domain.NHibernateMappings</RootNamespace>
-    <AssemblyName>EmailMaker.Domain.NHibernateMappings</AssemblyName>
+    <RootNamespace>EmailMaker.Domain.Messages</RootNamespace>
+    <AssemblyName>EmailMaker.Domain.Messages</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,11 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\SharedLibs\FluentNHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\SharedLibs\NHibernate.dll</HintPath>
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\SharedLibs\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,27 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmailMap.cs" />
-    <Compile Include="EmailPartMap.cs" />
-    <Compile Include="EmailStateMap.cs" />
-    <Compile Include="EmailTemplateMap.cs" />
-    <Compile Include="EmailTemplatePartMap.cs" />
-    <Compile Include="HtmlEmailPartMap.cs" />
-    <Compile Include="HtmlEmailTemplatePartMap.cs" />
+    <Compile Include="GenericDomainEventMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecipientMap.cs" />
-    <Compile Include="VariableEmailPartMap.cs" />
-    <Compile Include="VariableEmailTemplatePartMap.cs" />
-    <Compile Include="VariableTypeMap.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.Domain\Core.Domain.csproj">
-      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>Core.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
-      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
-      <Name>EmailMaker.Domain</Name>
+    <ProjectReference Include="..\Core.Domain.Events\Core.Domain.Events.csproj">
+      <Project>{934B2562-1CF2-4650-8CD1-0B1A5F0F0E1D}</Project>
+      <Name>Core.Domain.Events</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
