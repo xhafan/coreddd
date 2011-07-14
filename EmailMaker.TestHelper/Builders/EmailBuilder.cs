@@ -5,6 +5,7 @@ using Core.Utilities.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;
+using Iesi.Collections.Generic;
 
 namespace EmailMaker.TestHelper.Builders
 {
@@ -15,7 +16,7 @@ namespace EmailMaker.TestHelper.Builders
         private int _id;
         private EmailTemplate _emailTemplate;
         private EmailState _state = EmailState.Draft;
-        private IDictionary<string, Recipient> _recipients = new Dictionary<string, Recipient>();
+        private readonly Iesi.Collections.Generic.ISet<Recipient> _recipients = new HashedSet<Recipient>();
 
         private int NextPartId
         {
@@ -54,7 +55,7 @@ namespace EmailMaker.TestHelper.Builders
 
         public EmailBuilder WithRecipient(string emailAddress, string name)
         {
-            _recipients[emailAddress] = new Recipient(emailAddress, name);
+            _recipients.Add(new Recipient(emailAddress, name));
             return this;
         }
 

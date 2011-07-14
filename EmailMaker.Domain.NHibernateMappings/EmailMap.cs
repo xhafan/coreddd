@@ -21,13 +21,12 @@ namespace EmailMaker.Domain.NHibernateMappings
             Map(x => x.Subject);
             References(x => x.State, "EmailStateId");
 
-            HasManyToMany<Recipient>(x => x.Recipients)
+            HasManyToMany(x => x.Recipients)
                 .Table("EmailRecipient")
                 .ParentKeyColumn("EmailId")
                 .ChildKeyColumn("RecipientId")
-                .AsMap<string>("EmailAddress")
+                .AsSet()
                 .Cascade.None();
-
         }
     }
 }

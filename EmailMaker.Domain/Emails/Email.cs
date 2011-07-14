@@ -10,6 +10,7 @@ using EmailMaker.DTO;
 using EmailMaker.DTO.Emails;
 using EmailMaker.Domain.Events.Emails;
 using EmailMaker.Utilities;
+using Iesi.Collections.Generic;
 
 namespace EmailMaker.Domain.Emails
 {
@@ -26,7 +27,7 @@ namespace EmailMaker.Domain.Emails
         public virtual string FromAddress { get; private set; }
         public virtual string Subject { get; private set; }
         public virtual EmailState State { get; private set; }
-        public virtual IDictionary<string, Recipient> Recipients { get; private set; }
+        public virtual Iesi.Collections.Generic.ISet<Recipient> Recipients { get; private set; }
 
         protected Email() {}
 
@@ -53,7 +54,7 @@ namespace EmailMaker.Domain.Emails
             }
 
             State = EmailState.Draft;
-            Recipients = new Dictionary<string, Recipient>();            
+            Recipients = new HashedSet<Recipient>();
         }
 
         public virtual void UpdateVariables(EmailDTO emailDTO)
@@ -87,22 +88,15 @@ namespace EmailMaker.Domain.Emails
             _GetVariablePart(variablePartId).SetValue(value);
         }
 
-        public virtual void EnqueueEmailToBeSent(string fromAddress, IDictionary<string, Recipient> recipientByEmailAddress, string subject)
+        public virtual void EnqueueEmailToBeSent(string fromAddress, HashedSet<Recipient> recipients, string subject)
         {
             Guard.Hope(State.CanSend, "cannot enqeue email in the current state: " + State.Name);
+            Guard.Hope(Recipients.Count == 0, "recipients must be empty");
             State = EmailState.ToBeSent;
             FromAddress = fromAddress;
             Subject = subject;
 
-            var emailAddressesToBeRemoved = Recipients.Keys.Except(recipientByEmailAddress.Keys).ToArray();
-            emailAddressesToBeRemoved.Each(emailAddress => Recipients.Remove(emailAddress));
-            recipientByEmailAddress.Keys.Each(emailAddress =>
-                                     {
-                                         if (!Recipients.ContainsKey(emailAddress))
-                                         {
-                                             Recipients.Add(emailAddress, recipientByEmailAddress[emailAddress]);
-                                         }
-                                     });
+            Recipients = recipients;
 
             DomainEvents.RaiseEvent(new EmailEnqueuedToBeSentEvent
                                         {

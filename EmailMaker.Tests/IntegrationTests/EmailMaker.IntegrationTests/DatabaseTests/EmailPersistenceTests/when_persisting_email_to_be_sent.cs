@@ -5,6 +5,7 @@ using Core.TestHelper.Persistence;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
+using Iesi.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
 
@@ -37,7 +38,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
             Save(_email);
 
             _email.SetPrivateProperty("FromAddress", _fromAddress);
-            _email.SetPrivateProperty("Recipients", new Dictionary<string, Recipient> { { _emailOne, _recipientOne }, { _emailTwo, _recipientTwo } });
+            _email.SetPrivateProperty("Recipients", new HashedSet<Recipient> { _recipientOne, _recipientTwo });
             _email.SetPrivateProperty("Subject", _subject);
 
             Save(_email);
@@ -60,8 +61,8 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
         public void email_recipients_correctly_retrieved()
         {
             _retrievedEmail.Recipients.Count().ShouldBe(2);
-            _retrievedEmail.Recipients[_emailOne].ShouldBe(_recipientOne);
-            _retrievedEmail.Recipients[_emailTwo].ShouldBe(_recipientTwo);
+            _retrievedEmail.Recipients.Contains(_recipientOne).ShouldBe(true);
+            _retrievedEmail.Recipients.Contains(_recipientTwo).ShouldBe(true);
         }
     }
 }

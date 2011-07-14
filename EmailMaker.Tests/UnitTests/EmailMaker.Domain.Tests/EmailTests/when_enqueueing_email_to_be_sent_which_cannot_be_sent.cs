@@ -12,8 +12,6 @@ namespace EmailMaker.Domain.Tests.EmailTests
     {
         private Email _email;
         private string _fromAddress = "from address";
-        private string _toAddress1 = "to address1";
-        private string _toAddress2 = "to address2";
         private string _subject = "subject";
 
         [Test]

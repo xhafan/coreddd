@@ -91,8 +91,7 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
     create table EmailRecipient (
         EmailId INT not null,
        RecipientId INT not null,
-       EmailAddress NVARCHAR(255) not null,
-       primary key (EmailId, EmailAddress)
+       primary key (EmailId, RecipientId)
     )
 
     create table [EmailPart] (

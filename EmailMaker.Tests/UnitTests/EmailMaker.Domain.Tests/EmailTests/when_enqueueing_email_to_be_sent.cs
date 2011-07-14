@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using Core.TestHelper.DomainEvents;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.Events.Emails;
 using EmailMaker.TestHelper.Builders;
+using Iesi.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
 
@@ -20,6 +20,8 @@ namespace EmailMaker.Domain.Tests.EmailTests
         private int _emailId = 56;
         private string _name1 = "name1";
         private string _name2 = "name2";
+        private Recipient _recipientOne;
+        private Recipient _recipientTwo;
 
         [SetUp]
         public void Context()
@@ -28,14 +30,14 @@ namespace EmailMaker.Domain.Tests.EmailTests
             _email = EmailBuilder.New
                 .WithEmailTemplate(template)
                 .WithId(_emailId)
-                .WithRecipient("toAddressThree", "name3")
-                .WithRecipient(_toAddress1, _name1)
                 .Build();
+            _recipientOne = new Recipient(_toAddress1, _name1);
+            _recipientTwo = new Recipient(_toAddress2, _name2);
             _email.EnqueueEmailToBeSent(_fromAddress,
-                                        new Dictionary<string, Recipient>
+                                        new HashedSet<Recipient>
                                             {
-                                                {_toAddress1, new Recipient(_toAddress1, _name1)},
-                                                {_toAddress2, new Recipient(_toAddress2, _name2)}
+                                                _recipientOne,
+                                                _recipientTwo
                                             },
                                         _subject);
         }
@@ -46,10 +48,6 @@ namespace EmailMaker.Domain.Tests.EmailTests
             _email.State.ShouldBe(EmailState.ToBeSent);
             _email.FromAddress.ShouldBe(_fromAddress);
             _email.Subject.ShouldBe(_subject);
-            _email.Recipients[_toAddress1].EmailAddress.ShouldBe(_toAddress1);
-            _email.Recipients[_toAddress1].Name.ShouldBe(_name1);
-            _email.Recipients[_toAddress2].EmailAddress.ShouldBe(_toAddress2);
-            _email.Recipients[_toAddress2].Name.ShouldBe(_name2);
         }
 
         [Test]
@@ -62,14 +60,8 @@ namespace EmailMaker.Domain.Tests.EmailTests
         public void recipients_correctly_set()
         {
             _email.Recipients.Count.ShouldBe(2);
-
-            var recipient = _email.Recipients[_toAddress1];
-            recipient.EmailAddress.ShouldBe(_toAddress1);
-            recipient.Name.ShouldBe(_name1);
-
-            recipient = _email.Recipients[_toAddress2];
-            recipient.EmailAddress.ShouldBe(_toAddress2);
-            recipient.Name.ShouldBe(_name2);
+            _email.Recipients.Contains(_recipientOne).ShouldBe(true);
+            _email.Recipients.Contains(_recipientOne).ShouldBe(true);
         }
     }
 }
