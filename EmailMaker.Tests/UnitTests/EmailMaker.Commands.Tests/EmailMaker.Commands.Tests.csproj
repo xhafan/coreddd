@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>
@@ -67,6 +68,10 @@
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>Core.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Core.Queries\Core.Queries.csproj">
+      <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
+      <Name>Core.Queries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\Core.Utilities\Core.Utilities.csproj">
       <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
       <Name>Core.Utilities</Name>
@@ -78,6 +83,10 @@
     <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
       <Name>EmailMaker.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Queries\EmailMaker.Queries.csproj">
+      <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
+      <Name>EmailMaker.Queries</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
       <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>

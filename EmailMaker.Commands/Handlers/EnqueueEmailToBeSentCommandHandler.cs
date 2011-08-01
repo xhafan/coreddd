@@ -1,27 +1,48 @@
-using System;
 using System.Linq;
 using Core.Commands;
 using Core.Domain;
+using Core.Queries;
+using Core.Utilities.Extensions;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Emails;
+using EmailMaker.Queries.Messages;
+using Iesi.Collections.Generic;
 
 namespace EmailMaker.Commands.Handlers
 {
     public class EnqueueEmailToBeSentCommandHandler : BaseCommandHandler<EnqueueEmailToBeSentCommand>
     {
         private readonly IRepository<Email> _emailRepository;
+        private readonly IRecipientParser _recipientParser;
+        private readonly IQueryExecutor _queryExecutor;
+        private readonly IRepository<Recipient> _recipientRepository;
 
-        public EnqueueEmailToBeSentCommandHandler(IRepository<Email> emailRepository)
+        public EnqueueEmailToBeSentCommandHandler(IRepository<Email> emailRepository, IRecipientParser recipientParser, IQueryExecutor queryExecutor,
+            IRepository<Recipient> recipientRepository)
         {
+            _recipientRepository = recipientRepository;
             _emailRepository = emailRepository;
+            _queryExecutor = queryExecutor;
+            _recipientParser = recipientParser;
         }
 
         public override void Execute(EnqueueEmailToBeSentCommand command)
         {
             var email = _emailRepository.GetById(command.EmailId);
-            throw new System.NotImplementedException();
-            //var recipients = command.RecipientsStr.Split(new[]{","}, StringSplitOptions.RemoveEmptyEntries).Select(addr => addr.Trim());
-            email.EnqueueEmailToBeSent(command.FromAddress, null, command.Subject);
+            var emailAddressesAndNames = _recipientParser.Parse(command.RecipientsStr);
+            var existingRecipients = _queryExecutor.Execute<GetExistingRecipientsQueryMessage, Recipient>(new GetExistingRecipientsQueryMessage
+                                                                                     {
+                                                                                         RecipientEmailAddresses = emailAddressesAndNames.Keys
+                                                                                     }).ToDictionary(k => k.EmailAddress);
+            var recipients = new HashedSet<Recipient>(existingRecipients.Values);
+            var recipientsToBeCreated = emailAddressesAndNames.Where(p => !existingRecipients.ContainsKey(p.Key));
+            recipientsToBeCreated.Each(r =>
+                                           {
+                                               var newRecipient = new Recipient(r.Key, r.Value);
+                                               _recipientRepository.Save(newRecipient);
+                                               recipients.Add(newRecipient);
+                                           });
+            email.EnqueueEmailToBeSent(command.FromAddress, recipients, command.Subject);
         }
     }
 }
