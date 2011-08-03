@@ -21,7 +21,7 @@ namespace Core.Commons.Tests.IoCTests
         {
             _container = MockRepository.GenerateMock<IWindsorContainer>();
             _serviceType = new ServiceType();
-            _container.Expect(a => a.Resolve<IServiceType>()).Return(_serviceType);
+            _container.Stub(a => a.Resolve<IServiceType>()).Return(_serviceType);
             IoC.Initialize(_container);
             _result = IoC.Resolve<IServiceType>() as ServiceType;
         }
@@ -33,7 +33,7 @@ namespace Core.Commons.Tests.IoCTests
         }
 
         [Test]
-        public void container_is_correctly_set()
+        public void service_type_is_resolved()
         {
             _result.ShouldBe(_serviceType);
         }

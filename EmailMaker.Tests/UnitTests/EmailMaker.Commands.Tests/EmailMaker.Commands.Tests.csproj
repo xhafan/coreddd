@@ -57,6 +57,7 @@
     <Compile Include="EmailTemplates\when_executing_enqueue_email_to_be_sent.cs" />
     <Compile Include="EmailTemplates\when_executing_update_email_variables_command.cs" />
     <Compile Include="EmailTemplates\when_executing_save_email_template_command.cs" />
+    <Compile Include="EmailTemplates\when_parsing_recipients.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

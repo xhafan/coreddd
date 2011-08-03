@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IoCTests\when_resolving_all_services_generic.cs" />
     <Compile Include="UnitOfWorkTests\base_when_getting_current_unit_of_work.cs" />
     <Compile Include="IoCTests\when_getting_container_without_initialization.cs" />
     <Compile Include="IoCTests\when_initializing_ioc.cs" />

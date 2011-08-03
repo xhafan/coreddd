@@ -52,10 +52,10 @@
   <ItemGroup>
     <Compile Include="Emails\Email.cs" />
     <Compile Include="Emails\EmailPart.cs" />
-    <Compile Include="Emails\EmailStates\Draft.cs" />
+    <Compile Include="Emails\EmailStates\DraftEmailState.cs" />
     <Compile Include="Emails\EmailStates\EmailState.cs" />
-    <Compile Include="Emails\EmailStates\Sent.cs" />
-    <Compile Include="Emails\EmailStates\ToBeSent.cs" />
+    <Compile Include="Emails\EmailStates\SentEmailState.cs" />
+    <Compile Include="Emails\EmailStates\ToBeSentEmailState.cs" />
     <Compile Include="Emails\HtmlEmailPart.cs" />
     <Compile Include="Emails\Recipient.cs" />
     <Compile Include="EmailTemplates\EmailTemplateCulture.cs" />

@@ -34,6 +34,11 @@ namespace Core.Commons
             return Container.Resolve<T>();
         }
 
+        public static T[] ResolveAll<T>()
+        {
+            return Container.ResolveAll<T>();
+        }
+
         public static void Release(object instance)
         {
             Container.Release(instance);

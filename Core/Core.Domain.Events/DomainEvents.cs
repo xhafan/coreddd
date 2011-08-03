@@ -1,4 +1,5 @@
 ﻿using Core.Commons;
+using Core.Utilities.Extensions;
 
 namespace Core.Domain.Events
 {
@@ -6,8 +7,9 @@ namespace Core.Domain.Events
     {
         public static void RaiseEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
-            var domainEventHandler = IoC.Resolve<IDomainEventHandler<TDomainEvent>>();
-            domainEventHandler.Handle(domainEvent);
+            // todo: test this?
+            var domainEventHandlers = IoC.ResolveAll<IDomainEventHandler<TDomainEvent>>();
+            domainEventHandlers.Each(e => e.Handle(domainEvent));
         }
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="Messages\CreateVariableCommand.cs" />
     <Compile Include="Messages\DeleteVariableCommand.cs" />
     <Compile Include="Messages\EnqueueEmailToBeSentCommand.cs" />
+    <Compile Include="Handlers\RecipientParser.cs" />
     <Compile Include="Messages\UpdateEmailVariablesCommand.cs" />
     <Compile Include="Messages\SaveEmailTemplateCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

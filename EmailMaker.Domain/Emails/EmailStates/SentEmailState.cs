@@ -1,8 +1,8 @@
 ﻿namespace EmailMaker.Domain.Emails.EmailStates
 {
-    internal sealed class ToBeSent : EmailState
+    public class SentEmailState : EmailState
     {
-        public ToBeSent(int id, string name) : base(id, name)
+        public SentEmailState() : base(3, "Sent")
         {
             CanSend = false;
         }

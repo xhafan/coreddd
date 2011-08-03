@@ -1,8 +1,8 @@
 ﻿namespace EmailMaker.Domain.Emails.EmailStates
 {
-    internal sealed class Draft : EmailState
+    public class DraftEmailState : EmailState
     {
-        public Draft(int id, string name) : base(id, name)
+        public DraftEmailState() : base(1, "Draft")
         {
             CanSend = true;
         }

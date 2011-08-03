@@ -1,4 +1,3 @@
-using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using FluentNHibernate.Mapping;
 
@@ -10,10 +9,12 @@ namespace EmailMaker.Domain.NHibernateMappings
         {
             Id(x => x.Id)
                 .Access.ReadOnlyPropertyThroughCamelCaseField(Prefix.Underscore)
-                .GeneratedBy.HiLo("100");
+                .GeneratedBy.Assigned();
 
             Map(x => x.Name);
             Map(x => x.CanSend);
+
+            DiscriminateSubClassesOnColumn("Name");
         }
     }
 }

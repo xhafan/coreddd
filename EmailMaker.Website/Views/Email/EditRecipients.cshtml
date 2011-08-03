@@ -23,7 +23,7 @@
                 $.postJson("@(Html.UrlFromControllerMethod<EmailController>(c => c.EnqueueEmailToBeSent(null)))", {
                     EmailId: @(Model.EmailId),
                     FromAddress: editRecipientsModel.selectedFromAddress(),
-                    ToAddressesStr: editRecipientsModel.toAddressesStr()
+                    RecipientsStr: editRecipientsModel.toAddressesStr()
                 }, function() {
                     reloadIframe("templateHtml");
                 });
