@@ -17,7 +17,7 @@ namespace Core.TestHelper.DomainEvents
         protected BaseDomainEventTest()
         {
             var container = MockRepository.GenerateStub<IWindsorContainer>();
-            container.Stub(a => a.Resolve<IDomainEventHandler<TDomainEvent>>()).Return(this);
+            container.Stub(a => a.ResolveAll<IDomainEventHandler<TDomainEvent>>()).Return(new[]{this});
             IoC.Initialize(container);
         }
     }
