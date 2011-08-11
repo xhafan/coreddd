@@ -65,7 +65,14 @@
     <Compile Include="IoCTests\when_resolving_service_generic.cs" />
     <Compile Include="UnitOfWorkTests\when_beginning_transaction.cs" />
     <Compile Include="UnitOfWorkTests\when_beginning_transaction_with_isolation_level.cs" />
+    <Compile Include="UnitOfWorkTests\when_current_session_is_not_started_for_http_request.cs" />
+    <Compile Include="UnitOfWorkTests\when_current_session_is_not_started_for_http_request_after_dispose.cs" />
+    <Compile Include="UnitOfWorkTests\when_current_session_is_not_started_for_thread.cs" />
+    <Compile Include="UnitOfWorkTests\when_current_session_is_not_started_for_thread_after_dispose.cs" />
+    <Compile Include="UnitOfWorkTests\when_current_session_is_started_for_http_request.cs" />
+    <Compile Include="UnitOfWorkTests\when_current_session_is_started_for_thread.cs" />
     <Compile Include="UnitOfWorkTests\when_disposing_unit_of_work.cs" />
+    <Compile Include="UnitOfWorkTests\when_flushing_transaction.cs" />
     <Compile Include="UnitOfWorkTests\when_flushing_unit_of_work.cs" />
     <Compile Include="UnitOfWorkTests\when_getting_current_session.cs" />
     <Compile Include="UnitOfWorkTests\when_getting_current_unit_of_work_for_different_http_requests.cs" />
@@ -73,6 +80,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWorkTests\when_getting_current_unit_of_work_for_the_same_http_request.cs" />
     <Compile Include="UnitOfWorkTests\when_getting_current_unit_of_work_for_the_same_thread.cs" />
+    <Compile Include="UnitOfWorkTests\when_rolling_transaction_back.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core.Commons\Core.Commons.csproj">

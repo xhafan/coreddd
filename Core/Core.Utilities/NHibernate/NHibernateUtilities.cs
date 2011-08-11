@@ -32,7 +32,7 @@ namespace Core.Utilities.NHibernate
         private static IEnumerable<Assembly> _GetAssembliesWithMapping()
         {
             var files = Directory.GetFiles(HttpContext.Current != null 
-                                                ? HttpContext.Current.Request.PhysicalApplicationPath + "\\bin" 
+                                                ? HttpContext.Current.Request.PhysicalApplicationPath + "\\bin" // todo: use Server.Map()?
                                                 : ".", 
                                            "*." + NHibernateMappingDllFileExtension);
             var assembliesWithMapping = new List<Assembly>();

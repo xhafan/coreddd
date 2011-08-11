@@ -12,5 +12,6 @@ namespace Core.Commons
         ITransaction BeginTransaction(IsolationLevel isolationLevel);
         void TransactionalFlush();
         void TransactionalFlush(IsolationLevel isolationLevel);
+        void TransactionalRollback();
     }
 }

@@ -75,15 +75,20 @@ namespace EmailMaker.Website
 
         public virtual void Application_EndRequest()
         {
-            UnitOfWork.Current.TransactionalFlush();
-            UnitOfWork.Current.Dispose();
+            if (UnitOfWork.IsStarted)
+            {
+                UnitOfWork.Current.TransactionalFlush();
+                UnitOfWork.Current.Dispose();
+            }
         }
 
         public virtual void Application_Error()
         {
-            // todo: fix this
-            //UnitOfWork.CurrentSession.Transaction.Rollback();
-            //UnitOfWork.Current.Dispose();
+            if (UnitOfWork.IsStarted)
+            {
+                UnitOfWork.Current.TransactionalRollback();
+                UnitOfWork.Current.Dispose();                
+            }
         }
     
     }

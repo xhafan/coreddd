@@ -57,6 +57,19 @@ namespace Core.Commons
             internal set { Current._session = value; }
         }
 
+        public static bool IsStarted
+        {
+            get
+            {
+                if (!RunningInWeb)
+                {
+                    return _threadUnitOfWork != null && _threadUnitOfWork._session != null;
+                }
+                var unitOfWork = HttpContext.Current.Items[UnitOfWorkKey];
+                return unitOfWork != null && ((UnitOfWork)unitOfWork)._session != null;
+            } 
+        }
+
         private static UnitOfWork Create()
         {
             var session = SessionFactory.OpenSession();
@@ -66,6 +79,7 @@ namespace Core.Commons
         public void Dispose()
         {
             _session.Dispose();
+            _session = null;
         }
 
         public void Flush()
@@ -104,6 +118,13 @@ namespace Core.Commons
             {
                 tx.Dispose();
             }
+        }
+
+        public void TransactionalRollback()
+        {
+            var tx = _session.Transaction;
+            tx.Rollback();
+            tx.Dispose();
         }
 
         public static ISessionFactory SessionFactory
