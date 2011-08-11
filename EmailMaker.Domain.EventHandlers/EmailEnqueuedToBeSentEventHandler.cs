@@ -16,8 +16,7 @@ namespace EmailMaker.Domain.EventHandlers
 
         public void Handle(EmailEnqueuedToBeSentEvent domainEvent)
         {
-            throw new System.NotImplementedException();
-            var message = new EmailEnqueuedToBeSentEventMessage();
+            var message = new EmailEnqueuedToBeSentEventMessage { EmailId = domainEvent.EmailId };
             _bus.Send(message);
         }
     }

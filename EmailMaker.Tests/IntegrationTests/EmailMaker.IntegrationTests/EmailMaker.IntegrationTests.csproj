@@ -44,6 +44,9 @@
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\..\SharedLibs\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\..\SharedLibs\NServiceBus.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>

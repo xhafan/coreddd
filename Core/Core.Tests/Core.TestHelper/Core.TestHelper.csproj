@@ -42,6 +42,9 @@
     <Reference Include="NHibernate">
       <HintPath>..\..\..\SharedLibs\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\..\SharedLibs\NServiceBus.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>
@@ -60,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BaseControllerTest.cs" />
     <Compile Include="DomainEvents\BaseDomainEventTest.cs" />
+    <Compile Include="Extensions\BusExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Persistence\BasePersistenceTest.cs" />
     <Compile Include="Persistence\BaseSimplePersistenceTest.cs" />
