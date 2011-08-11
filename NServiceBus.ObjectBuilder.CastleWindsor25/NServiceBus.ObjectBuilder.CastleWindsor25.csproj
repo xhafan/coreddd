@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{915F403B-2CF7-479C-B4B9-CA8BE0534184}</ProjectGuid>
+    <ProjectGuid>{3450EF31-9064-4EDB-80B9-633E092A3BF4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailMaker.DomainEventHandlers</RootNamespace>
-    <AssemblyName>EmailMaker.DomainEventHandlers</AssemblyName>
+    <RootNamespace>NServiceBus.ObjectBuilder.CastleWindsor25</RootNamespace>
+    <AssemblyName>NServiceBus.ObjectBuilder.CastleWindsor25</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,8 +31,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\SharedLibs\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\SharedLibs\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\SharedLibs\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\SharedLibs\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus">
       <HintPath>..\SharedLibs\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\SharedLibs\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,22 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmailEnqueuedToBeSentEventHandler.cs" />
+    <Compile Include="ConfigureWindsorBuilder.cs" />
+    <Compile Include="Windsor25ObjectBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.Domain.Events\Core.Domain.Events.csproj">
-      <Project>{934B2562-1CF2-4650-8CD1-0B1A5F0F0E1D}</Project>
-      <Name>Core.Domain.Events</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Domain.Events\EmailMaker.Domain.Events.csproj">
-      <Project>{0F7267F2-246B-4FC7-B862-F84A659D1C68}</Project>
-      <Name>EmailMaker.Domain.Events</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Messages\EmailMaker.Messages.csproj">
-      <Project>{5FF5C804-51CA-4D7F-81F5-DEE992EA018C}</Project>
-      <Name>EmailMaker.Messages</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

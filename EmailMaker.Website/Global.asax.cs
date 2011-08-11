@@ -1,4 +1,7 @@
 ﻿using System.Data;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -6,6 +9,7 @@ using Castle.Windsor;
 using Core.Commons;
 using Core.Web;
 using Core.Web.ModelBinders;
+using NServiceBus;
 using Rhino.Commons.Binsor;
 
 namespace EmailMaker.Website
@@ -39,6 +43,24 @@ namespace EmailMaker.Website
 
 
             var container = new WindsorContainer();
+
+            var binPath = Server.MapPath("~/bin");
+            var assembliesToLoad = new[]
+                                       {
+                                           "NServiceBus.dll",
+                                           "NServiceBus.Core.dll",
+                                       };
+            var assemblies = assembliesToLoad.Select(x => Assembly.LoadFrom(Path.Combine(binPath, x)));
+
+            NServiceBus.Configure.With(assemblies)
+                .CastleWindsor25Builder(container)
+                .BinarySerializer()
+                .MsmqTransport()
+                .UnicastBus()
+                .LoadMessageHandlers()
+                .CreateBus()
+                .Start();
+            
             BooReader.Read(container, "windsor.boo");
             IoC.Initialize(container);
 
@@ -56,5 +78,13 @@ namespace EmailMaker.Website
             UnitOfWork.Current.TransactionalFlush();
             UnitOfWork.Current.Dispose();
         }
+
+        public virtual void Application_Error()
+        {
+            // todo: fix this
+            //UnitOfWork.CurrentSession.Transaction.Rollback();
+            //UnitOfWork.Current.Dispose();
+        }
+    
     }
 }

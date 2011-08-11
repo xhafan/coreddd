@@ -31,10 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
+    <Reference Include="Castle.Windsor, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
     <Reference Include="nunit.framework, Version=2.5.3.9345, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL" />
     <Reference Include="Shouldly, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SharedLibs\Shouldly.dll</HintPath>
@@ -48,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainEventsTests\when_raising_domain_event_with_no_handler.cs" />
     <Compile Include="IdentityTests\AnotherEntity.cs" />
     <Compile Include="IdentityTests\Entity.cs" />
     <Compile Include="IdentityTests\when_adding_entity_into_a_hashset.cs" />
@@ -56,12 +60,25 @@
     <Compile Include="IdentityTests\when_comparing_entities_of_the_same_type_and_of_the_different_id.cs" />
     <Compile Include="IdentityTests\when_comparing_entities_of_the_same_type_and_of_the_same_id.cs" />
     <Compile Include="IdentityTests\when_getting_identity_id.cs" />
+    <Compile Include="DomainEventsTests\when_raising_domain_event.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core.Commons\Core.Commons.csproj">
+      <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
+      <Name>Core.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core.Domain.Events\Core.Domain.Events.csproj">
+      <Project>{934B2562-1CF2-4650-8CD1-0B1A5F0F0E1D}</Project>
+      <Name>Core.Domain.Events</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core.Domain\Core.Domain.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>Core.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core.Utilities\Core.Utilities.csproj">
+      <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
+      <Name>Core.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core.TestHelper\Core.TestHelper.csproj">
       <Project>{63E6B983-C183-4180-8FE3-B75FC33BFC85}</Project>

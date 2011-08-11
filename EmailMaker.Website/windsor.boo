@@ -3,6 +3,7 @@ import Core.Commands
 import Core.Domain
 import Core.Domain.Persistence
 import Core.Queries
+import EmailMaker.Domain.EventHandlers
 import System.Web.Mvc
 
 # Controllers
@@ -18,7 +19,13 @@ for type in AllTypes("EmailMaker.Commands") \
 	.Where( { t as System.Type | t.Namespace.StartsWith("EmailMaker.Commands.Handlers") and t.GetInterfaces().Length > 0 }):
     component type.GetInterfaces()[0], type: @lifestyle=LifestyleType.Transient
 
+# Domain event handlers
+for type in AllTypes("EmailMaker.Domain.EventHandlers") \
+	.Where( { t as System.Type | t.Namespace.StartsWith("EmailMaker.Domain.EventHandlers") and t.GetInterfaces().Length > 0 }):
+    component type.GetInterfaces()[0], type: @lifestyle=LifestyleType.Transient
+	
 # Query handlers
 for type in AllTypes("EmailMaker.Queries") \
 	.Where( { t as System.Type | t.Namespace.StartsWith("EmailMaker.Queries.Handlers") and t.GetInterfaces().Length > 0 }):
     component type.GetInterfaces()[0], type: @lifestyle=LifestyleType.Transient
+

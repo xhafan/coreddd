@@ -3,7 +3,7 @@ using EmailMaker.Domain.Events.Emails;
 using EmailMaker.Messages;
 using NServiceBus;
 
-namespace EmailMaker.DomainEventHandlers
+namespace EmailMaker.Domain.EventHandlers
 {
     public class EmailEnqueuedToBeSentEventHandler : IDomainEventHandler<EmailEnqueuedToBeSentEvent>
     {

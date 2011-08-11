@@ -50,9 +50,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SharedLibs\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\SharedLibs\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus, Version=2.0.0.1219, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\SharedLibs\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="Rhino.Commons.Binsor">
       <HintPath>..\SharedLibs\Rhino.Commons.Binsor.dll</HintPath>
@@ -99,7 +110,6 @@
     <Content Include="Content\js\knockout-1.1.2.js" />
     <Content Include="Content\js\underscore-min.js" />
     <Content Include="Content\js\underscore.js" />
-    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\themes\base\jquery-ui.css" />
@@ -173,6 +183,10 @@
       <Project>{A34ED149-1B63-44AC-B72A-A81C5FD42190}</Project>
       <Name>EmailMaker.Controllers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Domain.EventHandlers\EmailMaker.Domain.EventHandlers.csproj">
+      <Project>{915F403B-2CF7-479C-B4B9-CA8BE0534184}</Project>
+      <Name>EmailMaker.Domain.EventHandlers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Domain.NHibernateMappings\EmailMaker.Domain.NHibernateMappings.csproj">
       <Project>{78FD90F4-DD12-425D-B9F4-B262B99FA247}</Project>
       <Name>EmailMaker.Domain.NHibernateMappings</Name>
@@ -184,6 +198,10 @@
     <ProjectReference Include="..\EmailMaker.Web\EmailMaker.Web.csproj">
       <Project>{6AC005D9-720A-4B14-BE9A-75BB10A78BE1}</Project>
       <Name>EmailMaker.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NServiceBus.ObjectBuilder.CastleWindsor25\NServiceBus.ObjectBuilder.CastleWindsor25.csproj">
+      <Project>{3450EF31-9064-4EDB-80B9-633E092A3BF4}</Project>
+      <Name>NServiceBus.ObjectBuilder.CastleWindsor25</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
