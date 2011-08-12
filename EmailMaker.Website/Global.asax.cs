@@ -52,7 +52,8 @@ namespace EmailMaker.Website
                                        };
             var assemblies = assembliesToLoad.Select(x => Assembly.LoadFrom(Path.Combine(binPath, x)));
 
-            NServiceBus.Configure.With(assemblies)
+            Configure
+                .With(assemblies)
                 .CastleWindsor25Builder(container)
                 .BinarySerializer()
                 .MsmqTransport()

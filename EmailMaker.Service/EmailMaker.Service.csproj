@@ -31,6 +31,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\Core\Core.Tests\Core.TestHelper\bin\Debug\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\NServiceBus.ObjectBuilder.CastleWindsor25\bin\Debug\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\SharedLibs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\SharedLibs\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\SharedLibs\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Host">
+      <HintPath>..\SharedLibs\NServiceBus.Host.exe</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Commons.Binsor">
+      <HintPath>..\SharedLibs\Rhino.Commons.Binsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.DSL">
+      <HintPath>..\SharedLibs\Rhino.DSL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +64,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EndpointConfig.cs" />
+    <Compile Include="Handlers\EmailEnqueuedToBeSentEventMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.Commons\Core.Commons.csproj">
+      <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
+      <Name>Core.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Messages\EmailMaker.Messages.csproj">
+      <Project>{5FF5C804-51CA-4D7F-81F5-DEE992EA018C}</Project>
+      <Name>EmailMaker.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NServiceBus.ObjectBuilder.CastleWindsor25\NServiceBus.ObjectBuilder.CastleWindsor25.csproj">
+      <Project>{3450EF31-9064-4EDB-80B9-633E092A3BF4}</Project>
+      <Name>NServiceBus.ObjectBuilder.CastleWindsor25</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Content Include="EmailMakerService.boo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
