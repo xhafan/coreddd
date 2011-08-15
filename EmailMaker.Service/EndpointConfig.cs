@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using Castle.Windsor;
 using Core.Commons;
@@ -8,11 +7,8 @@ using Rhino.Commons.Binsor;
 
 namespace EmailMaker.Service
 {
-    public class EndpointConfig : AsA_Publisher, IConfigureThisEndpoint, IWantCustomLogging,
-                                               IWantToRunAtStartup, IWantCustomInitialization
+    public class EndpointConfig : AsA_Server, IConfigureThisEndpoint, IWantCustomInitialization
     {
-        public IBus Bus { get; set; }
-
         public void Init()
         {
             var container = new WindsorContainer();
@@ -21,9 +17,12 @@ namespace EmailMaker.Service
                                        {
                                            "NServiceBus.dll",
                                            "NServiceBus.Core.dll",
-                                           "EmailMaker.Messages.dll"
+                                           "EmailMaker.Messages.dll",
+                                           "EmailMaker.Service.dll"
                                        };
             var assemblies = assembliesToLoad.Select(Assembly.LoadFrom);
+
+            SetLoggingLibrary.Log4Net(log4net.Config.XmlConfigurator.Configure);
 
             Configure
                 .With(assemblies)
@@ -35,15 +34,6 @@ namespace EmailMaker.Service
 
             BooReader.Read(container, "EmailMakerService.boo");
             IoC.Initialize(container);
-        }
-
-
-        public void Run()
-        {
-        }
-
-        public void Stop()
-        {
         }
     }
 }

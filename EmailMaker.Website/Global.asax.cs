@@ -54,6 +54,7 @@ namespace EmailMaker.Website
 
             Configure
                 .With(assemblies)
+                .Log4Net()
                 .CastleWindsor25Builder(container)
                 .BinarySerializer()
                 .MsmqTransport()
