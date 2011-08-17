@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Emails\Email.cs" />
     <Compile Include="Emails\EmailPart.cs" />
+    <Compile Include="Emails\EmailRecipient.cs" />
     <Compile Include="Emails\EmailStates\DraftEmailState.cs" />
     <Compile Include="Emails\EmailStates\EmailState.cs" />
     <Compile Include="Emails\EmailStates\SentEmailState.cs" />

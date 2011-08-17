@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{78FD90F4-DD12-425D-B9F4-B262B99FA247}</ProjectGuid>
+    <ProjectGuid>{F7AB4FED-6A46-4C1B-A4A4-5BF591EE3530}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailMaker.Domain.NHibernateMappings</RootNamespace>
-    <AssemblyName>EmailMaker.Domain.NHibernateMappings</AssemblyName>
+    <RootNamespace>EmailMaker.Service.Tests</RootNamespace>
+    <AssemblyName>EmailMaker.Service.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,12 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\SharedLibs\FluentNHibernate.dll</HintPath>
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\..\SharedLibs\NServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
-    <Reference Include="NHibernate">
-      <HintPath>..\SharedLibs\NHibernate.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\..\SharedLibs\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,31 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DraftEmailStateMap.cs" />
-    <Compile Include="EmailMap.cs" />
-    <Compile Include="EmailPartMap.cs" />
-    <Compile Include="EmailRecipientMap.cs" />
-    <Compile Include="EmailStateMap.cs" />
-    <Compile Include="EmailTemplateMap.cs" />
-    <Compile Include="EmailTemplatePartMap.cs" />
-    <Compile Include="HtmlEmailPartMap.cs" />
-    <Compile Include="HtmlEmailTemplatePartMap.cs" />
+    <Compile Include="when_handling_email_enqueued_to_be_sent_event_message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecipientMap.cs" />
-    <Compile Include="SentEmailStateMap.cs" />
-    <Compile Include="ToBeSentEmailStateMap.cs" />
-    <Compile Include="VariableEmailPartMap.cs" />
-    <Compile Include="VariableEmailTemplatePartMap.cs" />
-    <Compile Include="VariableTypeMap.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.Domain\Core.Domain.csproj">
-      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>Core.Domain</Name>
+    <ProjectReference Include="..\..\..\Core\Core.Queries\Core.Queries.csproj">
+      <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
+      <Name>Core.Queries</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
-      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
-      <Name>EmailMaker.Domain</Name>
+    <ProjectReference Include="..\..\..\EmailMaker.Messages\EmailMaker.Messages.csproj">
+      <Project>{5FF5C804-51CA-4D7F-81F5-DEE992EA018C}</Project>
+      <Name>EmailMaker.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Service\EmailMaker.Service.csproj">
+      <Project>{3B63F0F4-1E42-4139-A0A9-1C8B3FED61FF}</Project>
+      <Name>EmailMaker.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

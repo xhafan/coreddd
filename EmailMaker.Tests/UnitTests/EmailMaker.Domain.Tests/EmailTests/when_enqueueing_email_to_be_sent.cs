@@ -1,3 +1,4 @@
+using System.Linq;
 using Core.TestHelper.DomainEvents;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
@@ -59,9 +60,17 @@ namespace EmailMaker.Domain.Tests.EmailTests
         [Test]
         public void recipients_correctly_set()
         {
-            _email.Recipients.Count.ShouldBe(2);
-            _email.Recipients.Contains(_recipientOne).ShouldBe(true);
-            _email.Recipients.Contains(_recipientOne).ShouldBe(true);
+            _email.EmailRecipients.Count.ShouldBe(2);
+            
+            var emailRecipient = _email.EmailRecipients.First();
+            emailRecipient.Recipient.ShouldBe(_recipientOne);
+            emailRecipient.Sent.ShouldBe(false);
+            emailRecipient.SentDate.ShouldBe(null);
+
+            emailRecipient = _email.EmailRecipients.Last();
+            emailRecipient.Recipient.ShouldBe(_recipientTwo);
+            emailRecipient.Sent.ShouldBe(false);
+            emailRecipient.SentDate.ShouldBe(null);
         }
     }
 }

@@ -38,7 +38,9 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
             Save(_email);
 
             _email.SetPrivateProperty("FromAddress", _fromAddress);
-            _email.SetPrivateProperty("Recipients", new HashedSet<Recipient> { _recipientOne, _recipientTwo });
+            _email.EmailRecipients.Add(new EmailRecipient(_recipientOne));
+            _email.EmailRecipients.Add(new EmailRecipient(_recipientTwo));
+            
             _email.SetPrivateProperty("Subject", _subject);
 
             Save(_email);
@@ -60,9 +62,17 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
         [Test]
         public void email_recipients_correctly_retrieved()
         {
-            _retrievedEmail.Recipients.Count().ShouldBe(2);
-            _retrievedEmail.Recipients.Contains(_recipientOne).ShouldBe(true);
-            _retrievedEmail.Recipients.Contains(_recipientTwo).ShouldBe(true);
+            _retrievedEmail.EmailRecipients.Count().ShouldBe(2);
+
+            var emailRecipient = _retrievedEmail.EmailRecipients.First();
+            emailRecipient.Recipient.ShouldBe(_recipientOne);
+            emailRecipient.Sent.ShouldBe(false);
+            emailRecipient.SentDate.ShouldBe(null);
+
+            emailRecipient = _retrievedEmail.EmailRecipients.Last();
+            emailRecipient.Recipient.ShouldBe(_recipientTwo);
+            emailRecipient.Sent.ShouldBe(false);
+            emailRecipient.SentDate.ShouldBe(null);
         }
     }
 }

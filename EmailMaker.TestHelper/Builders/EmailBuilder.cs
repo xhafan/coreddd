@@ -65,7 +65,7 @@ namespace EmailMaker.TestHelper.Builders
             email.SetPrivateAttribute("_id", _id);
             email.Parts.Each(part => part.SetPrivateAttribute("_id", NextPartId));
             email.SetPrivateProperty("State", _state);
-            email.SetPrivateProperty("Recipients", _recipients);
+            _recipients.Each(r => email.EmailRecipients.Add(new EmailRecipient(r)));
             return email;
         }
     }
