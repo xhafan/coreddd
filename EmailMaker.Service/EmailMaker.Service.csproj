@@ -92,6 +92,10 @@
       <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
       <Name>Core.Queries</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Core.Utilities\Core.Utilities.csproj">
+      <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
+      <Name>Core.Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Domain.NHibernateMappings\EmailMaker.Domain.NHibernateMappings.csproj">
       <Project>{78FD90F4-DD12-425D-B9F4-B262B99FA247}</Project>
       <Name>EmailMaker.Domain.NHibernateMappings</Name>
