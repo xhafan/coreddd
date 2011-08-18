@@ -199,7 +199,7 @@
       <Project>{6AC005D9-720A-4B14-BE9A-75BB10A78BE1}</Project>
       <Name>EmailMaker.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NServiceBus.ObjectBuilder.CastleWindsor25\NServiceBus.ObjectBuilder.CastleWindsor25.csproj">
+    <ProjectReference Include="..\Utilities\NServiceBus.ObjectBuilder.CastleWindsor25\NServiceBus.ObjectBuilder.CastleWindsor25.csproj">
       <Project>{3450EF31-9064-4EDB-80B9-633E092A3BF4}</Project>
       <Name>NServiceBus.ObjectBuilder.CastleWindsor25</Name>
     </ProjectReference>

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5FF5C804-51CA-4D7F-81F5-DEE992EA018C}</ProjectGuid>
+    <ProjectGuid>{C45093A6-6D35-424D-BFC5-286D996B65F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailMaker.Messages</RootNamespace>
-    <AssemblyName>EmailMaker.Messages</AssemblyName>
+    <RootNamespace>EmailMaker.Domain.Services</RootNamespace>
+    <AssemblyName>EmailMaker.Domain.Services</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus">
-      <HintPath>..\SharedLibs\NServiceBus.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,9 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmailEnqueuedToBeSentEventMessage.cs" />
+    <Compile Include="EmailHtmlBuilder.cs" />
+    <Compile Include="IEmailHtmlBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendEmailForEmailRecipientMessage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.Domain\Core.Domain.csproj">
+      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
+      <Name>Core.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
+      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
+      <Name>EmailMaker.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

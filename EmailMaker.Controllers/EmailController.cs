@@ -50,8 +50,7 @@ namespace EmailMaker.Controllers
                                 EmailId = id,
                                 FromAddresses = new[]
                                                     {
-                                                        "Martin Havlista <xhafan@gmail.com>",
-                                                        "Tomas Marny <xhafan@gmail.com>"
+                                                        "xhafan@gmail.com"                                                     
                                                     },
                                 ToAddresses = new[]
                                                   {

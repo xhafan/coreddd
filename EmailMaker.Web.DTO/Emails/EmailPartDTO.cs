@@ -1,6 +1,4 @@
-﻿using EmailMaker.DTO.EmailTemplates;
-
-namespace EmailMaker.DTO.Emails
+﻿namespace EmailMaker.DTO.Emails
 {
     public class EmailPartDTO
     {

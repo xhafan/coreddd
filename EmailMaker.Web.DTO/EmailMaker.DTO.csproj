@@ -40,11 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Emails\EmailRecipientDTO.cs" />
     <Compile Include="Emails\EmailDTO.cs" />
     <Compile Include="Emails\EmailPartDTO.cs" />
     <Compile Include="EmailTemplates\EmailTemplateDetailsDTO.cs" />
-    <Compile Include="EmailTemplates\EmailTemplatePartDTO.cs" />
     <Compile Include="EmailTemplates\EmailTemplateDTO.cs" />
+    <Compile Include="EmailTemplates\EmailTemplatePartDTO.cs" />
     <Compile Include="PartType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

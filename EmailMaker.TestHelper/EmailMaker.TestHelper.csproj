@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Builders\EmailBuilder.cs" />
     <Compile Include="Builders\EmailTemplateBuilder.cs" />
+    <Compile Include="Builders\RecipientBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

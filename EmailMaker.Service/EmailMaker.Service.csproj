@@ -37,8 +37,14 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\NServiceBus.ObjectBuilder.CastleWindsor25\bin\Debug\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\EmailMaker.Tests\IntegrationTests\EmailMaker.IntegrationTests\bin\Debug\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\SharedLibs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\SharedLibs\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus">
       <HintPath>..\SharedLibs\NServiceBus.dll</HintPath>
@@ -66,6 +72,7 @@
   <ItemGroup>
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Handlers\EmailEnqueuedToBeSentEventMessageHandler.cs" />
+    <Compile Include="Handlers\SendEmailForEmailRecipientMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,9 +80,29 @@
       <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
       <Name>Core.Commons</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Core.Domain.Persistence\Core.Domain.Persistence.csproj">
+      <Project>{39623D17-0598-413E-B717-20058EFDA907}</Project>
+      <Name>Core.Domain.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.Domain\Core.Domain.csproj">
+      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
+      <Name>Core.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.Queries\Core.Queries.csproj">
       <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
       <Name>Core.Queries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Domain.NHibernateMappings\EmailMaker.Domain.NHibernateMappings.csproj">
+      <Project>{78FD90F4-DD12-425D-B9F4-B262B99FA247}</Project>
+      <Name>EmailMaker.Domain.NHibernateMappings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Domain.Services\EmailMaker.Domain.Services.csproj">
+      <Project>{C45093A6-6D35-424D-BFC5-286D996B65F6}</Project>
+      <Name>EmailMaker.Domain.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
+      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
+      <Name>EmailMaker.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Messages\EmailMaker.Messages.csproj">
       <Project>{5FF5C804-51CA-4D7F-81F5-DEE992EA018C}</Project>
@@ -85,13 +112,21 @@
       <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
       <Name>EmailMaker.Queries</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NServiceBus.ObjectBuilder.CastleWindsor25\NServiceBus.ObjectBuilder.CastleWindsor25.csproj">
+    <ProjectReference Include="..\Utilities\NServiceBus.ObjectBuilder.CastleWindsor25\NServiceBus.ObjectBuilder.CastleWindsor25.csproj">
       <Project>{3450EF31-9064-4EDB-80B9-633E092A3BF4}</Project>
       <Name>NServiceBus.ObjectBuilder.CastleWindsor25</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\EmailMaker.Website\connectionStrings.config">
+      <Link>connectionStrings.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="App.config" />
+    <Content Include="..\EmailMaker.Website\hibernate.cfg.xml">
+      <Link>hibernate.cfg.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="EmailMakerService.boo">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

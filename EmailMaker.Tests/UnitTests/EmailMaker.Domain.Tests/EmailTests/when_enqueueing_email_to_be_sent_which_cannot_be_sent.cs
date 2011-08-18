@@ -4,6 +4,7 @@ using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Rhino.Mocks;
+using Shouldly;
 
 namespace EmailMaker.Domain.Tests.EmailTests
 {
@@ -13,9 +14,9 @@ namespace EmailMaker.Domain.Tests.EmailTests
         private Email _email;
         private string _fromAddress = "from address";
         private string _subject = "subject";
+        private CoreException _exception;
 
-        [Test]
-        [ExpectedException(typeof(CoreException), ExpectedMessage = "cannot enqeue email in the current state: state")]
+        [SetUp]
         public void Context()
         {
             var template = EmailTemplateBuilder.New.Build();
@@ -26,7 +27,13 @@ namespace EmailMaker.Domain.Tests.EmailTests
                 .WithEmailTemplate(template)
                 .WithState(state)
                 .Build();
-            _email.EnqueueEmailToBeSent(_fromAddress, null, _subject);
+            _exception = Assert.Throws<CoreException>(() => _email.EnqueueEmailToBeSent(_fromAddress, null, _subject));
+        }
+
+        [Test]
+        public void correct_exception_is_thrown()
+        {
+            _exception.Message.ShouldBe("cannot enqeue email in the current state: state");
         }
     }
 }

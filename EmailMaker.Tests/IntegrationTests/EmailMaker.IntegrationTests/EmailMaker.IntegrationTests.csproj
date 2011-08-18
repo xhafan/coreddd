@@ -70,6 +70,7 @@
     <Compile Include="DatabaseTests\QueryTests\when_querying_all_email_template_details.cs" />
     <Compile Include="DatabaseTests\QueryTests\when_querying_email.cs" />
     <Compile Include="DatabaseTests\QueryTests\when_querying_email_parts.cs" />
+    <Compile Include="DatabaseTests\QueryTests\when_querying_email_recipients.cs" />
     <Compile Include="DatabaseTests\QueryTests\when_querying_email_template.cs" />
     <Compile Include="DatabaseTests\QueryTests\when_querying_email_template_parts.cs" />
     <Compile Include="DatabaseTests\QueryTests\when_querying_email_variable_parts.cs" />

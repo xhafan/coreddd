@@ -35,19 +35,19 @@
       <HintPath>..\SharedLibs\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
-      <HintPath>..\SharedLibs\Castle.Core.dll</HintPath>
+      <HintPath>..\..\Core\Core.Tests\Core.TestHelper\bin\Debug\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\SharedLibs\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\NServiceBus.ObjectBuilder.CastleWindsor25\bin\Debug\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\SharedLibs\log4net.dll</HintPath>
+      <HintPath>..\..\SharedLibs\log4net.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus">
       <HintPath>..\SharedLibs\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\SharedLibs\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\SharedLibs\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

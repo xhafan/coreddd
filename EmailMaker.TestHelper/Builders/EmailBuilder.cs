@@ -1,5 +1,3 @@
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using Core.TestHelper.Extensions;
 using Core.Utilities.Extensions;
 using EmailMaker.Domain.Emails;
@@ -16,7 +14,7 @@ namespace EmailMaker.TestHelper.Builders
         private int _id;
         private EmailTemplate _emailTemplate;
         private EmailState _state = EmailState.Draft;
-        private readonly Iesi.Collections.Generic.ISet<Recipient> _recipients = new HashedSet<Recipient>();
+        private readonly ISet<Recipient> _recipients = new HashedSet<Recipient>();
 
         private int NextPartId
         {

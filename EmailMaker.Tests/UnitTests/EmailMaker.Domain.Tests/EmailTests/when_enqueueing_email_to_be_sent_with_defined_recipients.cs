@@ -3,14 +3,16 @@ using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Rhino.Mocks;
+using Shouldly;
 
 namespace EmailMaker.Domain.Tests.EmailTests
 {
     [TestFixture]
     public class when_enqueueing_email_to_be_sent_with_defined_recipients
     {
-        [Test]
-        [ExpectedException(typeof(CoreException), ExpectedMessage = "recipients must be empty")]
+        private CoreException _exception;
+
+        [SetUp]
         public void Context()
         {
             var template = EmailTemplateBuilder.New.Build();
@@ -21,7 +23,14 @@ namespace EmailMaker.Domain.Tests.EmailTests
                 .WithState(state)
                 .WithRecipient("email", "name")
                 .Build();
-            email.EnqueueEmailToBeSent(null, null, null);
+
+            _exception = Assert.Throws<CoreException>(() => email.EnqueueEmailToBeSent(null, null, null));
+        }
+
+        [Test]
+        public void correct_exception_is_thrown()
+        {
+            _exception.Message.ShouldBe("recipients must be empty");
         }
     }
 }

@@ -1,7 +1,12 @@
 import Castle.Core from Castle.Windsor
+import Core.Domain
+import Core.Domain.Persistence
 import Core.Queries
+import EmailMaker.Domain.Services
 
 component IQueryExecutor, QueryExecutor
+component IRepository, NHRepository : @lifestyle=LifestyleType.Transient
+component IEmailHtmlBuilder, EmailHtmlBuilder
 
 # Query handlers
 for type in AllTypes("EmailMaker.Queries") \
