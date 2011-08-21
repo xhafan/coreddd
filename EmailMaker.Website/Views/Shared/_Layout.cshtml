@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using EmailMaker.Controllers
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -12,6 +13,15 @@
 </head>
 
 <body>
-    @RenderBody()
+    <div id="page">
+        <ul>
+            <li><a href="@(Html.UrlFromControllerMethod<TemplateController>(a => a.Create()))">Create template</a></li>
+            <li><a href="@(Html.UrlFromControllerMethod<TemplateController>(a => a.Index()))">Manage templates</a></li>
+            <li><a href="#">Send email</a></li>
+        </ul>
+        <div>
+            @RenderBody()
+        </div>
+    </div>    
 </body>
 </html>

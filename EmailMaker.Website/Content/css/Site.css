@@ -67,6 +67,14 @@ textarea
     display: none;
 }
 
+/* custom css */
+
+#page {
+  margin-left:auto;
+  margin-right:auto;
+  width:960px;
+}
+
 .htmlBlock label {
     display: block;
     font-weight: bold;
@@ -80,4 +88,5 @@ textarea
 .htmlBlock button {
     display: block;
 }
+
 
