@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F7AB4FED-6A46-4C1B-A4A4-5BF591EE3530}</ProjectGuid>
+    <ProjectGuid>{8460FCB3-78CA-466F-9472-D647C938F0B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailMaker.Service.Tests</RootNamespace>
-    <AssemblyName>EmailMaker.Service.Tests</AssemblyName>
+    <RootNamespace>EmailMaker.Domain.Services.Tests</RootNamespace>
+    <AssemblyName>EmailMaker.Domain.Services.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,18 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\..\IntegrationTests\EmailMaker.IntegrationTests\bin\Debug\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus">
-      <HintPath>..\..\..\SharedLibs\NServiceBus.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Mocks">
-      <HintPath>..\..\..\SharedLibs\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="Shouldly">
       <HintPath>..\..\..\SharedLibs\Shouldly.dll</HintPath>
@@ -56,22 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="when_handling_email_enqueued_to_be_sent_event_message.cs" />
+    <Compile Include="when_building_email_html.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="when_handling_send_email_for_email_recipient_message.cs" />
+    <Compile Include="when_building_email_html_with_unknown_email_part.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\Core.Domain\Core.Domain.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>Core.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\Core.Queries\Core.Queries.csproj">
-      <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
-      <Name>Core.Queries</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\Core.Tests\Core.TestHelper\Core.TestHelper.csproj">
-      <Project>{63E6B983-C183-4180-8FE3-B75FC33BFC85}</Project>
-      <Name>Core.TestHelper</Name>
+    <ProjectReference Include="..\..\..\Core\Core.Utilities\Core.Utilities.csproj">
+      <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
+      <Name>Core.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Domain.Services\EmailMaker.Domain.Services.csproj">
       <Project>{C45093A6-6D35-424D-BFC5-286D996B65F6}</Project>
@@ -81,21 +67,9 @@
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
       <Name>EmailMaker.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.Messages\EmailMaker.Messages.csproj">
-      <Project>{5FF5C804-51CA-4D7F-81F5-DEE992EA018C}</Project>
-      <Name>EmailMaker.Messages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.Queries\EmailMaker.Queries.csproj">
-      <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
-      <Name>EmailMaker.Queries</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.Service\EmailMaker.Service.csproj">
-      <Project>{3B63F0F4-1E42-4139-A0A9-1C8B3FED61FF}</Project>
-      <Name>EmailMaker.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.TestHelper\EmailMaker.TestHelper.csproj">
-      <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>
-      <Name>EmailMaker.TestHelper</Name>
+    <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
+      <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
+      <Name>EmailMaker.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
