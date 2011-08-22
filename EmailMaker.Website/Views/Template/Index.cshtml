@@ -8,7 +8,7 @@
 
 <h2>Manage templates</h2>
 <p>
-    <a href="@(Html.UrlFromControllerMethod<TemplateController>(a => a.Create()))">Create template</a>
+    <a href="@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(a => a.Create()))">Create template</a>
 </p>
 <table>
     <tr>
@@ -19,7 +19,7 @@
     {
         <tr>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.EmailTemplateId }) 
+                <a href="@(Html.BuildUrlFromExpression<TemplateController>(c => c.Edit(item.EmailTemplateId)))">Edit</a>
             </td>
             <td>
                 @item.Name

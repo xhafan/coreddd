@@ -14,7 +14,7 @@
         editVariablesModel = {
             Email: ko.observable(@Html.Raw(Html.ToJson(Model.Email))),
             updateVariables: function() {
-                $.postJson("@(Html.UrlFromControllerMethod<EmailController>(c => c.UpdateVariables(null)))", {
+                $.postJson("@(Html.BuildUrlFromExpressionWithoutParameters<EmailController>(c => c.UpdateVariables(null)))", {
                     Email: editVariablesModel.Email()
                 }, function() {
                     reloadIframe("emailHtml");
@@ -32,7 +32,7 @@
     </table>
     <button data-bind="click: updateVariables">Next</button>
 </div>
-<iframe id="emailHtml" src="@(Html.UrlFromControllerMethod<EmailController>(c => c.GetHtml(default(int))))/@(Model.Email.EmailId)" width="900" height="800">
+<iframe id="emailHtml" src="@(Html.BuildUrlFromExpressionWithoutParameters<EmailController>(c => c.GetHtml(default(int))))/@(Model.Email.EmailId)" width="900" height="800">
 </iframe>
 
 <script id="EmailKoTemplate" type="text/html">

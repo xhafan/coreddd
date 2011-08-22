@@ -14,7 +14,7 @@
         editTemplateModel = {
             emailTemplate: ko.observable(@Html.Raw(Html.ToJson(Model.EmailTemplate))),
             saveTemplate: function() {
-                $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.Save(null)))", {
+                $.postJson("@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(c => c.Save(null)))", {
                     EmailTemplate: editTemplateModel.emailTemplate()
                 }, function() {
                     reloadIframe("templateHtml");
@@ -23,7 +23,7 @@
             createVariable: function() {
                 var htmlBlockTextArea = document.getElementById("partId_" + this.PartId);
                 var textSelectionInfo = getTextSelectionIndexesFromTextArea(htmlBlockTextArea);
-                $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.CreateVariable(null)))", { 
+                $.postJson("@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(c => c.CreateVariable(null)))", { 
                     HtmlTemplatePartId: this.PartId, 
                     HtmlStartIndex: textSelectionInfo.startIndex,
                     Length: textSelectionInfo.endIndex - textSelectionInfo.startIndex,
@@ -31,12 +31,12 @@
                 }, editTemplateModel.reloadEmailTemplate);
             },
             reloadEmailTemplate: function() {
-                $.post("@(Html.UrlFromControllerMethod<TemplateController>(c => c.GetEmailTemplate(default(int))))", { id: editTemplateModel.emailTemplate().EmailTemplateId }, function(data) {
+                $.post("@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(c => c.GetEmailTemplate(default(int))))", { id: editTemplateModel.emailTemplate().EmailTemplateId }, function(data) {
                     editTemplateModel.emailTemplate(data);
                 });            
             },
             deleteVariable: function() {
-                $.postJson("@(Html.UrlFromControllerMethod<TemplateController>(c => c.DeleteVariable(null)))", { 
+                $.postJson("@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(c => c.DeleteVariable(null)))", { 
                     VariablePartId: this.PartId, 
                     EmailTemplate: editTemplateModel.emailTemplate()
                 }, editTemplateModel.reloadEmailTemplate);
@@ -50,7 +50,7 @@
 
 <div id="editEmailTemplate">
     <div data-bind="template: { name: 'emailTemplateKoTemplate', data: emailTemplate() }"></div>
-    <iframe id="templateHtml" src="@(Html.UrlFromControllerMethod<TemplateController>(c => c.GetHtml(default(int))))/@(Model.EmailTemplate.EmailTemplateId)" width="900" height="800">
+    <iframe id="templateHtml" src="@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(c => c.GetHtml(default(int))))/@(Model.EmailTemplate.EmailTemplateId)" width="900" height="800">
     </iframe>
 
     <script id="emailTemplateKoTemplate" type="text/html">
