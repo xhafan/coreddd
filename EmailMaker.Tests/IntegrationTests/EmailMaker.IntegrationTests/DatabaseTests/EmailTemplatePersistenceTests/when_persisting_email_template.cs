@@ -11,10 +11,11 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistenceTest
     {
         private EmailTemplate _emailTemplate;
         private EmailTemplate _retrievedEmailTemplate;
+        private string _templateName = "template name";
 
         public override void PersistenceContext()
         {
-            _emailTemplate = new EmailTemplate("html");
+            _emailTemplate = new EmailTemplate("html", _templateName);
             Save(_emailTemplate);
         }
 
@@ -35,7 +36,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistenceTest
                 htmlRetrievedPart.Position.ShouldBe(htmlPart.Position);
                 htmlRetrievedPart.Html.ShouldBe(htmlPart.Html);
             }
-
+            _retrievedEmailTemplate.Name.ShouldBe(_templateName);
         }
     }
 }

@@ -18,12 +18,7 @@ namespace EmailMaker.Domain.NHibernateMappings
                 .AsList(a => a.Column("Position"))
                 .Cascade.AllDeleteOrphan();
 
-            HasMany(x => x.Names)
-                .Table("EmailTemplateForCulture")
-                .KeyColumn("EmailTemplateId")
-                .Element("Name")
-                .AsMap<CultureInfo>("Culture")
-                .Cascade.AllDeleteOrphan();
+            Map(x => x.Name);
         }
     }
 }

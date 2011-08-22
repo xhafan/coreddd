@@ -19,7 +19,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
 
         public override void PersistenceContext()
         {
-            _emailTemplate = new EmailTemplate("html");
+            _emailTemplate = new EmailTemplate("html", "name");
             var anotherEmailTemplate = new EmailTemplate("another html");
             Save(_emailTemplate, anotherEmailTemplate);
         }
@@ -36,6 +36,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
             _result.Count().ShouldBe(1);
             var retrievedEmailTemplateDTO = _result.First();
             retrievedEmailTemplateDTO.EmailTemplateId.ShouldBe(_emailTemplate.Id);
+            retrievedEmailTemplateDTO.Name.ShouldBe(_emailTemplate.Name);
         }
     }
 }

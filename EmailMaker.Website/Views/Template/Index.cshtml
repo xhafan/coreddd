@@ -1,25 +1,20 @@
-﻿@model EmailMaker.Controllers.ViewModels.EmailTemplateModel
-@using EmailMaker.Web;
-@using EmailMaker.Controllers;
-@using EmailMaker.DTO;
+﻿@using EmailMaker.Controllers
+@model EmailMaker.Controllers.ViewModels.EmailTemplateModel
 
-<!DOCTYPE html>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<html>
-<head>
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "New")
-    </p>
-    <table>
-        <tr>
-            <th></th>
-            <th>Template Name</th>
-            <th>Locale</th>
-        </tr>
-    
+<h2>Manage templates</h2>
+<p>
+    <a href="@(Html.UrlFromControllerMethod<TemplateController>(a => a.Create()))">Create template</a>
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>Template Name</th>
+    </tr>  
     @foreach (var item in Model.EmailTemplate)
     {
         <tr>
@@ -27,15 +22,9 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.EmailTemplateId }) 
             </td>
             <td>
-               @item.Name
+                @item.Name
             </td>
-             <td>
-               @item.Culture.TwoLetterISOLanguageName
-            </td>
-        </tr>
-        
-    }
-    
-    </table>
-</body>
-</html>
+        </tr>        
+    }   
+</table>
+

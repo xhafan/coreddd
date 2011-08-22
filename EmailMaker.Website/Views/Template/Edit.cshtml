@@ -48,36 +48,43 @@
 
 <h2>Edit</h2>
 
-<div id="editEmailTemplate" data-bind="template: { name: 'emailTemplateKoTemplate', foreach: emailTemplate().Parts }">
-    <button data-bind="click: saveTemplate">Save</button>
-</div>
-<iframe id="templateHtml" src="@(Html.UrlFromControllerMethod<TemplateController>(c => c.GetHtml(default(int))))/@(Model.EmailTemplate.EmailTemplateId)" width="900" height="800">
-</iframe>
+<div id="editEmailTemplate">
+    <div data-bind="template: { name: 'emailTemplateKoTemplate', data: emailTemplate() }"></div>
+    <iframe id="templateHtml" src="@(Html.UrlFromControllerMethod<TemplateController>(c => c.GetHtml(default(int))))/@(Model.EmailTemplate.EmailTemplateId)" width="900" height="800">
+    </iframe>
 
-<script id="emailTemplateKoTemplate" type="text/html">
-    {{if PartType == @((int)PartType.Html)}} 
-        <fieldset class="htmlBlock">
-            <legend>Html block</legend>
-            <textarea data-bind="value: Html" id="partId_${PartId}"></textarea>
-            <button data-bind="click: editTemplateModel.createVariable">Create variable</button>
-        </fieldset>
-    {{/if}}
-    {{if PartType == @((int)PartType.Variable)}} 
-        <fieldset class="variable">
-            <legend>Variable</legend>
-            <table>
-                <tr>
-                    <td>Name</td>
-                    <td><input type="text" /></td>
-                </tr>
-                <tr>
-                    <td>Default value</td>
-                    <td><input type="text" data-bind="value: VariableValue" /></td>
-                </tr>
-            </table>
-            <button data-bind="click: editTemplateModel.deleteVariable">Delete variable</button>
-        </fieldset>
-    {{/if}}
-</script>
+    <script id="emailTemplateKoTemplate" type="text/html">
+        Template name: <input type="text" data-bind="value: Name" />
+        {{each(i, p) Parts}}
+            <div data-bind="template: { name: 'emailPartTemplate', data: p }"></div>
+        {{/each}}
+        <button data-bind="click: editTemplateModel.saveTemplate">Save</button>
+    </script>
+    <script id="emailPartTemplate" type="text/html">
+        {{if PartType == @((int)PartType.Html)}} 
+            <fieldset class="htmlBlock">
+                <legend>Html block</legend>
+                <textarea data-bind="value: Html" id="partId_${PartId}"></textarea>
+                <button data-bind="click: editTemplateModel.createVariable">Create variable</button>
+            </fieldset>
+        {{/if}}
+        {{if PartType == @((int)PartType.Variable)}} 
+            <fieldset class="variable">
+                <legend>Variable</legend>
+                <table>
+                    <tr>
+                        <td>Name</td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td>Default value</td>
+                        <td><input type="text" data-bind="value: VariableValue" /></td>
+                    </tr>
+                </table>
+                <button data-bind="click: editTemplateModel.deleteVariable">Delete variable</button>
+            </fieldset>
+        {{/if}}
+    </script>
+</div>
 
 

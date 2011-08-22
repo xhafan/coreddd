@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\when_rendering_index_for_template_list.cs" />
-    <Compile Include="Templates\when_rendering_new_template.cs" />
     <Compile Include="Templates\when_rendering_template_index.cs" />
     <Compile Include="Templates\when_creating_a_variable.cs" />
   </ItemGroup>

@@ -13,6 +13,7 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
     {
         private EmailTemplate _template;
         private int _templateId;
+        private string _templateName = "template name";
 
         [SetUp]
         public void Context()
@@ -22,7 +23,7 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
                 .WithId(_templateId)
                 .WithInitialHtml("12345")
                 .WithVariable(1, 1)
-                .WithVariable(1, 1)                
+                .WithVariable(1, 1)
                 .Build();
             var emailTemplateDTO = new EmailTemplateDTO
                                        {
@@ -47,7 +48,8 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
                                                                    PartType = PartType.Html,
                                                                    Html = "C"
                                                                },
-                                                       }                                                       
+                                                       },
+                                                       Name = _templateName
                                        };
             _template.Update(emailTemplateDTO);
         }
@@ -60,6 +62,7 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
             (_template.Parts.ElementAt(2) as HtmlEmailTemplatePart).Html.ShouldBe("3");
             (_template.Parts.ElementAt(3) as VariableEmailTemplatePart).Value.ShouldBe("B");
             (_template.Parts.ElementAt(4) as HtmlEmailTemplatePart).Html.ShouldBe("C");
+            _template.Name.ShouldBe(_templateName);
         }
     }
 }

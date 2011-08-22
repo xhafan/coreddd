@@ -5,6 +5,7 @@ using NHibernate;
 
 namespace EmailMaker.Queries.Handlers
 {
+    // todo test is missing
     public class GetAllEmailTemplateQuery : BaseNHibernateCriteriaQueryMessageHandler<GetAllEmailTemplateQueryMessage>
     {
         public override ICriteria GetCriteria<TResult>(GetAllEmailTemplateQueryMessage message)

@@ -14,7 +14,7 @@ namespace EmailMaker.Domain.EmailTemplates
     {
         private readonly IList<EmailTemplatePart> _parts;
 
-        public virtual IDictionary<CultureInfo, string> Names { get; set; }
+        public virtual string Name { get; set; }
         
         public virtual IEnumerable<EmailTemplatePart> Parts
         {
@@ -31,9 +31,9 @@ namespace EmailMaker.Domain.EmailTemplates
             _parts = new List<EmailTemplatePart> { new HtmlEmailTemplatePart(html) };
         }
 
-        public EmailTemplate(IDictionary<CultureInfo, string> names)
+        public EmailTemplate(string html, string name) : this(html)
         {
-            Names = names;
+            Name = name;
         }
 
         private void _SetHtml(int htmlTemplatePartId, string html)
@@ -111,6 +111,7 @@ namespace EmailMaker.Domain.EmailTemplates
                     throw new EmailMakerException("Unknown email template part type: " + part.PartType);
                 }
             });
+            Name = emailTemplateDTO.Name;
         }
     }
 }

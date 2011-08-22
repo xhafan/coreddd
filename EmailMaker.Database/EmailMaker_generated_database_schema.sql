@@ -31,10 +31,6 @@ alter table [EmailRecipient]  drop constraint FK9E30BF7BF2198807
 alter table [EmailRecipient]  drop constraint FK9E30BF7BBB7A8FCD
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK6167A38FC3BA1A19]') AND parent_object_id = OBJECT_ID('EmailTemplateForCulture'))
-alter table EmailTemplateForCulture  drop constraint FK6167A38FC3BA1A19
-
-
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC644F053C3BA1A19]') AND parent_object_id = OBJECT_ID('[EmailTemplatePart]'))
 alter table [EmailTemplatePart]  drop constraint FKC644F053C3BA1A19
 
@@ -64,8 +60,6 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailState]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailState]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplate]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplate]
-
-    if exists (select * from dbo.sysobjects where id = object_id(N'EmailTemplateForCulture') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table EmailTemplateForCulture
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplatePart]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplatePart]
 
@@ -126,14 +120,8 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
 
     create table [EmailTemplate] (
         Id INT not null,
-       primary key (Id)
-    )
-
-    create table EmailTemplateForCulture (
-        EmailTemplateId INT not null,
        Name NVARCHAR(255) null,
-       Culture NVARCHAR(5) not null,
-       primary key (EmailTemplateId, Culture)
+       primary key (Id)
     )
 
     create table [EmailTemplatePart] (
@@ -208,11 +196,6 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
         add constraint FK9E30BF7BBB7A8FCD 
         foreign key (EmailId) 
         references [Email]
-
-    alter table EmailTemplateForCulture 
-        add constraint FK6167A38FC3BA1A19 
-        foreign key (EmailTemplateId) 
-        references [EmailTemplate]
 
     alter table [EmailTemplatePart] 
         add constraint FKC644F053C3BA1A19 

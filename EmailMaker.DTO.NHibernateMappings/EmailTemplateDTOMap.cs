@@ -9,6 +9,7 @@ namespace EmailMaker.DTO.NHibernateMappings
         {
             Table("vw_EmailTemplate");
             Id(x => x.EmailTemplateId);
+            Map(x => x.Name);
         }
     }
 }
