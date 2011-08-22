@@ -7,6 +7,7 @@ using Core.Utilities.Extensions;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.DTO;
+using EmailMaker.DTO.EmailTemplates;
 using EmailMaker.DTO.Emails;
 using EmailMaker.Queries.Messages;
 using EmailMaker.Utilities;
@@ -25,6 +26,13 @@ namespace EmailMaker.Controllers
             _commandExecutor = commandExecutor;
         }
 
+        public ViewResult Index()
+        {
+            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDTO>(new GetAllEmailTemplateQueryMessage());
+            var model = new TemplateIndexModel { EmailTemplate = emailTemplates };
+            return View(model);
+        }
+        
         // todo: make httppost
         public ActionResult Create(int id)
         {

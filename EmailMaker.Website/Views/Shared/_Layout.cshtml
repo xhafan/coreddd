@@ -13,14 +13,13 @@
 </head>
 
 <body>
-    <div id="page">
-        <ul>
-            <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(a => a.Index()))">Manage templates</a></li>
-            <li><a href="#">Send email</a></li>
-        </ul>
-        <div>
-            @RenderBody()
-        </div>
-    </div>    
+    <h1>EmailMaker - email marketing system</h1>
+    <ul>
+        <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(a => a.Index()))">Manage templates</a></li>
+        <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<EmailController>(a => a.Index()))">Send email</a></li>
+    </ul>
+    <div>
+        @RenderBody()
+    </div>
 </body>
 </html>

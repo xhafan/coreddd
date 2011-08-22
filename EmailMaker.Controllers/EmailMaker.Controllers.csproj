@@ -53,8 +53,9 @@
     <Compile Include="TemplateController.cs" />
     <Compile Include="ViewModels\EmailEditRecipientsModel.cs" />
     <Compile Include="ViewModels\EmailEditVariablesModel.cs" />
+    <Compile Include="ViewModels\EmailIndexModel.cs" />
     <Compile Include="ViewModels\EmailTemplateEditModel.cs" />
-    <Compile Include="ViewModels\EmailTemplateModel.cs" />
+    <Compile Include="ViewModels\TemplateIndexModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.Commands\Core.Commands.csproj">

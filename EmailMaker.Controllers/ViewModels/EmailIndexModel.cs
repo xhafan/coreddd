@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+using System.Collections.Generic;
 using EmailMaker.DTO.EmailTemplates;
 
 namespace EmailMaker.Controllers.ViewModels
 {
-    public class EmailTemplateModel
+    public class EmailIndexModel
     {
         public IEnumerable<EmailTemplateDetailsDTO> EmailTemplate { get; set; }
     }

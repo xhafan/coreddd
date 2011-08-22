@@ -17,7 +17,8 @@
                 $.postJson("@(Html.BuildUrlFromExpressionWithoutParameters<EmailController>(c => c.UpdateVariables(null)))", {
                     Email: editVariablesModel.Email()
                 }, function() {
-                    reloadIframe("emailHtml");
+                    window.location.href = "@(Html.BuildUrlFromExpression<EmailController>(c => c.EditRecipients(Model.Email.EmailId)))";
+                    //reloadIframe("emailHtml");
                 });
             }
         };

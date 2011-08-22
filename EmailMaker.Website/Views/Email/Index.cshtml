@@ -1,0 +1,24 @@
+﻿@model TemplateIndexModel
+@using EmailMaker.Controllers
+@using EmailMaker.Controllers.ViewModels
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Send email</h2>
+
+<table>
+    <tr>
+        <th>Template Name</th>
+    </tr>  
+    @foreach (var item in Model.EmailTemplate)
+    {
+        <tr>
+            <td>
+                <a href="@(Html.BuildUrlFromExpression<EmailController>(c => c.Create(item.EmailTemplateId)))">@item.Name</a>
+            </td>
+        </tr>        
+    }   
+</table>

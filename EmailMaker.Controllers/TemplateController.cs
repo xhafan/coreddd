@@ -27,10 +27,8 @@ namespace EmailMaker.Controllers
 
         public ActionResult Index()
         {
-            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDTO>(new GetAllEmailTemplateQueryMessage());
-           
-            var model = new EmailTemplateModel { EmailTemplate = emailTemplates };
-
+            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDTO>(new GetAllEmailTemplateQueryMessage());           
+            var model = new TemplateIndexModel { EmailTemplate = emailTemplates };
             return View(model);
         }
 
