@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Core.Domain;
+﻿using Core.Domain;
 
 namespace EmailMaker.Domain.Users
 {
     public class User : Identity<User>, IAggregateRootEntity
     {
-        public virtual string FirstName { get; set; }
-        public virtual string LastName { get; set; }
-        public virtual string EmailAddress { get; set; }
-        public virtual string Password { get; set; }
+        public virtual string FirstName { get; private set; }
+        public virtual string LastName { get; private set; }
+        public virtual string EmailAddress { get; private set; }
+        public virtual string Password { get; private set; }
 
         protected User(){}
 

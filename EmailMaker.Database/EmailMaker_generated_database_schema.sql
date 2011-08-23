@@ -69,6 +69,8 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Recipient]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Recipient]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'[User]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [User]
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[VariableType]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VariableType]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'hibernate_unique_key') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table hibernate_unique_key
@@ -151,23 +153,20 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
        primary key (Id)
     )
 
+    create table [User] (
+        Id INT not null,
+       FirstName NVARCHAR(255) null,
+       LastName NVARCHAR(255) null,
+       EmailAddress NVARCHAR(255) null,
+       Password NVARCHAR(255) null,
+       primary key (Id)
+    )
+
     create table [VariableType] (
         Id INT not null,
        Name NVARCHAR(255) null,
        primary key (Id)
     )
-
-	CREATE TABLE [User](
-	[Id] [int] NOT NULL,
-	[FirstName] [nvarchar](255) NULL,
-	[LastName] [nvarchar](255) NULL,
-	[Password] [nvarchar](255) NULL,
-	[EmailAddress] [nvarchar](255) NULL,
- CONSTRAINT [PK__User__475C8B58] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
 
     alter table [Email] 
         add constraint FK4239B252C3BA1A19 
