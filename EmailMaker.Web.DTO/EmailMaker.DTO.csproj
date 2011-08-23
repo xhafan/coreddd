@@ -47,6 +47,7 @@
     <Compile Include="EmailTemplates\EmailTemplatePartDTO.cs" />
     <Compile Include="PartType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\UserDTO.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

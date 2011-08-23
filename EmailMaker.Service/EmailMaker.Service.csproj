@@ -35,7 +35,7 @@
       <HintPath>..\Core\Core.Tests\Core.TestHelper\bin\Debug\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\NServiceBus.ObjectBuilder.CastleWindsor25\bin\Debug\Castle.Windsor.dll</HintPath>
+      <HintPath>..\SharedLibs\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\EmailMaker.Tests\IntegrationTests\EmailMaker.IntegrationTests\bin\Debug\Iesi.Collections.dll</HintPath>

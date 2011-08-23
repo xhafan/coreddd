@@ -64,6 +64,7 @@
     <Compile Include="Controllers\BaseControllerTest.cs" />
     <Compile Include="DomainEvents\BaseDomainEventTest.cs" />
     <Compile Include="Extensions\BusExtensions.cs" />
+    <Compile Include="Extensions\CultureHelper.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Persistence\BasePersistenceTest.cs" />
     <Compile Include="Persistence\BaseSimplePersistenceTest.cs" />

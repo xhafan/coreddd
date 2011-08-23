@@ -157,6 +157,18 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
        primary key (Id)
     )
 
+	CREATE TABLE [User](
+	[Id] [int] NOT NULL,
+	[FirstName] [nvarchar](255) NULL,
+	[LastName] [nvarchar](255) NULL,
+	[Password] [nvarchar](255) NULL,
+	[EmailAddress] [nvarchar](255) NULL,
+ CONSTRAINT [PK__User__475C8B58] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
     alter table [Email] 
         add constraint FK4239B252C3BA1A19 
         foreign key (EmailTemplateId) 

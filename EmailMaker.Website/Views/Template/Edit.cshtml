@@ -13,9 +13,14 @@
     $(document).ready(function () {
         editTemplateModel = {
             emailTemplate: ko.observable(@Html.Raw(Html.ToJson(Model.EmailTemplate))),
+            emailTemplateName: ko.observable(""),
+            selectedEmailTemplateCulture: ko.observable(""),
+            emailTemplateCulture : ["en", "ja", "cz"],
             saveTemplate: function() {
                 $.postJson("@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(c => c.Save(null)))", {
-                    EmailTemplate: editTemplateModel.emailTemplate()
+                    EmailTemplate: editTemplateModel.emailTemplate(),
+                    Name : editTemplateModel.emailTemplateName(),
+                    Culture : editTemplateModel.selectedEmailTemplateCulture()
                 }, function() {
                     reloadIframe("templateHtml");
                 });

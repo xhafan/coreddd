@@ -5,6 +5,7 @@ using Core.Commands;
 using Core.Queries;
 using Core.Utilities.Extensions;
 using EmailMaker.Commands.Messages;
+using EmailMaker.Controllers.BaseController;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.DTO;
 using EmailMaker.DTO.EmailTemplates;
@@ -15,7 +16,7 @@ using MvcContrib;
 
 namespace EmailMaker.Controllers
 {
-    public class EmailController : Controller
+    public class EmailController : AuthenticatedController
     {
         private readonly ICommandExecutor _commandExecutor;
         private readonly IQueryExecutor _queryExecutor;

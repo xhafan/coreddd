@@ -60,6 +60,7 @@
     <Compile Include="RecipientMap.cs" />
     <Compile Include="SentEmailStateMap.cs" />
     <Compile Include="ToBeSentEmailStateMap.cs" />
+    <Compile Include="UserMap.cs" />
     <Compile Include="VariableEmailPartMap.cs" />
     <Compile Include="VariableEmailTemplatePartMap.cs" />
     <Compile Include="VariableTypeMap.cs" />

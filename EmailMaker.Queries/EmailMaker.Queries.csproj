@@ -49,6 +49,8 @@
     <Compile Include="Handlers\GetEmailTemplatePartsQuery.cs" />
     <Compile Include="Handlers\GetEmailVariablePartsQuery.cs" />
     <Compile Include="Handlers\GetExistingRecipientsQuery.cs" />
+    <Compile Include="Handlers\GetUserDetailsByEmailAddressQuery.cs" />
+    <Compile Include="Messages\GetUserDetailsByEmailAddressMessage.cs" />
     <Compile Include="Messages\GetAllEmailTemplateQueryMessage.cs" />
     <Compile Include="Messages\GetEmailPartsQueryMessage.cs" />
     <Compile Include="Messages\GetEmailQueryMessage.cs" />

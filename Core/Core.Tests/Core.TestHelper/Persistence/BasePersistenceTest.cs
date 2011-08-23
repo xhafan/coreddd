@@ -40,6 +40,7 @@ namespace Core.TestHelper.Persistence
                 Session.Delete("from Email");
                 Session.Delete("from EmailTemplate");
                 Session.Delete("from Recipient");
+                Session.Delete("from User");
                 tx.Commit();
             }
         }

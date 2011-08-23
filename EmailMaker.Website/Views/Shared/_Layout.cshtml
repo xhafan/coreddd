@@ -11,15 +11,32 @@
     <script src="@Url.Content("~/Content/js/emailmaker.jquery.extensions.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Content/js/emailmaker.utilities.js")" type="text/javascript"></script>
 </head>
-
 <body>
-    <h1>EmailMaker - email marketing system</h1>
-    <ul>
-        <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(a => a.Index()))">Manage templates</a></li>
-        <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<EmailController>(a => a.Index()))">Send email</a></li>
-    </ul>
-    <div>
-        @RenderBody()
+    <div class="page">
+        <header>
+            <div id="title">
+                 <h1>EmailMaker - email marketing system</h1>
+            </div>
+            <div id="logindisplay">
+                @Html.Partial("_LogOnPartial")
+            </div> 
+            <nav>
+                <ul id="menu">
+                    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<HomeController>(a => a.Index()))">Home</a></li>
+                    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<HomeController>(a => a.About()))">About</a></li>
+                    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(a => a.Index()))">Manage templates</a></li>
+                    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<EmailController>(a => a.Index()))">Send email</a></li>
+                    
+                </ul>
+                <br clear="all" />
+            </nav>
+           
+        </header>
+        <section id="main">
+            @RenderBody()
+        </section>
+        <footer>
+        </footer>
     </div>
 </body>
 </html>
