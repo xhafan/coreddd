@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Core.TestHelper.Persistence;
 using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 
@@ -17,7 +18,9 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistenceTest
         [Test]
         public void test_multiple_variable_creation_and_deletion_persistence()
         {
-            _emailTemplate = new EmailTemplate("12345");
+            var user = UserBuilder.New.Build();
+            Save(user);
+            _emailTemplate = new EmailTemplate("12345", null, user.Id);
             Save(_emailTemplate);
             Session.Clear();
             _retrievedEmailTemplate = Get<EmailTemplate>(_emailTemplate.Id);

@@ -108,7 +108,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\Copy of Site.css" />
     <Content Include="Content\js\emailmaker.jquery.extensions.js" />
     <Content Include="Content\js\emailmaker.utilities.js" />
     <Content Include="Content\js\jquery.tmpl.js" />

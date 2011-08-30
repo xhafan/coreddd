@@ -123,6 +123,7 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
     create table [EmailTemplate] (
         Id INT not null,
        Name NVARCHAR(255) null,
+       UserId INT null,
        primary key (Id)
     )
 

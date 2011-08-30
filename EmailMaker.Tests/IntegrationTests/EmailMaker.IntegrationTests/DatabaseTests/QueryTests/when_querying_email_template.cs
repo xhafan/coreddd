@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Core.TestHelper.Persistence;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.DTO.EmailTemplates;
 using EmailMaker.Queries.Handlers;
 using EmailMaker.Queries.Messages;
+using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 
@@ -19,8 +19,10 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
 
         public override void PersistenceContext()
         {
-            _emailTemplate = new EmailTemplate("html", "name");
-            var anotherEmailTemplate = new EmailTemplate("another html");
+            var user = UserBuilder.New.Build();
+            Save(user);
+            _emailTemplate = new EmailTemplate("html", "name", user.Id);
+            var anotherEmailTemplate = new EmailTemplate("another html", null, user.Id);
             Save(_emailTemplate, anotherEmailTemplate);
         }
 

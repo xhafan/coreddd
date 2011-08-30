@@ -5,6 +5,7 @@ using Core.TestHelper.Persistence;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
+using EmailMaker.TestHelper.Builders;
 using Iesi.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
@@ -26,7 +27,9 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
 
         public override void PersistenceContext()
         {
-            _emailTemplate = new EmailTemplate("123");
+            var user = UserBuilder.New.Build();
+            Save(user);
+            _emailTemplate = new EmailTemplate("123", null, user.Id);
             Save(_emailTemplate);
 
             _recipientOne = new Recipient(_emailOne, "name one");

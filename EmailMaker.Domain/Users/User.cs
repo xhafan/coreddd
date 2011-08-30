@@ -2,6 +2,7 @@
 
 namespace EmailMaker.Domain.Users
 {
+    //todo: persistence test is missing
     public class User : Identity<User>, IAggregateRootEntity
     {
         public virtual string FirstName { get; private set; }

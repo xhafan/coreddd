@@ -13,6 +13,7 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
     {
         private IRepository<EmailTemplate> _emailTemplateRepository;
         private bool _eventRaised;
+        private int _userId = 123;
 
         [SetUp]
         public void Context()
@@ -21,13 +22,13 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
 
             var handler = new CreateEmailTemplateCommandHandler(_emailTemplateRepository);
             handler.CommandExecuted += (sender, args) => _eventRaised = true;
-            handler.Execute(new CreateEmailTemplateCommand());
+            handler.Execute(new CreateEmailTemplateCommand { UserId = _userId });
         }
 
         [Test]
         public void email_template_was_saved()
         {
-            _emailTemplateRepository.AssertWasCalled(a => a.Save(Arg<EmailTemplate>.Is.NotNull));
+            _emailTemplateRepository.AssertWasCalled(a => a.Save(Arg<EmailTemplate>.Matches(p => p.UserId == _userId)));
         }
 
         [Test]

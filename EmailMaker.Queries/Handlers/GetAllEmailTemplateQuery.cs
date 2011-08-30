@@ -11,6 +11,7 @@ namespace EmailMaker.Queries.Handlers
         public override ICriteria GetCriteria<TResult>(GetAllEmailTemplateQueryMessage message)
         {
             return Session.QueryOver<EmailTemplateDetailsDTO>()
+                .Where(e => e.UserId == message.UserId)
                 .UnderlyingCriteria;
         }
     }

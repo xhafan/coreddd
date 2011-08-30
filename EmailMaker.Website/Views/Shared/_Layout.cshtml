@@ -23,9 +23,9 @@
             <nav>
                 <ul id="menu">
                     <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<HomeController>(a => a.Index()))">Home</a></li>
-                    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<HomeController>(a => a.About()))">About</a></li>
-                    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(a => a.Index()))">Manage templates</a></li>
+@*                    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<HomeController>(a => a.About()))">About</a></li>*@
                     <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<EmailController>(a => a.Index()))">Send email</a></li>
+                    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(a => a.Index()))">Manage templates</a></li>
                     
                 </ul>
                 <br clear="all" />

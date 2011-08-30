@@ -1,6 +1,12 @@
+@using EmailMaker.Controllers
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Home</h2>
+<ul>
+    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<EmailController>(c => c.Index()))">Send an email</a></li>
+    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(c => c.Create()))">Create a new email template</a></li>
+    <li><a href="@(Html.BuildUrlFromExpressionWithoutParameters<TemplateController>(c => c.Index()))">Edit existing email template</a></li>
+</ul>

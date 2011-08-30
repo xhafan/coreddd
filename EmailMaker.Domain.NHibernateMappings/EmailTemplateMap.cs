@@ -19,6 +19,7 @@ namespace EmailMaker.Domain.NHibernateMappings
                 .Cascade.AllDeleteOrphan();
 
             Map(x => x.Name);
+            Map(x => x.UserId);
         }
     }
 }

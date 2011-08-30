@@ -9,11 +9,12 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
     public class when_creating_email_template
     {
         private EmailTemplate _emailTemplate;
+        private int _userId = 123;
 
         [SetUp]
         public void Context()
         {
-            _emailTemplate = new EmailTemplate();
+            _emailTemplate = new EmailTemplate(_userId);
         }
 
         [Test]
@@ -23,6 +24,7 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
             var htmlTemplatePart = (HtmlEmailTemplatePart) _emailTemplate.Parts.First();
             htmlTemplatePart.Position.ShouldBe(0);
             htmlTemplatePart.Html.ShouldBe(string.Empty);
+            _emailTemplate.UserId.ShouldBe(_userId);
         }
     }
 }

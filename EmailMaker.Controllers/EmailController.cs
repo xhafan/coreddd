@@ -21,7 +21,7 @@ namespace EmailMaker.Controllers
         private readonly ICommandExecutor _commandExecutor;
         private readonly IQueryExecutor _queryExecutor;
 
-        public EmailController(ICommandExecutor commandExecutor, IQueryExecutor queryExecutor)
+        public EmailController(ICommandExecutor commandExecutor, IQueryExecutor queryExecutor) : base(queryExecutor)
         {
             _queryExecutor = queryExecutor;
             _commandExecutor = commandExecutor;

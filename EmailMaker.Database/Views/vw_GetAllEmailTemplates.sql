@@ -3,7 +3,8 @@ CREATE view [dbo].[vw_GetAllEmailTemplates]
 as
 select 
 Id as EmailTemplateId,
-Name
+Name,
+UserId
 from EmailTemplate
 ')
 

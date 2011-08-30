@@ -1,15 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
+using Core.Queries;
 using EmailMaker.Controllers.BaseController;
 
 namespace EmailMaker.Controllers
 {
-    public class HomeController : Controller 
+    public class HomeController : AuthenticatedController 
     {
-    
+        public HomeController(IQueryExecutor queryExecutor) : base(queryExecutor)
+        {
+        }
+
         public ActionResult Index()
         {
            return View();

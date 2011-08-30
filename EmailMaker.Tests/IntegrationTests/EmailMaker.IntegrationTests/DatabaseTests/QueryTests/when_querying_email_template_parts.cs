@@ -6,6 +6,7 @@ using EmailMaker.DTO;
 using EmailMaker.DTO.EmailTemplates;
 using EmailMaker.Queries.Handlers;
 using EmailMaker.Queries.Messages;
+using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 
@@ -19,10 +20,12 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
 
         public override void PersistenceContext()
         {
-            _emailTemplate = new EmailTemplate("123");
+            var user = UserBuilder.New.Build();
+            Save(user);
+            _emailTemplate = new EmailTemplate("123", null, user.Id);
             Save(_emailTemplate);
             _emailTemplate.CreateVariable(_emailTemplate.Parts.First().Id, 1, 1);
-            var anotherEmailTemplate = new EmailTemplate("another html");
+            var anotherEmailTemplate = new EmailTemplate("another html", null, user.Id);
             Save(_emailTemplate, anotherEmailTemplate);
         }
 

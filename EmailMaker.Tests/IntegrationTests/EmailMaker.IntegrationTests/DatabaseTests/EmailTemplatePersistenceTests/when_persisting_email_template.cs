@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Core.TestHelper.Persistence;
 using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.Domain.Users;
+using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 
@@ -12,10 +14,13 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistenceTest
         private EmailTemplate _emailTemplate;
         private EmailTemplate _retrievedEmailTemplate;
         private string _templateName = "template name";
+        private User _user;
 
         public override void PersistenceContext()
         {
-            _emailTemplate = new EmailTemplate("html", _templateName);
+            _user = UserBuilder.New.Build();
+            Save(_user);
+            _emailTemplate = new EmailTemplate("html", _templateName, _user.Id);
             Save(_emailTemplate);
         }
 
@@ -37,6 +42,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistenceTest
                 htmlRetrievedPart.Html.ShouldBe(htmlPart.Html);
             }
             _retrievedEmailTemplate.Name.ShouldBe(_templateName);
+            _retrievedEmailTemplate.UserId.ShouldBe(_user.Id);
         }
     }
 }

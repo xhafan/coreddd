@@ -5,10 +5,13 @@ type create_%DBNAME%_db.sql > temp_create_%DBNAME%_db.sql
 type transaction_start.sql >> temp_create_%DBNAME%_db.sql
 type EmailMaker_generated_database_schema.sql >> temp_create_%DBNAME%_db.sql
 
+rem Tables
+powershell -Command "Get-ChildItem . -filter tables\*.sql | get-content" >> temp_create_%DBNAME%_db.sql
+
 rem Views
 powershell -Command "Get-ChildItem . -filter views\*.sql | get-content" >> temp_create_%DBNAME%_db.sql
 
-
+rem Data
 powershell -Command "Get-ChildItem . -filter data\common\*.sql | get-content" >> temp_create_%DBNAME%_db.sql
 IF (%SKIPAPPDATA%)==(YES) GOTO SKIPAPPDATA
 powershell -Command "Get-ChildItem . -filter data\app\*.sql | get-content" >> temp_create_%DBNAME%_db.sql

@@ -13,16 +13,18 @@ namespace EmailMaker.Domain.EmailTemplates
     public class EmailTemplate : Identity<EmailTemplate>, IAggregateRootEntity
     {
         private readonly IList<EmailTemplatePart> _parts;
-
-        public virtual string Name { get; set; }
-        
+        public virtual string Name { get; set; }        
         public virtual IEnumerable<EmailTemplatePart> Parts
         {
             get { return _parts; }
         }
+        public virtual int UserId { get; private set; }
 
-        public EmailTemplate()
+        protected EmailTemplate() {}
+
+        public EmailTemplate(int userId)
         {
+            UserId = userId;
             _parts = new List<EmailTemplatePart> { new HtmlEmailTemplatePart() };
         }
 
@@ -31,9 +33,10 @@ namespace EmailMaker.Domain.EmailTemplates
             _parts = new List<EmailTemplatePart> { new HtmlEmailTemplatePart(html) };
         }
 
-        public EmailTemplate(string html, string name) : this(html)
+        public EmailTemplate(string html, string name, int userId) : this(html)
         {
             Name = name;
+            UserId = userId;
         }
 
         private void _SetHtml(int htmlTemplatePartId, string html)

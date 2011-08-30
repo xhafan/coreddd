@@ -13,7 +13,7 @@ namespace EmailMaker.Domain.Tests.EmailTemplateTests
         [SetUp]
         public void Context()
         {
-            _emailTemplate = new EmailTemplate("html", _name);
+            _emailTemplate = new EmailTemplate("html", _name, 0);
         }
 
         [Test]

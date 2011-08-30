@@ -9,6 +9,7 @@ using EmailMaker.Controllers.BaseController;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.DTO;
 using EmailMaker.DTO.EmailTemplates;
+using EmailMaker.DTO.Users;
 using EmailMaker.Queries.Messages;
 using EmailMaker.Utilities;
 using MvcContrib;
@@ -20,7 +21,7 @@ namespace EmailMaker.Controllers
         private readonly ICommandExecutor _commandExecutor;
         private readonly IQueryExecutor _queryExecutor;
 
-        public TemplateController(ICommandExecutor commandExecutor, IQueryExecutor queryExecutor)
+        public TemplateController(ICommandExecutor commandExecutor, IQueryExecutor queryExecutor) : base(queryExecutor)
         {
             _queryExecutor = queryExecutor;
             _commandExecutor = commandExecutor;
@@ -28,16 +29,16 @@ namespace EmailMaker.Controllers
 
         public ActionResult Index()
         {
-            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDTO>(new GetAllEmailTemplateQueryMessage());           
+            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDTO>(new GetAllEmailTemplateQueryMessage{ UserId = UserId });           
             var model = new TemplateIndexModel { EmailTemplate = emailTemplates };
             return View(model);
         }
 
         // todo: make httppost
         public ActionResult Create()
-        {
+        {            
             var createdEmailTemplateId = default(int);
-            var command = new CreateEmailTemplateCommand();
+            var command = new CreateEmailTemplateCommand { UserId = UserId };
             _commandExecutor.CommandExecuted += (sender, args) => createdEmailTemplateId = (int) args.Args;
             _commandExecutor.Execute(command);
 

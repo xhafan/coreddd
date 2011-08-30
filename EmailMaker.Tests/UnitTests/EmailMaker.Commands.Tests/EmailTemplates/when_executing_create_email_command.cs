@@ -22,7 +22,7 @@ namespace EmailMaker.Commands.Tests.EmailTemplates
             _emailRepository = MockRepository.GenerateMock<IRepository<Email>>();
             _emailTemplateRepository = MockRepository.GenerateStub<IRepository<EmailTemplate>>();
             var emailTemplateId = 23;
-            _emailTemplateRepository.Stub(a => a.GetById(emailTemplateId)).Return(new EmailTemplate());
+            _emailTemplateRepository.Stub(a => a.GetById(emailTemplateId)).Return(new EmailTemplate(123));
 
             var handler = new CreateEmailCommandHandler(_emailRepository, _emailTemplateRepository);
             handler.CommandExecuted += (sender, args) => _eventRaised = true;
