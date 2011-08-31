@@ -29,7 +29,7 @@ namespace EmailMaker.Controllers
 
         public ViewResult Index()
         {
-            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDTO>(new GetAllEmailTemplateQueryMessage());
+            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDTO>(new GetAllEmailTemplateQueryMessage { UserId = UserId});
             var model = new TemplateIndexModel { EmailTemplate = emailTemplates };
             return View(model);
         }
@@ -59,12 +59,11 @@ namespace EmailMaker.Controllers
                                 EmailId = id,
                                 FromAddresses = new[]
                                                     {
-                                                        "xhafan@gmail.com"                                                     
+                                                        User.Identity.Name                                                  
                                                     },
                                 ToAddresses = new[]
                                                   {
-                                                      "Tomas Marny <haslik@centrum.cz>",
-                                                      "Tomas Marny <xhafan@gmail.com>"
+                                                      User.Identity.Name 
                                                   },
                                 Subject = "subject"
                             };
