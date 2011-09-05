@@ -79,6 +79,8 @@
     <Compile Include="EmailTests\when_updating_email_variables_with_invalid_part_type.cs" />
     <Compile Include="EmailTests\when_updating_email_variables_with_invalid_variable_id.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserTests\when_changing_password.cs" />
+    <Compile Include="UserTests\when_changing_password_with_incorrect_old_password.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\Core.Domain.Events\Core.Domain.Events.csproj">

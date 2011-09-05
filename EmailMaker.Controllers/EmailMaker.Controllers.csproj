@@ -39,8 +39,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml.Linq" />
@@ -56,12 +58,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EmailController.cs" />
     <Compile Include="TemplateController.cs" />
+    <Compile Include="ViewModels\AccountModels.cs" />
     <Compile Include="ViewModels\EmailEditRecipientsModel.cs" />
     <Compile Include="ViewModels\EmailEditVariablesModel.cs" />
     <Compile Include="ViewModels\EmailIndexModel.cs" />
     <Compile Include="ViewModels\EmailTemplateEditModel.cs" />
     <Compile Include="ViewModels\TemplateIndexModel.cs" />
-    <Compile Include="ViewModels\LogOnModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.Commands\Core.Commands.csproj">

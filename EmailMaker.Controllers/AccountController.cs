@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using Core.Commands;
 using Core.Queries;
+using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.DTO.Users;
-using EmailMaker.Domain.Users;
 using EmailMaker.Queries.Messages;
 
 namespace EmailMaker.Controllers
 {
     public class AccountController : Controller
     {
-
         private readonly ICommandExecutor _commandExecutor;
         private readonly IQueryExecutor _queryExecutor;
 
@@ -67,5 +63,76 @@ namespace EmailMaker.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult Register()
+        {
+            ViewBag.PasswordLength = Membership.Provider.MinRequiredPasswordLength;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Attempt to register the user
+                var command = new CreateUserCommand { EmailAddress = model.Email, Password = model.Password};
+                _commandExecutor.Execute(command);
+
+                FormsAuthentication.SetAuthCookie(model.Email, false);
+                return RedirectToAction("Index", "Home");
+            }
+
+            // If we got this far, something failed, redisplay form
+            ViewBag.PasswordLength = Membership.Provider.MinRequiredPasswordLength;
+            return View(model);
+        }
+
+        // **************************************
+        // URL: /Account/ChangePassword
+        // **************************************
+
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            ViewBag.PasswordLength = Membership.Provider.MinRequiredPasswordLength;
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // todo: remove this query
+                var message = new GetUserDetailsByEmailAddressMessage { EmailAddress = User.Identity.Name };
+                var user = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDTO>(message).First();
+
+                var command = new ChangePasswordForUserCommand
+                                  {
+                                      UserId = user.UserId,
+                                      OldPassword = model.OldPassword,
+                                      NewPassword = model.NewPassword
+                                  };
+                _commandExecutor.Execute(command);
+
+                return RedirectToAction("ChangePasswordSuccess");
+            }
+
+            // If we got this far, something failed, redisplay form
+            ViewBag.PasswordLength = Membership.Provider.MinRequiredPasswordLength;
+            return View(model);
+        }
+
+        // **************************************
+        // URL: /Account/ChangePasswordSuccess
+        // **************************************
+
+        public ActionResult ChangePasswordSuccess()
+        {
+            return View();
+        }
+
     }
 }

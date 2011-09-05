@@ -1,4 +1,5 @@
 ﻿using Core.Domain;
+using Core.Utilities;
 
 namespace EmailMaker.Domain.Users
 {
@@ -12,12 +13,19 @@ namespace EmailMaker.Domain.Users
 
         protected User(){}
 
+        // todo missing test
         public User(string firstName,string lastName,string emailAddress,string password)
         {
             FirstName = firstName;
             LastName = lastName;
             EmailAddress = emailAddress;
             Password = password;
+        }
+
+        public virtual void ChangePassword(string oldPassword, string newPassword)
+        {
+            Guard.Hope(Password == oldPassword, "Old password doesnot match");
+            Password = newPassword;
         }
     }
 }
