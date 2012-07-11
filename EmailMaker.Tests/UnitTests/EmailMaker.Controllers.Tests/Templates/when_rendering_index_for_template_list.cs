@@ -6,7 +6,7 @@ using Shouldly;
 namespace EmailMaker.Controllers.Tests.Templates
 {
     [TestFixture]
-    public class when_rendering_index_for_template_list : BaseControllerTest
+    public class when_rendering_index_for_template_list : BaseEmailMakerControllerTest
     {
         private ActionResult _result;
 

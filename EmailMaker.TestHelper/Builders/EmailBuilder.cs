@@ -60,8 +60,8 @@ namespace EmailMaker.TestHelper.Builders
         public Email Build()
         {
             var email = new Email(_emailTemplate);
-            email.SetPrivateAttribute("_id", _id);
-            email.Parts.Each(part => part.SetPrivateAttribute("_id", NextPartId));
+            email.SetPrivateProperty(x => x.Id, _id);
+            email.Parts.Each(part => part.SetPrivateProperty(x => x.Id, NextPartId));
             email.SetPrivateProperty("State", _state);
             _recipients.Each(r => email.EmailRecipients.Add(new EmailRecipient(r)));
             return email;

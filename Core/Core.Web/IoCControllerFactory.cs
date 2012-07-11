@@ -11,14 +11,14 @@ namespace Core.Web
         {
             if (controllerType == null)
             {
-                return base.GetControllerInstance(requestContext, controllerType);
+                return base.GetControllerInstance(requestContext, null);
             }
             return (IController)IoC.Resolve(controllerType);
         }
 
         public override void ReleaseController(IController controller)
         {
-            IoC.Release(controller);
+            IoC.Release(controller); // todo: call base class?
         }        
     }
 

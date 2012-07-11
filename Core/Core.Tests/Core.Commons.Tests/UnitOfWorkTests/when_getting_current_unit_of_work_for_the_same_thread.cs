@@ -6,8 +6,8 @@ namespace Core.Commons.Tests.UnitOfWorkTests
     [TestFixture]
     public class when_getting_current_unit_of_work_for_the_same_thread : base_when_getting_current_unit_of_work
     {
-        private IUnitOfWork _currentUnitOfWork;
-        private IUnitOfWork _anotherCurrentUnitOfWork;
+        private UnitOfWork _currentUnitOfWork;
+        private UnitOfWork _anotherCurrentUnitOfWork;
 
         protected override void Context()
         {

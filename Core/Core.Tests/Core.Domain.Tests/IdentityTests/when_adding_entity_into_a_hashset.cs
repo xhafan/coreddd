@@ -27,7 +27,7 @@ namespace Core.Domain.Tests.IdentityTests
         [Test]
         public void change_transient_entity_to_persitent_entity_and_check_hashset()
         {
-            _transientEntityOne.SetPrivateAttribute("_id", 23);
+            _transientEntityOne.SetPrivateProperty(x => x.Id, 23);
             _entities.Contains(_transientEntityOne).ShouldBe(true);
         }
 

@@ -10,7 +10,7 @@ namespace Core.Domain.Tests.IdentityTests
         
         public Entity(int id)
         {
-            _id = id;
+            Id = id;
         }
     }
 }

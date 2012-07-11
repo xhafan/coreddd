@@ -2,11 +2,11 @@
 {
     public abstract class BaseSimplePersistenceTest : BasePersistenceTest
     {
-        public abstract void PersistenceContext();
+        protected abstract void PersistenceContext();
 
-        public abstract void PersistenceQuery();
+        protected abstract void PersistenceQuery();
 
-        public override void Context()
+        protected override void Context()
         {
             PersistenceContext();
 

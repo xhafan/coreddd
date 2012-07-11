@@ -4,8 +4,8 @@ namespace EmailMaker.Domain.Emails
 {
     public class VariableEmailPart : EmailPart
     {
-        public virtual VariableType VariableType { get; private set; }
-        public virtual string Value { get; private set; }
+        public virtual VariableType VariableType { get; protected set; }
+        public virtual string Value { get; protected set; }
 
         protected VariableEmailPart() { }
 

@@ -8,12 +8,12 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistenceTests
 {
     [TestFixture]
-    public class when_persisting_email_template_while_creating_and_deleting_variables : BasePersistenceTest
+    public class when_persisting_email_template_while_creating_and_deleting_variables : BaseEmailMakerPersistenceTest
     {
         private EmailTemplate _emailTemplate;
         private EmailTemplate _retrievedEmailTemplate;
 
-        public override void Context() {}
+        protected override void Context() {}
 
         [Test]
         public void test_multiple_variable_creation_and_deletion_persistence()

@@ -16,17 +16,17 @@ namespace EmailMaker.Domain.Emails
 {
     public class Email : Identity<Email>, IAggregateRootEntity
     {
-        public virtual EmailTemplate EmailTemplate { get; private set; }
-        
+        public virtual EmailTemplate EmailTemplate { get; protected set; }
+
         private readonly IList<EmailPart> _parts = new List<EmailPart>();
         public virtual IEnumerable<EmailPart> Parts
         {
             get { return _parts; }
         }
 
-        public virtual string FromAddress { get; private set; }
-        public virtual string Subject { get; private set; }
-        public virtual EmailState State { get; private set; }
+        public virtual string FromAddress { get; protected set; }
+        public virtual string Subject { get; protected set; }
+        public virtual EmailState State { get; protected set; }
 
         private readonly Iesi.Collections.Generic.ISet<EmailRecipient> _emailRecipients = new HashedSet<EmailRecipient>();
         public virtual Iesi.Collections.Generic.ISet<EmailRecipient> EmailRecipients

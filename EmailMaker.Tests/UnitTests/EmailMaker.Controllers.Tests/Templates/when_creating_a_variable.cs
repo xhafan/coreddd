@@ -7,7 +7,7 @@ using Shouldly;
 namespace EmailMaker.Controllers.Tests.Templates
 {
     [TestFixture]
-    public class when_creating_a_variable : BaseControllerTest
+    public class when_creating_a_variable : BaseEmailMakerControllerTest
     {
         private CreateVariableCommand _createVariableCommand;
 

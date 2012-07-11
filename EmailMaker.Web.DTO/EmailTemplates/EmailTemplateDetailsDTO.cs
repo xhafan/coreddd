@@ -1,6 +1,8 @@
-﻿namespace EmailMaker.DTO.EmailTemplates
+﻿using Core.Dtos;
+
+namespace EmailMaker.DTO.EmailTemplates
 {
-    public class EmailTemplateDetailsDTO
+    public class EmailTemplateDetailsDTO : Dto
     {
         public virtual int EmailTemplateId { get; set; }
         public virtual string Name { get; set; }

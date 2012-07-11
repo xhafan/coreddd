@@ -34,19 +34,18 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="Shouldly">
       <HintPath>..\..\..\SharedLibs\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseEmailMakerControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\when_rendering_index_for_template_list.cs" />
     <Compile Include="Templates\when_rendering_template_index.cs" />
@@ -73,10 +72,17 @@
       <Project>{A34ED149-1B63-44AC-B72A-A81C5FD42190}</Project>
       <Name>EmailMaker.Controllers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.Website\EmailMaker.Website.csproj">
-      <Project>{BA9916C7-48D4-4824-A4ED-2D3FEF5CA9F1}</Project>
-      <Name>EmailMaker.Website</Name>
+    <ProjectReference Include="..\..\..\EmailMaker.Queries\EmailMaker.Queries.csproj">
+      <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
+      <Name>EmailMaker.Queries</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\EmailMaker.Web.DTO\EmailMaker.DTO.csproj">
+      <Project>{9EC89380-5186-450A-BFCE-A08CF74BE535}</Project>
+      <Name>EmailMaker.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

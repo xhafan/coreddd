@@ -14,7 +14,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
 {
     [TestFixture]
-    public class when_querying_for_user_details_by_emailaddress : BaseSimplePersistenceTest
+    public class when_querying_for_user_details_by_emailaddress : BaseEmailMakerSimplePersistenceTest
     {
 
         private User _user;
@@ -24,13 +24,13 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
         private string _emailAddress ="email@test.com";
         private string _password = "password";
 
-        public override void PersistenceContext()
+        protected override void PersistenceContext()
         {
            _user = new User(_firstName,_lastName,_emailAddress,_password);
             Save(_user);
         }
 
-        public override void PersistenceQuery()
+        protected override void PersistenceQuery()
         {
             var query = new GetUserDetailsByEmailAddressQuery();
             _results = query.Execute<UserDTO>(new GetUserDetailsByEmailAddressMessage { EmailAddress = _emailAddress });

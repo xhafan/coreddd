@@ -1,7 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
-using FluentNHibernate;
-using NHibernate.Cfg;
+using Core.Domain.Persistence;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
 using Shouldly;
@@ -11,7 +12,11 @@ namespace Core.TestHelper.Persistence
     public abstract class base_when_generating_database_schema
     {
         protected string DatabaseSchemaFileName;
-        protected Assembly AssemblyWithMappings;
+        protected Assembly[] AssembliesToMap;
+        protected IEnumerable<Type> IncludeBaseTypes;
+        protected Type[] DiscriminatedTypes;
+        protected Assembly AssemblyWithConventions;
+
 
         protected abstract void SetUp();
 
@@ -20,13 +25,8 @@ namespace Core.TestHelper.Persistence
         {
             SetUp();
             File.Delete(DatabaseSchemaFileName);
-
-            var configuration = new Configuration();
-            configuration.Configure();
-            var persistenceModel = new PersistenceModel();
-            persistenceModel.AddMappingsFromAssembly(AssemblyWithMappings);
-            persistenceModel.Configure(configuration);
-            var schemaExport = new SchemaExport(configuration);
+            var nHibernateConfigurator = new NHibernateConfigurator(AssembliesToMap, IncludeBaseTypes, DiscriminatedTypes, AssemblyWithConventions);
+            var schemaExport = new SchemaExport(nHibernateConfigurator.GetConfiguration());
             schemaExport.SetOutputFile(DatabaseSchemaFileName);
             schemaExport.Create(true, false);
         }

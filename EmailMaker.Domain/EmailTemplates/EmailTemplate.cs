@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Core.Domain;
 using Core.Utilities;
@@ -12,13 +11,13 @@ namespace EmailMaker.Domain.EmailTemplates
 {
     public class EmailTemplate : Identity<EmailTemplate>, IAggregateRootEntity
     {
+        public virtual string Name { get; protected set; }
         private readonly IList<EmailTemplatePart> _parts;
-        public virtual string Name { get; set; }        
         public virtual IEnumerable<EmailTemplatePart> Parts
         {
             get { return _parts; }
         }
-        public virtual int UserId { get; private set; }
+        public virtual int UserId { get; protected set; }
 
         protected EmailTemplate() {}
 

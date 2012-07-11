@@ -10,13 +10,15 @@ namespace Core.Commons.Tests.UnitOfWorkTests
         protected abstract void Context();
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
             var sessionFactory = MockRepository.GenerateStub<ISessionFactory>();
             Session = MockRepository.GenerateStub<ISession>();
             sessionFactory.Stub(a => a.OpenSession()).Return(Session);
 
-            UnitOfWork.SessionFactory = sessionFactory;
+            var nhibernateConfigurator = MockRepository.GenerateStub<INHibernateConfigurator>();
+            nhibernateConfigurator.Stub(x => x.GetSessionFactory()).Return(sessionFactory);
+            UnitOfWork.Initialize(nhibernateConfigurator);
             
             Context();
         }

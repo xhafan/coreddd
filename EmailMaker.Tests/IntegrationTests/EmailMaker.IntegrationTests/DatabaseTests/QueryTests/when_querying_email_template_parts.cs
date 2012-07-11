@@ -13,12 +13,12 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
 {
     [TestFixture]
-    public class when_querying_email_template_parts : BaseSimplePersistenceTest
+    public class when_querying_email_template_parts : BaseEmailMakerSimplePersistenceTest
     {
         private EmailTemplate _emailTemplate;
         private IEnumerable<EmailTemplatePartDTO> _result;
 
-        public override void PersistenceContext()
+        protected override void PersistenceContext()
         {
             var user = UserBuilder.New.Build();
             Save(user);
@@ -29,7 +29,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
             Save(_emailTemplate, anotherEmailTemplate);
         }
 
-        public override void PersistenceQuery()
+        protected override void PersistenceQuery()
         {
             var query = new GetEmailTemplatePartsQuery();
             _result = query.Execute<EmailTemplatePartDTO>(new GetEmailTemplatePartsQueryMessage { EmailTemplateId = _emailTemplate.Id });

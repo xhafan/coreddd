@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Data;
 using System.Web;
-using Core.Utilities.NHibernate;
 using NHibernate;
 
 namespace Core.Commons
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork
     {
         private ISession _session;
 
@@ -15,8 +14,12 @@ namespace Core.Commons
         private static readonly object UnitOfWorkKey = new object();
 
         private static ISessionFactory _sessionFactory;
-        private static readonly object SessionFactoryLock = new object();
 
+        public static void Initialize(INHibernateConfigurator configurator)
+        {
+            _sessionFactory = configurator.GetSessionFactory();
+        }
+        
         internal UnitOfWork(ISession session)
         {
             _session = session;
@@ -133,19 +136,9 @@ namespace Core.Commons
             {
                 if (_sessionFactory == null)
                 {
-                    lock (SessionFactoryLock)
-                    {
-                        if (_sessionFactory == null)
-                        {
-                            _sessionFactory = NHibernateUtilities.ConfigureNHibernate();
-                        }
-                    }
+                    throw new InvalidOperationException("Session factory has not been initialized! Please call UnitOfWork.Initialize(...) before using it.");
                 }
                 return _sessionFactory;
-            }
-            internal set
-            {
-                _sessionFactory = value;  
             }
         }
         

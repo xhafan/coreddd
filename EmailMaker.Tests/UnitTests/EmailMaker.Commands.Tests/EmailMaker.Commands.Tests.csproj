@@ -31,23 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Iesi.Collections.3.3.1.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.Mocks">
-      <HintPath>..\..\..\SharedLibs\Rhino.Mocks.dll</HintPath>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="Shouldly">
       <HintPath>..\..\..\SharedLibs\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailTemplates\when_executing_change_password_for_user_command.cs" />
@@ -71,13 +68,13 @@
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>Core.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Core.Dtos\Core.Dtos.csproj">
+      <Project>{FB5719ED-E5DC-439E-8D01-E675F4723B63}</Project>
+      <Name>Core.Dtos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\Core.Queries\Core.Queries.csproj">
       <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
       <Name>Core.Queries</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\Core.Utilities\Core.Utilities.csproj">
-      <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
-      <Name>Core.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Commands\EmailMaker.Commands.csproj">
       <Project>{DB6DC588-8415-4184-8B4B-6485374A2E68}</Project>
@@ -91,14 +88,13 @@
       <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
       <Name>EmailMaker.Queries</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
-      <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
-      <Name>EmailMaker.Utilities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Web.DTO\EmailMaker.DTO.csproj">
       <Project>{9EC89380-5186-450A-BFCE-A08CF74BE535}</Project>
       <Name>EmailMaker.DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

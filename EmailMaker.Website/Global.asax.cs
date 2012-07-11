@@ -6,11 +6,24 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.Windsor;
+using Castle.Windsor.Installer;
+using Core.Commands;
 using Core.Commons;
+using Core.Domain;
+using Core.Domain.Persistence;
+using Core.Queries;
 using Core.Web;
 using Core.Web.ModelBinders;
+using EmailMaker.Commands;
+using EmailMaker.Controllers;
+using EmailMaker.DTO.Emails;
+using EmailMaker.Domain.Conventions;
+using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.Domain.Emails;
+using EmailMaker.Domain.Emails.EmailStates;
+using EmailMaker.Domain.EventHandlers;
+using EmailMaker.Queries;
 using NServiceBus;
-using Rhino.Commons.Binsor;
 
 namespace EmailMaker.Website
 {
@@ -48,14 +61,14 @@ namespace EmailMaker.Website
             var assembliesToLoad = new[]
                                        {
                                            "NServiceBus.dll",
-                                           "NServiceBus.Core.dll",
+                                           "NServiceBus.Core.dll"
                                        };
             var assemblies = assembliesToLoad.Select(x => Assembly.LoadFrom(Path.Combine(binPath, x)));
 
             Configure
                 .With(assemblies)
                 .Log4Net()
-                .CastleWindsor25Builder(container)
+                .CastleWindsorBuilder(container)
                 .BinarySerializer()
                 .MsmqTransport()
                 .UnicastBus()
@@ -63,11 +76,43 @@ namespace EmailMaker.Website
                 .CreateBus()
                 .Start();
             
-            BooReader.Read(container, "windsor.boo");
+            //BooReader.Read(container, "windsor.boo");
+            container.Install(
+                FromAssembly.Containing<ControllerInstaller>()
+                , FromAssembly.Containing<CommandExecutorInstaller>()
+                , FromAssembly.Containing<QueryExecutorInstaller>()
+                , FromAssembly.Containing<NhibernateRepositoryInstaller>()
+                , FromAssembly.Containing<CommandHandlerInstaller>()
+                , FromAssembly.Containing<EventHandlerInstaller>()
+                , FromAssembly.Containing<QueryMessageHandlerInstaller>()
+                );
             IoC.Initialize(container);
 
             ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory());
             ModelBinders.Binders.DefaultBinder = new EnumConverterModelBinder();
+
+            var assembliesToMap = new[]
+                                      {
+                                          typeof (Email).Assembly,
+                                          typeof (EmailDTO).Assembly
+                                      };
+            UnitOfWork.Initialize(
+                new NHibernateConfigurator(
+                    assembliesToMap,
+                    new[]
+                        {
+                            typeof (Identity<>),
+                            typeof (EmailPart),
+                            typeof (EmailState),
+                            typeof (EmailTemplatePart)
+                        }, 
+                    new[]
+                        {
+                            typeof (EmailState)
+                        },
+                    typeof(SubclassConvention).Assembly)
+                );
+            // todo: remove project reference to emailmaker.domain and core.domain
         }
 
         public virtual void Application_BeginRequest()
@@ -77,20 +122,16 @@ namespace EmailMaker.Website
 
         public virtual void Application_EndRequest()
         {
-            if (UnitOfWork.IsStarted)
-            {
-                UnitOfWork.Current.TransactionalFlush();
-                UnitOfWork.Current.Dispose();
-            }
+            if (!UnitOfWork.IsStarted) return;
+            UnitOfWork.Current.TransactionalFlush();
+            UnitOfWork.Current.Dispose();
         }
 
         public virtual void Application_Error()
         {
-            if (UnitOfWork.IsStarted)
-            {
-                UnitOfWork.Current.TransactionalRollback();
-                UnitOfWork.Current.Dispose();                
-            }
+            if (!UnitOfWork.IsStarted) return;
+            UnitOfWork.Current.TransactionalRollback();
+            UnitOfWork.Current.Dispose();
         }
     
     }

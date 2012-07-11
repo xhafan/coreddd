@@ -1,5 +1,8 @@
-﻿namespace EmailMaker.Domain.EmailTemplates.VariableTypes
+﻿using Core.Domain.Persistence;
+
+namespace EmailMaker.Domain.EmailTemplates.VariableTypes
 {
+    [IgnoreAutoMap]
     internal class TranslationVariableType : VariableType
     {
         internal TranslationVariableType() : base(4, "List")

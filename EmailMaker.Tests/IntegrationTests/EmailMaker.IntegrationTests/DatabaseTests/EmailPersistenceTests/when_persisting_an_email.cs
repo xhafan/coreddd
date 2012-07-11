@@ -9,13 +9,13 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
 {
     [TestFixture]
-    public class when_persisting_email : BaseSimplePersistenceTest
+    public class when_persisting_email : BaseEmailMakerSimplePersistenceTest
     {
         private Email _email;
         private Email _retrievedEmail;
         private EmailTemplate _emailTemplate;
 
-        public override void PersistenceContext()
+        protected override void PersistenceContext()
         {
             var user = UserBuilder.New.Build();
             Save(user);
@@ -28,7 +28,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
             Save(_email);
         }
 
-        public override void PersistenceQuery()
+        protected override void PersistenceQuery()
         {
             _retrievedEmail = Get<Email>(_email.Id);
         }
@@ -56,5 +56,12 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
             htmlTemplatePart = _emailTemplate.Parts.ElementAt(2) as HtmlEmailTemplatePart;
             htmlRetrievedPart.Html.ShouldBe(htmlTemplatePart.Html);
         }
+
+        [Test]
+        public void email_state()
+        {
+            _retrievedEmail.State.Name.ShouldBe("Draft");
+        }
+
     }
 }

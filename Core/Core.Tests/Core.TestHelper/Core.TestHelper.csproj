@@ -31,34 +31,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
-    <Reference Include="Castle.Windsor, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\..\..\SharedLibs\FluentNHibernate.dll</HintPath>
+    <Reference Include="Castle.Windsor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
-      <HintPath>..\..\..\SharedLibs\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\..\..\SharedLibs\NHibernate.dll</HintPath>
+    <Reference Include="NServiceBus, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus">
-      <HintPath>..\..\..\SharedLibs\NServiceBus.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL" />
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="Shouldly">
       <HintPath>..\..\..\SharedLibs\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BaseControllerTest.cs" />
@@ -72,22 +69,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
-      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
-      <Name>EmailMaker.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.Queries\EmailMaker.Queries.csproj">
-      <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
-      <Name>EmailMaker.Queries</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
-      <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
-      <Name>EmailMaker.Utilities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.Web.DTO\EmailMaker.DTO.csproj">
-      <Project>{9EC89380-5186-450A-BFCE-A08CF74BE535}</Project>
-      <Name>EmailMaker.DTO</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core.Commands\Core.Commands.csproj">
       <Project>{07CA4978-6610-4B8D-9E5A-BA8E83A48412}</Project>
       <Name>Core.Commands</Name>
@@ -116,6 +97,9 @@
       <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
       <Name>Core.Utilities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

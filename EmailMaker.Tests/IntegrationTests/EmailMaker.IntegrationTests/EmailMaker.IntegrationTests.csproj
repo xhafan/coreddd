@@ -31,21 +31,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\..\..\SharedLibs\FluentNHibernate.dll</HintPath>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL" />
-    <Reference Include="log4net">
-      <HintPath>..\..\..\SharedLibs\log4net.dll</HintPath>
+    <Reference Include="FluentNHibernate, Version=1.3.0.727, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\FluentNHibernate.1.3.0.727\lib\FluentNHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\..\..\SharedLibs\NHibernate.dll</HintPath>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Iesi.Collections.3.3.1.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\..\..\SharedLibs\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus">
-      <HintPath>..\..\..\SharedLibs\NServiceBus.dll</HintPath>
+      <HintPath>..\..\..\packages\NHibernate.Castle.3.1.0.4000\lib\Net35\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\SharedLibs\nunit.framework.dll</HintPath>
@@ -54,15 +55,12 @@
       <HintPath>..\..\..\SharedLibs\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseTests\BaseEmailMakerPersistenceTest.cs" />
+    <Compile Include="DatabaseTests\BaseEmailMakerSimplePersistenceTest.cs" />
+    <Compile Include="DatabaseTests\EmailMakerPersistenceTestHelper.cs" />
     <Compile Include="DatabaseTests\EmailPersistenceTests\when_persisting_an_email.cs" />
     <Compile Include="DatabaseTests\EmailPersistenceTests\when_persisting_email_to_be_sent.cs" />
     <Compile Include="DatabaseTests\EmailTemplatePersistenceTests\when_persisting_email_template_while_creating_and_deleting_variables.cs" />
@@ -79,9 +77,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Core.Commons\Core.Commons.csproj">
+      <Project>{7C321BF5-4F91-4759-A11B-F0F6C510C494}</Project>
+      <Name>Core.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Core.Domain.Persistence\Core.Domain.Persistence.csproj">
+      <Project>{39623D17-0598-413E-B717-20058EFDA907}</Project>
+      <Name>Core.Domain.Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\Core.Domain\Core.Domain.csproj">
       <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
       <Name>Core.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Core.Dtos\Core.Dtos.csproj">
+      <Project>{FB5719ED-E5DC-439E-8D01-E675F4723B63}</Project>
+      <Name>Core.Dtos</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Core\Core.Queries\Core.Queries.csproj">
       <Project>{53C39A0D-69E8-498D-AFDB-82EB65470295}</Project>
@@ -91,17 +101,9 @@
       <Project>{63E6B983-C183-4180-8FE3-B75FC33BFC85}</Project>
       <Name>Core.TestHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.Domain.NHibernateMappings\EmailMaker.Domain.NHibernateMappings.csproj">
-      <Project>{78FD90F4-DD12-425D-B9F4-B262B99FA247}</Project>
-      <Name>EmailMaker.Domain.NHibernateMappings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Domain\EmailMaker.Domain.csproj">
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
       <Name>EmailMaker.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.DTO.NHibernateMappings\EmailMaker.DTO.NHibernateMappings.csproj">
-      <Project>{3E04110E-A54D-4FFC-858E-40EBCFE78555}</Project>
-      <Name>EmailMaker.DTO.NHibernateMappings</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Queries\EmailMaker.Queries.csproj">
       <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
@@ -110,10 +112,6 @@
     <ProjectReference Include="..\..\..\EmailMaker.TestHelper\EmailMaker.TestHelper.csproj">
       <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>
       <Name>EmailMaker.TestHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\EmailMaker.Utilities\EmailMaker.Utilities.csproj">
-      <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
-      <Name>EmailMaker.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\EmailMaker.Web.DTO\EmailMaker.DTO.csproj">
       <Project>{9EC89380-5186-450A-BFCE-A08CF74BE535}</Project>
@@ -126,6 +124,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\..\EmailMaker.Website\hibernate.cfg.xml">
@@ -134,6 +133,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

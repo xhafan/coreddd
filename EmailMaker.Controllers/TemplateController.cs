@@ -9,7 +9,6 @@ using EmailMaker.Controllers.BaseController;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.DTO;
 using EmailMaker.DTO.EmailTemplates;
-using EmailMaker.DTO.Users;
 using EmailMaker.Queries.Messages;
 using EmailMaker.Utilities;
 using MvcContrib;

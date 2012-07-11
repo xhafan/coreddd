@@ -38,7 +38,7 @@ namespace EmailMaker.TestHelper.Builders
         public Recipient Build()
         {
             var recipient = new Recipient(_emailAddress, _name);
-            recipient.SetPrivateAttribute("_id", _id);
+            recipient.SetPrivateProperty(x => x.Id, _id);
             return recipient;
         }
     }

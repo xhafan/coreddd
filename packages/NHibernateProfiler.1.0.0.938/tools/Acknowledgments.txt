@@ -1,0 +1,6 @@
+My job would have been much harder without the following projects, it is cliché by now, but it is still true. I could not have done what I did without standing on the shoulders of giants.
+
+NHibernate
+Castle Dynamic Proxy
+Mono Cecil
+Caliburn

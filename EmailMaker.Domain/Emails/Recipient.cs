@@ -4,8 +4,8 @@ namespace EmailMaker.Domain.Emails
 {
     public class Recipient : Identity<Recipient>, IAggregateRootEntity
     {
-        public virtual string EmailAddress { get; private set; }
-        public virtual string Name { get; private set; }
+        public virtual string EmailAddress { get; protected set; }
+        public virtual string Name { get; protected set; }
 
         protected Recipient() {}
 

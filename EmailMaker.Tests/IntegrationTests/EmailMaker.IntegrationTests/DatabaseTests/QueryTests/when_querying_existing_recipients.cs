@@ -10,7 +10,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
 {
     [TestFixture]
-    public class when_querying_existing_recipients : BaseSimplePersistenceTest
+    public class when_querying_existing_recipients : BaseEmailMakerSimplePersistenceTest
     {
         private string _emailAddressOne = "email1@test.com";
         private string _emailAddressTwo = "email2@test.com";
@@ -19,7 +19,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
         private Recipient _recipientOne;
         private Recipient _recipientTwo;
 
-        public override void PersistenceContext()
+        protected override void PersistenceContext()
         {
             _recipientOne = new Recipient(_emailAddressOne, "name1");
             Save(_recipientOne);
@@ -28,7 +28,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
             Save(_recipientTwo);        
         }
 
-        public override void PersistenceQuery()
+        protected override void PersistenceQuery()
         {
             var query = new GetExistingRecipientsQuery();
             _result = query.Execute<Recipient>(new GetExistingRecipientsQueryMessage { RecipientEmailAddresses = new[] { _emailAddressOne, _emailAddressTwo, _emailAddressThree } });

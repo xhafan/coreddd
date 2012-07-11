@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
+using Core.Dtos;
 
 namespace EmailMaker.DTO.EmailTemplates
 {
-    public class EmailTemplateDTO
+    public class EmailTemplateDTO : Dto
     {
         public virtual int EmailTemplateId { get; set; }
         public virtual string Name { get; set; }

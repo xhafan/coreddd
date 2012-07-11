@@ -11,16 +11,16 @@ alter table [Email]  drop constraint FK4239B252C2E08B71
 alter table [EmailPart]  drop constraint FKB3CACEE7BB7A8FCD
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC187ECA4EBD3F1E8]') AND parent_object_id = OBJECT_ID('[HtmlEmailPart]'))
-alter table [HtmlEmailPart]  drop constraint FKC187ECA4EBD3F1E8
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC187ECA4EAEB1497]') AND parent_object_id = OBJECT_ID('HtmlEmailPart'))
+alter table HtmlEmailPart  drop constraint FKC187ECA4EAEB1497
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK5655592DEBD3F1E8]') AND parent_object_id = OBJECT_ID('[VariableEmailPart]'))
-alter table [VariableEmailPart]  drop constraint FK5655592DEBD3F1E8
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK5655592DEAEB1497]') AND parent_object_id = OBJECT_ID('VariableEmailPart'))
+alter table VariableEmailPart  drop constraint FK5655592DEAEB1497
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK5655592DCBEDA9AC]') AND parent_object_id = OBJECT_ID('[VariableEmailPart]'))
-alter table [VariableEmailPart]  drop constraint FK5655592DCBEDA9AC
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK5655592DCBEDA9AC]') AND parent_object_id = OBJECT_ID('VariableEmailPart'))
+alter table VariableEmailPart  drop constraint FK5655592DCBEDA9AC
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK9E30BF7BF2198807]') AND parent_object_id = OBJECT_ID('[EmailRecipient]'))
@@ -35,50 +35,68 @@ alter table [EmailRecipient]  drop constraint FK9E30BF7BBB7A8FCD
 alter table [EmailTemplatePart]  drop constraint FKC644F053C3BA1A19
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE07F3D8E84A755C8]') AND parent_object_id = OBJECT_ID('[HtmlEmailTemplatePart]'))
-alter table [HtmlEmailTemplatePart]  drop constraint FKE07F3D8E84A755C8
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE07F3D8E8EBDE1D]') AND parent_object_id = OBJECT_ID('HtmlEmailTemplatePart'))
+alter table HtmlEmailTemplatePart  drop constraint FKE07F3D8E8EBDE1D
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK2A9FDCE184A755C8]') AND parent_object_id = OBJECT_ID('[VariableEmailTemplatePart]'))
-alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE184A755C8
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK8A7C73968EBDE1D]') AND parent_object_id = OBJECT_ID('RepeatedSectionEmailTemplatePart'))
+alter table RepeatedSectionEmailTemplatePart  drop constraint FK8A7C73968EBDE1D
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK2A9FDCE1CBEDA9AC]') AND parent_object_id = OBJECT_ID('[VariableEmailTemplatePart]'))
-alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK2A9FDCE18EBDE1D]') AND parent_object_id = OBJECT_ID('VariableEmailTemplatePart'))
+alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE18EBDE1D
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK2A9FDCE1CBEDA9AC]') AND parent_object_id = OBJECT_ID('VariableEmailTemplatePart'))
+alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1CBEDA9AC
 
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[Email]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Email]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailPart]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailPart]
 
-    if exists (select * from dbo.sysobjects where id = object_id(N'[HtmlEmailPart]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [HtmlEmailPart]
+    if exists (select * from dbo.sysobjects where id = object_id(N'HtmlEmailPart') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table HtmlEmailPart
 
-    if exists (select * from dbo.sysobjects where id = object_id(N'[VariableEmailPart]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VariableEmailPart]
+    if exists (select * from dbo.sysobjects where id = object_id(N'VariableEmailPart') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table VariableEmailPart
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailRecipient]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailRecipient]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailState]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailState]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'[Recipient]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Recipient]
+
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplate]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplate]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplatePart]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplatePart]
 
-    if exists (select * from dbo.sysobjects where id = object_id(N'[HtmlEmailTemplatePart]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [HtmlEmailTemplatePart]
+    if exists (select * from dbo.sysobjects where id = object_id(N'HtmlEmailTemplatePart') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table HtmlEmailTemplatePart
 
-    if exists (select * from dbo.sysobjects where id = object_id(N'[VariableEmailTemplatePart]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VariableEmailTemplatePart]
+    if exists (select * from dbo.sysobjects where id = object_id(N'RepeatedSectionEmailTemplatePart') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table RepeatedSectionEmailTemplatePart
 
-    if exists (select * from dbo.sysobjects where id = object_id(N'[Recipient]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Recipient]
+    if exists (select * from dbo.sysobjects where id = object_id(N'VariableEmailTemplatePart') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table VariableEmailTemplatePart
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[User]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [User]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[VariableType]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [VariableType]
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'[EmailDTO]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailDTO]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[EmailPartDTO]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailPartDTO]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplateDetailsDTO]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplateDetailsDTO]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplateDTO]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplateDTO]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplatePartDTO]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplatePartDTO]
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'[UserDTO]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [UserDTO]
+
     if exists (select * from dbo.sysobjects where id = object_id(N'hibernate_unique_key') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table hibernate_unique_key
 
     create table [Email] (
         Id INT not null,
-       FromAddress NVARCHAR(255) null,
-       Subject NVARCHAR(255) null,
+       FromAddress NVARCHAR(MAX) null,
+       Subject NVARCHAR(MAX) null,
        EmailTemplateId INT null,
        EmailStateId INT null,
        primary key (Id)
@@ -91,17 +109,17 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
        primary key (Id)
     )
 
-    create table [HtmlEmailPart] (
-        Id INT not null,
+    create table HtmlEmailPart (
+        EmailPartId INT not null,
        Html NVARCHAR(MAX) null,
-       primary key (Id)
+       primary key (EmailPartId)
     )
 
-    create table [VariableEmailPart] (
-        Id INT not null,
+    create table VariableEmailPart (
+        EmailPartId INT not null,
        Value NVARCHAR(MAX) null,
        VariableTypeId INT null,
-       primary key (Id)
+       primary key (EmailPartId)
     )
 
     create table [EmailRecipient] (
@@ -120,9 +138,16 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
        primary key (Id)
     )
 
+    create table [Recipient] (
+        Id INT not null,
+       EmailAddress NVARCHAR(MAX) null,
+       Name NVARCHAR(MAX) null,
+       primary key (Id)
+    )
+
     create table [EmailTemplate] (
         Id INT not null,
-       Name NVARCHAR(255) null,
+       Name NVARCHAR(MAX) null,
        UserId INT null,
        primary key (Id)
     )
@@ -134,39 +159,82 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
        primary key (Id)
     )
 
-    create table [HtmlEmailTemplatePart] (
-        Id INT not null,
+    create table HtmlEmailTemplatePart (
+        EmailTemplatePartId INT not null,
        Html NVARCHAR(MAX) null,
-       primary key (Id)
+       primary key (EmailTemplatePartId)
     )
 
-    create table [VariableEmailTemplatePart] (
-        Id INT not null,
+    create table RepeatedSectionEmailTemplatePart (
+        EmailTemplatePartId INT not null,
+       primary key (EmailTemplatePartId)
+    )
+
+    create table VariableEmailTemplatePart (
+        EmailTemplatePartId INT not null,
        Value NVARCHAR(MAX) null,
        VariableTypeId INT null,
-       primary key (Id)
-    )
-
-    create table [Recipient] (
-        Id INT not null,
-       EmailAddress NVARCHAR(255) not null,
-       Name NVARCHAR(MAX) null,
-       primary key (Id)
+       primary key (EmailTemplatePartId)
     )
 
     create table [User] (
         Id INT not null,
-       FirstName NVARCHAR(255) null,
-       LastName NVARCHAR(255) null,
-       EmailAddress NVARCHAR(255) null,
-       Password NVARCHAR(255) null,
+       FirstName NVARCHAR(MAX) null,
+       LastName NVARCHAR(MAX) null,
+       EmailAddress NVARCHAR(MAX) null,
+       Password NVARCHAR(MAX) null,
        primary key (Id)
     )
 
     create table [VariableType] (
         Id INT not null,
-       Name NVARCHAR(255) null,
+       Name NVARCHAR(MAX) null,
        primary key (Id)
+    )
+
+    create table [EmailDTO] (
+        EmailId INT IDENTITY NOT NULL,
+       primary key (EmailId)
+    )
+
+    create table [EmailPartDTO] (
+        EmailId INT not null,
+       PartId INT not null,
+       PartType NVARCHAR(MAX) null,
+       Html NVARCHAR(MAX) null,
+       VariableValue NVARCHAR(MAX) null,
+       primary key (EmailId, PartId)
+    )
+
+    create table [EmailTemplateDetailsDTO] (
+        EmailTemplateId INT IDENTITY NOT NULL,
+       Name NVARCHAR(MAX) null,
+       UserId INT null,
+       primary key (EmailTemplateId)
+    )
+
+    create table [EmailTemplateDTO] (
+        EmailTemplateId INT IDENTITY NOT NULL,
+       Name NVARCHAR(MAX) null,
+       primary key (EmailTemplateId)
+    )
+
+    create table [EmailTemplatePartDTO] (
+        EmailTemplateId INT not null,
+       PartId INT not null,
+       PartType NVARCHAR(MAX) null,
+       Html NVARCHAR(MAX) null,
+       VariableValue NVARCHAR(MAX) null,
+       primary key (EmailTemplateId, PartId)
+    )
+
+    create table [UserDTO] (
+        UserId INT IDENTITY NOT NULL,
+       FirstName NVARCHAR(MAX) null,
+       LastName NVARCHAR(MAX) null,
+       EmailAddress NVARCHAR(MAX) null,
+       Password NVARCHAR(MAX) null,
+       primary key (UserId)
     )
 
     alter table [Email] 
@@ -184,17 +252,17 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
         foreign key (EmailId) 
         references [Email]
 
-    alter table [HtmlEmailPart] 
-        add constraint FKC187ECA4EBD3F1E8 
-        foreign key (Id) 
+    alter table HtmlEmailPart 
+        add constraint FKC187ECA4EAEB1497 
+        foreign key (EmailPartId) 
         references [EmailPart]
 
-    alter table [VariableEmailPart] 
-        add constraint FK5655592DEBD3F1E8 
-        foreign key (Id) 
+    alter table VariableEmailPart 
+        add constraint FK5655592DEAEB1497 
+        foreign key (EmailPartId) 
         references [EmailPart]
 
-    alter table [VariableEmailPart] 
+    alter table VariableEmailPart 
         add constraint FK5655592DCBEDA9AC 
         foreign key (VariableTypeId) 
         references [VariableType]
@@ -214,17 +282,22 @@ alter table [VariableEmailTemplatePart]  drop constraint FK2A9FDCE1CBEDA9AC
         foreign key (EmailTemplateId) 
         references [EmailTemplate]
 
-    alter table [HtmlEmailTemplatePart] 
-        add constraint FKE07F3D8E84A755C8 
-        foreign key (Id) 
+    alter table HtmlEmailTemplatePart 
+        add constraint FKE07F3D8E8EBDE1D 
+        foreign key (EmailTemplatePartId) 
         references [EmailTemplatePart]
 
-    alter table [VariableEmailTemplatePart] 
-        add constraint FK2A9FDCE184A755C8 
-        foreign key (Id) 
+    alter table RepeatedSectionEmailTemplatePart 
+        add constraint FK8A7C73968EBDE1D 
+        foreign key (EmailTemplatePartId) 
         references [EmailTemplatePart]
 
-    alter table [VariableEmailTemplatePart] 
+    alter table VariableEmailTemplatePart 
+        add constraint FK2A9FDCE18EBDE1D 
+        foreign key (EmailTemplatePartId) 
+        references [EmailTemplatePart]
+
+    alter table VariableEmailTemplatePart 
         add constraint FK2A9FDCE1CBEDA9AC 
         foreign key (VariableTypeId) 
         references [VariableType]

@@ -18,7 +18,7 @@ namespace Core.Domain.Persistence.Tests.Repositories
         public void Context()
         {
             _session = MockRepository.GenerateMock<ISession>();
-            var repository = new NHRepository<TestEntity>(_session);
+            var repository = new NhibernateRepository<TestEntity>(_session);
             _testEntity = new TestEntity();
             repository.Save(_testEntity);
         }

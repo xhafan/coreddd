@@ -11,7 +11,7 @@ namespace EmailMaker.TestHelper.Builders
     {       
         private string _initialHtml = "html";
         private int _nextPartId;
-        private IList<Tuple<int, int>> _variables = new List<Tuple<int, int>>();
+        private readonly IList<Tuple<int, int>> _variables = new List<Tuple<int, int>>();
         private int _id;
         private string _name = "name";
         private int _userId;
@@ -66,19 +66,19 @@ namespace EmailMaker.TestHelper.Builders
         public EmailTemplate Build()
         {
             var emailTemplate = new EmailTemplate(_initialHtml, _name, _userId);
-            emailTemplate.SetPrivateAttribute("_id", _id);
+            emailTemplate.SetPrivateProperty(x => x.Id, _id);
             var htmlPart = emailTemplate.Parts.Single();
             var htmlPartId = NextPartId;
-            htmlPart.SetPrivateAttribute("_id", htmlPartId);
+            htmlPart.SetPrivateProperty(x => x.Id, htmlPartId);
 
             _variables.Each(variable =>
                                 {
                                     emailTemplate.CreateVariable(htmlPartId, variable.Item1, variable.Item2);
                                     var count = emailTemplate.Parts.Count();
                                     var variablePart = emailTemplate.Parts.ElementAt(count - 2);
-                                    variablePart.SetPrivateAttribute("_id", NextPartId);
+                                    variablePart.SetPrivateProperty(x => x.Id, NextPartId);
                                     htmlPartId = NextPartId;
-                                    emailTemplate.Parts.ElementAt(count - 1).SetPrivateAttribute("_id", htmlPartId);
+                                    emailTemplate.Parts.ElementAt(count - 1).SetPrivateProperty(x => x.Id, htmlPartId);
                                 });
 
             return emailTemplate;

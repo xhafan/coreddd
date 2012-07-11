@@ -1,19 +1,16 @@
-using System.Collections.Generic;
 using System.Linq;
 using Core.TestHelper.Extensions;
-using Core.TestHelper.Persistence;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.TestHelper.Builders;
-using Iesi.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
 
 namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
 {
     [TestFixture]
-    public class when_persisting_email_with_recipients : BaseSimplePersistenceTest
+    public class when_persisting_email_with_recipients : BaseEmailMakerSimplePersistenceTest
     {
         private Email _email;
         private Email _retrievedEmail;
@@ -25,7 +22,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
         private string _fromAddress = "fromAddress@test.com";
         private string _subject = "subject";
 
-        public override void PersistenceContext()
+        protected override void PersistenceContext()
         {
             var user = UserBuilder.New.Build();
             Save(user);
@@ -49,7 +46,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistenceTests
             Save(_email);
         }
 
-        public override void PersistenceQuery()
+        protected override void PersistenceQuery()
         {
             _retrievedEmail = Get<Email>(_email.Id);
         }

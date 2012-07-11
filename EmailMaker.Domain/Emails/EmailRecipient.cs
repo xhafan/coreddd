@@ -5,9 +5,9 @@ namespace EmailMaker.Domain.Emails
 {
     public class EmailRecipient : Identity<EmailRecipient>
     {
-        public virtual Recipient Recipient { get; private set; }
-        public virtual bool Sent { get; private set; }
-        public virtual DateTime? SentDate { get; private set; }
+        public virtual Recipient Recipient { get; protected set; }
+        public virtual bool Sent { get; protected set; }
+        public virtual DateTime? SentDate { get; protected set; }
 
         protected EmailRecipient() {}
 

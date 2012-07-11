@@ -1,6 +1,8 @@
-﻿namespace EmailMaker.DTO.Emails
+﻿using Core.Dtos;
+
+namespace EmailMaker.DTO.Emails
 {
-    public class EmailPartDTO
+    public class EmailPartDTO : Dto
     {
         public virtual int EmailId { get; set; }
         public virtual int PartId { get; set; }

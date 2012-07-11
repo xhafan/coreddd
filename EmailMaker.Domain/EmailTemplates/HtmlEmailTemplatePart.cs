@@ -2,7 +2,7 @@
 {
     public class HtmlEmailTemplatePart : EmailTemplatePart
     {
-        public virtual string Html { get; private set; }
+        public virtual string Html { get; protected set; }
 
         public HtmlEmailTemplatePart()
         {
