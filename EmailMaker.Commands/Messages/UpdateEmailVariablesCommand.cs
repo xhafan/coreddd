@@ -1,10 +1,10 @@
 ﻿using Core.Commands;
-using EmailMaker.DTO.Emails;
+using EmailMaker.Dtos.Emails;
 
 namespace EmailMaker.Commands.Messages
 {
     public class UpdateEmailVariablesCommand : ICommand
     {
-        public EmailDTO Email { get; set; }
+        public EmailDto Email { get; set; }
     }
 }
