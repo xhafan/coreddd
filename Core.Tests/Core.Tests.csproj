@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1043E886-7CE3-41B1-9602-8558B75ACAD7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core.Tests</RootNamespace>
+    <AssemblyName>Core.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Shouldly">
+      <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\when_executing_command.cs" />
+    <Compile Include="Commons\IoCTests\when_getting_container_without_initialization.cs" />
+    <Compile Include="Commons\IoCTests\when_initializing_ioc.cs" />
+    <Compile Include="Commons\IoCTests\when_releasing_service_instance.cs" />
+    <Compile Include="Commons\IoCTests\when_resolving_all_services_generic.cs" />
+    <Compile Include="Commons\IoCTests\when_resolving_service.cs" />
+    <Compile Include="Commons\IoCTests\when_resolving_service_generic.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\base_when_getting_current_unit_of_work.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_beginning_transaction.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_beginning_transaction_with_isolation_level.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_current_session_is_not_started_for_http_request.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_current_session_is_not_started_for_http_request_after_dispose.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_current_session_is_not_started_for_thread.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_current_session_is_not_started_for_thread_after_dispose.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_current_session_is_started_for_http_request.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_current_session_is_started_for_thread.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_disposing_unit_of_work.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_flushing_transaction.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_flushing_unit_of_work.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_getting_current_session.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_getting_current_unit_of_work_for_different_http_requests.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_getting_current_unit_of_work_for_different_threads.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_getting_current_unit_of_work_for_the_same_http_request.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_getting_current_unit_of_work_for_the_same_thread.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_getting_session_factory.cs" />
+    <Compile Include="Commons\UnitOfWorkTests\when_rolling_transaction_back.cs" />
+    <Compile Include="Domain\DomainEventsTests\when_raising_domain_event.cs" />
+    <Compile Include="Domain\DomainEventsTests\when_raising_domain_event_with_no_handler.cs" />
+    <Compile Include="Domain\IdentityTests\AnotherEntity.cs" />
+    <Compile Include="Domain\IdentityTests\Entity.cs" />
+    <Compile Include="Domain\IdentityTests\when_adding_entity_into_a_hashset.cs" />
+    <Compile Include="Domain\IdentityTests\when_comparing_entities_of_the_different_type_and_of_the_same_id.cs" />
+    <Compile Include="Domain\IdentityTests\when_comparing_entities_of_the_same_type_and_of_the_different_id.cs" />
+    <Compile Include="Domain\IdentityTests\when_comparing_entities_of_the_same_type_and_of_the_same_id.cs" />
+    <Compile Include="Domain\IdentityTests\when_comparing_transient_entities_of_the_same_type_and_of_the_same_id.cs" />
+    <Compile Include="Domain\IdentityTests\when_getting_identity_id.cs" />
+    <Compile Include="Domain\Persistence\Repositories\when_getting_aggregate_root_entity_by_id.cs" />
+    <Compile Include="Domain\Persistence\Repositories\when_saving_aggregate_root_entity.cs" />
+    <Compile Include="Helpers\Controllers\BaseControllerTest.cs" />
+    <Compile Include="Helpers\DomainEvents\BaseDomainEventTest.cs" />
+    <Compile Include="Helpers\Extensions\BusExtensions.cs" />
+    <Compile Include="Helpers\Extensions\CultureHelper.cs" />
+    <Compile Include="Helpers\Extensions\ObjectExtensions.cs" />
+    <Compile Include="Helpers\Persistence\BasePersistenceTest.cs" />
+    <Compile Include="Helpers\Persistence\BaseSimplePersistenceTest.cs" />
+    <Compile Include="Helpers\Persistence\base_when_generating_database_schema.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\when_executing_query.cs" />
+    <Compile Include="Queries\when_executing_query_with_result_transformer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
