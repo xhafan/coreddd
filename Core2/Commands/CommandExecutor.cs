@@ -1,5 +1,5 @@
 ﻿using System;
-using Core.Commons;
+using Core.Infrastructure;
 
 namespace Core.Commands
 {
