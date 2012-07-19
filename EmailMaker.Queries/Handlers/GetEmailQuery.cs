@@ -1,5 +1,5 @@
 ﻿using Core.Queries;
-using EmailMaker.DTO.Emails;
+using EmailMaker.Dtos.Emails;
 using EmailMaker.Queries.Messages;
 using NHibernate;
 
@@ -9,7 +9,7 @@ namespace EmailMaker.Queries.Handlers
     {
         public override ICriteria GetCriteria<TResult>(GetEmailQueryMessage message)
         {
-            return Session.QueryOver<EmailDTO>()
+            return Session.QueryOver<EmailDto>()
                 .Where(e => e.EmailId == message.EmailId)
                 .UnderlyingCriteria;
         }

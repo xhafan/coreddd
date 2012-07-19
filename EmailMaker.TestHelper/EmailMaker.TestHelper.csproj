@@ -12,6 +12,8 @@
     <AssemblyName>EmailMaker.TestHelper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.3.1.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -45,17 +47,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.Domain\Core.Domain.csproj">
-      <Project>{A4AF92A0-F275-411F-A771-D89168FB8E91}</Project>
-      <Name>Core.Domain</Name>
+    <ProjectReference Include="..\Core.Tests\Core.Tests.csproj">
+      <Project>{1043E886-7CE3-41B1-9602-8558B75ACAD7}</Project>
+      <Name>Core.Tests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Core.Tests\Core.TestHelper\Core.TestHelper.csproj">
-      <Project>{63E6B983-C183-4180-8FE3-B75FC33BFC85}</Project>
-      <Name>Core.TestHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.Utilities\Core.Utilities.csproj">
-      <Project>{6847B9DF-9F2B-4DDD-AC02-0ABAECE61889}</Project>
-      <Name>Core.Utilities</Name>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
+      <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
@@ -66,6 +64,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

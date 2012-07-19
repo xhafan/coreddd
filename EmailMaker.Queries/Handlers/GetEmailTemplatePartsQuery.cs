@@ -1,5 +1,5 @@
 ﻿using Core.Queries;
-using EmailMaker.DTO.EmailTemplates;
+using EmailMaker.Dtos.EmailTemplates;
 using EmailMaker.Queries.Messages;
 using NHibernate;
 
@@ -9,7 +9,7 @@ namespace EmailMaker.Queries.Handlers
     {
         public override ICriteria GetCriteria<TResult>(GetEmailTemplatePartsQueryMessage message)
         {
-            return Session.QueryOver<EmailTemplatePartDTO>()
+            return Session.QueryOver<EmailTemplatePartDto>()
                 .Where(e => e.EmailTemplateId == message.EmailTemplateId)
                 .UnderlyingCriteria;
         }

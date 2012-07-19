@@ -2,17 +2,17 @@
 using System.Reflection;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
-using Core.Commons;
 using Core.Domain;
 using Core.Domain.Persistence;
+using Core.Infrastructure;
 using Core.Queries;
-using EmailMaker.DTO.Emails;
-using EmailMaker.Domain.Conventions;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
-using EmailMaker.Domain.Services;
+using EmailMaker.Dtos.Emails;
+using EmailMaker.Infrastructure.Conventions;
 using EmailMaker.Queries;
+using EmailMaker.Service.Handlers;
 using NServiceBus;
 
 namespace EmailMaker.Service
@@ -42,11 +42,8 @@ namespace EmailMaker.Service
                 .MsmqSubscriptionStorage()
                 .UnicastBus();
 
-            //BooReader.Read(container, "EmailMakerService.boo");
             container.Install(
                 FromAssembly.Containing<QueryExecutorInstaller>()
-                , FromAssembly.Containing<NhibernateRepositoryInstaller>()
-                , FromAssembly.Containing<EmailHtmlBuilderInstaller>()
                 , FromAssembly.Containing<EmailSenderInstaller>()
                 , FromAssembly.Containing<QueryMessageHandlerInstaller>()
                 );
@@ -56,10 +53,10 @@ namespace EmailMaker.Service
             var assembliesToMap = new[]
                                       {
                                           typeof (Email).Assembly,
-                                          typeof (EmailDTO).Assembly
+                                          typeof (EmailDto).Assembly
                                       }; 
             UnitOfWork.Initialize(
-                new NHibernateConfigurator(
+                new NhibernateConfigurator(
                     assembliesToMap,
                     new[]
                         {

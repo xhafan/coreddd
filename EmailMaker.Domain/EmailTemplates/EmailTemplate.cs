@@ -3,9 +3,9 @@ using System.Linq;
 using Core.Domain;
 using Core.Utilities;
 using Core.Utilities.Extensions;
-using EmailMaker.DTO;
-using EmailMaker.DTO.EmailTemplates;
-using EmailMaker.Utilities;
+using EmailMaker.Core;
+using EmailMaker.Dtos;
+using EmailMaker.Dtos.EmailTemplates;
 
 namespace EmailMaker.Domain.EmailTemplates
 {
@@ -95,10 +95,10 @@ namespace EmailMaker.Domain.EmailTemplates
             _GetVariablePart(variablePartId).SetValue(value);
         }
 
-        public virtual void Update(EmailTemplateDTO emailTemplateDTO)
+        public virtual void Update(EmailTemplateDto emailTemplateDto)
         {
-            Guard.Hope(Id == emailTemplateDTO.EmailTemplateId, "Invalid email template id");
-            emailTemplateDTO.Parts.Each(part =>
+            Guard.Hope(Id == emailTemplateDto.EmailTemplateId, "Invalid email template id");
+            emailTemplateDto.Parts.Each(part =>
             {
                 if (part.PartType == PartType.Html)
                 {
@@ -113,7 +113,7 @@ namespace EmailMaker.Domain.EmailTemplates
                     throw new EmailMakerException("Unknown email template part type: " + part.PartType);
                 }
             });
-            Name = emailTemplateDTO.Name;
+            Name = emailTemplateDto.Name;
         }
     }
 }

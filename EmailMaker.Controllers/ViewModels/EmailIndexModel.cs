@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using EmailMaker.DTO.EmailTemplates;
+using EmailMaker.Dtos.EmailTemplates;
 
 namespace EmailMaker.Controllers.ViewModels
 {
     public class EmailIndexModel
     {
-        public IEnumerable<EmailTemplateDetailsDTO> EmailTemplate { get; set; }
+        public IEnumerable<EmailTemplateDetailsDto> EmailTemplate { get; set; }
     }
 }

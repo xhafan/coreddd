@@ -1,7 +1,6 @@
 ﻿using Core.Domain;
-using EmailMaker.Domain.EmailTemplates.VariableTypes;
 
-namespace EmailMaker.Domain
+namespace EmailMaker.Domain.EmailTemplates.VariableTypes
 {
     public class VariableType : Identity<VariableType>, IAggregateRootEntity
     {

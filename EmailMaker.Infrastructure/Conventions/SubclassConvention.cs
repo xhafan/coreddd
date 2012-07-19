@@ -5,9 +5,8 @@ using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
 
-namespace EmailMaker.Domain.Conventions
+namespace EmailMaker.Infrastructure.Conventions
 {
-    // todo: move it from here, remove Convetions folder in domain
     public class SubclassConvention : ISubclassConvention, ISubclassConventionAcceptance
     {
         public void Accept(IAcceptanceCriteria<ISubclassInspector> criteria)

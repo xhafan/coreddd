@@ -5,7 +5,7 @@ using Core.Commands;
 using Core.Queries;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
-using EmailMaker.DTO.Users;
+using EmailMaker.Dtos.Users;
 using EmailMaker.Queries.Messages;
 
 namespace EmailMaker.Controllers
@@ -33,7 +33,7 @@ namespace EmailMaker.Controllers
             if (ModelState.IsValid)
             {
                 var message = new GetUserDetailsByEmailAddressMessage { EmailAddress = model.EmailAddress };
-                var userDetails  = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDTO>(message).FirstOrDefault();
+                var userDetails  = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDto>(message).FirstOrDefault();
                 
                 if(userDetails != null)
                 {
@@ -107,7 +107,7 @@ namespace EmailMaker.Controllers
             {
                 // todo: remove this query
                 var message = new GetUserDetailsByEmailAddressMessage { EmailAddress = User.Identity.Name };
-                var user = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDTO>(message).First();
+                var user = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDto>(message).First();
 
                 var command = new ChangePasswordForUserCommand
                                   {

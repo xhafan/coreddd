@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Core.Queries;
-using EmailMaker.DTO.Users;
+using EmailMaker.Dtos.Users;
 using EmailMaker.Queries.Messages;
 
 namespace EmailMaker.Controllers.BaseController
@@ -22,7 +22,7 @@ namespace EmailMaker.Controllers.BaseController
             {
                 // todo: fix this user id retrieval via cookie persistence
                 var message = new GetUserDetailsByEmailAddressMessage {EmailAddress = User.Identity.Name};
-                var user = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDTO>(message).First();
+                var user = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDto>(message).First();
                 return user.UserId;
             }
         }

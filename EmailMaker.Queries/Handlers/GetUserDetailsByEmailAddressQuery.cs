@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Core.Queries;
-using EmailMaker.DTO.Users;
 using EmailMaker.Domain.Users;
+using EmailMaker.Dtos.Users;
 using EmailMaker.Queries.Messages;
 using NHibernate;
 using NHibernate.Criterion;
@@ -18,7 +18,7 @@ namespace EmailMaker.Queries.Handlers
         public override ICriteria GetCriteria<TResult>(GetUserDetailsByEmailAddressMessage message)
         {
            
-            UserDTO userDto = null;
+            UserDto userDto = null;
 
             return Session.QueryOver<User>()
                .Where(user => user.EmailAddress == message.EmailAddress)
@@ -28,7 +28,7 @@ namespace EmailMaker.Queries.Handlers
                                 .Select(c => c.LastName).WithAlias(() => userDto.LastName)
                                 .Select(c => c.EmailAddress).WithAlias(() => userDto.EmailAddress)
                                 .Select(c => c.Password).WithAlias(() => userDto.Password))
-              .TransformUsing(Transformers.AliasToBean<UserDTO>())
+              .TransformUsing(Transformers.AliasToBean<UserDto>())
               .UnderlyingCriteria;
      
         }

@@ -8,20 +8,20 @@ using System.Web.Routing;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
 using Core.Commands;
-using Core.Commons;
 using Core.Domain;
 using Core.Domain.Persistence;
+using Core.Infrastructure;
 using Core.Queries;
 using Core.Web;
 using Core.Web.ModelBinders;
 using EmailMaker.Commands;
 using EmailMaker.Controllers;
-using EmailMaker.DTO.Emails;
-using EmailMaker.Domain.Conventions;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EventHandlers;
+using EmailMaker.Dtos.Emails;
+using EmailMaker.Infrastructure.Conventions;
 using EmailMaker.Queries;
 using NServiceBus;
 
@@ -76,12 +76,9 @@ namespace EmailMaker.Website
                 .CreateBus()
                 .Start();
             
-            //BooReader.Read(container, "windsor.boo");
             container.Install(
                 FromAssembly.Containing<ControllerInstaller>()
-                , FromAssembly.Containing<CommandExecutorInstaller>()
                 , FromAssembly.Containing<QueryExecutorInstaller>()
-                , FromAssembly.Containing<NhibernateRepositoryInstaller>()
                 , FromAssembly.Containing<CommandHandlerInstaller>()
                 , FromAssembly.Containing<EventHandlerInstaller>()
                 , FromAssembly.Containing<QueryMessageHandlerInstaller>()
@@ -94,10 +91,10 @@ namespace EmailMaker.Website
             var assembliesToMap = new[]
                                       {
                                           typeof (Email).Assembly,
-                                          typeof (EmailDTO).Assembly
+                                          typeof (EmailDto).Assembly
                                       };
             UnitOfWork.Initialize(
-                new NHibernateConfigurator(
+                new NhibernateConfigurator(
                     assembliesToMap,
                     new[]
                         {

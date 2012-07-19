@@ -1,4 +1,4 @@
-using Core.TestHelper.Extensions;
+using Core.Tests.Helpers.Extensions;
 using EmailMaker.Domain.Emails;
 
 namespace EmailMaker.TestHelper.Builders

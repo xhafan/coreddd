@@ -1,9 +1,9 @@
-﻿using EmailMaker.DTO.EmailTemplates;
+﻿using EmailMaker.Dtos.EmailTemplates;
 
 namespace EmailMaker.Controllers.ViewModels
 {
     public class EmailTemplateEditModel
     {
-        public EmailTemplateDTO EmailTemplate { get; set; }
+        public EmailTemplateDto EmailTemplate { get; set; }
     }
 }

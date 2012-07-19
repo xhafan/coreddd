@@ -1,9 +1,9 @@
-﻿using EmailMaker.DTO.Emails;
+﻿using EmailMaker.Dtos.Emails;
 
 namespace EmailMaker.Controllers.ViewModels
 {
     public class EmailEditVariablesModel
     {
-        public EmailDTO Email { get; set; }
+        public EmailDto Email { get; set; }
     }
 }

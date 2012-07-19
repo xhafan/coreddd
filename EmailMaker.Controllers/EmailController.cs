@@ -7,11 +7,11 @@ using Core.Utilities.Extensions;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.BaseController;
 using EmailMaker.Controllers.ViewModels;
-using EmailMaker.DTO;
-using EmailMaker.DTO.EmailTemplates;
-using EmailMaker.DTO.Emails;
+using EmailMaker.Core;
+using EmailMaker.Dtos;
+using EmailMaker.Dtos.EmailTemplates;
+using EmailMaker.Dtos.Emails;
 using EmailMaker.Queries.Messages;
-using EmailMaker.Utilities;
 using MvcContrib;
 
 namespace EmailMaker.Controllers
@@ -29,7 +29,7 @@ namespace EmailMaker.Controllers
 
         public ViewResult Index()
         {
-            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDTO>(new GetAllEmailTemplateQueryMessage { UserId = UserId});
+            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDto>(new GetAllEmailTemplateQueryMessage { UserId = UserId});
             var model = new TemplateIndexModel { EmailTemplate = emailTemplates };
             return View(model);
         }
@@ -77,13 +77,13 @@ namespace EmailMaker.Controllers
             return new EmptyResult();
         }
 
-        private EmailDTO _GetEmail(int id)
+        private EmailDto _GetEmail(int id)
         {
             var message = new GetEmailQueryMessage { EmailId = id };
             var variablePartMessage = new GetEmailVariablePartsQueryMessage { EmailId = id };
 
-            var emailDTOs = _queryExecutor.Execute<GetEmailQueryMessage, EmailDTO>(message);
-            var variableEmailPartDTOs = _queryExecutor.Execute<GetEmailVariablePartsQueryMessage, EmailPartDTO>(variablePartMessage);
+            var emailDTOs = _queryExecutor.Execute<GetEmailQueryMessage, EmailDto>(message);
+            var variableEmailPartDTOs = _queryExecutor.Execute<GetEmailVariablePartsQueryMessage, EmailPartDto>(variablePartMessage);
 
             var emailDTO = emailDTOs.Single();
             emailDTO.Parts = variableEmailPartDTOs;
@@ -106,7 +106,7 @@ namespace EmailMaker.Controllers
         public string GetHtml(int id)
         {
             var partMessage = new GetEmailPartsQueryMessage { EmailId = id };
-            var emailPartDTOs = _queryExecutor.Execute<GetEmailPartsQueryMessage, EmailPartDTO>(partMessage);
+            var emailPartDTOs = _queryExecutor.Execute<GetEmailPartsQueryMessage, EmailPartDto>(partMessage);
 
             var sb = new StringBuilder();
             emailPartDTOs.Each(part =>

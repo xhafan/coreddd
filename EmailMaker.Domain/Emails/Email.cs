@@ -4,12 +4,12 @@ using Core.Domain;
 using Core.Domain.Events;
 using Core.Utilities;
 using Core.Utilities.Extensions;
+using EmailMaker.Core;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.DTO;
-using EmailMaker.DTO.Emails;
 using EmailMaker.Domain.Events.Emails;
-using EmailMaker.Utilities;
+using EmailMaker.Dtos;
+using EmailMaker.Dtos.Emails;
 using Iesi.Collections.Generic;
 
 namespace EmailMaker.Domain.Emails
@@ -62,10 +62,10 @@ namespace EmailMaker.Domain.Emails
             State = EmailState.Draft;
         }
 
-        public virtual void UpdateVariables(EmailDTO emailDTO)
+        public virtual void UpdateVariables(EmailDto emailDto)
         {
-            Guard.Hope(Id == emailDTO.EmailId, "Invalid email id");
-            emailDTO.Parts.Each(part =>
+            Guard.Hope(Id == emailDto.EmailId, "Invalid email id");
+            emailDto.Parts.Each(part =>
             {
                 if (part.PartType == PartType.Variable)
                 {

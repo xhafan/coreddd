@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Core.Domain;
+﻿using Core.Domain;
 using Core.Utilities.Extensions;
 using EmailMaker.Domain.Emails;
-using EmailMaker.Domain.Services;
 using EmailMaker.Messages;
 using NServiceBus;
 
@@ -25,14 +23,13 @@ namespace EmailMaker.Service.Handlers
         {
             var email = _emailRepository.GetById(message.EmailId);
             var emailHtml = _emailHtmlBuilder.BuildHtmlEmail(email.Parts);
-            var messagesToBeSent = new List<SendEmailForEmailRecipientMessage>();
-            email.EmailRecipients.Each(er => _bus.SendLocal(new SendEmailForEmailRecipientMessage
+            email.EmailRecipients.Each(x => _bus.SendLocal(new SendEmailForEmailRecipientMessage
                                                                           {
                                                                               EmailId = email.Id,
-                                                                              RecipientId = er.Recipient.Id,
+                                                                              RecipientId = x.Recipient.Id,
                                                                               FromAddress = email.FromAddress,
-                                                                              RecipientEmailAddress = er.Recipient.EmailAddress,
-                                                                              RecipientName = er.Recipient.Name,
+                                                                              RecipientEmailAddress = x.Recipient.EmailAddress,
+                                                                              RecipientName = x.Recipient.Name,
                                                                               Subject = email.Subject,
                                                                               EmailHtml = emailHtml
                                                                           }));
