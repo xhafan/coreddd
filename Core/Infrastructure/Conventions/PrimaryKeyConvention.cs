@@ -1,20 +1,16 @@
+using Core.Domain;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
 
-namespace Core.Domain.Persistence.Conventions
+namespace Core.Infrastructure.Conventions
 {
     public class PrimaryKeyConvention : IIdConvention, IIdConventionAcceptance
     {
         public void Accept(IAcceptanceCriteria<IIdentityInspector> criteria)
         {
-            criteria.Expect(x => IsSubclassOfRawGeneric(x));
-        }
-
-        private static bool IsSubclassOfRawGeneric(IIdentityInspector x)
-        {
-            return x.EntityType.IsSubclassOfRawGeneric(typeof (Identity<>));
+            criteria.Expect(x => x.EntityType.IsSubclassOfRawGeneric(typeof (Identity<>)));
         }
 
         public void Apply(IIdentityInstance instance)

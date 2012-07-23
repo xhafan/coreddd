@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Core.Infrastructure;
 using NHibernate;
 
-namespace Core.Domain.Persistence
+namespace Core.Domain
 {
-    public class NhibernateRepository<T> : IRepository<T> where T : IAggregateRootEntity
+    public class NhibernateRepository<T> : IRepository<T> where T : IAggregateRoot
     {
         private readonly ISession _session;
 

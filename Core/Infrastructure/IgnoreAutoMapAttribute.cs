@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.Domain.Persistence
+namespace Core.Infrastructure
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class IgnoreAutoMapAttribute : Attribute

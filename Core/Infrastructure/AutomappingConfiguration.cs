@@ -1,9 +1,10 @@
 using System;
+using Core.Domain;
 using Core.Dtos;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Utils;
 
-namespace Core.Domain.Persistence
+namespace Core.Infrastructure
 {
     public class AutomappingConfiguration : DefaultAutomappingConfiguration
     {

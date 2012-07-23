@@ -27,7 +27,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests
                                      {
                                          typeof (EmailState)
                                      };
-            AssemblyWithConventions = typeof (SubclassConvention).Assembly;
+            AssemblyWithConventions = typeof (EmailStateSubclassConvention).Assembly;
         }
     }
 }

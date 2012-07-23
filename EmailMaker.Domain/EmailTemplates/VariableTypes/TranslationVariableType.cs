@@ -1,4 +1,4 @@
-﻿using Core.Domain.Persistence;
+﻿using Core.Infrastructure;
 
 namespace EmailMaker.Domain.EmailTemplates.VariableTypes
 {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.Domain.Persistence
+namespace Core.Domain
 {
     public static class TypeExtensions
     {

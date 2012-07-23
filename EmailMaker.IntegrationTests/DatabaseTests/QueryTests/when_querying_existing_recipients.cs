@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Core.Tests.Helpers.Persistence;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Queries.Handlers;
 using EmailMaker.Queries.Messages;
@@ -9,7 +10,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
 {
     [TestFixture]
-    public class when_querying_existing_recipients : BaseEmailMakerSimplePersistenceTest
+    public class when_querying_existing_recipients : BaseSimplePersistenceTest
     {
         private string _emailAddressOne = "email1@test.com";
         private string _emailAddressTwo = "email2@test.com";

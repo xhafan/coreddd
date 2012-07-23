@@ -1,5 +1,4 @@
 ﻿using Core.Domain;
-using Core.Domain.Persistence;
 using NHibernate;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -11,7 +10,7 @@ namespace Core.Tests.Domain.Persistence.Repositories
     {
         private ISession _session;
 
-        private abstract class TestEntity : Identity<TestEntity>, IAggregateRootEntity
+        private abstract class TestEntity : Identity<TestEntity>, IAggregateRoot
         {
         }
         

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Core.Tests.Helpers.Persistence;
 using EmailMaker.Domain.Users;
 using EmailMaker.Dtos.Users;
 using EmailMaker.Queries.Handlers;
@@ -10,9 +11,8 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
 {
     [TestFixture]
-    public class when_querying_for_user_details_by_emailaddress : BaseEmailMakerSimplePersistenceTest
+    public class when_querying_for_user_details_by_emailaddress : BaseSimplePersistenceTest
     {
-
         private User _user;
         private IEnumerable<UserDto>  _results;
         private string _firstName = "first name";
@@ -44,7 +44,5 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
             retrivedUserDetailsDTO.Password.ShouldBe(_password);
 
         }
-
-
     }
 }

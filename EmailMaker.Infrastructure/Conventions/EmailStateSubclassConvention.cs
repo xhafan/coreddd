@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using EmailMaker.Domain.Emails.EmailStates;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.AcceptanceCriteria;
@@ -7,7 +8,7 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace EmailMaker.Infrastructure.Conventions
 {
-    public class SubclassConvention : ISubclassConvention, ISubclassConventionAcceptance
+    public class EmailStateSubclassConvention : ISubclassConvention, ISubclassConventionAcceptance
     {
         public void Accept(IAcceptanceCriteria<ISubclassInspector> criteria)
         {

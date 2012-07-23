@@ -34,7 +34,7 @@ namespace EmailMaker.Controllers
             return View(model);
         }
         
-        // todo: make httppost
+        // todo: make it httppost
         public ActionResult Create(int id)
         {
             var createdEmailId = default(int);
@@ -82,11 +82,11 @@ namespace EmailMaker.Controllers
             var message = new GetEmailQueryMessage { EmailId = id };
             var variablePartMessage = new GetEmailVariablePartsQueryMessage { EmailId = id };
 
-            var emailDTOs = _queryExecutor.Execute<GetEmailQueryMessage, EmailDto>(message);
-            var variableEmailPartDTOs = _queryExecutor.Execute<GetEmailVariablePartsQueryMessage, EmailPartDto>(variablePartMessage);
+            var emailDtos = _queryExecutor.Execute<GetEmailQueryMessage, EmailDto>(message);
+            var variableEmailPartDtos = _queryExecutor.Execute<GetEmailVariablePartsQueryMessage, EmailPartDto>(variablePartMessage);
 
-            var emailDTO = emailDTOs.Single();
-            emailDTO.Parts = variableEmailPartDTOs;
+            var emailDTO = emailDtos.Single();
+            emailDTO.Parts = variableEmailPartDtos;
 
             return emailDTO;
         }
@@ -106,10 +106,10 @@ namespace EmailMaker.Controllers
         public string GetHtml(int id)
         {
             var partMessage = new GetEmailPartsQueryMessage { EmailId = id };
-            var emailPartDTOs = _queryExecutor.Execute<GetEmailPartsQueryMessage, EmailPartDto>(partMessage);
+            var emailPartDtos = _queryExecutor.Execute<GetEmailPartsQueryMessage, EmailPartDto>(partMessage);
 
             var sb = new StringBuilder();
-            emailPartDTOs.Each(part =>
+            emailPartDtos.Each(part =>
                                    {
                                        if (part.PartType == PartType.Html)
                                        {

@@ -2,7 +2,7 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
-namespace Core.Domain.Persistence
+namespace Core.Domain
 {
     public class NhibernateRepositoryInstaller : IWindsorInstaller
     {

@@ -2,7 +2,7 @@ using System;
 using FluentNHibernate;
 using FluentNHibernate.Conventions;
 
-namespace Core.Domain.Persistence.Conventions
+namespace Core.Infrastructure.Conventions
 {
     public class CustomForeignKeyConvention : ForeignKeyConvention
     {

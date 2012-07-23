@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Core.Queries;
+﻿using Core.Queries;
 using EmailMaker.Domain.Users;
 using EmailMaker.Dtos.Users;
 using EmailMaker.Queries.Messages;
 using NHibernate;
-using NHibernate.Criterion;
 using NHibernate.Transform;
 
 namespace EmailMaker.Queries.Handlers
 {
+    // todo: refactor this via UserDto DB view
     public class GetUserDetailsByEmailAddressQuery : BaseNHibernateCriteriaQueryMessageHandler<GetUserDetailsByEmailAddressMessage>
-    {
-        
+    {        
         public override ICriteria GetCriteria<TResult>(GetUserDetailsByEmailAddressMessage message)
-        {
-           
+        {           
             UserDto userDto = null;
-
             return Session.QueryOver<User>()
                .Where(user => user.EmailAddress == message.EmailAddress)
                .SelectList(list => list
@@ -29,8 +22,7 @@ namespace EmailMaker.Queries.Handlers
                                 .Select(c => c.EmailAddress).WithAlias(() => userDto.EmailAddress)
                                 .Select(c => c.Password).WithAlias(() => userDto.Password))
               .TransformUsing(Transformers.AliasToBean<UserDto>())
-              .UnderlyingCriteria;
-     
+              .UnderlyingCriteria;     
         }
     }
 }

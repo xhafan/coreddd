@@ -1,6 +1,6 @@
 ﻿namespace Core.Domain
 {
-    public interface IAggregateRootEntity
+    public interface IAggregateRoot
     {
         int Id { get; }
     }

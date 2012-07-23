@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Reflection;
-using Core.Domain.Persistence.Conventions;
-using Core.Infrastructure;
+using Core.Infrastructure.Conventions;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Utils;
 using HibernatingRhinos.Profiler.Appender.NHibernate;
 using NHibernate;
-using NHibernate.Cfg;
+using Configuration = NHibernate.Cfg.Configuration;
 
-namespace Core.Domain.Persistence
+namespace Core.Infrastructure
 {
     public class NhibernateConfigurator : INhibernateConfigurator
     {
         private readonly ISessionFactory _sessionFactory;
         private readonly Configuration _configuration;
 
-        public NhibernateConfigurator(Assembly[] assembliesToMap, IEnumerable<Type> includeBaseTypes, Type[] discriminatedTypes, Assembly assemblyWithConventions)
+        public NhibernateConfigurator(
+            Assembly[] assembliesToMap, 
+            IEnumerable<Type> includeBaseTypes, 
+            Type[] discriminatedTypes, 
+            bool mapDefaultConventions,
+            Assembly assemblyWithConventions)
         {
 #if(DEBUG)
             NHibernateProfiler.Initialize();
@@ -27,12 +32,15 @@ namespace Core.Domain.Persistence
             var autoPersistenceModel = AutoMap.Assemblies(new AutomappingConfiguration(discriminatedTypes), assembliesToMap);
             includeBaseTypes.Each(x => autoPersistenceModel.IncludeBase(x));
             assembliesToMap.Each(x => autoPersistenceModel.UseOverridesFromAssembly(x));
-            autoPersistenceModel
-                .Conventions.AddFromAssemblyOf<PrimaryKeyConvention>() // todo: Add conventions from assembly; make it core.net independent
-                .Conventions.AddAssembly(assemblyWithConventions)
-                ;
+            if (mapDefaultConventions) autoPersistenceModel.Conventions.AddFromAssemblyOf<PrimaryKeyConvention>();
+            autoPersistenceModel.Conventions.AddAssembly(assemblyWithConventions);            
             _sessionFactory = Fluently.Configure(_configuration)
-                .Mappings(m => m.AutoMappings.Add(autoPersistenceModel).ExportTo(@"d:\temp\export")) // todo: fix path
+                .Mappings(x =>
+                              {
+                                  var mappingsContainer = x.AutoMappings.Add(autoPersistenceModel);
+                                  var exportNhibernateMappingsFolder = ConfigurationManager.AppSettings["ExportNhibernateMappingsFolder"];
+                                  if (!string.IsNullOrWhiteSpace(exportNhibernateMappingsFolder)) mappingsContainer.ExportTo(exportNhibernateMappingsFolder);
+                              })
                 .BuildSessionFactory();
         }
 

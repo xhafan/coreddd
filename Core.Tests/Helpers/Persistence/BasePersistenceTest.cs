@@ -1,4 +1,5 @@
 ﻿using Core.Domain;
+using Core.Infrastructure;
 using Core.Utilities.Extensions;
 using NHibernate;
 using NUnit.Framework;
@@ -9,25 +10,35 @@ namespace Core.Tests.Helpers.Persistence
     {
         protected ISession Session;
 
-        protected abstract void ConfigureNHibernate();
-        protected abstract void ClearDatabase();
         protected abstract void Context();
 
         [TestFixtureSetUp]
         public void SetUp()
         {
-            ConfigureNHibernate();
+            Session = UnitOfWork.CurrentSession;
             ClearDatabase();
             Context();
         }
 
-        protected void Save(params IAggregateRootEntity[] aggregateRootEntitites)
+        protected void ClearDatabase()
+        {
+            using (var tx = Session.BeginTransaction())
+            {
+                Session.Delete("from Email");
+                Session.Delete("from EmailTemplate");
+                Session.Delete("from Recipient");
+                Session.Delete("from User");
+                tx.Commit();
+            }  
+        }
+
+        protected void Save(params IAggregateRoot[] aggregateRootEntitites)
         {
             aggregateRootEntitites.Each(e => Session.SaveOrUpdate(e));
             Session.Flush();
         }
 
-        protected TAggregateRootEntity Get<TAggregateRootEntity>(int id) where TAggregateRootEntity : IAggregateRootEntity
+        protected TAggregateRootEntity Get<TAggregateRootEntity>(int id) where TAggregateRootEntity : IAggregateRoot
         {
             return Session.Get<TAggregateRootEntity>(id);
         }

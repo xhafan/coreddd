@@ -11,7 +11,7 @@ namespace EmailMaker.Domain.EmailTemplates
 
         public VariableEmailTemplatePart(string value)
         {
-            //VariableType = VariableType.InputText;
+            //VariableType = VariableType.InputText; // todo: either remove this or uncomment it
             _SetValue(value);
         }
 

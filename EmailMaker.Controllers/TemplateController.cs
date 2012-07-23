@@ -33,7 +33,7 @@ namespace EmailMaker.Controllers
             return View(model);
         }
 
-        // todo: make httppost
+        // todo: make it httppost
         public ActionResult Create()
         {            
             var createdEmailTemplateId = default(int);
@@ -56,11 +56,11 @@ namespace EmailMaker.Controllers
             var templateMessage = new GetEmailTemplateQueryMessage {EmailTemplateId = id};
             var templatePartMessage = new GetEmailTemplatePartsQueryMessage { EmailTemplateId = id };
 
-            var emailTemplateDTOs = _queryExecutor.Execute<GetEmailTemplateQueryMessage, EmailTemplateDto>(templateMessage);
-            var emailTemplatePartDTOs = _queryExecutor.Execute<GetEmailTemplatePartsQueryMessage, EmailTemplatePartDto>(templatePartMessage);
+            var emailTemplateDtos = _queryExecutor.Execute<GetEmailTemplateQueryMessage, EmailTemplateDto>(templateMessage);
+            var emailTemplatePartDtos = _queryExecutor.Execute<GetEmailTemplatePartsQueryMessage, EmailTemplatePartDto>(templatePartMessage);
             
-            var emailTemplateDTO = emailTemplateDTOs.Single();
-            emailTemplateDTO.Parts = emailTemplatePartDTOs;
+            var emailTemplateDTO = emailTemplateDtos.Single();
+            emailTemplateDTO.Parts = emailTemplatePartDtos;
 
             return emailTemplateDTO;
         }
@@ -89,18 +89,13 @@ namespace EmailMaker.Controllers
             return Json(_GetEmailTemplate(id));
         }
 
-        public ActionResult Edit2()
-        {
-            return View();
-        }
-
         public string GetHtml(int id)
         {
             var partMessage = new GetEmailTemplatePartsQueryMessage { EmailTemplateId = id };
-            var emailTemplatePartDTOs = _queryExecutor.Execute<GetEmailTemplatePartsQueryMessage, EmailTemplatePartDto>(partMessage);
+            var emailTemplatePartDtos = _queryExecutor.Execute<GetEmailTemplatePartsQueryMessage, EmailTemplatePartDto>(partMessage);
 
             var sb = new StringBuilder();
-            emailTemplatePartDTOs.Each(part =>
+            emailTemplatePartDtos.Each(part =>
             {
                 if (part.PartType == PartType.Html)
                 {

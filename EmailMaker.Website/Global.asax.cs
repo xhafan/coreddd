@@ -1,27 +1,17 @@
 ﻿using System.Data;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
-using Core.Commands;
-using Core.Domain;
-using Core.Domain.Persistence;
 using Core.Infrastructure;
 using Core.Queries;
 using Core.Web;
 using Core.Web.ModelBinders;
 using EmailMaker.Commands;
 using EmailMaker.Controllers;
-using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.Domain.Emails;
-using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EventHandlers;
-using EmailMaker.Dtos.Emails;
-using EmailMaker.Infrastructure.Conventions;
+using EmailMaker.Infrastructure;
 using EmailMaker.Queries;
 using NServiceBus;
 
@@ -44,7 +34,6 @@ namespace EmailMaker.Website
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
         }
 
         protected void Application_Start()
@@ -54,19 +43,14 @@ namespace EmailMaker.Website
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-
+            var nserviceBusAssemblies = new[]
+                                            {
+                                                typeof (IMessage).Assembly,
+                                                typeof (Configure).Assembly,
+                                            };
             var container = new WindsorContainer();
-
-            var binPath = Server.MapPath("~/bin");
-            var assembliesToLoad = new[]
-                                       {
-                                           "NServiceBus.dll",
-                                           "NServiceBus.Core.dll"
-                                       };
-            var assemblies = assembliesToLoad.Select(x => Assembly.LoadFrom(Path.Combine(binPath, x)));
-
             Configure
-                .With(assemblies)
+                .With(nserviceBusAssemblies)
                 .Log4Net()
                 .CastleWindsorBuilder(container)
                 .BinarySerializer()
@@ -77,39 +61,18 @@ namespace EmailMaker.Website
                 .Start();
             
             container.Install(
-                FromAssembly.Containing<ControllerInstaller>()
-                , FromAssembly.Containing<QueryExecutorInstaller>()
-                , FromAssembly.Containing<CommandHandlerInstaller>()
-                , FromAssembly.Containing<EventHandlerInstaller>()
-                , FromAssembly.Containing<QueryMessageHandlerInstaller>()
+                FromAssembly.Containing<ControllerInstaller>(),
+                FromAssembly.Containing<QueryExecutorInstaller>(),
+                FromAssembly.Containing<CommandHandlerInstaller>(),
+                FromAssembly.Containing<EventHandlerInstaller>(),
+                FromAssembly.Containing<QueryMessageHandlerInstaller>()
                 );
             IoC.Initialize(container);
 
             ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory());
             ModelBinders.Binders.DefaultBinder = new EnumConverterModelBinder();
 
-            var assembliesToMap = new[]
-                                      {
-                                          typeof (Email).Assembly,
-                                          typeof (EmailDto).Assembly
-                                      };
-            UnitOfWork.Initialize(
-                new NhibernateConfigurator(
-                    assembliesToMap,
-                    new[]
-                        {
-                            typeof (Identity<>),
-                            typeof (EmailPart),
-                            typeof (EmailState),
-                            typeof (EmailTemplatePart)
-                        }, 
-                    new[]
-                        {
-                            typeof (EmailState)
-                        },
-                    typeof(SubclassConvention).Assembly)
-                );
-            // todo: remove project reference to emailmaker.domain and core.domain
+            UnitOfWorkInitializer.Initialize();
         }
 
         public virtual void Application_BeginRequest()

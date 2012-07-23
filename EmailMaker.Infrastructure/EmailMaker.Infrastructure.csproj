@@ -40,7 +40,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conventions\SubclassConvention.cs" />
+    <Compile Include="Conventions\EmailStateSubclassConvention.cs" />
+    <Compile Include="UnitOfWorkInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +52,10 @@
     <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
       <Name>EmailMaker.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Dto\EmailMaker.Dtos.csproj">
+      <Project>{9EC89380-5186-450A-BFCE-A08CF74BE535}</Project>
+      <Name>EmailMaker.Dtos</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

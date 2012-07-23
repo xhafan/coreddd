@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Core.Domain.Persistence;
+using Core.Infrastructure;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
 using Shouldly;
@@ -17,15 +17,15 @@ namespace Core.Tests.Helpers.Persistence
         protected Type[] DiscriminatedTypes;
         protected Assembly AssemblyWithConventions;
 
-
         protected abstract void SetUp();
 
+        // todo: refactor this into a tool which generates schema
         [TestFixtureSetUp]
         public void Context()
         {
             SetUp();
             File.Delete(DatabaseSchemaFileName);
-            var nHibernateConfigurator = new NhibernateConfigurator(AssembliesToMap, IncludeBaseTypes, DiscriminatedTypes, AssemblyWithConventions);
+            var nHibernateConfigurator = new NhibernateConfigurator(AssembliesToMap, IncludeBaseTypes, DiscriminatedTypes, true, AssemblyWithConventions);
             var schemaExport = new SchemaExport(nHibernateConfigurator.GetConfiguration());
             schemaExport.SetOutputFile(DatabaseSchemaFileName);
             schemaExport.Create(true, false);

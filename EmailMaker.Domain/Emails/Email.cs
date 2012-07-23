@@ -14,7 +14,7 @@ using Iesi.Collections.Generic;
 
 namespace EmailMaker.Domain.Emails
 {
-    public class Email : Identity<Email>, IAggregateRootEntity
+    public class Email : Identity<Email>, IAggregateRoot
     {
         public virtual EmailTemplate EmailTemplate { get; protected set; }
 
@@ -40,6 +40,7 @@ namespace EmailMaker.Domain.Emails
         public Email(EmailTemplate emailTemplate) // todo: test missing
         {
             EmailTemplate = emailTemplate;
+            State = EmailState.Draft;
 
             foreach (var emailTemplatePart in emailTemplate.Parts)
             {
@@ -57,9 +58,7 @@ namespace EmailMaker.Domain.Emails
                 {
                     throw new EmailMakerException("Unsupported email template part: " + emailTemplatePart.GetType());
                 }
-            }
-
-            State = EmailState.Draft;
+            }           
         }
 
         public virtual void UpdateVariables(EmailDto emailDto)
@@ -85,7 +84,7 @@ namespace EmailMaker.Domain.Emails
 
         private EmailPart _GetPart(int partId)
         {
-            return Parts.First(x => x.Id == partId);
+            return _parts.First(x => x.Id == partId);
         }
 
         private void _SetVariableValue(int variablePartId, string value)

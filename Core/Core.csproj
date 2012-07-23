@@ -49,6 +49,7 @@
       <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -68,20 +69,19 @@
     <Compile Include="Domain\Events\DomainEvents.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
     <Compile Include="Domain\Events\IDomainEventHandler.cs" />
-    <Compile Include="Domain\IAggregateRootEntity.cs" />
+    <Compile Include="Domain\IAggregateRoot.cs" />
     <Compile Include="Domain\Identity.cs" />
     <Compile Include="Domain\IRepository.cs" />
-    <Compile Include="Domain\Persistence\AutomappingConfiguration.cs" />
-    <Compile Include="Domain\Persistence\Conventions\CustomForeignKeyConvention.cs" />
-    <Compile Include="Domain\Persistence\Conventions\HasManyForDomainConvention.cs" />
-    <Compile Include="Domain\Persistence\Conventions\JoinedSubclassIdConvention.cs" />
-    <Compile Include="Domain\Persistence\Conventions\PrimaryKeyConvention.cs" />
-    <Compile Include="Domain\Persistence\Conventions\StringColumnLengthConvention.cs" />
-    <Compile Include="Domain\Persistence\IgnoreAutoMapAttribute.cs" />
-    <Compile Include="Domain\Persistence\NhibernateConfigurator.cs" />
-    <Compile Include="Domain\Persistence\NhibernateRepository.cs" />
-    <Compile Include="Domain\Persistence\NhibernateRepositoryInstaller.cs" />
-    <Compile Include="Domain\Persistence\TypeExtensions.cs" />
+    <Compile Include="Infrastructure\AutomappingConfiguration.cs" />
+    <Compile Include="Infrastructure\Conventions\CustomForeignKeyConvention.cs" />
+    <Compile Include="Infrastructure\Conventions\HasManyForDomainConvention.cs" />
+    <Compile Include="Infrastructure\Conventions\PrimaryKeyConvention.cs" />
+    <Compile Include="Infrastructure\Conventions\StringColumnLengthConvention.cs" />
+    <Compile Include="Infrastructure\IgnoreAutoMapAttribute.cs" />
+    <Compile Include="Infrastructure\NhibernateConfigurator.cs" />
+    <Compile Include="Domain\NhibernateRepository.cs" />
+    <Compile Include="Domain\NhibernateRepositoryInstaller.cs" />
+    <Compile Include="Domain\TypeExtensions.cs" />
     <Compile Include="Dtos\Dto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\BaseNHibernateCriteriaQueryMessageHandler.cs" />

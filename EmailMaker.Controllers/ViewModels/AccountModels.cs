@@ -122,11 +122,11 @@ namespace EmailMaker.Controllers.ViewModels
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public sealed class ValidatePasswordLengthAttribute : ValidationAttribute, IClientValidatable
     {
-        private const string _defaultErrorMessage = "'{0}' must be at least {1} characters long.";
+        private const string DefaultErrorMessage = "'{0}' must be at least {1} characters long.";
         private readonly int _minCharacters = Membership.Provider.MinRequiredPasswordLength;
 
         public ValidatePasswordLengthAttribute()
-            : base(_defaultErrorMessage)
+            : base(DefaultErrorMessage)
         {
         }
 
@@ -138,7 +138,7 @@ namespace EmailMaker.Controllers.ViewModels
 
         public override bool IsValid(object value)
         {
-            string valueAsString = value as string;
+            var valueAsString = value as string;
             return (valueAsString != null && valueAsString.Length >= _minCharacters);
         }
 

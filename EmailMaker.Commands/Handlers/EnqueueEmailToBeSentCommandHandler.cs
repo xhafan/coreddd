@@ -30,10 +30,11 @@ namespace EmailMaker.Commands.Handlers
         {
             var email = _emailRepository.GetById(command.EmailId);
             var emailAddressesAndNames = _recipientParser.Parse(command.RecipientsStr);
-            var existingRecipients = _queryExecutor.Execute<GetExistingRecipientsQueryMessage, Recipient>(new GetExistingRecipientsQueryMessage
-                                                                                     {
-                                                                                         RecipientEmailAddresses = emailAddressesAndNames.Keys
-                                                                                     }).ToDictionary(k => k.EmailAddress);
+            var existingRecipients = _queryExecutor.Execute<GetExistingRecipientsQueryMessage, Recipient>(
+                new GetExistingRecipientsQueryMessage
+                    {
+                        RecipientEmailAddresses = emailAddressesAndNames.Keys
+                    }).ToDictionary(k => k.EmailAddress);
             var recipients = new HashedSet<Recipient>(existingRecipients.Values);
             var recipientsToBeCreated = emailAddressesAndNames.Where(p => !existingRecipients.ContainsKey(p.Key));
             recipientsToBeCreated.Each(r =>

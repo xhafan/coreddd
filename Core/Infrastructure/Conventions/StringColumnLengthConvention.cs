@@ -3,7 +3,7 @@ using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
 
-namespace Core.Domain.Persistence.Conventions
+namespace Core.Infrastructure.Conventions
 {
     public class StringColumnLengthConvention : IPropertyConvention
     {

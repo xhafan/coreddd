@@ -2,7 +2,7 @@
 
 namespace EmailMaker.Domain.EmailTemplates.VariableTypes
 {
-    public class VariableType : Identity<VariableType>, IAggregateRootEntity
+    public class VariableType : Identity<VariableType>, IAggregateRoot
     {
         public static VariableType InputText = new InputTextVariableType();
         public static VariableType AutoText = new AutoTextVariableType();

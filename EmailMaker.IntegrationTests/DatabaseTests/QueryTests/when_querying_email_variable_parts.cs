@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Core.Tests.Helpers.Persistence;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Dtos;
@@ -13,7 +14,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.QueryTests
 {
     [TestFixture]
-    public class when_querying_email_variable_parts : BaseEmailMakerSimplePersistenceTest
+    public class when_querying_email_variable_parts : BaseSimplePersistenceTest
     {
         private IEnumerable<EmailPartDto> _result;
         private Email _email;

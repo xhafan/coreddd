@@ -2,7 +2,7 @@
 
 namespace Core.Domain
 {
-    public interface IRepository<T> where T : IAggregateRootEntity
+    public interface IRepository<T> where T : IAggregateRoot
     {
         T GetById(int id);
         IEnumerable<T> GetByIds(IEnumerable<int> ids);

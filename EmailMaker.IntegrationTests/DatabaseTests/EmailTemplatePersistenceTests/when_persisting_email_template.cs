@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Core.Tests.Helpers.Persistence;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Users;
 using EmailMaker.TestHelper.Builders;
@@ -8,7 +9,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistenceTests
 {
     [TestFixture]
-    public class when_persisting_email_template : BaseEmailMakerSimplePersistenceTest
+    public class when_persisting_email_template : BaseSimplePersistenceTest
     {
         private EmailTemplate _emailTemplate;
         private EmailTemplate _retrievedEmailTemplate;
