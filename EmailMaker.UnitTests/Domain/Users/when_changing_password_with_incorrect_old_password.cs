@@ -14,7 +14,7 @@ namespace EmailMaker.UnitTests.Domain.Users
         public void Context()
         {
             var user = UserBuilder.New.Build();
-            _exception = Assert.Throws<CoreException>(() => user.ChangePassword("incorrect old password", "new password"));
+            _exception = Should.Throw<CoreException>(() => user.ChangePassword("incorrect old password", "new password"));
         }
 
         [Test]

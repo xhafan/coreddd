@@ -2,6 +2,7 @@
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
+using Shouldly;
 
 namespace EmailMaker.UnitTests.Domain.EmailTemplates
 {
@@ -9,13 +10,19 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
     public class when_deleting_variable_with_invalid_variable_id
     {
         private EmailTemplate _template;
+        private CoreException _exception;
 
-        [Test]
-        [ExpectedException(typeof(CoreException), ExpectedMessage = "Invalid variable part Id: 23")]
+        [SetUp]
         public void Context()
         {
             _template = EmailTemplateBuilder.New.Build();
-            _template.DeleteVariable(23);
+            _exception = Should.Throw<CoreException>(() => _template.DeleteVariable(23));
+        }
+
+        [Test]
+        public void exception_was_thrown()
+        {
+            _exception.Message.ToLower().ShouldMatch("invalid variable part id: 23");
         }
     }
 }

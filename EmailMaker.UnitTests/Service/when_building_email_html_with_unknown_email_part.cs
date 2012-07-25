@@ -23,7 +23,7 @@ namespace EmailMaker.UnitTests.Service
                             };
 
             var emailHtmlBuilder = new EmailHtmlBuilder();
-            _exception = Assert.Throws<EmailMakerException>(() => emailHtmlBuilder.BuildHtmlEmail(parts));
+            _exception = Should.Throw<EmailMakerException>(() => emailHtmlBuilder.BuildHtmlEmail(parts));
         }
 
         [Test]

@@ -2,14 +2,16 @@ using Core.Utilities;
 using EmailMaker.Dtos.Emails;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
+using Shouldly;
 
 namespace EmailMaker.UnitTests.Domain.Emails
 {
     [TestFixture]
     public class when_updating_email_variables_with_invalid_email_id
     {
-        [Test]
-        [ExpectedException(typeof(CoreException), ExpectedMessage = "Invalid email id")]
+        private CoreException _exception;
+
+        [SetUp]
         public void Context()
         {
             var template = EmailTemplateBuilder.New
@@ -21,7 +23,14 @@ namespace EmailMaker.UnitTests.Domain.Emails
                 .WithEmailTemplate(template)
                 .Build();
             var emailDto = new EmailDto {EmailId = emailId};
-            email.UpdateVariables(emailDto);
+            _exception = Should.Throw<CoreException>(() => email.UpdateVariables(emailDto));
         }
+
+        [Test]
+        public void exception_was_thrown()
+        {
+            _exception.Message.ToLower().ShouldMatch("invalid email id");
+        }
+
     }
 }

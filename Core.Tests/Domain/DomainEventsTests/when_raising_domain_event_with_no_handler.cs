@@ -24,7 +24,7 @@ namespace Core.Tests.Domain.DomainEventsTests
             container.Stub(a => a.ResolveAll<IDomainEventHandler<TestDomainEvent>>()).Return(new IDomainEventHandler<TestDomainEvent>[0]);
             IoC.Initialize(container);
 
-            _exception = Assert.Throws<CoreException>(() => DomainEvents.RaiseEvent(new TestDomainEvent()));
+            _exception = Should.Throw<CoreException>(() => DomainEvents.RaiseEvent(new TestDomainEvent()));
         }
 
         [Test]

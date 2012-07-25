@@ -3,14 +3,16 @@ using EmailMaker.Dtos;
 using EmailMaker.Dtos.Emails;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
+using Shouldly;
 
 namespace EmailMaker.UnitTests.Domain.Emails
 {
     [TestFixture]
     public class when_updating_email_variables_with_invalid_variable_id
     {
-        [Test]
-        [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "Sequence contains no matching element")]
+        private InvalidOperationException _exception;
+
+        [SetUp]
         public void Context()
         {
             var template = EmailTemplateBuilder.New
@@ -34,7 +36,13 @@ namespace EmailMaker.UnitTests.Domain.Emails
                                                        },
                                                }
                                };
-            email.UpdateVariables(emailDto);
+            _exception = Should.Throw<InvalidOperationException>(() => email.UpdateVariables(emailDto));
+        }
+
+        [Test]
+        public void exception_was_thrown()
+        {
+            _exception.Message.ToLower().ShouldMatch("sequence contains no matching element");
         }
     }
 }

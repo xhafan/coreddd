@@ -27,7 +27,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
                 .WithEmailTemplate(template)
                 .WithState(state)
                 .Build();
-            _exception = Assert.Throws<CoreException>(() => _email.EnqueueEmailToBeSent(FromAddress, null, Subject));
+            _exception = Should.Throw<CoreException>(() => _email.EnqueueEmailToBeSent(FromAddress, null, Subject));
         }
 
         [Test]
