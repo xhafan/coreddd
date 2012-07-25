@@ -12,7 +12,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 {
     [TestFixture]
-    public class when_querying_email_template : base_simple_persistence_test
+    public class when_querying_email_template : BaseSimplePersistenceTest
     {
         private EmailTemplate _emailTemplate;
         private IEnumerable<EmailTemplateDto> _result;

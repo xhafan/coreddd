@@ -10,7 +10,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 {
     [TestFixture]
-    public class when_querying_existing_recipients : base_simple_persistence_test
+    public class when_querying_existing_recipients : BaseSimplePersistenceTest
     {
         private const string EmailAddressOne = "email1@test.com";
         private const string EmailAddressTwo = "email2@test.com";

@@ -9,7 +9,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistence
 {
     [TestFixture]
-    public class when_persisting_email_template : base_simple_persistence_test
+    public class when_persisting_email_template : BaseSimplePersistenceTest
     {
         private EmailTemplate _emailTemplate;
         private EmailTemplate _retrievedEmailTemplate;

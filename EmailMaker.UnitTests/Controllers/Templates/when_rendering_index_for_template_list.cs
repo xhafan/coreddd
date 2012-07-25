@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace EmailMaker.UnitTests.Controllers.Templates
 {
     [TestFixture]
-    public class when_rendering_index_for_template_list : base_emailmaker_controller_test
+    public class when_rendering_index_for_template_list : BaseEmailmakerControllerTest
     {
         private ActionResult _result;
 

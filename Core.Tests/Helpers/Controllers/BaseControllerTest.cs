@@ -5,7 +5,7 @@ using Rhino.Mocks;
 
 namespace Core.Tests.Helpers.Controllers
 {
-    public abstract class base_controller_test
+    public abstract class BaseControllerTest
     {
         protected ICommandExecutor CommandExecutor;
         protected IQueryExecutor QueryExecutor;

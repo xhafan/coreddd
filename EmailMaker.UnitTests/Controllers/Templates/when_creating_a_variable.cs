@@ -6,7 +6,7 @@ using Rhino.Mocks;
 namespace EmailMaker.UnitTests.Controllers.Templates
 {
     [TestFixture]
-    public class when_creating_a_variable : base_emailmaker_controller_test
+    public class when_creating_a_variable : BaseEmailmakerControllerTest
     {
         private CreateVariableCommand _createVariableCommand;
 

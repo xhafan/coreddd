@@ -14,7 +14,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 {
     [TestFixture]
-    public class when_querying_email_variable_parts : base_simple_persistence_test
+    public class when_querying_email_variable_parts : BaseSimplePersistenceTest
     {
         private IEnumerable<EmailPartDto> _result;
         private Email _email;

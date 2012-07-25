@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace Core.Tests.Helpers.Persistence
 {
-    public abstract class base_persistence_test
+    public abstract class BasePersistenceTest
     {
         protected ISession Session;
 

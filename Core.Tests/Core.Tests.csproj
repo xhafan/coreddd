@@ -108,13 +108,13 @@
     <Compile Include="Domain\Identities\when_getting_identity_id.cs" />
     <Compile Include="Domain\Repositories\when_getting_aggregate_root_entity_by_id.cs" />
     <Compile Include="Domain\Repositories\when_saving_aggregate_root_entity.cs" />
-    <Compile Include="Helpers\Controllers\base_controller_test.cs" />
+    <Compile Include="Helpers\Controllers\BaseControllerTest.cs" />
     <Compile Include="Helpers\DomainEvents\BaseDomainEventTest.cs" />
     <Compile Include="Helpers\Extensions\BusExtensions.cs" />
     <Compile Include="Helpers\Extensions\CultureHelper.cs" />
     <Compile Include="Helpers\Extensions\ObjectExtensions.cs" />
-    <Compile Include="Helpers\Persistence\base_persistence_test.cs" />
-    <Compile Include="Helpers\Persistence\base_simple_persistence_test.cs" />
+    <Compile Include="Helpers\Persistence\BasePersistenceTest.cs" />
+    <Compile Include="Helpers\Persistence\BaseSimplePersistenceTest.cs" />
     <Compile Include="Helpers\Persistence\base_when_generating_database_schema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\when_executing_query.cs" />

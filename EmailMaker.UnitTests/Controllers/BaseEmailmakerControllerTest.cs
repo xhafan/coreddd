@@ -5,7 +5,7 @@ using Rhino.Mocks;
 
 namespace EmailMaker.UnitTests.Controllers
 {
-    public abstract class base_emailmaker_controller_test : base_controller_test
+    public abstract class BaseEmailmakerControllerTest : BaseControllerTest
     {
         public override void ExtraSetUp()
         {

@@ -1,6 +1,6 @@
 ﻿namespace Core.Tests.Helpers.Persistence
 {
-    public abstract class base_simple_persistence_test : base_persistence_test
+    public abstract class BaseSimplePersistenceTest : BasePersistenceTest
     {
         protected abstract void PersistenceContext();
 

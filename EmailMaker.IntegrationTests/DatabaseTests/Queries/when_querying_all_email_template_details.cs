@@ -11,7 +11,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 {
 // todo: Temporarily commented out until templates are multilingual
 //    [TestFixture]
-//    public class when_querying_all_email_template_details : base_simple_persistence_test
+//    public class when_querying_all_email_template_details : BaseSimplePersistenceTest
 //    {
 //
 //        private IEnumerable<EmailTemplateDetailsDto> _result;

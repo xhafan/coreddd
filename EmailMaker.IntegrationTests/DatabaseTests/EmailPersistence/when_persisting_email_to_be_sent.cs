@@ -11,7 +11,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistence
 {
     [TestFixture]
-    public class when_persisting_email_with_recipients : base_simple_persistence_test
+    public class when_persisting_email_with_recipients : BaseSimplePersistenceTest
     {
         private Email _email;
         private Email _retrievedEmail;
