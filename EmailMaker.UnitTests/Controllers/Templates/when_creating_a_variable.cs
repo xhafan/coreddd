@@ -1,12 +1,12 @@
 ﻿using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers;
 using NUnit.Framework;
-using Shouldly;
+using Rhino.Mocks;
 
 namespace EmailMaker.UnitTests.Controllers.Templates
 {
     [TestFixture]
-    public class when_creating_a_variable : BaseEmailMakerControllerTest
+    public class when_creating_a_variable : base_emailmaker_controller_test
     {
         private CreateVariableCommand _createVariableCommand;
 
@@ -20,7 +20,7 @@ namespace EmailMaker.UnitTests.Controllers.Templates
         [Test]
         public void command_was_executed()
         {
-            CommandExecutor.ShouldHaveBeenCalled(a => a.Execute(_createVariableCommand));
+            CommandExecutor.AssertWasCalled(a => a.Execute(_createVariableCommand));
         }
     }
 }

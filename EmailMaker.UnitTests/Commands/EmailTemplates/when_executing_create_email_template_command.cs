@@ -1,4 +1,4 @@
-﻿using Core.Domain;
+﻿using Core.Domain.Repositories;
 using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.EmailTemplates;
@@ -13,7 +13,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
     {
         private IRepository<EmailTemplate> _emailTemplateRepository;
         private bool _eventRaised;
-        private int _userId = 123;
+        private const int UserId = 123;
 
         [SetUp]
         public void Context()
@@ -22,13 +22,13 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
 
             var handler = new CreateEmailTemplateCommandHandler(_emailTemplateRepository);
             handler.CommandExecuted += (sender, args) => _eventRaised = true;
-            handler.Execute(new CreateEmailTemplateCommand { UserId = _userId });
+            handler.Execute(new CreateEmailTemplateCommand { UserId = UserId });
         }
 
         [Test]
         public void email_template_was_saved()
         {
-            _emailTemplateRepository.AssertWasCalled(a => a.Save(Arg<EmailTemplate>.Matches(p => p.UserId == _userId)));
+            _emailTemplateRepository.AssertWasCalled(a => a.Save(Arg<EmailTemplate>.Matches(p => p.UserId == UserId)));
         }
 
         [Test]

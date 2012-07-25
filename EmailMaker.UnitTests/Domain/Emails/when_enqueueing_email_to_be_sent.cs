@@ -14,13 +14,13 @@ namespace EmailMaker.UnitTests.Domain.Emails
     public class when_enqueueing_email_to_be_sent : BaseDomainEventTest<EmailEnqueuedToBeSentEvent>
     {
         private Email _email;
-        private string _fromAddress = "from address";
-        private string _toAddress1 = "to address1";
-        private string _toAddress2 = "to address2";
-        private string _subject = "subject";
-        private int _emailId = 56;
-        private string _name1 = "name1";
-        private string _name2 = "name2";
+        private const string FromAddress = "from address";
+        private const string ToAddressOne = "to address one";
+        private const string ToAddressTwo = "to address two";
+        private const string Subject = "subject";
+        private const int EmailId = 56;
+        private const string NameOne = "name one";
+        private const string NameTwo = "name two";
         private Recipient _recipientOne;
         private Recipient _recipientTwo;
 
@@ -30,25 +30,25 @@ namespace EmailMaker.UnitTests.Domain.Emails
             var template = EmailTemplateBuilder.New.Build();
             _email = EmailBuilder.New
                 .WithEmailTemplate(template)
-                .WithId(_emailId)
+                .WithId(EmailId)
                 .Build();
-            _recipientOne = new Recipient(_toAddress1, _name1);
-            _recipientTwo = new Recipient(_toAddress2, _name2);
-            _email.EnqueueEmailToBeSent(_fromAddress,
+            _recipientOne = new Recipient(ToAddressOne, NameOne);
+            _recipientTwo = new Recipient(ToAddressTwo, NameTwo);
+            _email.EnqueueEmailToBeSent(FromAddress,
                                         new HashedSet<Recipient>
                                             {
                                                 _recipientOne,
                                                 _recipientTwo
                                             },
-                                        _subject);
+                                        Subject);
         }
 
         [Test]
         public void email_state_changed_and_properties_set()
         {
             _email.State.ShouldBe(EmailState.ToBeSent);
-            _email.FromAddress.ShouldBe(_fromAddress);
-            _email.Subject.ShouldBe(_subject);
+            _email.FromAddress.ShouldBe(FromAddress);
+            _email.Subject.ShouldBe(Subject);
         }
 
         [Test]

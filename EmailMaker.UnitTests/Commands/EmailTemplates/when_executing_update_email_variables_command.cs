@@ -1,4 +1,4 @@
-﻿using Core.Domain;
+﻿using Core.Domain.Repositories;
 using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Emails;
@@ -19,7 +19,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         {
             _email = MockRepository.GenerateMock<Email>();
 
-            var emailId = 23;
+            const int emailId = 23;
             var emailRepository = MockRepository.GenerateStub<IRepository<Email>>();
             emailRepository.Stub(a => a.GetById(emailId)).Return(_email);
 

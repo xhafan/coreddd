@@ -21,7 +21,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
                 .WithVariable(1, 1)
                 .WithVariable(1, 1)
                 .Build();
-            var emailId = 78;
+            const int emailId = 78;
             _email = EmailBuilder.New
                 .WithId(emailId)
                 .WithEmailTemplate(template)
@@ -51,8 +51,8 @@ namespace EmailMaker.UnitTests.Domain.Emails
         [Test]
         public void email_variables_were_updated()
         {
-            (_email.Parts.ElementAt(1) as VariableEmailPart).Value.ShouldBe("A");
-            (_email.Parts.ElementAt(3) as VariableEmailPart).Value.ShouldBe("B");
+            ((VariableEmailPart)_email.Parts.ElementAt(1)).Value.ShouldBe("A");
+            ((VariableEmailPart)_email.Parts.ElementAt(3)).Value.ShouldBe("B");
         }
     }
 }

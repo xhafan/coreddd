@@ -9,12 +9,12 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
     public class when_creating_email_template_with_initial_html
     {
         private EmailTemplate _emailTemplate;
-        private string _html = "html";
+        private const string Html = "html";
 
         [SetUp]
         public void Context()
         {
-            _emailTemplate = new EmailTemplate(_html);
+            _emailTemplate = new EmailTemplate(Html);
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
             _emailTemplate.Parts.Count().ShouldBe(1);
             var htmlTemplatePart = (HtmlEmailTemplatePart)_emailTemplate.Parts.First();
             htmlTemplatePart.Position.ShouldBe(0);
-            htmlTemplatePart.Html.ShouldBe(_html);
+            htmlTemplatePart.Html.ShouldBe(Html);
         }
     }
 }

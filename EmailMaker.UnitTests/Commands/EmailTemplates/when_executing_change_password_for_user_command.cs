@@ -1,4 +1,4 @@
-using Core.Domain;
+using Core.Domain.Repositories;
 using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Users;
@@ -11,9 +11,9 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
     public class when_executing_change_password_for_user_command
     {
         private IRepository<User> _userRepository;
-        private int _userId = 23;
-        private string _oldPassword = "old password";
-        private string _newPassword = "new password";
+        private const int UserId = 23;
+        private const string OldPassword = "old password";
+        private const string NewPassword = "new password";
         private User _user;
 
         [SetUp]
@@ -21,15 +21,15 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         {
             _userRepository = MockRepository.GenerateStub<IRepository<User>>();
             _user = MockRepository.GenerateMock<User>();
-            _userRepository.Stub(a => a.GetById(_userId)).Return(_user);
+            _userRepository.Stub(a => a.GetById(UserId)).Return(_user);
             var handler = new ChangePasswordForUserCommandHandler(_userRepository);
-            handler.Execute(new ChangePasswordForUserCommand { UserId = _userId, OldPassword = _oldPassword, NewPassword = _newPassword});
+            handler.Execute(new ChangePasswordForUserCommand { UserId = UserId, OldPassword = OldPassword, NewPassword = NewPassword});
         }
 
         [Test]
         public void password_was_changed()
         {
-            _user.AssertWasCalled(a => a.ChangePassword(_oldPassword, _newPassword));
+            _user.AssertWasCalled(a => a.ChangePassword(OldPassword, NewPassword));
         }
 
     }

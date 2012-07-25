@@ -8,18 +8,18 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
     public class when_creating_email_template_with_name
     {
         private EmailTemplate _emailTemplate;
-        private string _name = "name";
+        private const string Name = "name";
 
         [SetUp]
         public void Context()
         {
-            _emailTemplate = new EmailTemplate("html", _name, 0);
+            _emailTemplate = new EmailTemplate("html", Name, 0);
         }
 
         [Test]
         public void email_template_created_correctly()
         {            
-            _emailTemplate.Name.ShouldBe(_name);
+            _emailTemplate.Name.ShouldBe(Name);
         }
     }
 }

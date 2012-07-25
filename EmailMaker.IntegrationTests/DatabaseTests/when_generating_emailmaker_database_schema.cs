@@ -9,6 +9,7 @@ using NUnit.Framework;
 
 namespace EmailMaker.IntegrationTests.DatabaseTests
 {
+    // todo: move this generation into a tool
     [TestFixture]
     public class when_generating_emailmaker_database_schema : base_when_generating_database_schema
     {

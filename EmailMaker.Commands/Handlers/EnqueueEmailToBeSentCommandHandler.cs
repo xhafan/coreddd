@@ -1,6 +1,7 @@
 using System.Linq;
 using Core.Commands;
 using Core.Domain;
+using Core.Domain.Repositories;
 using Core.Queries;
 using Core.Utilities.Extensions;
 using EmailMaker.Commands.Messages;
@@ -29,7 +30,7 @@ namespace EmailMaker.Commands.Handlers
         public override void Execute(EnqueueEmailToBeSentCommand command)
         {
             var email = _emailRepository.GetById(command.EmailId);
-            var emailAddressesAndNames = _recipientParser.Parse(command.RecipientsStr);
+            var emailAddressesAndNames = _recipientParser.Parse(command.Recipients);
             var existingRecipients = _queryExecutor.Execute<GetExistingRecipientsQueryMessage, Recipient>(
                 new GetExistingRecipientsQueryMessage
                     {

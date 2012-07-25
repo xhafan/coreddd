@@ -1,4 +1,5 @@
 ﻿using Core.Domain;
+using Core.Domain.Repositories;
 using Core.Utilities.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Messages;

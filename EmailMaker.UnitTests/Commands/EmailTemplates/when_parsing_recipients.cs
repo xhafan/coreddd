@@ -15,7 +15,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         {
             var parser = new RecipientParser();
             _result = parser.Parse(@"""Tomas Marny"" <tomas.marny@test.com>, John Smith <john.smith@test.com>
-                          zeads.dead@baby.com; ");
+                          zeds.dead@baby.com; ");
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
             _result.Count.ShouldBe(3);
             _result["tomas.marny@test.com"].ShouldBe("Tomas Marny");
             _result["john.smith@test.com"].ShouldBe("John Smith");
-            _result["zeads.dead@baby.com"].ShouldBe(string.Empty);
+            _result["zeds.dead@baby.com"].ShouldBe(string.Empty);
         }
     }
 }

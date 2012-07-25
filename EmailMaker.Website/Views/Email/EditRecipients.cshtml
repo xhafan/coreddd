@@ -12,17 +12,17 @@
     $(document).ready(function () {
         var fromAddresses = _.map(@Html.Raw(Html.ToJson(Model.FromAddresses)), function(address) { return htmlEncode(address); });
         var toAddresses = @Html.Raw(Html.ToJson(Model.ToAddresses));
-        var toAddressesStr = toAddresses.join(", ");
+        var toAddressesString = toAddresses.join(", ");
         editRecipientsModel = {
             fromAddresses: fromAddresses,
             selectedFromAddress: ko.observable(),
             toAddresses: ko.observable(toAddresses),
-            toAddressesStr: ko.observable(toAddressesStr),
+            toAddressesString: ko.observable(toAddressesString),
             sendEmail: function() {
                 $.postJson("@(Html.BuildUrlFromExpressionWithoutParameters<EmailController>(c => c.EnqueueEmailToBeSent(null)))", {
                     EmailId: @(Model.EmailId),
                     FromAddress: editRecipientsModel.selectedFromAddress(),
-                    RecipientsStr: editRecipientsModel.toAddressesStr()
+                    Recipients: editRecipientsModel.toAddressesString()
                 }, function() {
                     reloadIframe("templateHtml");
                 });
@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <td>To:</td>
-            <td><textarea data-bind="value: toAddressesStr"></textarea></td>            
+            <td><textarea data-bind="value: toAddressesString"></textarea></td>            
         </tr>
     </table>
     <button data-bind="click: sendEmail">Send email</button>

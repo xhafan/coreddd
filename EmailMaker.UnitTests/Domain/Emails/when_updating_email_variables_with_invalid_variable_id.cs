@@ -16,7 +16,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
             var template = EmailTemplateBuilder.New
                 .WithInitialHtml("12345")
                 .Build();
-            var emailId = 78;
+            const int emailId = 78;
             var email = EmailBuilder.New
                 .WithId(emailId)
                 .WithEmailTemplate(template)

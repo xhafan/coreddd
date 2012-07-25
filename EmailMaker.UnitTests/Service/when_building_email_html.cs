@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using EmailMaker.Domain;
 using EmailMaker.Domain.EmailTemplates.VariableTypes;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Service.Handlers;
@@ -12,18 +11,18 @@ namespace EmailMaker.UnitTests.Service
     public class when_building_email_html
     {
         private string _result;
-        private string _html1 = "html1";
-        private string _value = "value";
-        private string _html2 = "html2";
+        private const string HtmlOne = "html one";
+        private const string Value = "value";
+        private const string HtmlTwo = "html two";
 
         [SetUp]
         public void Context()
         {
             var parts = new List<EmailPart>
                             {
-                                new HtmlEmailPart(_html1),
-                                new VariableEmailPart(VariableType.InputText, _value),
-                                new HtmlEmailPart(_html2)
+                                new HtmlEmailPart(HtmlOne),
+                                new VariableEmailPart(VariableType.InputText, Value),
+                                new HtmlEmailPart(HtmlTwo)
                             };
 
             var emailHtmlBuilder = new EmailHtmlBuilder();
@@ -33,7 +32,7 @@ namespace EmailMaker.UnitTests.Service
         [Test]
         public void email_html_is_correct()
         {
-            _result.ShouldBe(_html1 + _value + _html2);
+            _result.ShouldBe(HtmlOne + Value + HtmlTwo);
         }
     }
 

@@ -11,13 +11,13 @@ namespace EmailMaker.UnitTests.Service
     [TestFixture]
     public class when_handling_send_email_for_email_recipient_message
     {
-        private int _emailId = 23;
-        private string _emailHtml = "email html";
-        private string _fromAddress = "\"John Smith\" <fromAddress@test.com>";
-        private string _subject = "subject";
-        private int _recipientId = 56;
-        private string _recipientEmailAddress = "recipient@test.com";
-        private string _recipientName = "name one";
+        private const int EmailId = 23;
+        private const string EmailHtml = "email html";
+        private const string FromAddress = "\"John Smith\" <fromAddress@test.com>";
+        private const string Subject = "subject";
+        private const int RecipientId = 56;
+        private const string RecipientEmailAddress = "recipient@test.com";
+        private const string RecipientName = "name one";
         private IEmailSender _emailSender;
 
         [SetUp]
@@ -27,13 +27,13 @@ namespace EmailMaker.UnitTests.Service
             var handler = new SendEmailForEmailRecipientMessageHandler(_emailSender);
             handler.Handle(new SendEmailForEmailRecipientMessage
                                {
-                                   EmailId = _emailId,
-                                   RecipientId = _recipientId,
-                                   EmailHtml = _emailHtml,
-                                   FromAddress = _fromAddress,
-                                   RecipientEmailAddress = _recipientEmailAddress,
-                                   RecipientName = _recipientName,
-                                   Subject = _subject
+                                   EmailId = EmailId,
+                                   RecipientId = RecipientId,
+                                   EmailHtml = EmailHtml,
+                                   FromAddress = FromAddress,
+                                   RecipientEmailAddress = RecipientEmailAddress,
+                                   RecipientName = RecipientName,
+                                   Subject = Subject
                                });
 
         }
@@ -48,11 +48,11 @@ namespace EmailMaker.UnitTests.Service
 
         private bool _MatchMailMessage(MailMessage p)
         {
-            return p.From.ToString() == _fromAddress
-                   && p.To.First().ToString() == "\"" + _recipientName + "\" <" + _recipientEmailAddress + ">"
-                   && p.Subject == _subject
+            return p.From.ToString() == FromAddress
+                   && p.To.First().ToString() == "\"" + RecipientName + "\" <" + RecipientEmailAddress + ">"
+                   && p.Subject == Subject
                    && p.IsBodyHtml
-                   && p.Body == _emailHtml;
+                   && p.Body == EmailHtml;
         }
     }
 }

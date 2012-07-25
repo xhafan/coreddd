@@ -71,7 +71,7 @@
     <Compile Include="Domain\Events\IDomainEventHandler.cs" />
     <Compile Include="Domain\IAggregateRoot.cs" />
     <Compile Include="Domain\Identity.cs" />
-    <Compile Include="Domain\IRepository.cs" />
+    <Compile Include="Domain\Repositories\IRepository.cs" />
     <Compile Include="Infrastructure\AutomappingConfiguration.cs" />
     <Compile Include="Infrastructure\Conventions\CustomForeignKeyConvention.cs" />
     <Compile Include="Infrastructure\Conventions\HasManyForDomainConvention.cs" />
@@ -79,8 +79,8 @@
     <Compile Include="Infrastructure\Conventions\StringColumnLengthConvention.cs" />
     <Compile Include="Infrastructure\IgnoreAutoMapAttribute.cs" />
     <Compile Include="Infrastructure\NhibernateConfigurator.cs" />
-    <Compile Include="Domain\NhibernateRepository.cs" />
-    <Compile Include="Domain\NhibernateRepositoryInstaller.cs" />
+    <Compile Include="Domain\Repositories\NhibernateRepository.cs" />
+    <Compile Include="Domain\Repositories\NhibernateRepositoryInstaller.cs" />
     <Compile Include="Domain\TypeExtensions.cs" />
     <Compile Include="Dtos\Dto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

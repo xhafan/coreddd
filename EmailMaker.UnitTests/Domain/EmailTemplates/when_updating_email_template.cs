@@ -13,7 +13,7 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
     {
         private EmailTemplate _template;
         private int _templateId;
-        private string _templateName = "template name";
+        private const string TemplateName = "template name";
 
         [SetUp]
         public void Context()
@@ -49,7 +49,7 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
                                                                    Html = "C"
                                                                },
                                                        },
-                                                       Name = _templateName
+                                                       Name = TemplateName
                                        };
             _template.Update(emailTemplateDTO);
         }
@@ -57,12 +57,12 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
         [Test]
         public void template_was_updated()
         {
-            (_template.Parts.ElementAt(0) as HtmlEmailTemplatePart).Html.ShouldBe("A");
-            (_template.Parts.ElementAt(1) as VariableEmailTemplatePart).Value.ShouldBe("2");
-            (_template.Parts.ElementAt(2) as HtmlEmailTemplatePart).Html.ShouldBe("3");
-            (_template.Parts.ElementAt(3) as VariableEmailTemplatePart).Value.ShouldBe("B");
-            (_template.Parts.ElementAt(4) as HtmlEmailTemplatePart).Html.ShouldBe("C");
-            _template.Name.ShouldBe(_templateName);
+            ((HtmlEmailTemplatePart)_template.Parts.ElementAt(0)).Html.ShouldBe("A");
+            ((VariableEmailTemplatePart)_template.Parts.ElementAt(1)).Value.ShouldBe("2");
+            ((HtmlEmailTemplatePart)_template.Parts.ElementAt(2)).Html.ShouldBe("3");
+            ((VariableEmailTemplatePart)_template.Parts.ElementAt(3)).Value.ShouldBe("B");
+            ((HtmlEmailTemplatePart)_template.Parts.ElementAt(4)).Html.ShouldBe("C");
+            _template.Name.ShouldBe(TemplateName);
         }
     }
 }

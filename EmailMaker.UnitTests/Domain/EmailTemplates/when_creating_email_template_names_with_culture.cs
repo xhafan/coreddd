@@ -5,7 +5,7 @@ using EmailMaker.Domain.EmailTemplates;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EmailMaker.Domain.Tests.EmailTemplateTests
+namespace EmailMaker.UnitTests.Domain.EmailTemplates
 {
     // todo: Temporarily commented out until templates are multilingual
     //    [TestFixture]

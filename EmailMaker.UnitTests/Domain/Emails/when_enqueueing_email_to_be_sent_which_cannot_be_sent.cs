@@ -12,8 +12,8 @@ namespace EmailMaker.UnitTests.Domain.Emails
     public class when_enqueueing_email_to_be_sent_which_cannot_be_sent
     {
         private Email _email;
-        private string _fromAddress = "from address";
-        private string _subject = "subject";
+        private const string FromAddress = "from address";
+        private const string Subject = "subject";
         private CoreException _exception;
 
         [SetUp]
@@ -27,7 +27,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
                 .WithEmailTemplate(template)
                 .WithState(state)
                 .Build();
-            _exception = Assert.Throws<CoreException>(() => _email.EnqueueEmailToBeSent(_fromAddress, null, _subject));
+            _exception = Assert.Throws<CoreException>(() => _email.EnqueueEmailToBeSent(FromAddress, null, Subject));
         }
 
         [Test]

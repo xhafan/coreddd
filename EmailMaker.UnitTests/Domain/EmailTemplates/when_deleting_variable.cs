@@ -28,13 +28,13 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
         {
             _template.Parts.Count().ShouldBe(3);
             
-            var beforeHtmlPart = _template.Parts.First() as HtmlEmailTemplatePart;
+            var beforeHtmlPart = (HtmlEmailTemplatePart)_template.Parts.First();
             beforeHtmlPart.Html.ShouldBe("123");
             
-            var variablePart = _template.Parts.ElementAt(1) as VariableEmailTemplatePart;
+            var variablePart = (VariableEmailTemplatePart)_template.Parts.ElementAt(1);
             variablePart.Value.ShouldBe("4");
             
-            var afterHtmlPart = _template.Parts.Last() as HtmlEmailTemplatePart;
+            var afterHtmlPart = (HtmlEmailTemplatePart)_template.Parts.Last();
             afterHtmlPart.Html.ShouldBe("5");
         }
     }

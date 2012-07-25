@@ -77,7 +77,7 @@
     <Compile Include="Commands\EmailTemplates\when_executing_save_email_template_command.cs" />
     <Compile Include="Commands\EmailTemplates\when_executing_update_email_variables_command.cs" />
     <Compile Include="Commands\EmailTemplates\when_parsing_recipients.cs" />
-    <Compile Include="Controllers\BaseEmailMakerControllerTest.cs" />
+    <Compile Include="Controllers\base_emailmaker_controller_test.cs" />
     <Compile Include="Controllers\Templates\when_creating_a_variable.cs" />
     <Compile Include="Controllers\Templates\when_rendering_index_for_template_list.cs" />
     <Compile Include="Controllers\Templates\when_rendering_template_index.cs" />
