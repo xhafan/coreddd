@@ -85,10 +85,10 @@ namespace EmailMaker.Controllers
             var emailDtos = _queryExecutor.Execute<GetEmailQueryMessage, EmailDto>(message);
             var variableEmailPartDtos = _queryExecutor.Execute<GetEmailVariablePartsQueryMessage, EmailPartDto>(variablePartMessage);
 
-            var emailDTO = emailDtos.Single();
-            emailDTO.Parts = variableEmailPartDtos;
+            var emailDto = emailDtos.Single();
+            emailDto.Parts = variableEmailPartDtos;
 
-            return emailDTO;
+            return emailDto;
         }
 
         [HttpPost]

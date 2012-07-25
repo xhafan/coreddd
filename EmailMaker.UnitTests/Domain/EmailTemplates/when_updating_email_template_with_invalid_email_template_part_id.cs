@@ -17,12 +17,12 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
                 .WithId(45)
                 .WithInitialHtml("12345")
                 .Build();
-            var emailTemplateDTO = new EmailTemplateDto
+            var emailTemplateDto = new EmailTemplateDto
                                        {
                                            EmailTemplateId = 45,
                                            Parts = new[] { new EmailTemplatePartDto { PartType = PartType.Html, PartId = 567}}
                                        };
-            template.Update(emailTemplateDTO);
+            template.Update(emailTemplateDto);
         }
     }
 }

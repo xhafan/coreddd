@@ -59,10 +59,10 @@ namespace EmailMaker.Controllers
             var emailTemplateDtos = _queryExecutor.Execute<GetEmailTemplateQueryMessage, EmailTemplateDto>(templateMessage);
             var emailTemplatePartDtos = _queryExecutor.Execute<GetEmailTemplatePartsQueryMessage, EmailTemplatePartDto>(templatePartMessage);
             
-            var emailTemplateDTO = emailTemplateDtos.Single();
-            emailTemplateDTO.Parts = emailTemplatePartDtos;
+            var emailTemplateDto = emailTemplateDtos.Single();
+            emailTemplateDto.Parts = emailTemplatePartDtos;
 
-            return emailTemplateDTO;
+            return emailTemplateDto;
         }
 
         [HttpPost]

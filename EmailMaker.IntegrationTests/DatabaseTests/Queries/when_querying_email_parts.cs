@@ -47,28 +47,28 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
             _result.Count().ShouldBe(3);
 
             var htmlPart = (HtmlEmailPart)_email.Parts.First();
-            var partDTO = _result.First();
-            partDTO.EmailId.ShouldBe(_email.Id);
-            partDTO.PartId.ShouldBe(htmlPart.Id);
-            partDTO.PartType.ShouldBe(PartType.Html);
-            partDTO.Html.ShouldBe(htmlPart.Html);
-            partDTO.VariableValue.ShouldBe(null);
+            var partDto = _result.First();
+            partDto.EmailId.ShouldBe(_email.Id);
+            partDto.PartId.ShouldBe(htmlPart.Id);
+            partDto.PartType.ShouldBe(PartType.Html);
+            partDto.Html.ShouldBe(htmlPart.Html);
+            partDto.VariableValue.ShouldBe(null);
 
             var variablePart = (VariableEmailPart)_email.Parts.ElementAt(1);
-            partDTO = _result.ElementAt(1);
-            partDTO.EmailId.ShouldBe(_email.Id);
-            partDTO.PartId.ShouldBe(variablePart.Id);
-            partDTO.PartType.ShouldBe(PartType.Variable);
-            partDTO.Html.ShouldBe(null);
-            partDTO.VariableValue.ShouldBe(variablePart.Value);
+            partDto = _result.ElementAt(1);
+            partDto.EmailId.ShouldBe(_email.Id);
+            partDto.PartId.ShouldBe(variablePart.Id);
+            partDto.PartType.ShouldBe(PartType.Variable);
+            partDto.Html.ShouldBe(null);
+            partDto.VariableValue.ShouldBe(variablePart.Value);
 
             htmlPart = (HtmlEmailPart)_email.Parts.Last();
-            partDTO = _result.Last();
-            partDTO.EmailId.ShouldBe(_email.Id);
-            partDTO.PartId.ShouldBe(htmlPart.Id);
-            partDTO.PartType.ShouldBe(PartType.Html);
-            partDTO.Html.ShouldBe(htmlPart.Html);
-            partDTO.VariableValue.ShouldBe(null);
+            partDto = _result.Last();
+            partDto.EmailId.ShouldBe(_email.Id);
+            partDto.PartId.ShouldBe(htmlPart.Id);
+            partDto.PartType.ShouldBe(PartType.Html);
+            partDto.Html.ShouldBe(htmlPart.Html);
+            partDto.VariableValue.ShouldBe(null);
         }
     }
 }

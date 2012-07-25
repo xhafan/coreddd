@@ -42,8 +42,8 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 //        public void email_template_correctly_retrieved()
 //        {
 //            _result.Count().ShouldBe(2);
-//            var retrievedEmailTemplateDTO = _result.First();
-//            retrievedEmailTemplateDTO.EmailTemplateId.ShouldBe(_emailTemplate.Id);
+//            var retrievedEmailTemplateDto = _result.First();
+//            retrievedEmailTemplateDto.EmailTemplateId.ShouldBe(_emailTemplate.Id);
 //        }
 //    }
 }

@@ -37,11 +37,11 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
         public void user_details_correctly_retrieved()
         {
             _results.Count().ShouldBe(1);
-            var retrivedUserDetailsDTO = _results.First();
-            retrivedUserDetailsDTO.FirstName.ShouldBe(FirstName);
-            retrivedUserDetailsDTO.LastName.ShouldBe(LastName);
-            retrivedUserDetailsDTO.EmailAddress.ShouldBe(EmailAddress);
-            retrivedUserDetailsDTO.Password.ShouldBe(Password);
+            var retrivedUserDetailsDto = _results.First();
+            retrivedUserDetailsDto.FirstName.ShouldBe(FirstName);
+            retrivedUserDetailsDto.LastName.ShouldBe(LastName);
+            retrivedUserDetailsDto.EmailAddress.ShouldBe(EmailAddress);
+            retrivedUserDetailsDto.Password.ShouldBe(Password);
 
         }
     }

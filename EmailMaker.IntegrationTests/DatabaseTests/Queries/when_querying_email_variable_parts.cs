@@ -49,15 +49,15 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
             _result.Count().ShouldBe(2);
 
             var variablePart = _email.Parts.ElementAt(1) as VariableEmailPart;
-            var partDTO = _result.First();
-            _VariablePartDTODataMatchVariableEmailPart(partDTO, variablePart);
+            var partDto = _result.First();
+            _VariablePartDtoDataMatchVariableEmailPart(partDto, variablePart);
 
             variablePart = _email.Parts.ElementAt(3) as VariableEmailPart;
-            partDTO = _result.Last();
-            _VariablePartDTODataMatchVariableEmailPart(partDTO, variablePart);
+            partDto = _result.Last();
+            _VariablePartDtoDataMatchVariableEmailPart(partDto, variablePart);
         }
 
-        private void _VariablePartDTODataMatchVariableEmailPart(EmailPartDto partDto, VariableEmailPart variablePart)
+        private void _VariablePartDtoDataMatchVariableEmailPart(EmailPartDto partDto, VariableEmailPart variablePart)
         {
             partDto.EmailId.ShouldBe(_email.Id);
             partDto.PartId.ShouldBe(variablePart.Id);

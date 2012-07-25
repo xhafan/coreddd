@@ -20,8 +20,8 @@ namespace EmailMaker.UnitTests.Domain.Emails
                 .WithId(56)
                 .WithEmailTemplate(template)
                 .Build();
-            var emailDTO = new EmailDto {EmailId = emailId};
-            email.UpdateVariables(emailDTO);
+            var emailDto = new EmailDto {EmailId = emailId};
+            email.UpdateVariables(emailDto);
         }
     }
 }

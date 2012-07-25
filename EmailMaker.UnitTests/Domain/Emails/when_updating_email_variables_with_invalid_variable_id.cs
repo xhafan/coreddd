@@ -21,7 +21,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
                 .WithId(emailId)
                 .WithEmailTemplate(template)
                 .Build();
-            var emailDTO = new EmailDto
+            var emailDto = new EmailDto
                                {
                                    EmailId = emailId,
                                    Parts = new[]
@@ -34,7 +34,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
                                                        },
                                                }
                                };
-            email.UpdateVariables(emailDTO);
+            email.UpdateVariables(emailDto);
         }
     }
 }
