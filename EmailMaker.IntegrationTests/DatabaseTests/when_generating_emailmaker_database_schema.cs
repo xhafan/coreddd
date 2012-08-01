@@ -19,7 +19,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests
             AssembliesToMap = new[]{ typeof (Email).Assembly, typeof(EmailDto).Assembly};
             IncludeBaseTypes = new[]
                                     {
-                                        typeof (Identity<>),
+                                        typeof (Entity<,>),
                                         typeof (EmailPart),
                                         typeof (EmailTemplatePart),
                                         typeof (EmailState)

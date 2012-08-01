@@ -1,42 +1,42 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Core.Infrastructure;
 using NHibernate;
 
 namespace Core.Domain.Repositories
 {
-    public class NhibernateRepository<T> : IRepository<T> where T : IAggregateRoot
+    public class NhibernateRepository<T, TId> : IRepository<T, TId> where T : IAggregateRoot<TId>
     {
-        private readonly ISession _session;
+        protected ISession Session;
 
         public NhibernateRepository()
         {
-            _session = UnitOfWork.CurrentSession;
+            Session = UnitOfWork.CurrentSession;
         }
 
         public NhibernateRepository(ISession session)
         {
-            _session = session;
+            Session = session;
         }
 
-        public T GetById(int id)
+        public T GetById(TId id)
         {
-            return _session.Get<T>(id);
+            return Session.Get<T>(id);
         }
 
-        public IEnumerable<T> GetByIds(IEnumerable<int> ids)
+        public IEnumerable<T> GetByIds(IEnumerable<TId> ids)
         {
             throw new NotImplementedException();
         }
 
-        public T Load(int id)
+        public T Load(TId id)
         {
             throw new NotImplementedException();
         }
 
         public void Save(T objectToSave)
         {
-            _session.Save(objectToSave);
+            Session.Save(objectToSave);
         }
 
         public void Delete(T objectToDelete)

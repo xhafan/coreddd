@@ -2,13 +2,13 @@
 
 namespace Core.Tests.Domain.Identities
 {
-    internal class Entity : Identity<Entity>
+    internal class AnotherTestEntity<TId> : Entity<TId, AnotherTestEntity<TId>>
     {
-        public Entity()
+        public AnotherTestEntity()
         {            
         }
-        
-        public Entity(int id)
+
+        public AnotherTestEntity(TId id)
         {
             Id = id;
         }

@@ -1,9 +1,9 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Core.Tests.Domain.Identities
 {
     [TestFixture]
-    public class when_adding_entity_into_a_hashset : base_when_adding_entity_into_a_hashset<int>
+    public class when_getting_entity_id : base_when_getting_entity_id<int>
     {
         protected override int GetId()
         {

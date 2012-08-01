@@ -3,7 +3,7 @@ using Core.Utilities;
 
 namespace EmailMaker.Domain.Users
 {
-    public class User : Identity<User>, IAggregateRoot
+    public class User : Entity<User>, IAggregateRoot
     {
         public virtual string FirstName { get; protected set; }
         public virtual string LastName { get; protected set; }

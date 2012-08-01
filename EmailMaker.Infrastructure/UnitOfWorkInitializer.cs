@@ -21,7 +21,7 @@ namespace EmailMaker.Infrastructure
                         },
                     new[]
                         {
-                            typeof (Identity<>),
+                            typeof (Entity<,>),
                             typeof (EmailPart),
                             typeof (EmailState),
                             typeof (EmailTemplatePart)

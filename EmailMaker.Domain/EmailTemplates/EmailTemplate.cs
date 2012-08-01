@@ -9,7 +9,7 @@ using EmailMaker.Dtos.EmailTemplates;
 
 namespace EmailMaker.Domain.EmailTemplates
 {
-    public class EmailTemplate : Identity<EmailTemplate>, IAggregateRoot
+    public class EmailTemplate : Entity<EmailTemplate>, IAggregateRoot
     {
         public virtual string Name { get; protected set; }
         private readonly IList<EmailTemplatePart> _parts = new List<EmailTemplatePart>();

@@ -11,6 +11,9 @@ namespace Core.Domain.Repositories
             container.Register(
                 Component.For(typeof(IRepository<>))
                     .ImplementedBy(typeof(NhibernateRepository<>))
+                    .LifeStyle.Transient,
+                Component.For(typeof(IRepository<,>))
+                    .ImplementedBy(typeof(NhibernateRepository<,>))
                     .LifeStyle.Transient);
         }
     }

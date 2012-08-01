@@ -71,6 +71,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\when_executing_command.cs" />
+    <Compile Include="Domain\Identities\base_when_comparing_entities_of_the_same_type_and_of_the_different_id.cs" />
+    <Compile Include="Domain\Identities\base_when_getting_entity_id.cs" />
+    <Compile Include="Domain\Identities\when_adding_entity_into_a_hashset.cs" />
+    <Compile Include="Domain\Identities\when_adding_entity_into_a_hashset_with_long_id_type.cs" />
+    <Compile Include="Domain\Identities\when_adding_entity_into_a_hashset_with_string_id_type.cs" />
+    <Compile Include="Domain\Identities\when_comparing_entities_of_the_different_type_and_of_the_same_id.cs" />
+    <Compile Include="Domain\Identities\when_comparing_entities_of_the_different_type_and_of_the_same_id_with_long_id_type.cs" />
+    <Compile Include="Domain\Identities\when_comparing_entities_of_the_different_type_and_of_the_same_id_with_string_id_type.cs" />
+    <Compile Include="Domain\Identities\when_comparing_entities_of_the_same_type_and_of_the_different_id_with_long_id_type.cs" />
+    <Compile Include="Domain\Identities\when_comparing_entities_of_the_same_type_and_of_the_different_id_with_string_id_type.cs" />
+    <Compile Include="Domain\Identities\when_comparing_entities_of_the_same_type_and_of_the_same_id.cs" />
+    <Compile Include="Domain\Identities\when_comparing_entities_of_the_same_type_and_of_the_same_id_with_long_type_id.cs" />
+    <Compile Include="Domain\Identities\when_comparing_entities_of_the_same_type_and_of_the_same_id_with_string_type_id.cs" />
+    <Compile Include="Domain\Identities\when_comparing_transient_entities_of_the_same_type_and_of_the_same_id.cs" />
+    <Compile Include="Domain\Identities\when_comparing_transient_entities_of_the_same_type_and_of_the_same_id_with_long_id_type.cs" />
+    <Compile Include="Domain\Identities\when_comparing_transient_entities_of_the_same_type_and_of_the_same_id_with_string_id_type.cs" />
+    <Compile Include="Domain\Identities\when_getting_entity_id_with_long_id_type.cs" />
+    <Compile Include="Domain\Identities\when_getting_entity_id_with_string_id_type.cs" />
     <Compile Include="Infrastructures\IoCs\when_getting_container_without_initialization.cs" />
     <Compile Include="Infrastructures\IoCs\when_initializing_ioc.cs" />
     <Compile Include="Infrastructures\IoCs\when_releasing_service_instance.cs" />
@@ -98,14 +116,14 @@
     <Compile Include="Infrastructures\UnitOfWorks\when_rolling_transaction_back.cs" />
     <Compile Include="Domain\DomainEventsTests\when_raising_domain_event.cs" />
     <Compile Include="Domain\DomainEventsTests\when_raising_domain_event_with_no_handler.cs" />
-    <Compile Include="Domain\Identities\AnotherEntity.cs" />
-    <Compile Include="Domain\Identities\Entity.cs" />
-    <Compile Include="Domain\Identities\when_adding_entity_into_a_hashset.cs" />
-    <Compile Include="Domain\Identities\when_comparing_entities_of_the_different_type_and_of_the_same_id.cs" />
+    <Compile Include="Domain\Identities\AnotherTestEntity.cs" />
+    <Compile Include="Domain\Identities\TestEntity.cs" />
+    <Compile Include="Domain\Identities\base_when_adding_entity_into_a_hashset.cs" />
+    <Compile Include="Domain\Identities\base_when_comparing_entities_of_the_different_type_and_of_the_same_id.cs" />
     <Compile Include="Domain\Identities\when_comparing_entities_of_the_same_type_and_of_the_different_id.cs" />
-    <Compile Include="Domain\Identities\when_comparing_entities_of_the_same_type_and_of_the_same_id.cs" />
-    <Compile Include="Domain\Identities\when_comparing_transient_entities_of_the_same_type_and_of_the_same_id.cs" />
-    <Compile Include="Domain\Identities\when_getting_identity_id.cs" />
+    <Compile Include="Domain\Identities\base_when_comparing_entities_of_the_same_type_and_of_the_same_id.cs" />
+    <Compile Include="Domain\Identities\base_when_comparing_transient_entities_of_the_same_type_and_of_the_same_id.cs" />
+    <Compile Include="Domain\Identities\when_getting_entity_id.cs" />
     <Compile Include="Domain\Repositories\when_getting_aggregate_root_entity_by_id.cs" />
     <Compile Include="Domain\Repositories\when_saving_aggregate_root_entity.cs" />
     <Compile Include="Helpers\Controllers\BaseControllerTest.cs" />

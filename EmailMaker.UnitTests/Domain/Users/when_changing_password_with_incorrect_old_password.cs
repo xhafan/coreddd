@@ -20,7 +20,7 @@ namespace EmailMaker.UnitTests.Domain.Users
         [Test]
         public void password_was_changed()
         {
-            _exception.Message.ShouldBe("Old password doesnot match");
+            _exception.Message.ShouldBe("Old password does not match");
         }
     }
 }
