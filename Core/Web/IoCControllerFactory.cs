@@ -18,7 +18,7 @@ namespace Core.Web
 
         public override void ReleaseController(IController controller)
         {
-            IoC.Release(controller); // todo: call base class?
+            IoC.Release(controller);
         }        
     }
 

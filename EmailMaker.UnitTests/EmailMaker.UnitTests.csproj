@@ -79,12 +79,9 @@
     <Compile Include="Commands\EmailTemplates\when_parsing_recipients.cs" />
     <Compile Include="Controllers\BaseEmailmakerControllerTest.cs" />
     <Compile Include="Controllers\Templates\when_creating_a_variable.cs" />
-    <Compile Include="Controllers\Templates\when_rendering_index_for_template_list.cs" />
-    <Compile Include="Controllers\Templates\when_rendering_template_index.cs" />
+    <Compile Include="Domain\Emails\when_creating_email_recipient.cs" />
+    <Compile Include="Domain\Emails\when_creating_recipient.cs" />
     <Compile Include="Domain\EmailTemplates\when_creating_email_template.cs" />
-    <Compile Include="Domain\EmailTemplates\when_creating_email_template_names_with_culture.cs" />
-    <Compile Include="Domain\EmailTemplates\when_creating_email_template_with_initial_html.cs" />
-    <Compile Include="Domain\EmailTemplates\when_creating_email_template_with_initial_html_and_name.cs" />
     <Compile Include="Domain\EmailTemplates\when_creating_variable.cs" />
     <Compile Include="Domain\EmailTemplates\when_creating_variable_with_incorrect_html_template_part.cs" />
     <Compile Include="Domain\EmailTemplates\when_creating_variable_with_incorrect_string_index.cs" />
@@ -108,6 +105,7 @@
     <Compile Include="Domain\Emails\when_updating_email_variables_with_invalid_part_type.cs" />
     <Compile Include="Domain\Emails\when_updating_email_variables_with_invalid_variable_id.cs" />
     <Compile Include="Domain\EventHandlers\when_handling_enqueue_email_to_be_sent_event.cs" />
+    <Compile Include="Domain\Users\when_creating_user.cs" />
     <Compile Include="Service\when_building_email_html.cs" />
     <Compile Include="Service\when_building_email_html_with_unknown_email_part.cs" />
     <Compile Include="Domain\Users\when_changing_password.cs" />

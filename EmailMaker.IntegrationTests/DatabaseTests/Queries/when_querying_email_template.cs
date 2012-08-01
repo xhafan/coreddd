@@ -21,8 +21,16 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
         {
             var user = UserBuilder.New.Build();
             Save(user);
-            _emailTemplate = new EmailTemplate("html", "name", user.Id);
-            var anotherEmailTemplate = new EmailTemplate("another html", null, user.Id);
+            _emailTemplate = EmailTemplateBuilder.New
+                .WithInitialHtml("html")
+                .WithName("name")
+                .WithUserId(user.Id)
+                .Build();
+            var anotherEmailTemplate = EmailTemplateBuilder.New
+                .WithInitialHtml("another html")
+                .WithName(null)
+                .WithUserId(user.Id)
+                .Build();
             Save(_emailTemplate, anotherEmailTemplate);
         }
 

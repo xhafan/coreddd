@@ -22,10 +22,18 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
         {
             var user = UserBuilder.New.Build();
             Save(user);
-            _emailTemplate = new EmailTemplate("123", null, user.Id);
+            _emailTemplate = EmailTemplateBuilder.New
+                .WithInitialHtml("123")
+                .WithName(null)
+                .WithUserId(user.Id)
+                .Build(); 
             Save(_emailTemplate);
             _emailTemplate.CreateVariable(_emailTemplate.Parts.First().Id, 1, 1);
-            var anotherEmailTemplate = new EmailTemplate("another html", null, user.Id);
+            var anotherEmailTemplate = EmailTemplateBuilder.New
+                .WithInitialHtml("another html")
+                .WithName(null)
+                .WithUserId(user.Id)
+                .Build();
             Save(_emailTemplate, anotherEmailTemplate);
         }
 

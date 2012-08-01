@@ -11,7 +11,7 @@ namespace EmailMaker.Domain.Emails
 
         protected EmailRecipient() {}
 
-        public EmailRecipient(Recipient recipient) // todo: test missing
+        public EmailRecipient(Recipient recipient)
         {
             Recipient = recipient;
         }

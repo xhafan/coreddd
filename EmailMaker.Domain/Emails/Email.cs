@@ -37,7 +37,7 @@ namespace EmailMaker.Domain.Emails
 
         protected Email() {}
 
-        public Email(EmailTemplate emailTemplate) // todo: test missing
+        public Email(EmailTemplate emailTemplate)
         {
             EmailTemplate = emailTemplate;
             State = EmailState.Draft;

@@ -62,10 +62,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseTests\EmailPersistence\when_persisting_an_email.cs" />
-    <Compile Include="DatabaseTests\EmailPersistence\when_persisting_email_to_be_sent.cs" />
-    <Compile Include="DatabaseTests\EmailTemplatePersistence\when_persisting_email_template_while_creating_and_deleting_variables.cs" />
-    <Compile Include="DatabaseTests\EmailTemplatePersistence\when_persisting_email_template.cs" />
+    <Compile Include="DatabaseTests\Domain\Emails\when_persisting_an_email.cs" />
+    <Compile Include="DatabaseTests\Domain\Emails\when_persisting_email_to_be_sent.cs" />
+    <Compile Include="DatabaseTests\Domain\EmailTemplates\when_persisting_email_template.cs" />
+    <Compile Include="DatabaseTests\Domain\EmailTemplates\when_persisting_email_template_while_creating_and_deleting_variables.cs" />
+    <Compile Include="DatabaseTests\Domain\Users\when_persisting_user.cs" />
     <Compile Include="DatabaseTests\Queries\when_querying_all_email_template_details.cs" />
     <Compile Include="DatabaseTests\Queries\when_querying_email.cs" />
     <Compile Include="DatabaseTests\Queries\when_querying_email_parts.cs" />

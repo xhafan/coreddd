@@ -9,7 +9,7 @@ namespace EmailMaker.Domain.Emails
 
         protected Recipient() {}
 
-        public Recipient(string emailAddress, string name) // todo: test missing
+        public Recipient(string emailAddress, string name)
         {
             EmailAddress = emailAddress;
             Name = name;

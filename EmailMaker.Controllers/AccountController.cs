@@ -105,7 +105,7 @@ namespace EmailMaker.Controllers
         {
             if (ModelState.IsValid)
             {
-                // todo: remove this query
+                // todo: remove this query - remember id in the same way as name
                 var message = new GetUserDetailsByEmailAddressMessage { EmailAddress = User.Identity.Name };
                 var user = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDto>(message).First();
 

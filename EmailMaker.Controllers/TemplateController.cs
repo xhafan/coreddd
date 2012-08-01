@@ -33,7 +33,6 @@ namespace EmailMaker.Controllers
             return View(model);
         }
 
-        // todo: make it httppost
         public ActionResult Create()
         {            
             var createdEmailTemplateId = default(int);

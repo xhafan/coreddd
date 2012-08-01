@@ -1,49 +1,47 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
+using Core.Tests.Helpers.Persistence;
 using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.Domain.Users;
+using EmailMaker.Dtos.EmailTemplates;
 using EmailMaker.Queries.Handlers;
 using EmailMaker.Queries.Messages;
+using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 
 namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 {
-// todo: Temporarily commented out until templates are multilingual
-//    [TestFixture]
-//    public class when_querying_all_email_template_details : BaseSimplePersistenceTest
-//    {
-//
-//        private IEnumerable<EmailTemplateDetailsDto> _result;
-//        private EmailTemplate _emailTemplate;
-//        private CultureInfo english = new CultureInfo("en");
-//        private CultureInfo japanese = new CultureInfo("ja");
-//
-//        public override void PersistenceContext()
-//        {
-//
-//            var templateNames = new Dictionary<CultureInfo, string>
-//                                    {
-//                                        {english , "englishTemplateName"},
-//                                        {japanese, "japaneseTemplateName"}
-//                                    };
-//
-//            _emailTemplate = new EmailTemplate(templateNames);
-//            Save(_emailTemplate);
-//        }
-//
-//        public override void PersistenceQuery()
-//        {
-//            var query = new GetAllEmailTemplateQuery();
-//            _result = query.Execute<EmailTemplateDetailsDto>(new GetAllEmailTemplateQueryMessage());
-//        }
-//
-//        [Test]
-//        public void email_template_correctly_retrieved()
-//        {
-//            _result.Count().ShouldBe(2);
-//            var retrievedEmailTemplateDto = _result.First();
-//            retrievedEmailTemplateDto.EmailTemplateId.ShouldBe(_emailTemplate.Id);
-//        }
-//    }
+    [TestFixture]
+    public class when_querying_all_email_template_details : BaseSimplePersistenceTest
+    {
+        private IEnumerable<EmailTemplateDetailsDto> _result;
+        private EmailTemplate _emailTemplate;
+        private User _user;
+
+        protected override void PersistenceContext()
+        {
+            _user = UserBuilder.New.Build();
+            Save(_user);
+            _emailTemplate = EmailTemplateBuilder.New
+                .WithInitialHtml("html")
+                .WithName("template name")
+                .WithUserId(_user.Id)
+                .Build(); 
+            Save(_emailTemplate);
+        }
+
+        protected override void PersistenceQuery()
+        {
+            var query = new GetAllEmailTemplateQuery();
+            _result = query.Execute<EmailTemplateDetailsDto>(new GetAllEmailTemplateQueryMessage { UserId = _user.Id });
+        }
+
+        [Test]
+        public void email_template_correctly_retrieved()
+        {
+            var retrievedEmailTemplateDto = _result.Single();
+            retrievedEmailTemplateDto.EmailTemplateId.ShouldBe(_emailTemplate.Id);
+        }
+    }
 }

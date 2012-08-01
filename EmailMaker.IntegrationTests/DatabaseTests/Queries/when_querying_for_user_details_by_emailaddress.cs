@@ -36,8 +36,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
         [Test]
         public void user_details_correctly_retrieved()
         {
-            _results.Count().ShouldBe(1);
-            var retrivedUserDetailsDto = _results.First();
+            var retrivedUserDetailsDto = _results.Single();
             retrivedUserDetailsDto.FirstName.ShouldBe(FirstName);
             retrivedUserDetailsDto.LastName.ShouldBe(LastName);
             retrivedUserDetailsDto.EmailAddress.ShouldBe(EmailAddress);

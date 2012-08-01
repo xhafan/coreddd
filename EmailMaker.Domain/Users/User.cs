@@ -3,7 +3,6 @@ using Core.Utilities;
 
 namespace EmailMaker.Domain.Users
 {
-    //todo: persistence test is missing
     public class User : Identity<User>, IAggregateRoot
     {
         public virtual string FirstName { get; protected set; }
@@ -13,8 +12,7 @@ namespace EmailMaker.Domain.Users
 
         protected User(){}
 
-        // todo missing test
-        public User(string firstName,string lastName,string emailAddress,string password)
+        public User(string firstName, string lastName, string emailAddress, string password)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -24,7 +22,7 @@ namespace EmailMaker.Domain.Users
 
         public virtual void ChangePassword(string oldPassword, string newPassword)
         {
-            Guard.Hope(Password == oldPassword, "Old password doesnot match");
+            Guard.Hope(Password == oldPassword, "Old password does not match");
             Password = newPassword;
         }
     }

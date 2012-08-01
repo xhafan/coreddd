@@ -2,7 +2,6 @@
 using System.Linq;
 using Core.Tests.Helpers.Persistence;
 using EmailMaker.Domain.Emails;
-using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Dtos.Emails;
 using EmailMaker.Queries.Handlers;
 using EmailMaker.Queries.Messages;
@@ -22,10 +21,17 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
         {
             var user = UserBuilder.New.Build();
             Save(user);
-            var emailTemplate = new EmailTemplate("html", null, user.Id);
+            var emailTemplate = EmailTemplateBuilder.New
+                .WithInitialHtml("html")
+                .WithName(null)
+                .WithUserId(user.Id)
+                .Build(); 
             _email = new Email(emailTemplate);
-
-            var anotherEmailTemplate = new EmailTemplate("another html", null, user.Id);
+            var anotherEmailTemplate = EmailTemplateBuilder.New
+                .WithInitialHtml("another html")
+                .WithName(null)
+                .WithUserId(user.Id)
+                .Build(); 
             var anotherEmail = new Email(anotherEmailTemplate);
 
             Save(emailTemplate, _email, anotherEmailTemplate, anotherEmail);

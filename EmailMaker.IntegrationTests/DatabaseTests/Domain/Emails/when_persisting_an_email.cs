@@ -6,7 +6,7 @@ using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistence
+namespace EmailMaker.IntegrationTests.DatabaseTests.Domain.Emails
 {
     [TestFixture]
     public class when_persisting_email : BaseSimplePersistenceTest
@@ -19,7 +19,10 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailPersistence
         {
             var user = UserBuilder.New.Build();
             Save(user);
-            _emailTemplate = new EmailTemplate("123", null, user.Id);
+            _emailTemplate = EmailTemplateBuilder.New
+                .WithInitialHtml("123")
+                .WithUserId(user.Id)
+                .Build();
             Save(_emailTemplate);
             _emailTemplate.CreateVariable(_emailTemplate.Parts.First().Id,  1, 1);
             Save(_emailTemplate);

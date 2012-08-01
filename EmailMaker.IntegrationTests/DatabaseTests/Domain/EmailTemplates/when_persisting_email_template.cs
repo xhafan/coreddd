@@ -6,7 +6,7 @@ using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistence
+namespace EmailMaker.IntegrationTests.DatabaseTests.Domain.EmailTemplates
 {
     [TestFixture]
     public class when_persisting_email_template : BaseSimplePersistenceTest
@@ -20,7 +20,11 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistence
         {
             _user = UserBuilder.New.Build();
             Save(_user);
-            _emailTemplate = new EmailTemplate("html", TemplateName, _user.Id);
+            _emailTemplate = EmailTemplateBuilder.New
+                .WithInitialHtml("html")
+                .WithName(TemplateName)
+                .WithUserId(_user.Id)
+                .Build();
             Save(_emailTemplate);
         }
 
@@ -36,8 +40,8 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.EmailTemplatePersistence
             _retrievedEmailTemplate.Parts.Count().ShouldBe(_emailTemplate.Parts.Count());
             foreach (var retrievedPart in _retrievedEmailTemplate.Parts)
             {
-                var htmlRetrievedPart = retrievedPart as HtmlEmailTemplatePart;
-                var htmlPart = _emailTemplate.Parts.First(x => x.Id == htmlRetrievedPart.Id) as HtmlEmailTemplatePart;
+                var htmlRetrievedPart = (HtmlEmailTemplatePart)retrievedPart;
+                var htmlPart = (HtmlEmailTemplatePart)_emailTemplate.Parts.First(x => x.Id == htmlRetrievedPart.Id);
                 htmlRetrievedPart.Position.ShouldBe(htmlPart.Position);
                 htmlRetrievedPart.Html.ShouldBe(htmlPart.Html);
             }

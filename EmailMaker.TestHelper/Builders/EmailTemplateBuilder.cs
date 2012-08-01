@@ -20,8 +20,7 @@ namespace EmailMaker.TestHelper.Builders
         {
             get
             {
-                _nextPartId++;
-                return _nextPartId;
+                return _nextPartId++;
             }
         }
 
@@ -65,7 +64,9 @@ namespace EmailMaker.TestHelper.Builders
 
         public EmailTemplate Build()
         {
-            var emailTemplate = new EmailTemplate(_initialHtml, _name, _userId);
+            var emailTemplate = new EmailTemplate(_userId);
+            ((HtmlEmailTemplatePart)emailTemplate.Parts.Single()).SetHtml(_initialHtml);
+            emailTemplate.SetPrivateProperty(x => x.Name, _name);
             emailTemplate.SetPrivateProperty(x => x.Id, _id);
             var htmlPart = emailTemplate.Parts.Single();
             var htmlPartId = NextPartId;

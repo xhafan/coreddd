@@ -27,7 +27,7 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
         [Test]
         public void exception_was_thrown()
         {
-            _exception.Message.ToLower().ShouldMatch("part is not a variable, id: 3");
+            _exception.Message.ToLower().ShouldMatch("part is not a variable, id: 2");
         }
     }
 }
