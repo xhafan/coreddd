@@ -42,6 +42,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BAA070
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Tools", "EmailMaker.Tools\EmailMaker.Tools.csproj", "{A68D470F-F2A4-4ED3-8A33-3D32934EB6F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +110,10 @@ Global
 		{9EC89380-5186-450A-BFCE-A08CF74BE535}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EC89380-5186-450A-BFCE-A08CF74BE535}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EC89380-5186-450A-BFCE-A08CF74BE535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A68D470F-F2A4-4ED3-8A33-3D32934EB6F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A68D470F-F2A4-4ED3-8A33-3D32934EB6F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A68D470F-F2A4-4ED3-8A33-3D32934EB6F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A68D470F-F2A4-4ED3-8A33-3D32934EB6F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

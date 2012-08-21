@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Reflection;
 using Core.Domain;
 using Core.Infrastructure;
 using EmailMaker.Domain.EmailTemplates;
@@ -12,26 +14,28 @@ namespace EmailMaker.Infrastructure
     {
         public static void Initialize()
         {
-            UnitOfWork.Initialize(
-                new NhibernateConfigurator(
-                    new[]
-                        {
-                            typeof (Email).Assembly,
-                            typeof (EmailDto).Assembly
-                        },
-                    new[]
-                        {
-                            typeof (Entity<,>),
-                            typeof (EmailPart),
-                            typeof (EmailState),
-                            typeof (EmailTemplatePart)
-                        },
-                    new[]
-                        {
-                            typeof (EmailState)
-                        },
-                    true,
-                    typeof (EmailStateSubclassConvention).Assembly));
+            UnitOfWork.Initialize(GetNhibernateConfigurator());
+        }
+
+        public static INhibernateConfigurator GetNhibernateConfigurator(bool mapDtoAssembly = true)
+        {
+            var assembliesToMap = new List<Assembly> {typeof (Email).Assembly};
+            if (mapDtoAssembly) assembliesToMap.Add(typeof (EmailDto).Assembly);
+            return new NhibernateConfigurator(
+                assembliesToMap.ToArray(),
+                new[]
+                    {
+                        typeof (Entity<,>),
+                        typeof (EmailPart),
+                        typeof (EmailState),
+                        typeof (EmailTemplatePart)
+                    },
+                new[]
+                    {
+                        typeof (EmailState)
+                    },
+                true,
+                typeof (EmailStateSubclassConvention).Assembly);
         }
     }
 }

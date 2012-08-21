@@ -63,6 +63,7 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandExecutor.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
+    <Compile Include="DatabaseSchemaGenerators\DatabaseSchemaGenerator.cs" />
     <Compile Include="Domain\Entity[TEquality].cs" />
     <Compile Include="Domain\IAggregateRoot.cs" />
     <Compile Include="Domain\Repositories\IRepository[T, TId].cs" />

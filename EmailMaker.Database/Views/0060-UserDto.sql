@@ -1,4 +1,9 @@
-exec('
+IF OBJECT_ID(N'UserDto') IS NOT NULL
+BEGIN
+DROP VIEW UserDto
+END
+GO
+
 create view UserDto
 as
 select 
@@ -8,4 +13,5 @@ select
 	,EmailAddress
 	,[Password]
 from [User]
-')
+
+go

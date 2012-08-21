@@ -53,18 +53,6 @@ alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailRecipient]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailRecipient]
 
-    if exists (select * from dbo.sysobjects where id = object_id(N'[EmailDto]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailDto]
-
-    if exists (select * from dbo.sysobjects where id = object_id(N'[EmailPartDto]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailPartDto]
-
-    if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplateDetailsDto]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplateDetailsDto]
-
-    if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplateDto]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplateDto]
-
-    if exists (select * from dbo.sysobjects where id = object_id(N'[EmailTemplatePartDto]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailTemplatePartDto]
-
-    if exists (select * from dbo.sysobjects where id = object_id(N'[UserDto]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [UserDto]
-
     if exists (select * from dbo.sysobjects where id = object_id(N'[Email]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [Email]
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailPart]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailPart]
@@ -100,51 +88,6 @@ alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
        RecipientId INT null,
        EmailId INT null,
        primary key (Id)
-    )
-
-    create table [EmailDto] (
-        EmailId INT IDENTITY NOT NULL,
-       primary key (EmailId)
-    )
-
-    create table [EmailPartDto] (
-        EmailId INT not null,
-       PartId INT not null,
-       PartType NVARCHAR(MAX) null,
-       Html NVARCHAR(MAX) null,
-       VariableValue NVARCHAR(MAX) null,
-       primary key (EmailId, PartId)
-    )
-
-    create table [EmailTemplateDetailsDto] (
-        EmailTemplateId INT IDENTITY NOT NULL,
-       Name NVARCHAR(MAX) null,
-       UserId INT null,
-       primary key (EmailTemplateId)
-    )
-
-    create table [EmailTemplateDto] (
-        EmailTemplateId INT IDENTITY NOT NULL,
-       Name NVARCHAR(MAX) null,
-       primary key (EmailTemplateId)
-    )
-
-    create table [EmailTemplatePartDto] (
-        EmailTemplateId INT not null,
-       PartId INT not null,
-       PartType NVARCHAR(MAX) null,
-       Html NVARCHAR(MAX) null,
-       VariableValue NVARCHAR(MAX) null,
-       primary key (EmailTemplateId, PartId)
-    )
-
-    create table [UserDto] (
-        UserId INT IDENTITY NOT NULL,
-       FirstName NVARCHAR(MAX) null,
-       LastName NVARCHAR(MAX) null,
-       EmailAddress NVARCHAR(MAX) null,
-       Password NVARCHAR(MAX) null,
-       primary key (UserId)
     )
 
     create table [Email] (
