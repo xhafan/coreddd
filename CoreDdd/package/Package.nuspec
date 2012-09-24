@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CoreDdd</id>
+    <version>1.0.0.0</version>
+    <authors>xhafan</authors>
+    <owners>xhafan</owners>
+    <projectUrl>http://code.google.com/p/emailmaker/source/browse/#svn%2Ftrunk%2FCoreDdd</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>DDD and CQRS for your project</description>
+    <tags>DDD CQRS IoC DI</tags>
+    <dependencies>
+      <dependency id="Castle.Core" version="3.0.0.4001" />
+      <dependency id="Castle.Windsor" version="3.0.0.4001" />
+      <dependency id="FluentNHibernate" version="1.3.0.727" />
+      <dependency id="NHibernate" version="3.3.1.4000" />
+      <dependency id="NHibernateProfiler" version="1.0.0.939" />
+    </dependencies>
+  </metadata>
+</package>
