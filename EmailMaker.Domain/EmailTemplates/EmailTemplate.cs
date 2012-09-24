@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Core.Domain;
-using Core.Utilities;
-using Core.Utilities.Extensions;
+using CoreDdd.Domain;
+using CoreDdd.Utilities;
+using CoreDdd.Utilities.Extensions;
 using EmailMaker.Core;
 using EmailMaker.Dtos;
 using EmailMaker.Dtos.EmailTemplates;

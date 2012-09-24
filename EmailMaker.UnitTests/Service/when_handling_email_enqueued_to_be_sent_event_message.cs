@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using Core.Domain.Repositories;
-using Core.Tests.Helpers.Extensions;
+using CoreDdd.Domain.Repositories;
+using CoreDdd.Tests.Helpers.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Messages;
 using EmailMaker.Service.Handlers;

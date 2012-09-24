@@ -1,5 +1,5 @@
-﻿using Core.Commands;
-using Core.Domain.Repositories;
+﻿using CoreDdd.Commands;
+using CoreDdd.Domain.Repositories;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.EmailTemplates;
 

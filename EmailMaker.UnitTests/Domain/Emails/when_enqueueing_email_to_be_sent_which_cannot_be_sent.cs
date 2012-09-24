@@ -1,4 +1,4 @@
-using Core.Utilities;
+using CoreDdd.Utilities;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.TestHelper.Builders;

@@ -1,6 +1,6 @@
 using System.Linq;
-using Core.Tests.Helpers.Extensions;
-using Core.Tests.Helpers.Persistence;
+using CoreDdd.Tests.Helpers.Extensions;
+using CoreDdd.Tests.Helpers.Persistence;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;

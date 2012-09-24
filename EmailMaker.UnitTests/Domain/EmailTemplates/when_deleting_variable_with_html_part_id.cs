@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Core.Utilities;
+using CoreDdd.Utilities;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;

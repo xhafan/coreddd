@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Reflection;
-using Core.Domain;
-using Core.Infrastructure;
+using CoreDdd.Domain;
+using CoreDdd.Infrastructure;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;

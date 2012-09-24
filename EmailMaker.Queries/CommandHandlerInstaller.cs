@@ -1,7 +1,7 @@
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Core.Queries;
+using CoreDdd.Queries;
 
 namespace EmailMaker.Queries
 {

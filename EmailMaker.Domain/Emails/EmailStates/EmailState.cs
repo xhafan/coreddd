@@ -1,4 +1,4 @@
-﻿using Core.Domain;
+﻿using CoreDdd.Domain;
 
 namespace EmailMaker.Domain.Emails.EmailStates
 {

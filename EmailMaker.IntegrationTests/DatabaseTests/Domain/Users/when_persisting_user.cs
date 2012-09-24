@@ -1,4 +1,4 @@
-﻿using Core.Tests.Helpers.Persistence;
+﻿using CoreDdd.Tests.Helpers.Persistence;
 using EmailMaker.Domain.Users;
 using NUnit.Framework;
 using Shouldly;

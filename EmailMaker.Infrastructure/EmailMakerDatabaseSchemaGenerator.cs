@@ -1,5 +1,5 @@
-﻿using Core.DatabaseSchemaGenerators;
-using Core.Infrastructure;
+﻿using CoreDdd.DatabaseSchemaGenerators;
+using CoreDdd.Infrastructure;
 
 namespace EmailMaker.Infrastructure
 {

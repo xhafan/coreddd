@@ -1,4 +1,4 @@
-﻿using Core.Queries;
+﻿using CoreDdd.Queries;
 using EmailMaker.Dtos.EmailTemplates;
 using EmailMaker.Queries.Messages;
 using NHibernate;

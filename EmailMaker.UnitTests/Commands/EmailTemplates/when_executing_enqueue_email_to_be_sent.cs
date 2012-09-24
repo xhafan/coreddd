@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Core.Domain.Repositories;
-using Core.Queries;
+using CoreDdd.Domain.Repositories;
+using CoreDdd.Queries;
 using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Emails;

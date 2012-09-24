@@ -1,4 +1,4 @@
-using Core.Queries;
+using CoreDdd.Queries;
 using EmailMaker.Dtos;
 using EmailMaker.Dtos.Emails;
 using EmailMaker.Queries.Messages;

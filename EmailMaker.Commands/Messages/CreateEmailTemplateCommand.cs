@@ -1,4 +1,4 @@
-﻿using Core.Commands;
+﻿using CoreDdd.Commands;
 
 namespace EmailMaker.Commands.Messages
 {

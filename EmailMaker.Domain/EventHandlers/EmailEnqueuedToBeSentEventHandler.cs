@@ -1,4 +1,4 @@
-﻿using Core.Domain.Events;
+﻿using CoreDdd.Domain.Events;
 using EmailMaker.Domain.Events.Emails;
 using EmailMaker.Messages;
 using NServiceBus;

@@ -1,4 +1,4 @@
-﻿using Core.Tests.Helpers.Extensions;
+﻿using CoreDdd.Tests.Helpers.Extensions;
 using EmailMaker.Domain.EventHandlers;
 using EmailMaker.Domain.Events.Emails;
 using EmailMaker.Messages;

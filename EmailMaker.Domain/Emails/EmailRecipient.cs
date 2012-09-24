@@ -1,5 +1,5 @@
 using System;
-using Core.Domain;
+using CoreDdd.Domain;
 
 namespace EmailMaker.Domain.Emails
 {

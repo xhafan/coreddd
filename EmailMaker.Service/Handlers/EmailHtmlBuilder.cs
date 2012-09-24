@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Text;
-using Core.Utilities.Extensions;
+using CoreDdd.Utilities.Extensions;
 using EmailMaker.Core;
 using EmailMaker.Domain.Emails;
 

@@ -1,4 +1,4 @@
-using Core.Domain.Repositories;
+using CoreDdd.Domain.Repositories;
 using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Users;

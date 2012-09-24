@@ -1,4 +1,4 @@
-using Core.Tests.Helpers.Controllers;
+using CoreDdd.Tests.Helpers.Controllers;
 using EmailMaker.Dtos.Users;
 using EmailMaker.Queries.Messages;
 using Rhino.Mocks;

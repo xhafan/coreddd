@@ -1,5 +1,5 @@
-using Core.Tests.Helpers.Extensions;
-using Core.Utilities.Extensions;
+using CoreDdd.Tests.Helpers.Extensions;
+using CoreDdd.Utilities.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;

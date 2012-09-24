@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
-using Core.Commands;
-using Core.Queries;
+using CoreDdd.Commands;
+using CoreDdd.Queries;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.ViewModels;
 using EmailMaker.Dtos.Users;

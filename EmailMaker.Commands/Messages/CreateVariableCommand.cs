@@ -1,4 +1,4 @@
-﻿using Core.Commands;
+﻿using CoreDdd.Commands;
 using EmailMaker.Dtos.EmailTemplates;
 
 namespace EmailMaker.Commands.Messages

@@ -1,5 +1,5 @@
 using System.Web.Mvc;
-using Core.Queries;
+using CoreDdd.Queries;
 using EmailMaker.Controllers.BaseController;
 
 namespace EmailMaker.Controllers

@@ -1,5 +1,5 @@
-﻿using Core.Domain;
-using Core.Utilities;
+﻿using CoreDdd.Domain;
+using CoreDdd.Utilities;
 
 namespace EmailMaker.Domain.Users
 {

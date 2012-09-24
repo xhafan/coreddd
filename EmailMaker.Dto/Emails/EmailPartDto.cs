@@ -1,4 +1,4 @@
-﻿using Core.Dtos;
+﻿using CoreDdd.Dtos;
 
 namespace EmailMaker.Dtos.Emails
 {

@@ -1,4 +1,4 @@
-using Core.Queries;
+using CoreDdd.Queries;
 
 namespace EmailMaker.Queries.Messages
 {

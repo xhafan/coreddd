@@ -1,4 +1,4 @@
-﻿using Core.Infrastructure;
+﻿using CoreDdd.Infrastructure;
 
 namespace EmailMaker.Domain.EmailTemplates.VariableTypes
 {

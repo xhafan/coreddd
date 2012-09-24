@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using Core.Commands;
-using Core.Queries;
-using Core.Utilities.Extensions;
+using CoreDdd.Commands;
+using CoreDdd.Queries;
+using CoreDdd.Utilities.Extensions;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.BaseController;
 using EmailMaker.Controllers.ViewModels;

@@ -1,4 +1,4 @@
-﻿using Core.Utilities;
+﻿using CoreDdd.Utilities;
 using EmailMaker.Dtos.EmailTemplates;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;

@@ -115,13 +115,13 @@
     <Compile Include="Service\when_handling_send_email_for_email_recipient_message.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.Tests\Core.Tests.csproj">
+    <ProjectReference Include="..\CoreDdd.Tests\CoreDdd.Tests.csproj">
       <Project>{1043E886-7CE3-41B1-9602-8558B75ACAD7}</Project>
-      <Name>Core.Tests</Name>
+      <Name>CoreDdd.Tests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
-      <Name>Core</Name>
+      <Name>CoreDdd</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Commands\EmailMaker.Commands.csproj">
       <Project>{DB6DC588-8415-4184-8B4B-6485374A2E68}</Project>

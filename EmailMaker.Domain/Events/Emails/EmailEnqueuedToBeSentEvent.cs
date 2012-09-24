@@ -1,4 +1,4 @@
-﻿using Core.Domain.Events;
+﻿using CoreDdd.Domain.Events;
 
 namespace EmailMaker.Domain.Events.Emails
 {

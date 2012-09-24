@@ -92,9 +92,9 @@
     <Compile Include="EmailTemplates\VariableEmailTemplatePart.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
-      <Name>Core</Name>
+      <Name>CoreDdd</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Core\EmailMaker.Core.csproj">
       <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
