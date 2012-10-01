@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CoreTest</id>
+    <version>1.0.0.0</version>
+    <authors>xhafan</authors>
+    <owners>xhafan</owners>
+    <projectUrl>http://code.google.com/p/emailmaker/source/browse/#svn%2Ftrunk%2FCoreTest</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NUnit and RhinoMocks test helpers</description>
+    <tags>NUnit RhinoMocks</tags>
+    <dependencies>
+      <dependency id="NUnit" version="2.6.1" />
+      <dependency id="RhinoMocks" version="3.6.1" />
+    </dependencies>
+  </metadata>
+</package>

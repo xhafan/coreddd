@@ -123,6 +123,10 @@
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
       <Name>CoreDdd</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CoreTest\CoreTest.csproj">
+      <Project>{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}</Project>
+      <Name>CoreTest</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Commands\EmailMaker.Commands.csproj">
       <Project>{DB6DC588-8415-4184-8B4B-6485374A2E68}</Project>
       <Name>EmailMaker.Commands</Name>

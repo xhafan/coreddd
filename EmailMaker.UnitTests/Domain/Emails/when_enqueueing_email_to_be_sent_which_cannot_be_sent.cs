@@ -1,4 +1,5 @@
 using CoreDdd.Utilities;
+using CoreTest;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.TestHelper.Builders;
@@ -9,7 +10,7 @@ using Shouldly;
 namespace EmailMaker.UnitTests.Domain.Emails
 {
     [TestFixture]
-    public class when_enqueueing_email_to_be_sent_which_cannot_be_sent
+    public class when_enqueueing_email_to_be_sent_which_cannot_be_sent : BaseTest
     {
         private Email _email;
         private const string FromAddress = "from address";
@@ -20,7 +21,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
         public void Context()
         {
             var template = EmailTemplateBuilder.New.Build();
-            var state = MockRepository.GenerateMock<EmailState>();
+            var state = Stub<EmailState>();
             state.Stub(a => a.CanSend).Return(false);
             state.Stub(a => a.Name).Return("state");
             _email = EmailBuilder.New
