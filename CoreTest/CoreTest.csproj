@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RhinoMocksExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
