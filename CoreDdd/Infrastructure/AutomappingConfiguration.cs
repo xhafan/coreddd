@@ -32,7 +32,7 @@ namespace CoreDdd.Infrastructure
 
         private static bool IsDomainEntity(Type type)
         {
-            return type.IsSubclassOfRawGeneric(typeof(Entity<,>));
+            return type.IsSubclassOfRawGeneric(typeof(Entity<>));
         }
 
         private bool HasNotIgnoreAttribute(Type type)

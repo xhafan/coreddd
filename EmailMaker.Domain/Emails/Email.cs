@@ -14,7 +14,7 @@ using Iesi.Collections.Generic;
 
 namespace EmailMaker.Domain.Emails
 {
-    public class Email : Entity<Email>, IAggregateRoot
+    public class Email : Entity, IAggregateRoot
     {
         public virtual EmailTemplate EmailTemplate { get; protected set; }
 

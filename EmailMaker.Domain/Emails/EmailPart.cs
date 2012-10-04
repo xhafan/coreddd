@@ -2,7 +2,7 @@
 
 namespace EmailMaker.Domain.Emails
 {
-    public abstract class EmailPart : Entity<EmailPart>
+    public abstract class EmailPart : Entity
     {
         public virtual int Position { get; protected set; }
     }

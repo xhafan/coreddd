@@ -11,7 +11,7 @@ namespace CoreDdd.Tests.Domain.Repositories
     {
         private ISession _session;
 
-        private abstract class TestEntity : Entity<TestEntity>, IAggregateRoot
+        private abstract class TestEntity : Entity, IAggregateRoot
         {
         }
         

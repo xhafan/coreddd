@@ -10,7 +10,7 @@ namespace CoreDdd.Infrastructure.Conventions
     {
         public void Accept(IAcceptanceCriteria<IIdentityInspector> criteria)
         {
-            criteria.Expect(x => x.EntityType.IsSubclassOfRawGeneric(typeof (Entity<,>)));
+            criteria.Expect(x => x.EntityType.IsSubclassOfRawGeneric(typeof (Entity<>)));
         }
 
         public void Apply(IIdentityInstance instance)

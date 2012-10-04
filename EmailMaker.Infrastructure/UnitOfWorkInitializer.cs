@@ -25,7 +25,7 @@ namespace EmailMaker.Infrastructure
                 assembliesToMap.ToArray(),
                 new[]
                     {
-                        typeof (Entity<,>),
+                        typeof (Entity<>),
                         typeof (EmailPart),
                         typeof (EmailState),
                         typeof (EmailTemplatePart)

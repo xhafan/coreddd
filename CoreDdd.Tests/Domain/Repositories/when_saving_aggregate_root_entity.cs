@@ -12,7 +12,7 @@ namespace CoreDdd.Tests.Domain.Repositories
         private ISession _session;
         private TestEntity _testEntity;
 
-        private class TestEntity : Entity<TestEntity>, IAggregateRoot
+        private class TestEntity : Entity, IAggregateRoot
         {
         }
 

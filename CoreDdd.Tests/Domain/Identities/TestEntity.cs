@@ -2,7 +2,7 @@
 
 namespace CoreDdd.Tests.Domain.Identities
 {
-    internal class TestEntity<TId> : Entity<TId, TestEntity<TId>>
+    internal class TestEntity<TId> : Entity<TId>
     {
         public TestEntity()
         {            

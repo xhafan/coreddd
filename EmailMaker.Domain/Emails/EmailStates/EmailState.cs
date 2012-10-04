@@ -2,7 +2,7 @@
 
 namespace EmailMaker.Domain.Emails.EmailStates
 {
-    public abstract class EmailState : Entity<EmailState>
+    public abstract class EmailState : Entity
     {              
         public static EmailState Draft = new DraftEmailState();
         public static EmailState ToBeSent = new ToBeSentEmailState();
