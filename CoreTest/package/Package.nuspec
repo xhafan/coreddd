@@ -8,7 +8,7 @@
     <projectUrl>http://code.google.com/p/emailmaker/source/browse/#svn%2Ftrunk%2FCoreTest</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Test helpers for CoreDdd library</description>
-    <tags>NUnit RhinoMocks</tags>
+    <tags>CoreDdd NUnit RhinoMocks</tags>
     <dependencies>
       <dependency id="NUnit" version="2.6.1" />
       <dependency id="RhinoMocks" version="3.6.1" />
