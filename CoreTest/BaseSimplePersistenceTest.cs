@@ -1,4 +1,4 @@
-﻿namespace CoreDdd.Tests.Helpers.Persistence
+﻿namespace CoreTest
 {
     public abstract class BaseSimplePersistenceTest : BasePersistenceTest
     {

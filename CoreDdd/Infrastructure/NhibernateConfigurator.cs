@@ -22,7 +22,7 @@ namespace CoreDdd.Infrastructure
             IEnumerable<Type> includeBaseTypes, 
             Type[] discriminatedTypes, 
             bool mapDefaultConventions,
-            Assembly assemblyWithConventions)
+            Assembly assemblyWithAdditionalConventions)
         {
 #if(DEBUG)
             NHibernateProfiler.Initialize();
@@ -33,7 +33,7 @@ namespace CoreDdd.Infrastructure
             includeBaseTypes.Each(x => autoPersistenceModel.IncludeBase(x));
             assembliesToMap.Each(x => autoPersistenceModel.UseOverridesFromAssembly(x));
             if (mapDefaultConventions) autoPersistenceModel.Conventions.AddFromAssemblyOf<PrimaryKeyConvention>();
-            autoPersistenceModel.Conventions.AddAssembly(assemblyWithConventions);            
+            if (assemblyWithAdditionalConventions != null) autoPersistenceModel.Conventions.AddAssembly(assemblyWithAdditionalConventions);
             _sessionFactory = Fluently.Configure(_configuration)
                 .Mappings(x =>
                               {

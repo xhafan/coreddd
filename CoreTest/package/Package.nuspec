@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CoreTest</id>
-    <version>1.1.2.0</version>
+    <version>1.1.3.0</version>
     <authors>xhafan</authors>
     <owners>xhafan</owners>
     <projectUrl>http://code.google.com/p/emailmaker/source/browse/#svn%2Ftrunk%2FCoreTest</projectUrl>
@@ -10,9 +10,10 @@
     <description>Test helpers for CoreDdd library</description>
     <tags>CoreDdd NUnit RhinoMocks</tags>
     <dependencies>
+      <dependency id="CoreDdd" version="1.2.0.0" />
       <dependency id="NUnit" version="2.6.1" />
       <dependency id="RhinoMocks" version="3.6.1" />
-      <dependency id="CoreDdd" version="1.1.0.0" />
+      <dependency id="Iesi.Collections" version="3.3.1.4000" />
     </dependencies>
   </metadata>
 </package>
