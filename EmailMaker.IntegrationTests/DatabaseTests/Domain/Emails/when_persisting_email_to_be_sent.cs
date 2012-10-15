@@ -28,7 +28,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Domain.Emails
             Save(user);
             _emailTemplate = EmailTemplateBuilder.New
                 .WithInitialHtml("123")
-                .WithName(null)
+                .WithName("template name")
                 .WithUserId(user.Id)
                 .Build();
             Save(_emailTemplate);

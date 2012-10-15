@@ -106,6 +106,7 @@
     <Compile Include="Domain\Emails\when_updating_email_variables_with_invalid_variable_id.cs" />
     <Compile Include="Domain\EventHandlers\when_handling_enqueue_email_to_be_sent_event.cs" />
     <Compile Include="Domain\Users\when_creating_user.cs" />
+    <Compile Include="Domain\VariableEmailTemplateParts\when_creating_variable_email_template_part.cs" />
     <Compile Include="Service\when_building_email_html.cs" />
     <Compile Include="Service\when_building_email_html_with_unknown_email_part.cs" />
     <Compile Include="Domain\Users\when_changing_password.cs" />

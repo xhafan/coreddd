@@ -23,7 +23,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
             Save(user);
             var emailTemplate = EmailTemplateBuilder.New
                 .WithInitialHtml("123")
-                .WithName(null)
+                .WithName("template name")
                 .WithUserId(user.Id)
                 .Build();
             Save(emailTemplate);
@@ -32,7 +32,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 
             var anotherEmailTemplate = EmailTemplateBuilder.New
                 .WithInitialHtml("another html")
-                .WithName(null)
+                .WithName("template name")
                 .WithUserId(user.Id)
                 .Build(); 
             Save(anotherEmailTemplate);

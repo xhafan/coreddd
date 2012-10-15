@@ -9,6 +9,8 @@ namespace EmailMaker.Domain.Emails
         {
             mapping.HasMany(x => x.Parts)
                 .AsList(a => a.Column("Position"));
+            mapping.Map(x => x.FromAddress).Nullable();
+            mapping.Map(x => x.Subject).Nullable();
         }
     }
 }

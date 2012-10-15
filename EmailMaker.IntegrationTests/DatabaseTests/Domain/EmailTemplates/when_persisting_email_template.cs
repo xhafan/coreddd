@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using CoreDdd.Utilities.Extensions;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Users;
 using EmailMaker.TestHelper.Builders;
@@ -36,16 +37,16 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Domain.EmailTemplates
         public void email_template_correctly_retrieved()
         {
             _retrievedEmailTemplate.Id.ShouldBe(_emailTemplate.Id);
-            _retrievedEmailTemplate.Parts.Count().ShouldBe(_emailTemplate.Parts.Count());
-            foreach (var retrievedPart in _retrievedEmailTemplate.Parts)
-            {
-                var htmlRetrievedPart = (HtmlEmailTemplatePart)retrievedPart;
-                var htmlPart = (HtmlEmailTemplatePart)_emailTemplate.Parts.First(x => x.Id == htmlRetrievedPart.Id);
-                htmlRetrievedPart.Position.ShouldBe(htmlPart.Position);
-                htmlRetrievedPart.Html.ShouldBe(htmlPart.Html);
-            }
             _retrievedEmailTemplate.Name.ShouldBe(TemplateName);
             _retrievedEmailTemplate.UserId.ShouldBe(_user.Id);
+            _retrievedEmailTemplate.Parts.Count().ShouldBe(_emailTemplate.Parts.Count());
+            _retrievedEmailTemplate.Parts.Each((i, x) =>
+                {
+                    var htmlRetrievedPart = (HtmlEmailTemplatePart)x;
+                    var htmlPart = (HtmlEmailTemplatePart) _emailTemplate.Parts.ElementAt(i);
+                    htmlRetrievedPart.ShouldBe(htmlPart);
+                    htmlRetrievedPart.Html.ShouldBe(htmlPart.Html);
+                });
         }
     }
 }

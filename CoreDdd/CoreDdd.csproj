@@ -72,6 +72,9 @@
     <Compile Include="Domain\IAggregateRoot.cs" />
     <Compile Include="Domain\Repositories\IRepository[T, TId].cs" />
     <Compile Include="Domain\Repositories\NhibernateRepository[T,TId].cs" />
+    <Compile Include="Infrastructure\Conventions\ColumnNullabilityConvention.cs" />
+    <Compile Include="Infrastructure\Conventions\ForeignKeyConstraintNameConvention.cs" />
+    <Compile Include="Infrastructure\Conventions\DateTimeConvention.cs" />
     <Compile Include="Infrastructure\INhibernateConfigurator.cs" />
     <Compile Include="Infrastructure\IoC.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />

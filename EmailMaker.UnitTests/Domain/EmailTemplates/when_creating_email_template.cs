@@ -22,7 +22,6 @@ namespace EmailMaker.UnitTests.Domain.EmailTemplates
         {
             _emailTemplate.Parts.Count().ShouldBe(1);
             var htmlTemplatePart = (HtmlEmailTemplatePart) _emailTemplate.Parts.First();
-            htmlTemplatePart.Position.ShouldBe(0);
             htmlTemplatePart.Html.ShouldBe(string.Empty);
             _emailTemplate.UserId.ShouldBe(UserId);
         }

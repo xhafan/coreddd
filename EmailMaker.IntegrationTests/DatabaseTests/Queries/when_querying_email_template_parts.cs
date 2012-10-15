@@ -23,14 +23,14 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
             Save(user);
             _emailTemplate = EmailTemplateBuilder.New
                 .WithInitialHtml("123")
-                .WithName(null)
+                .WithName("template name")
                 .WithUserId(user.Id)
                 .Build(); 
             Save(_emailTemplate);
             _emailTemplate.CreateVariable(_emailTemplate.Parts.First().Id, 1, 1);
             var anotherEmailTemplate = EmailTemplateBuilder.New
                 .WithInitialHtml("another html")
-                .WithName(null)
+                .WithName("template name")
                 .WithUserId(user.Id)
                 .Build();
             Save(_emailTemplate, anotherEmailTemplate);

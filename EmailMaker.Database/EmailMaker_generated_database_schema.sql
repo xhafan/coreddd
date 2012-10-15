@@ -1,18 +1,18 @@
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK9E30BF7BF2198807]') AND parent_object_id = OBJECT_ID('[EmailRecipient]'))
-alter table [EmailRecipient]  drop constraint FK9E30BF7BF2198807
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_EmailRecipient_Recipient]') AND parent_object_id = OBJECT_ID('[EmailRecipient]'))
+alter table [EmailRecipient]  drop constraint FK_EmailRecipient_Recipient
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK9E30BF7BBB7A8FCD]') AND parent_object_id = OBJECT_ID('[EmailRecipient]'))
 alter table [EmailRecipient]  drop constraint FK9E30BF7BBB7A8FCD
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK4239B252C3BA1A19]') AND parent_object_id = OBJECT_ID('[Email]'))
-alter table [Email]  drop constraint FK4239B252C3BA1A19
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_Email_EmailTemplate]') AND parent_object_id = OBJECT_ID('[Email]'))
+alter table [Email]  drop constraint FK_Email_EmailTemplate
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK4239B252C2E08B71]') AND parent_object_id = OBJECT_ID('[Email]'))
-alter table [Email]  drop constraint FK4239B252C2E08B71
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_Email_EmailState]') AND parent_object_id = OBJECT_ID('[Email]'))
+alter table [Email]  drop constraint FK_Email_EmailState
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKB3CACEE7BB7A8FCD]') AND parent_object_id = OBJECT_ID('[EmailPart]'))
@@ -27,8 +27,8 @@ alter table HtmlEmailPart  drop constraint FKC187ECA4EAEB1497
 alter table VariableEmailPart  drop constraint FK5655592DEAEB1497
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK5655592D326ED16A]') AND parent_object_id = OBJECT_ID('VariableEmailPart'))
-alter table VariableEmailPart  drop constraint FK5655592D326ED16A
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_VariableEmailPart_VariableType]') AND parent_object_id = OBJECT_ID('VariableEmailPart'))
+alter table VariableEmailPart  drop constraint FK_VariableEmailPart_VariableType
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKC644F053C3BA1A19]') AND parent_object_id = OBJECT_ID('[EmailTemplatePart]'))
@@ -47,8 +47,8 @@ alter table RepeatedSectionEmailTemplatePart  drop constraint FK8A7C73968EBDE1D
 alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE18EBDE1D
 
 
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK2A9FDCE1326ED16A]') AND parent_object_id = OBJECT_ID('VariableEmailTemplatePart'))
-alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_VariableEmailTemplatePart_VariableType]') AND parent_object_id = OBJECT_ID('VariableEmailTemplatePart'))
+alter table VariableEmailTemplatePart  drop constraint FK_VariableEmailTemplatePart_VariableType
 
 
     if exists (select * from dbo.sysobjects where id = object_id(N'[EmailRecipient]') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table [EmailRecipient]
@@ -83,9 +83,9 @@ alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
 
     create table [EmailRecipient] (
         Id BIGINT not null,
-       Sent BIT null,
+       Sent BIT not null,
        SentDate DATETIME null,
-       RecipientId INT null,
+       RecipientId INT not null,
        EmailId INT null,
        primary key (Id)
     )
@@ -94,8 +94,8 @@ alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
         Id INT not null,
        FromAddress NVARCHAR(MAX) null,
        Subject NVARCHAR(MAX) null,
-       EmailTemplateId INT null,
-       EmailStateId INT null,
+       EmailTemplateId INT not null,
+       EmailStateId INT not null,
        primary key (Id)
     )
 
@@ -108,35 +108,35 @@ alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
 
     create table HtmlEmailPart (
         EmailPartId INT not null,
-       Html NVARCHAR(MAX) null,
+       Html NVARCHAR(MAX) not null,
        primary key (EmailPartId)
     )
 
     create table VariableEmailPart (
         EmailPartId INT not null,
-       Value NVARCHAR(MAX) null,
-       VariableTypeId INT null,
+       Value NVARCHAR(MAX) not null,
+       VariableTypeId INT not null,
        primary key (EmailPartId)
     )
 
     create table [EmailState] (
         Id INT not null,
        Name NVARCHAR(255) not null,
-       CanSend BIT null,
+       CanSend BIT not null,
        primary key (Id)
     )
 
     create table [Recipient] (
         Id INT not null,
-       EmailAddress NVARCHAR(MAX) null,
-       Name NVARCHAR(MAX) null,
+       EmailAddress NVARCHAR(MAX) not null,
+       Name NVARCHAR(MAX) not null,
        primary key (Id)
     )
 
     create table [EmailTemplate] (
         Id INT not null,
-       Name NVARCHAR(MAX) null,
-       UserId INT null,
+       Name NVARCHAR(MAX) not null,
+       UserId INT not null,
        primary key (Id)
     )
 
@@ -149,7 +149,7 @@ alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
 
     create table HtmlEmailTemplatePart (
         EmailTemplatePartId INT not null,
-       Html NVARCHAR(MAX) null,
+       Html NVARCHAR(MAX) not null,
        primary key (EmailTemplatePartId)
     )
 
@@ -160,28 +160,28 @@ alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
 
     create table VariableEmailTemplatePart (
         EmailTemplatePartId INT not null,
-       Value NVARCHAR(MAX) null,
-       VariableTypeId INT null,
+       Value NVARCHAR(MAX) not null,
+       VariableTypeId INT not null,
        primary key (EmailTemplatePartId)
     )
 
     create table [VariableType] (
         Id INT not null,
-       Name NVARCHAR(MAX) null,
+       Name NVARCHAR(MAX) not null,
        primary key (Id)
     )
 
     create table [User] (
         Id INT not null,
-       FirstName NVARCHAR(MAX) null,
-       LastName NVARCHAR(MAX) null,
-       EmailAddress NVARCHAR(MAX) null,
-       Password NVARCHAR(MAX) null,
+       FirstName NVARCHAR(MAX) not null,
+       LastName NVARCHAR(MAX) not null,
+       EmailAddress NVARCHAR(MAX) not null,
+       Password NVARCHAR(MAX) not null,
        primary key (Id)
     )
 
     alter table [EmailRecipient] 
-        add constraint FK9E30BF7BF2198807 
+        add constraint FK_EmailRecipient_Recipient 
         foreign key (RecipientId) 
         references [Recipient]
 
@@ -191,12 +191,12 @@ alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
         references [Email]
 
     alter table [Email] 
-        add constraint FK4239B252C3BA1A19 
+        add constraint FK_Email_EmailTemplate 
         foreign key (EmailTemplateId) 
         references [EmailTemplate]
 
     alter table [Email] 
-        add constraint FK4239B252C2E08B71 
+        add constraint FK_Email_EmailState 
         foreign key (EmailStateId) 
         references [EmailState]
 
@@ -216,7 +216,7 @@ alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
         references [EmailPart]
 
     alter table VariableEmailPart 
-        add constraint FK5655592D326ED16A 
+        add constraint FK_VariableEmailPart_VariableType 
         foreign key (VariableTypeId) 
         references [VariableType]
 
@@ -241,7 +241,7 @@ alter table VariableEmailTemplatePart  drop constraint FK2A9FDCE1326ED16A
         references [EmailTemplatePart]
 
     alter table VariableEmailTemplatePart 
-        add constraint FK2A9FDCE1326ED16A 
+        add constraint FK_VariableEmailTemplatePart_VariableType 
         foreign key (VariableTypeId) 
         references [VariableType]
 
