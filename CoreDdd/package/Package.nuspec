@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>CoreDdd</id>
-    <version>1.1.5.0</version>
+    <version>1.1.6.0</version>
     <authors>xhafan</authors>
     <owners>xhafan</owners>
     <projectUrl>http://code.google.com/p/emailmaker/source/browse/#svn%2Ftrunk%2FCoreDdd</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>DDD and CQRS for your project. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-build-on-coreddd-library</description>
+    <description>DDD and CQRS for your project. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library</description>
     <tags>DDD CQRS IoC DI</tags>
     <dependencies>
       <dependency id="Castle.Core" version="3.0.0.4001" />
