@@ -1,5 +1,6 @@
 using CoreDdd.Tests.Helpers.Extensions;
 using CoreDdd.Utilities.Extensions;
+using CoreTest;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;
@@ -63,7 +64,7 @@ namespace EmailMaker.TestHelper.Builders
             email.SetPrivateProperty(x => x.Id, _id);
             email.Parts.Each(part => part.SetPrivateProperty(x => x.Id, NextPartId));
             email.SetPrivateProperty("State", _state);
-            _recipients.Each(r => email.EmailRecipients.Add(new EmailRecipient(r)));
+            _recipients.Each(r => email.EmailRecipients.AsSet().Add(new EmailRecipient(email, r)));
             return email;
         }
     }

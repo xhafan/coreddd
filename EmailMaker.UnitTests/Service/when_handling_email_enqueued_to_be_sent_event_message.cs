@@ -43,8 +43,8 @@ namespace EmailMaker.UnitTests.Service
             _recipientTwo = RecipientBuilder.New.WithId(RecipientTwoId).WithEmailAddress(RecipientTwoEmailAddress).WithName(RecipientTwoName).Build();
             _email.Stub(a => a.EmailRecipients).Return(new HashedSet<EmailRecipient>
                                                           {
-                                                              new EmailRecipient(_recipientOne),
-                                                              new EmailRecipient(_recipientTwo)
+                                                              new EmailRecipient(_email, _recipientOne),
+                                                              new EmailRecipient(_email, _recipientTwo)
                                                           });
 
             _email.Stub(a => a.FromAddress).Return(FromAddress);

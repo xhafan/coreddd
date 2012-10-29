@@ -93,7 +93,7 @@
     <Compile Include="Infrastructure\NhibernateConfigurator.cs" />
     <Compile Include="Domain\Repositories\NhibernateRepository[T].cs" />
     <Compile Include="Domain\Repositories\NhibernateRepositoryInstaller.cs" />
-    <Compile Include="Domain\TypeExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Dtos\Dto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\BaseNHibernateCriteriaQueryMessageHandler.cs" />

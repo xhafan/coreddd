@@ -29,7 +29,7 @@ namespace EmailMaker.Domain.Emails
         public virtual EmailState State { get; protected set; }
 
         private readonly Iesi.Collections.Generic.ISet<EmailRecipient> _emailRecipients = new HashedSet<EmailRecipient>();
-        public virtual Iesi.Collections.Generic.ISet<EmailRecipient> EmailRecipients
+        public virtual IEnumerable<EmailRecipient> EmailRecipients
         {
             get { return _emailRecipients; }
         }
@@ -95,12 +95,12 @@ namespace EmailMaker.Domain.Emails
         public virtual void EnqueueEmailToBeSent(string fromAddress, HashedSet<Recipient> recipients, string subject)
         {
             Guard.Hope(State.CanSend, "cannot enqeue email in the current state: " + State.Name);
-            Guard.Hope(EmailRecipients.Count == 0, "recipients must be empty");
+            Guard.Hope(_emailRecipients.Count == 0, "recipients must be empty");
             State = EmailState.ToBeSent;
             FromAddress = fromAddress;
             Subject = subject;
 
-            recipients.Each(r => EmailRecipients.Add(new EmailRecipient(r)));
+            recipients.Each(r => _emailRecipients.Add(new EmailRecipient(this, r)));
 
             DomainEvents.RaiseEvent(new EmailEnqueuedToBeSentEvent
                                         {

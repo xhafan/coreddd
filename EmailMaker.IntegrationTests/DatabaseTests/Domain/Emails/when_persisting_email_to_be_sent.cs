@@ -1,5 +1,6 @@
 using System.Linq;
 using CoreDdd.Tests.Helpers.Extensions;
+using CoreTest;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
@@ -42,8 +43,8 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Domain.Emails
             Save(_email);
 
             _email.SetPrivateProperty("FromAddress", FromAddress);
-            _email.EmailRecipients.Add(new EmailRecipient(_recipientOne));
-            _email.EmailRecipients.Add(new EmailRecipient(_recipientTwo));
+            _email.EmailRecipients.AsSet().Add(new EmailRecipient(_email, _recipientOne));
+            _email.EmailRecipients.AsSet().Add(new EmailRecipient(_email, _recipientTwo));
             
             _email.SetPrivateProperty("Subject", Subject);
 

@@ -80,6 +80,7 @@
     <Compile Include="Controllers\BaseEmailmakerControllerTest.cs" />
     <Compile Include="Controllers\Templates\when_creating_a_variable.cs" />
     <Compile Include="Domain\Emails\when_creating_email_recipient.cs" />
+    <Compile Include="Domain\Emails\when_creating_html_email_part.cs" />
     <Compile Include="Domain\Emails\when_creating_recipient.cs" />
     <Compile Include="Domain\EmailTemplates\when_creating_email_template.cs" />
     <Compile Include="Domain\EmailTemplates\when_creating_variable.cs" />

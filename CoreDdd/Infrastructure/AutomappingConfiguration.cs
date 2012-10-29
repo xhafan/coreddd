@@ -1,6 +1,7 @@
 using System;
 using CoreDdd.Domain;
 using CoreDdd.Dtos;
+using CoreDdd.Extensions;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Utils;
 

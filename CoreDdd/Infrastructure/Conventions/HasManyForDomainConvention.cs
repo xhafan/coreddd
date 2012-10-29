@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using CoreDdd.Domain;
+using CoreDdd.Extensions;
 using FluentNHibernate;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Inspections;
@@ -22,6 +25,17 @@ namespace CoreDdd.Infrastructure.Conventions
             if (field != null)
             {
                 instance.Access.ReadOnlyPropertyThroughCamelCaseField(CamelCasePrefix.Underscore);
+                if (!field.PropertyType.IsSubclassOfRawGeneric(typeof (IList<>)))
+                {
+                    instance.Inverse(); // inverse by default if not ordered list
+                }
+            }
+            else
+            {
+                if (!property.PropertyType.IsSubclassOfRawGeneric(typeof (IList<>)))
+                {
+                    instance.Inverse(); // inverse by default if not ordered list
+                }
             }
         }
     }

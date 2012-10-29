@@ -60,14 +60,16 @@ namespace EmailMaker.UnitTests.Domain.Emails
         [Test]
         public void recipients_correctly_set()
         {
-            _email.EmailRecipients.Count.ShouldBe(2);
+            _email.EmailRecipients.Count().ShouldBe(2);
             
             var emailRecipient = _email.EmailRecipients.First();
+            emailRecipient.Email.ShouldBe(_email);
             emailRecipient.Recipient.ShouldBe(_recipientOne);
             emailRecipient.Sent.ShouldBe(false);
             emailRecipient.SentDate.ShouldBe(null);
 
             emailRecipient = _email.EmailRecipients.Last();
+            emailRecipient.Email.ShouldBe(_email);
             emailRecipient.Recipient.ShouldBe(_recipientTwo);
             emailRecipient.Sent.ShouldBe(false);
             emailRecipient.SentDate.ShouldBe(null);

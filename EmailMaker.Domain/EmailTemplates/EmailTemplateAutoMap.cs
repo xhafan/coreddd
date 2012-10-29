@@ -9,6 +9,7 @@ namespace EmailMaker.Domain.EmailTemplates
         {
             mapping.HasMany(x => x.Parts)
                 .AsList(a => a.Column("Position"));
+            mapping.Map(x => x.Name).Nullable();
         }
     }
 }

@@ -1,10 +1,10 @@
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_EmailRecipient_Email]') AND parent_object_id = OBJECT_ID('[EmailRecipient]'))
+alter table [EmailRecipient]  drop constraint FK_EmailRecipient_Email
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_EmailRecipient_Recipient]') AND parent_object_id = OBJECT_ID('[EmailRecipient]'))
 alter table [EmailRecipient]  drop constraint FK_EmailRecipient_Recipient
-
-
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK9E30BF7BBB7A8FCD]') AND parent_object_id = OBJECT_ID('[EmailRecipient]'))
-alter table [EmailRecipient]  drop constraint FK9E30BF7BBB7A8FCD
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK_Email_EmailTemplate]') AND parent_object_id = OBJECT_ID('[Email]'))
@@ -85,8 +85,8 @@ alter table VariableEmailTemplatePart  drop constraint FK_VariableEmailTemplateP
         Id BIGINT not null,
        Sent BIT not null,
        SentDate DATETIME null,
+       EmailId INT not null,
        RecipientId INT not null,
-       EmailId INT null,
        primary key (Id)
     )
 
@@ -135,7 +135,7 @@ alter table VariableEmailTemplatePart  drop constraint FK_VariableEmailTemplateP
 
     create table [EmailTemplate] (
         Id INT not null,
-       Name NVARCHAR(MAX) not null,
+       Name NVARCHAR(MAX) null,
        UserId INT not null,
        primary key (Id)
     )
@@ -181,14 +181,14 @@ alter table VariableEmailTemplatePart  drop constraint FK_VariableEmailTemplateP
     )
 
     alter table [EmailRecipient] 
+        add constraint FK_EmailRecipient_Email 
+        foreign key (EmailId) 
+        references [Email]
+
+    alter table [EmailRecipient] 
         add constraint FK_EmailRecipient_Recipient 
         foreign key (RecipientId) 
         references [Recipient]
-
-    alter table [EmailRecipient] 
-        add constraint FK9E30BF7BBB7A8FCD 
-        foreign key (EmailId) 
-        references [Email]
 
     alter table [Email] 
         add constraint FK_Email_EmailTemplate 
