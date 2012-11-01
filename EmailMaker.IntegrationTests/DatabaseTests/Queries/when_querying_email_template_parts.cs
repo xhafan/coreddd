@@ -8,7 +8,6 @@ using EmailMaker.Queries.Messages;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
-using GetEmailTemplatePartsQuery = EmailMaker.Queries.Messages.GetEmailTemplatePartsQuery;
 
 namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 {
@@ -39,7 +38,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 
         protected override void PersistenceQuery()
         {
-            var query = new EmailMaker.Queries.Handlers.GetEmailTemplatePartsQuery();
+            var query = new GetEmailTemplatePartsQueryHandler();
             _result = query.Execute<EmailTemplatePartDto>(new GetEmailTemplatePartsQuery { EmailTemplateId = _emailTemplate.Id });
         }
 
