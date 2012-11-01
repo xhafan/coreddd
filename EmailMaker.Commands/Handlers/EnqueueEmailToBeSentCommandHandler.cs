@@ -1,6 +1,5 @@
 using System.Linq;
 using CoreDdd.Commands;
-using CoreDdd.Domain;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Queries;
 using CoreDdd.Utilities.Extensions;
