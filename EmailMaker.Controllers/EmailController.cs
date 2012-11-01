@@ -29,7 +29,7 @@ namespace EmailMaker.Controllers
 
         public ViewResult Index()
         {
-            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDto>(new GetAllEmailTemplateQueryMessage { UserId = UserId});
+            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQuery, EmailTemplateDetailsDto>(new GetAllEmailTemplateQuery { UserId = UserId});
             var model = new TemplateIndexModel { EmailTemplate = emailTemplates };
             return View(model);
         }
@@ -78,11 +78,11 @@ namespace EmailMaker.Controllers
 
         private EmailDto _GetEmail(int id)
         {
-            var message = new GetEmailQueryMessage { EmailId = id };
-            var variablePartMessage = new GetEmailVariablePartsQueryMessage { EmailId = id };
+            var message = new GetEmailQuery { EmailId = id };
+            var variablePartMessage = new GetEmailVariablePartsQuery { EmailId = id };
 
-            var emailDtos = _queryExecutor.Execute<GetEmailQueryMessage, EmailDto>(message);
-            var variableEmailPartDtos = _queryExecutor.Execute<GetEmailVariablePartsQueryMessage, EmailPartDto>(variablePartMessage);
+            var emailDtos = _queryExecutor.Execute<GetEmailQuery, EmailDto>(message);
+            var variableEmailPartDtos = _queryExecutor.Execute<GetEmailVariablePartsQuery, EmailPartDto>(variablePartMessage);
 
             var emailDto = emailDtos.Single();
             emailDto.Parts = variableEmailPartDtos;
@@ -104,8 +104,8 @@ namespace EmailMaker.Controllers
  
         public string GetHtml(int id)
         {
-            var partMessage = new GetEmailPartsQueryMessage { EmailId = id };
-            var emailPartDtos = _queryExecutor.Execute<GetEmailPartsQueryMessage, EmailPartDto>(partMessage);
+            var partMessage = new GetEmailPartsQuery { EmailId = id };
+            var emailPartDtos = _queryExecutor.Execute<GetEmailPartsQuery, EmailPartDto>(partMessage);
 
             var sb = new StringBuilder();
             emailPartDtos.Each(part =>

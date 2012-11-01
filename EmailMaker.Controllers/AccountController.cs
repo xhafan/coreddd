@@ -32,8 +32,8 @@ namespace EmailMaker.Controllers
         {
             if (ModelState.IsValid)
             {
-                var message = new GetUserDetailsByEmailAddressMessage { EmailAddress = model.EmailAddress };
-                var userDetails  = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDto>(message).FirstOrDefault();
+                var message = new GetUserDetailsByEmailAddressQuery { EmailAddress = model.EmailAddress };
+                var userDetails  = _queryExecutor.Execute<GetUserDetailsByEmailAddressQuery, UserDto>(message).FirstOrDefault();
                 
                 if(userDetails != null)
                 {
@@ -106,8 +106,8 @@ namespace EmailMaker.Controllers
             if (ModelState.IsValid)
             {
                 // todo: remove this query - remember id in the same way as name
-                var message = new GetUserDetailsByEmailAddressMessage { EmailAddress = User.Identity.Name };
-                var user = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDto>(message).First();
+                var message = new GetUserDetailsByEmailAddressQuery { EmailAddress = User.Identity.Name };
+                var user = _queryExecutor.Execute<GetUserDetailsByEmailAddressQuery, UserDto>(message).First();
 
                 var command = new ChangePasswordForUserCommand
                                   {

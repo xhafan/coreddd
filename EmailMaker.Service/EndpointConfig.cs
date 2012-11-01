@@ -33,7 +33,7 @@ namespace EmailMaker.Service
             container.Install(
                 FromAssembly.Containing<QueryExecutorInstaller>(),
                 FromAssembly.Containing<EmailSenderInstaller>(),
-                FromAssembly.Containing<QueryMessageHandlerInstaller>()
+                FromAssembly.Containing<QueryHandlerInstaller>()
                 );
             IoC.Initialize(container);
             UnitOfWorkInitializer.Initialize();

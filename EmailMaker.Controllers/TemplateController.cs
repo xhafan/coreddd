@@ -28,7 +28,7 @@ namespace EmailMaker.Controllers
 
         public ActionResult Index()
         {
-            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQueryMessage, EmailTemplateDetailsDto>(new GetAllEmailTemplateQueryMessage{ UserId = UserId });           
+            var emailTemplates = _queryExecutor.Execute<GetAllEmailTemplateQuery, EmailTemplateDetailsDto>(new GetAllEmailTemplateQuery{ UserId = UserId });           
             var model = new TemplateIndexModel { EmailTemplate = emailTemplates };
             return View(model);
         }
@@ -52,11 +52,11 @@ namespace EmailMaker.Controllers
 
         private EmailTemplateDto _GetEmailTemplate(int id)
         {
-            var templateMessage = new GetEmailTemplateQueryMessage {EmailTemplateId = id};
-            var templatePartMessage = new GetEmailTemplatePartsQueryMessage { EmailTemplateId = id };
+            var templateMessage = new GetEmailTemplateQuery {EmailTemplateId = id};
+            var templatePartMessage = new GetEmailTemplatePartsQuery { EmailTemplateId = id };
 
-            var emailTemplateDtos = _queryExecutor.Execute<GetEmailTemplateQueryMessage, EmailTemplateDto>(templateMessage);
-            var emailTemplatePartDtos = _queryExecutor.Execute<GetEmailTemplatePartsQueryMessage, EmailTemplatePartDto>(templatePartMessage);
+            var emailTemplateDtos = _queryExecutor.Execute<GetEmailTemplateQuery, EmailTemplateDto>(templateMessage);
+            var emailTemplatePartDtos = _queryExecutor.Execute<GetEmailTemplatePartsQuery, EmailTemplatePartDto>(templatePartMessage);
             
             var emailTemplateDto = emailTemplateDtos.Single();
             emailTemplateDto.Parts = emailTemplatePartDtos;
@@ -90,8 +90,8 @@ namespace EmailMaker.Controllers
 
         public string GetHtml(int id)
         {
-            var partMessage = new GetEmailTemplatePartsQueryMessage { EmailTemplateId = id };
-            var emailTemplatePartDtos = _queryExecutor.Execute<GetEmailTemplatePartsQueryMessage, EmailTemplatePartDto>(partMessage);
+            var partMessage = new GetEmailTemplatePartsQuery { EmailTemplateId = id };
+            var emailTemplatePartDtos = _queryExecutor.Execute<GetEmailTemplatePartsQuery, EmailTemplatePartDto>(partMessage);
 
             var sb = new StringBuilder();
             emailTemplatePartDtos.Each(part =>

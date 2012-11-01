@@ -5,12 +5,12 @@ using NHibernate;
 
 namespace EmailMaker.Queries.Handlers
 {
-    public class GetUserDetailsByEmailAddressQuery : BaseNHibernateCriteriaQueryMessageHandler<GetUserDetailsByEmailAddressMessage>
+    public class GetUserDetailsByEmailAddressQueryHandler : BaseNhibernateCriteriaQueryHandler<GetUserDetailsByEmailAddressQuery>
     {        
-        public override ICriteria GetCriteria<TResult>(GetUserDetailsByEmailAddressMessage message)
+        public override ICriteria GetCriteria<TResult>(GetUserDetailsByEmailAddressQuery query)
         {           
             return Session.QueryOver<UserDto>()
-                .Where(x => x.EmailAddress == message.EmailAddress)
+                .Where(x => x.EmailAddress == query.EmailAddress)
                 .UnderlyingCriteria;     
         }
     }

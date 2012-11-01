@@ -8,6 +8,7 @@ using EmailMaker.Queries.Messages;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
+using GetAllEmailTemplateQuery = EmailMaker.Queries.Messages.GetAllEmailTemplateQuery;
 
 namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 {
@@ -32,8 +33,8 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 
         protected override void PersistenceQuery()
         {
-            var query = new GetAllEmailTemplateQuery();
-            _result = query.Execute<EmailTemplateDetailsDto>(new GetAllEmailTemplateQueryMessage { UserId = _user.Id });
+            var query = new EmailMaker.Queries.Handlers.GetAllEmailTemplateQuery();
+            _result = query.Execute<EmailTemplateDetailsDto>(new GetAllEmailTemplateQuery { UserId = _user.Id });
         }
 
         [Test]

@@ -39,8 +39,8 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
             var queryExecutor = MockRepository.GenerateStub<IQueryExecutor>();
             queryExecutor.Stub(
                 a =>
-                a.Execute<GetExistingRecipientsQueryMessage, Recipient>(
-                    Arg<GetExistingRecipientsQueryMessage>.Matches(p => p.RecipientEmailAddresses.Contains(AddressOne)
+                a.Execute<GetExistingRecipientsQuery, Recipient>(
+                    Arg<GetExistingRecipientsQuery>.Matches(p => p.RecipientEmailAddresses.Contains(AddressOne)
                                                                            &&
                                                                            p.RecipientEmailAddresses.Contains(AddressTwo))))
                 .Return(new[]

@@ -2,7 +2,7 @@
 
 namespace EmailMaker.Queries.Messages
 {
-    public class GetEmailTemplatePartsQueryMessage : IQueryMessage
+    public class GetEmailTemplateQuery : IQuery
     {
         public int EmailTemplateId { get; set; }
     }

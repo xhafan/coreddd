@@ -6,12 +6,12 @@ using NHibernate;
 
 namespace EmailMaker.Queries.Handlers
 {
-    public class GetEmailVariablePartsQuery : BaseNHibernateCriteriaQueryMessageHandler<GetEmailVariablePartsQueryMessage>
+    public class GetEmailVariablePartsQuery : BaseNhibernateCriteriaQueryHandler<Messages.GetEmailVariablePartsQuery>
     {
-        public override ICriteria GetCriteria<TResult>(GetEmailVariablePartsQueryMessage message)
+        public override ICriteria GetCriteria<TResult>(Messages.GetEmailVariablePartsQuery query)
         {
             return Session.QueryOver<EmailPartDto>()
-                .Where(e => e.EmailId == message.EmailId && e.PartType == PartType.Variable)
+                .Where(e => e.EmailId == query.EmailId && e.PartType == PartType.Variable)
                 .UnderlyingCriteria;
         }
     }

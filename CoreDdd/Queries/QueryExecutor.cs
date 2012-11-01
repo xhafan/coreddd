@@ -7,18 +7,18 @@ namespace CoreDdd.Queries
 {
     public class QueryExecutor : IQueryExecutor
     {
-        public IEnumerable<TResult> Execute<TQueryMessage, TResult>(TQueryMessage queryMessage) 
-            where TQueryMessage : IQueryMessage
+        public IEnumerable<TResult> Execute<TQuery, TResult>(TQuery query) 
+            where TQuery : IQuery
         {
-            var queryHandler = IoC.Resolve<IQueryMessageHandler<TQueryMessage>>();
-            return queryHandler.Execute<TResult>(queryMessage);
+            var queryHandler = IoC.Resolve<IQueryHandler<TQuery>>();
+            return queryHandler.Execute<TResult>(query);
         }
 
-        public IEnumerable<TTransformResult> Execute<TQueryMessage, TResult, TTransformResult>(TQueryMessage queryMessage, Func<TResult, TTransformResult> transform) 
-            where TQueryMessage : IQueryMessage
+        public IEnumerable<TTransformResult> Execute<TQuery, TResult, TTransformResult>(TQuery query, Func<TResult, TTransformResult> transform) 
+            where TQuery : IQuery
         {
-            var queryHandler = IoC.Resolve<IQueryMessageHandler<TQueryMessage>>();
-            var result = queryHandler.Execute<TResult>(queryMessage);
+            var queryHandler = IoC.Resolve<IQueryHandler<TQuery>>();
+            var result = queryHandler.Execute<TResult>(query);
             return result.Select(transform);
         }
     }

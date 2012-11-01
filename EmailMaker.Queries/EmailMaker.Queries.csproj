@@ -54,16 +54,16 @@
     <Compile Include="Handlers\GetEmailTemplatePartsQuery.cs" />
     <Compile Include="Handlers\GetEmailVariablePartsQuery.cs" />
     <Compile Include="Handlers\GetExistingRecipientsQuery.cs" />
-    <Compile Include="Handlers\GetUserDetailsByEmailAddressQuery.cs" />
-    <Compile Include="Messages\GetUserDetailsByEmailAddressMessage.cs" />
-    <Compile Include="Messages\GetAllEmailTemplateQueryMessage.cs" />
-    <Compile Include="Messages\GetEmailPartsQueryMessage.cs" />
-    <Compile Include="Messages\GetEmailQueryMessage.cs" />
-    <Compile Include="Messages\GetEmailTemplatePartsQueryMessage.cs" />
-    <Compile Include="Messages\GetEmailTemplateQueryMessage.cs" />
+    <Compile Include="Handlers\GetUserDetailsByEmailAddressQueryHandler.cs" />
+    <Compile Include="Messages\GetUserDetailsByEmailAddressQuery.cs" />
+    <Compile Include="Messages\GetAllEmailTemplateQuery.cs" />
+    <Compile Include="Messages\GetEmailPartsQuery.cs" />
+    <Compile Include="Messages\GetEmailQuery.cs" />
+    <Compile Include="Messages\GetEmailTemplatePartsQuery.cs" />
+    <Compile Include="Messages\GetEmailTemplateQuery.cs" />
     <Compile Include="Handlers\GetEmailTemplateQuery.cs" />
-    <Compile Include="Messages\GetEmailVariablePartsQueryMessage.cs" />
-    <Compile Include="Messages\GetExistingRecipientsQueryMessage.cs" />
+    <Compile Include="Messages\GetEmailVariablePartsQuery.cs" />
+    <Compile Include="Messages\GetExistingRecipientsQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

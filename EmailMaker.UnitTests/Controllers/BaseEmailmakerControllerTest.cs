@@ -9,7 +9,7 @@ namespace EmailMaker.UnitTests.Controllers
     {
         public override void ExtraSetUp()
         {
-            QueryExecutor.Stub(a => a.Execute<GetUserDetailsByEmailAddressMessage, UserDto>(Arg<GetUserDetailsByEmailAddressMessage>.Is.Anything))
+            QueryExecutor.Stub(a => a.Execute<GetUserDetailsByEmailAddressQuery, UserDto>(Arg<GetUserDetailsByEmailAddressQuery>.Is.Anything))
                 .Return(new[] { new UserDto() });
         }
     }

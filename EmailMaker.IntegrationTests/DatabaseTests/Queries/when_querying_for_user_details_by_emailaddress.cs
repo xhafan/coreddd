@@ -27,8 +27,8 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 
         protected override void PersistenceQuery()
         {
-            var query = new GetUserDetailsByEmailAddressQuery();
-            _results = query.Execute<UserDto>(new GetUserDetailsByEmailAddressMessage { EmailAddress = EmailAddress });
+            var query = new GetUserDetailsByEmailAddressQueryHandler();
+            _results = query.Execute<UserDto>(new GetUserDetailsByEmailAddressQuery { EmailAddress = EmailAddress });
         }
 
         

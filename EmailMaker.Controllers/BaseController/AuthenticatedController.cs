@@ -21,8 +21,8 @@ namespace EmailMaker.Controllers.BaseController
             get
             {
                 // todo: fix this user id retrieval via cookie persistence or in identity
-                var message = new GetUserDetailsByEmailAddressMessage {EmailAddress = User.Identity.Name};
-                var user = _queryExecutor.Execute<GetUserDetailsByEmailAddressMessage, UserDto>(message).First();
+                var message = new GetUserDetailsByEmailAddressQuery {EmailAddress = User.Identity.Name};
+                var user = _queryExecutor.Execute<GetUserDetailsByEmailAddressQuery, UserDto>(message).First();
                 return user.UserId;
             }
         }

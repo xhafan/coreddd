@@ -1,16 +1,15 @@
 ﻿using CoreDdd.Queries;
 using EmailMaker.Dtos.EmailTemplates;
-using EmailMaker.Queries.Messages;
 using NHibernate;
 
 namespace EmailMaker.Queries.Handlers
 {
-    public class GetAllEmailTemplateQuery : BaseNHibernateCriteriaQueryMessageHandler<GetAllEmailTemplateQueryMessage>
+    public class GetAllEmailTemplateQuery : BaseNhibernateCriteriaQueryHandler<Messages.GetAllEmailTemplateQuery>
     {
-        public override ICriteria GetCriteria<TResult>(GetAllEmailTemplateQueryMessage message)
+        public override ICriteria GetCriteria<TResult>(Messages.GetAllEmailTemplateQuery query)
         {
             return Session.QueryOver<EmailTemplateDetailsDto>()
-                .Where(e => e.UserId == message.UserId)
+                .Where(e => e.UserId == query.UserId)
                 .UnderlyingCriteria;
         }
     }

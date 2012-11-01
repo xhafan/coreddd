@@ -5,13 +5,13 @@ using CoreDdd.Queries;
 
 namespace EmailMaker.Queries
 {
-    public class QueryMessageHandlerInstaller : IWindsorInstaller
+    public class QueryHandlerInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
                 AllTypes.FromThisAssembly()
-                    .BasedOn(typeof(IQueryMessageHandler<>))
+                    .BasedOn(typeof(IQueryHandler<>))
                     .WithService.FirstInterface()
                     .Configure(x => x.LifestyleTransient()));
         }

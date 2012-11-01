@@ -65,7 +65,7 @@ namespace EmailMaker.Website
                 FromAssembly.Containing<QueryExecutorInstaller>(),
                 FromAssembly.Containing<CommandHandlerInstaller>(),
                 FromAssembly.Containing<EventHandlerInstaller>(),
-                FromAssembly.Containing<QueryMessageHandlerInstaller>()
+                FromAssembly.Containing<QueryHandlerInstaller>()
                 );
             IoC.Initialize(container);
 

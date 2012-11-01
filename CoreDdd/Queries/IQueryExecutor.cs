@@ -5,7 +5,7 @@ namespace CoreDdd.Queries
 {
     public interface IQueryExecutor
     {
-        IEnumerable<TResult> Execute<TQueryMessage, TResult>(TQueryMessage queryMessage) where TQueryMessage : IQueryMessage;
-        IEnumerable<TTransformResult> Execute<TQueryMessage, TResult, TTransformResult>(TQueryMessage queryMessage, Func<TResult, TTransformResult> transform) where TQueryMessage : IQueryMessage;
+        IEnumerable<TResult> Execute<TQuery, TResult>(TQuery query) where TQuery : IQuery;
+        IEnumerable<TTransformResult> Execute<TQuery, TResult, TTransformResult>(TQuery query, Func<TResult, TTransformResult> transform) where TQuery : IQuery;
     }
 }

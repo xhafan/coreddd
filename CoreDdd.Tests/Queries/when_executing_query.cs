@@ -13,10 +13,10 @@ namespace CoreDdd.Tests.Queries
     public class when_executing_query
     {
         private IEnumerable<bool> _result;
-        private IQueryMessageHandler<TestQueryMessage> _testQueryMessageHandler;
-        private TestQueryMessage _testQueryMessage;
+        private IQueryHandler<TestQuery> _testQueryHandler;
+        private TestQuery _testQuery;
 
-        public class TestQueryMessage : IQueryMessage {}
+        public class TestQuery : IQuery {}
         
         [SetUp]
         public void Context()
@@ -24,20 +24,20 @@ namespace CoreDdd.Tests.Queries
             var container = MockRepository.GenerateStub<IWindsorContainer>();
             IoC.Initialize(container);
 
-            _testQueryMessageHandler = MockRepository.GenerateMock<IQueryMessageHandler<TestQueryMessage>>();
-            _testQueryMessage = new TestQueryMessage();
-            _testQueryMessageHandler.Expect(a => a.Execute<bool>(Arg<TestQueryMessage>.Matches(p => p == _testQueryMessage))).Return(new[] { true });
+            _testQueryHandler = MockRepository.GenerateMock<IQueryHandler<TestQuery>>();
+            _testQuery = new TestQuery();
+            _testQueryHandler.Expect(a => a.Execute<bool>(Arg<TestQuery>.Matches(p => p == _testQuery))).Return(new[] { true });
 
-            container.Stub(a => a.Resolve<IQueryMessageHandler<TestQueryMessage>>()).Return(_testQueryMessageHandler);
+            container.Stub(a => a.Resolve<IQueryHandler<TestQuery>>()).Return(_testQueryHandler);
 
             var queryExecutor = new QueryExecutor();
-            _result = queryExecutor.Execute<TestQueryMessage, bool>(_testQueryMessage);
+            _result = queryExecutor.Execute<TestQuery, bool>(_testQuery);
         }
 
         [Test]
         public void query_was_executed_by_handler()
         {
-            _testQueryMessageHandler.AssertWasCalled(a => a.Execute<bool>(_testQueryMessage));            
+            _testQueryHandler.AssertWasCalled(a => a.Execute<bool>(_testQuery));            
         }
 
         [Test]

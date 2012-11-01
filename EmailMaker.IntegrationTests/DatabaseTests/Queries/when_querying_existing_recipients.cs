@@ -5,6 +5,7 @@ using EmailMaker.Queries.Handlers;
 using EmailMaker.Queries.Messages;
 using NUnit.Framework;
 using Shouldly;
+using GetExistingRecipientsQuery = EmailMaker.Queries.Messages.GetExistingRecipientsQuery;
 
 namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 {
@@ -29,8 +30,8 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 
         protected override void PersistenceQuery()
         {
-            var query = new GetExistingRecipientsQuery();
-            _result = query.Execute<Recipient>(new GetExistingRecipientsQueryMessage { RecipientEmailAddresses = new[] { EmailAddressOne, EmailAddressTwo, EmailAddressThree } });
+            var query = new EmailMaker.Queries.Handlers.GetExistingRecipientsQuery();
+            _result = query.Execute<Recipient>(new GetExistingRecipientsQuery { RecipientEmailAddresses = new[] { EmailAddressOne, EmailAddressTwo, EmailAddressThree } });
         }
 
         [Test]

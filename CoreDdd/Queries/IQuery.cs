@@ -1,6 +1,6 @@
 ﻿namespace CoreDdd.Queries
 {
-    public interface IQueryMessage
+    public interface IQuery
     {        
     }
 }
