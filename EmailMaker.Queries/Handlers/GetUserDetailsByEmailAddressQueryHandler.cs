@@ -7,7 +7,7 @@ namespace EmailMaker.Queries.Handlers
 {
     public class GetUserDetailsByEmailAddressQueryHandler : BaseQueryOverHandler<GetUserDetailsByEmailAddressQuery>
     {        
-        public override IQueryOver GetCriteria<TResult>(GetUserDetailsByEmailAddressQuery query)
+        public override IQueryOver GetQueryOver<TResult>(GetUserDetailsByEmailAddressQuery query)
         {
             return Session.QueryOver<UserDto>()
                 .Where(x => x.EmailAddress == query.EmailAddress);
