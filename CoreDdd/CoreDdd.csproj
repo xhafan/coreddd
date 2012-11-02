@@ -75,6 +75,7 @@
     <Compile Include="Infrastructure\Conventions\ColumnNullabilityConvention.cs" />
     <Compile Include="Infrastructure\Conventions\ForeignKeyConstraintNameConvention.cs" />
     <Compile Include="Infrastructure\Conventions\DateTimeConvention.cs" />
+    <Compile Include="Infrastructure\Conventions\DisableLazyLoadForDtosConvention.cs" />
     <Compile Include="Infrastructure\INhibernateConfigurator.cs" />
     <Compile Include="Infrastructure\IoC.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />

@@ -5,7 +5,7 @@ namespace EmailMaker.Dtos.Emails
 {
     public class EmailDto : Dto
     {
-        public virtual int EmailId { get; set; }
-        public virtual IEnumerable<EmailPartDto> Parts { get; set; }
+        public int EmailId { get; set; }
+        public IEnumerable<EmailPartDto> Parts { get; set; }
     }
 }

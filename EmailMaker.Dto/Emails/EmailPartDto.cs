@@ -4,13 +4,13 @@ namespace EmailMaker.Dtos.Emails
 {
     public class EmailPartDto : Dto
     {
-        public virtual int EmailId { get; set; }
-        public virtual int PartId { get; set; }
-        public virtual PartType PartType { get; set; }
-        public virtual string Html { get; set; }
-        public virtual string VariableValue { get; set; }
+        public int EmailId { get; set; }
+        public int PartId { get; set; }
+        public PartType PartType { get; set; }
+        public string Html { get; set; }
+        public string VariableValue { get; set; }
 
-        public virtual bool Equals(EmailPartDto other)
+        public bool Equals(EmailPartDto other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
