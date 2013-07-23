@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlerInstaller.cs" />
+    <Compile Include="QueryHandlerInstaller.cs" />
     <Compile Include="Handlers\GetAllEmailTemplateQueryHandler.cs" />
     <Compile Include="Handlers\GetEmailPartsQueryHandler.cs" />
     <Compile Include="Handlers\GetEmailQueryHandler.cs" />
