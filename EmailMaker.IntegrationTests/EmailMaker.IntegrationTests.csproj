@@ -89,9 +89,17 @@
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
       <Name>CoreDdd</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CoreDto\CoreDto.csproj">
+      <Project>{59AAFFC1-CF3B-441B-B49C-76952772C4FD}</Project>
+      <Name>CoreDto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoreTest\CoreTest.csproj">
       <Project>{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}</Project>
       <Name>CoreTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
+      <Project>{c4955667-0fb6-4a9f-b9bc-f671ab4dae69}</Project>
+      <Name>CoreUtils</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
       <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>

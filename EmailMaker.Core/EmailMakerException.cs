@@ -1,4 +1,4 @@
-﻿using CoreDdd.Utilities;
+﻿using CoreUtils;
 
 namespace EmailMaker.Core
 {

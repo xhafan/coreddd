@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CoreDdd.Tests.Helpers.Extensions;
-using CoreDdd.Utilities.Extensions;
+using CoreUtils.Extensions;
 using EmailMaker.Domain.EmailTemplates;
 
 namespace EmailMaker.TestHelper.Builders

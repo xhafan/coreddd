@@ -1,8 +1,8 @@
-﻿using CoreDdd.Dtos;
+﻿using CoreDto;
 
 namespace EmailMaker.Dtos.Users
 {
-    public class UserDto : Dto
+    public class UserDto : IDto
     {
         public int UserId { get; set; }
         public string FirstName { get; set; }

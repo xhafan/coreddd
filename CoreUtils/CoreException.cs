@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoreDdd.Utilities
+namespace CoreUtils
 {
     public class CoreException : Exception
     {

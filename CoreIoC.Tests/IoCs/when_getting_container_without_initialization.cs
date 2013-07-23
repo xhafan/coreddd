@@ -1,9 +1,8 @@
 ﻿using System;
-using CoreDdd.Infrastructure;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Tests.Infrastructures.IoCs
+namespace CoreIoC.Tests.IoCs
 {
     [TestFixture]
     public class when_getting_container_without_initialization

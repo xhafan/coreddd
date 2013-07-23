@@ -68,7 +68,7 @@
     <Compile Include="Commands\ICommandExecutor.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="DatabaseSchemaGenerators\DatabaseSchemaGenerator.cs" />
-    <Compile Include="Domain\Entity[TEquality].cs" />
+    <Compile Include="Domain\Entity.cs" />
     <Compile Include="Domain\IAggregateRoot.cs" />
     <Compile Include="Domain\Repositories\IRepository[T, TId].cs" />
     <Compile Include="Domain\Repositories\NhibernateRepository[T,TId].cs" />
@@ -77,13 +77,12 @@
     <Compile Include="Infrastructure\Conventions\DateTimeConvention.cs" />
     <Compile Include="Infrastructure\Conventions\DisableLazyLoadForDtosConvention.cs" />
     <Compile Include="Infrastructure\INhibernateConfigurator.cs" />
-    <Compile Include="Infrastructure\IoC.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Domain\Events\DomainEvents.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
     <Compile Include="Domain\Events\IDomainEventHandler.cs" />
     <Compile Include="Domain\IAggregateRoot[TId].cs" />
-    <Compile Include="Domain\Entity[TId,TEquality].cs" />
+    <Compile Include="Domain\Entity[TId].cs" />
     <Compile Include="Domain\Repositories\IRepository[T].cs" />
     <Compile Include="Infrastructure\AutomappingConfiguration.cs" />
     <Compile Include="Infrastructure\Conventions\CustomForeignKeyConvention.cs" />
@@ -95,7 +94,6 @@
     <Compile Include="Domain\Repositories\NhibernateRepository[T].cs" />
     <Compile Include="Domain\Repositories\NhibernateRepositoryInstaller.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="Dtos\Dto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\BaseQueryOverHandler.cs" />
     <Compile Include="Queries\BaseNhibernateQueryHandler.cs" />
@@ -104,9 +102,6 @@
     <Compile Include="Queries\IQueryHandler.cs" />
     <Compile Include="Queries\QueryExecutor.cs" />
     <Compile Include="Queries\QueryExecutorInstaller.cs" />
-    <Compile Include="Utilities\CoreException.cs" />
-    <Compile Include="Utilities\Extensions\CollectionExtensions.cs" />
-    <Compile Include="Utilities\Guard.cs" />
     <Compile Include="Web\Extensions\HtmlExtensions.cs" />
     <Compile Include="Web\IoCControllerFactory.cs" />
     <Compile Include="Web\ModelBinders\EnumConverterModelBinder.cs" />
@@ -115,6 +110,21 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDto\CoreDto.csproj">
+      <Project>{59AAFFC1-CF3B-441B-B49C-76952772C4FD}</Project>
+      <Name>CoreDto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
+      <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
+      <Name>CoreIoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
+      <Project>{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}</Project>
+      <Name>CoreUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <PropertyGroup>

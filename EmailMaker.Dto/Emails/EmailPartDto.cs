@@ -1,8 +1,8 @@
-﻿using CoreDdd.Dtos;
+﻿using CoreDto;
 
 namespace EmailMaker.Dtos.Emails
 {
-    public class EmailPartDto : Dto
+    public class EmailPartDto : IDto
     {
         public int EmailId { get; set; }
         public int PartId { get; set; }

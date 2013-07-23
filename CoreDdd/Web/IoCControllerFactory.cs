@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
-using CoreDdd.Infrastructure;
+using CoreIoC;
 
 namespace CoreDdd.Web
 {

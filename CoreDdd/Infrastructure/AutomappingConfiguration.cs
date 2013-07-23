@@ -1,7 +1,7 @@
 using System;
 using CoreDdd.Domain;
-using CoreDdd.Dtos;
 using CoreDdd.Extensions;
+using CoreDto;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Utils;
 
@@ -28,7 +28,7 @@ namespace CoreDdd.Infrastructure
 
         private bool IsDto(Type type)
         {
-            return type.IsSubclassOf(typeof(Dto));
+            return typeof(IDto).IsAssignableFrom(type);
         }
 
         private static bool IsDomainEntity(Type type)

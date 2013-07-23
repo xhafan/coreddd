@@ -1,9 +1,8 @@
 ﻿using Castle.Windsor;
-using CoreDdd.Infrastructure;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace CoreDdd.Tests.Infrastructures.IoCs
+namespace CoreIoC.Tests.IoCs
 {
     [TestFixture]
     public class when_releasing_service_instance

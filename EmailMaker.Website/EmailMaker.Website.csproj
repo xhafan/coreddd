@@ -21,6 +21,11 @@
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
     <UpgradeBackupLocation />
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -149,8 +154,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
-      <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
+      <Project>{a55844fe-7bba-4fe9-9c12-e233e944ae1e}</Project>
       <Name>CoreDdd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
+      <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
+      <Name>CoreIoC</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Commands\EmailMaker.Commands.csproj">
       <Project>{DB6DC588-8415-4184-8B4B-6485374A2E68}</Project>

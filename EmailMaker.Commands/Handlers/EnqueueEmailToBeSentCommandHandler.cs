@@ -2,7 +2,7 @@ using System.Linq;
 using CoreDdd.Commands;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Queries;
-using CoreDdd.Utilities.Extensions;
+using CoreUtils.Extensions;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Queries.Messages;

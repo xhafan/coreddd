@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using Castle.Windsor;
 
-namespace CoreDdd.Infrastructure
+namespace CoreIoC
 {
     public static class IoC
     {
@@ -12,7 +12,7 @@ namespace CoreDdd.Infrastructure
             _container = container;
         }
 
-        internal static IWindsorContainer Container
+        public static IWindsorContainer Container
         {
             get
             {

@@ -1,6 +1,6 @@
-﻿using CoreDdd.Infrastructure;
-using CoreDdd.Utilities;
-using CoreDdd.Utilities.Extensions;
+﻿using CoreIoC;
+using CoreUtils;
+using CoreUtils.Extensions;
 
 namespace CoreDdd.Domain.Events
 {

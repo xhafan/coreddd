@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using CoreDdd.Domain;
 using CoreDdd.Infrastructure;
-using CoreDdd.Utilities;
-using CoreDdd.Utilities.Extensions;
+using CoreUtils;
+using CoreUtils.Extensions;
 using NHibernate;
 using NUnit.Framework;
 

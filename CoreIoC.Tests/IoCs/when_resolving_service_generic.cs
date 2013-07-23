@@ -1,10 +1,9 @@
 ﻿using Castle.Windsor;
-using CoreDdd.Infrastructure;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Shouldly;
 
-namespace CoreDdd.Tests.Infrastructures.IoCs
+namespace CoreIoC.Tests.IoCs
 {
     [TestFixture]
     public class when_resolving_service_generic

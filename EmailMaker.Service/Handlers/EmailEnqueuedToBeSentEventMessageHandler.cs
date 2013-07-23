@@ -1,5 +1,5 @@
 ﻿using CoreDdd.Domain.Repositories;
-using CoreDdd.Utilities.Extensions;
+using CoreUtils.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Messages;
 using NServiceBus;

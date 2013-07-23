@@ -3,8 +3,8 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
-using CoreDdd.Utilities;
-using CoreDdd.Utilities.Extensions;
+using CoreUtils;
+using CoreUtils.Extensions;
 
 namespace CoreDdd.Web.Utilities
 {

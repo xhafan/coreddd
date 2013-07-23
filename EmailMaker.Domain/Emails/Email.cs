@@ -2,8 +2,8 @@
 using System.Linq;
 using CoreDdd.Domain;
 using CoreDdd.Domain.Events;
-using CoreDdd.Utilities;
-using CoreDdd.Utilities.Extensions;
+using CoreUtils;
+using CoreUtils.Extensions;
 using EmailMaker.Core;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;

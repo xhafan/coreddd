@@ -1,7 +1,7 @@
 ﻿using System;
 using Castle.Windsor;
 using CoreDdd.Commands;
-using CoreDdd.Infrastructure;
+using CoreIoC;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Shouldly;

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Castle.Windsor;
-using CoreDdd.Infrastructure;
 using CoreDdd.Queries;
+using CoreIoC;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Shouldly;

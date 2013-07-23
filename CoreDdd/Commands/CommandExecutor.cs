@@ -1,5 +1,5 @@
 ﻿using System;
-using CoreDdd.Infrastructure;
+using CoreIoC;
 
 namespace CoreDdd.Commands
 {

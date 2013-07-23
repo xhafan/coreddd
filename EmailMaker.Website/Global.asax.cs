@@ -8,6 +8,7 @@ using CoreDdd.Infrastructure;
 using CoreDdd.Queries;
 using CoreDdd.Web;
 using CoreDdd.Web.ModelBinders;
+using CoreIoC;
 using EmailMaker.Commands;
 using EmailMaker.Controllers;
 using EmailMaker.Domain.EventHandlers;

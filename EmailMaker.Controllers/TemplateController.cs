@@ -3,7 +3,7 @@ using System.Text;
 using System.Web.Mvc;
 using CoreDdd.Commands;
 using CoreDdd.Queries;
-using CoreDdd.Utilities.Extensions;
+using CoreUtils.Extensions;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers.BaseController;
 using EmailMaker.Controllers.ViewModels;

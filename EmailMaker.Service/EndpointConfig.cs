@@ -1,7 +1,7 @@
 ﻿using Castle.Windsor;
 using Castle.Windsor.Installer;
-using CoreDdd.Infrastructure;
 using CoreDdd.Queries;
+using CoreIoC;
 using EmailMaker.Infrastructure;
 using EmailMaker.Messages;
 using EmailMaker.Queries;

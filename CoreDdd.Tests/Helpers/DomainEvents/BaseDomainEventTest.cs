@@ -1,6 +1,6 @@
 using Castle.Windsor;
 using CoreDdd.Domain.Events;
-using CoreDdd.Infrastructure;
+using CoreIoC;
 using Rhino.Mocks;
 
 namespace CoreDdd.Tests.Helpers.DomainEvents

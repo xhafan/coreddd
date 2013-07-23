@@ -89,12 +89,6 @@
     <Compile Include="Domain\Identities\when_comparing_transient_entities_of_the_same_type_and_of_the_same_id_with_string_id_type.cs" />
     <Compile Include="Domain\Identities\when_getting_entity_id_with_long_id_type.cs" />
     <Compile Include="Domain\Identities\when_getting_entity_id_with_string_id_type.cs" />
-    <Compile Include="Infrastructures\IoCs\when_getting_container_without_initialization.cs" />
-    <Compile Include="Infrastructures\IoCs\when_initializing_ioc.cs" />
-    <Compile Include="Infrastructures\IoCs\when_releasing_service_instance.cs" />
-    <Compile Include="Infrastructures\IoCs\when_resolving_all_services_generic.cs" />
-    <Compile Include="Infrastructures\IoCs\when_resolving_service.cs" />
-    <Compile Include="Infrastructures\IoCs\when_resolving_service_generic.cs" />
     <Compile Include="Infrastructures\UnitOfWorks\base_when_getting_current_unit_of_work.cs" />
     <Compile Include="Infrastructures\UnitOfWorks\when_beginning_transaction.cs" />
     <Compile Include="Infrastructures\UnitOfWorks\when_beginning_transaction_with_isolation_level.cs" />
@@ -139,6 +133,14 @@
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
       <Name>CoreDdd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
+      <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
+      <Name>CoreIoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
+      <Project>{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}</Project>
+      <Name>CoreUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
