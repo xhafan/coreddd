@@ -1,6 +1,19 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{487BE804-FC64-47F5-92D2-9E378A51CE67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{39EEE678-E12E-4BFE-AB64-66A11AC4D074}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BAA07007-8BEA-4DA9-8FC1-2266C2D53DCE}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\nuget.exe = .nuget\nuget.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Domain", "EmailMaker.Domain\EmailMaker.Domain.csproj", "{09698B3F-4CF5-49DC-BA64-27790733B2D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Website", "EmailMaker.Website\EmailMaker.Website.csproj", "{BA9916C7-48D4-4824-A4ED-2D3FEF5CA9F1}"
@@ -10,8 +23,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.TestHelper", "EmailMaker.TestHelper\EmailMaker.TestHelper.csproj", "{E1F1BD03-EC27-4AE8-8021-4580560A0E29}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Queries", "EmailMaker.Queries\EmailMaker.Queries.csproj", "{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{487BE804-FC64-47F5-92D2-9E378A51CE67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Commands", "EmailMaker.Commands\EmailMaker.Commands.csproj", "{DB6DC588-8415-4184-8B4B-6485374A2E68}"
 EndProject
@@ -28,15 +39,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.IntegrationTests", "EmailMaker.IntegrationTests\EmailMaker.IntegrationTests.csproj", "{10790F2C-1370-4050-A0BF-7B0D4B509AF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Dtos", "EmailMaker.Dto\EmailMaker.Dtos.csproj", "{9EC89380-5186-450A-BFCE-A08CF74BE535}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{39EEE678-E12E-4BFE-AB64-66A11AC4D074}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BAA07007-8BEA-4DA9-8FC1-2266C2D53DCE}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\nuget.exe = .nuget\nuget.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Tools", "EmailMaker.Tools\EmailMaker.Tools.csproj", "{A68D470F-F2A4-4ED3-8A33-3D32934EB6F0}"
 EndProject
@@ -149,11 +151,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A34ED149-1B63-44AC-B72A-A81C5FD42190} = {487BE804-FC64-47F5-92D2-9E378A51CE67}
 		{BA9916C7-48D4-4824-A4ED-2D3FEF5CA9F1} = {487BE804-FC64-47F5-92D2-9E378A51CE67}
+		{A34ED149-1B63-44AC-B72A-A81C5FD42190} = {487BE804-FC64-47F5-92D2-9E378A51CE67}
+		{E1F1BD03-EC27-4AE8-8021-4580560A0E29} = {39EEE678-E12E-4BFE-AB64-66A11AC4D074}
 		{B157AFD0-7402-436D-9156-B9D62854D77C} = {39EEE678-E12E-4BFE-AB64-66A11AC4D074}
 		{10790F2C-1370-4050-A0BF-7B0D4B509AF3} = {39EEE678-E12E-4BFE-AB64-66A11AC4D074}
-		{E1F1BD03-EC27-4AE8-8021-4580560A0E29} = {39EEE678-E12E-4BFE-AB64-66A11AC4D074}
 		{1043E886-7CE3-41B1-9602-8558B75ACAD7} = {39EEE678-E12E-4BFE-AB64-66A11AC4D074}
 		{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF} = {39EEE678-E12E-4BFE-AB64-66A11AC4D074}
 		{FA736D74-65BA-41F1-9661-BAA6C3727115} = {39EEE678-E12E-4BFE-AB64-66A11AC4D074}
