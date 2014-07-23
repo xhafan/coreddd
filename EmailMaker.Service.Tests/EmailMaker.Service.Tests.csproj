@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0A3294D7-05DD-49E9-9A3E-7D5B530F9FCB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EmailMaker.Service.Tests</RootNamespace>
+    <AssemblyName>EmailMaker.Service.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.3.1.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Shouldly">
+      <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Handlers\when_building_email_html.cs" />
+    <Compile Include="Handlers\when_building_email_html_with_unknown_email_part.cs" />
+    <Compile Include="Handlers\when_handling_email_enqueued_to_be_sent_event_message.cs" />
+    <Compile Include="Handlers\when_handling_send_email_for_email_recipient_message.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWorkMessageModules\UnitOfWorkMessageModuleWithStartedTransactionSetup.cs" />
+    <Compile Include="UnitOfWorkMessageModules\when_handling_begin_message.cs" />
+    <Compile Include="UnitOfWorkMessageModules\when_handling_end_message.cs" />
+    <Compile Include="UnitOfWorkMessageModules\when_handling_error.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj">
+      <Project>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</Project>
+      <Name>CoreDdd.TestHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
+      <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
+      <Name>CoreDdd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreTest\CoreTest.csproj">
+      <Project>{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}</Project>
+      <Name>CoreTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
+      <Project>{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}</Project>
+      <Name>CoreUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Core\EmailMaker.Core.csproj">
+      <Project>{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}</Project>
+      <Name>EmailMaker.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
+      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
+      <Name>EmailMaker.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Messages\EmailMaker.Messages.csproj">
+      <Project>{5FF5C804-51CA-4D7F-81F5-DEE992EA018C}</Project>
+      <Name>EmailMaker.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.Service\EmailMaker.Service.csproj">
+      <Project>{3B63F0F4-1E42-4139-A0A9-1C8B3FED61FF}</Project>
+      <Name>EmailMaker.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailMaker.TestHelper\EmailMaker.TestHelper.csproj">
+      <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>
+      <Name>EmailMaker.TestHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

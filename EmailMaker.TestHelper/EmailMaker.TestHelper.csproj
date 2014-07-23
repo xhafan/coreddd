@@ -47,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj">
+      <Project>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</Project>
+      <Name>CoreDdd.TestHelpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoreDdd.Tests\CoreDdd.Tests.csproj">
       <Project>{1043E886-7CE3-41B1-9602-8558B75ACAD7}</Project>
       <Name>CoreDdd.Tests</Name>

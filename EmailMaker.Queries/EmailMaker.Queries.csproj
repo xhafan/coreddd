@@ -34,10 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
+      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
@@ -67,6 +67,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
+      <Project>{63e96b9e-20a3-4576-a402-22c6aba75292}</Project>
+      <Name>CoreDdd.Nhibernate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
       <Name>CoreDdd</Name>

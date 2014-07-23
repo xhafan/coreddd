@@ -34,10 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
+      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
@@ -89,25 +89,6 @@
     <Compile Include="Domain\Identities\when_comparing_transient_entities_of_the_same_type_and_of_the_same_id_with_string_id_type.cs" />
     <Compile Include="Domain\Identities\when_getting_entity_id_with_long_id_type.cs" />
     <Compile Include="Domain\Identities\when_getting_entity_id_with_string_id_type.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\base_when_getting_current_unit_of_work.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_beginning_transaction.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_beginning_transaction_with_isolation_level.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_current_session_is_not_started_for_http_request.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_current_session_is_not_started_for_http_request_after_dispose.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_current_session_is_not_started_for_thread.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_current_session_is_not_started_for_thread_after_dispose.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_current_session_is_started_for_http_request.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_current_session_is_started_for_thread.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_disposing_unit_of_work.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_flushing_transaction.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_flushing_unit_of_work.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_getting_current_session.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_getting_current_unit_of_work_for_different_http_requests.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_getting_current_unit_of_work_for_different_threads.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_getting_current_unit_of_work_for_the_same_http_request.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_getting_current_unit_of_work_for_the_same_thread.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_getting_session_factory.cs" />
-    <Compile Include="Infrastructures\UnitOfWorks\when_rolling_transaction_back.cs" />
     <Compile Include="Domain\DomainEventsTests\when_raising_domain_event.cs" />
     <Compile Include="Domain\DomainEventsTests\when_raising_domain_event_with_no_handler.cs" />
     <Compile Include="Domain\Identities\AnotherTestEntity.cs" />
@@ -118,18 +99,25 @@
     <Compile Include="Domain\Identities\base_when_comparing_entities_of_the_same_type_and_of_the_same_id.cs" />
     <Compile Include="Domain\Identities\base_when_comparing_transient_entities_of_the_same_type_and_of_the_same_id.cs" />
     <Compile Include="Domain\Identities\when_getting_entity_id.cs" />
+    <Compile Include="Domain\Repositories\NhibernateRepositorySetup.cs" />
+    <Compile Include="Domain\Repositories\when_deleting_aggregate_root_entity.cs" />
     <Compile Include="Domain\Repositories\when_getting_aggregate_root_entity_by_id.cs" />
+    <Compile Include="Domain\Repositories\when_loading_aggregate_root_entity_by_id.cs" />
     <Compile Include="Domain\Repositories\when_saving_aggregate_root_entity.cs" />
-    <Compile Include="Helpers\Controllers\BaseControllerTest.cs" />
-    <Compile Include="Helpers\DomainEvents\BaseDomainEventTest.cs" />
-    <Compile Include="Helpers\Extensions\BusExtensions.cs" />
     <Compile Include="Helpers\Extensions\CultureHelper.cs" />
-    <Compile Include="Helpers\Extensions\ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\when_executing_query.cs" />
     <Compile Include="Queries\when_executing_query_with_result_transformer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
+      <Project>{63e96b9e-20a3-4576-a402-22c6aba75292}</Project>
+      <Name>CoreDdd.Nhibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj">
+      <Project>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</Project>
+      <Name>CoreDdd.TestHelpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
       <Name>CoreDdd</Name>
@@ -137,6 +125,10 @@
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
       <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
       <Name>CoreIoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreTest\CoreTest.csproj">
+      <Project>{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}</Project>
+      <Name>CoreTest</Name>
     </ProjectReference>
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
       <Project>{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}</Project>

@@ -1,6 +1,12 @@
-﻿using Castle.Windsor;
+﻿using Castle.MicroKernel.Registration;
+using Castle.Windsor;
 using Castle.Windsor.Installer;
+using CoreDdd.Infrastructure;
+using CoreDdd.Nhibernate.Configurations;
+using CoreDdd.Nhibernate.Register.Castle;
+using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.Queries;
+using CoreDdd.Register.Castle;
 using CoreIoC;
 using EmailMaker.Infrastructure;
 using EmailMaker.Messages;
@@ -33,10 +39,18 @@ namespace EmailMaker.Service
             container.Install(
                 FromAssembly.Containing<QueryExecutorInstaller>(),
                 FromAssembly.Containing<EmailSenderInstaller>(),
-                FromAssembly.Containing<QueryHandlerInstaller>()
-                );
+                FromAssembly.Containing<QueryHandlerInstaller>(),
+                FromAssembly.Containing<NhibernateInstaller>(),
+                FromAssembly.Containing<EmailMakerNhibernateInstaller>()
+                );            
             IoC.Initialize(container);
-            UnitOfWorkInitializer.Initialize();
+            
+            ConfigureNhibernate();            
+        }
+
+        private void ConfigureNhibernate()
+        {
+            IoC.Resolve<INhibernateConfigurator>();
         }
     }
 }

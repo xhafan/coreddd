@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.3.1.4000\lib\Net35\Iesi.Collections.dll</HintPath>
@@ -49,7 +49,7 @@
       <HintPath>..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
@@ -108,18 +108,14 @@
     <Compile Include="Domain\EventHandlers\when_handling_enqueue_email_to_be_sent_event.cs" />
     <Compile Include="Domain\Users\when_creating_user.cs" />
     <Compile Include="Domain\VariableEmailTemplateParts\when_creating_variable_email_template_part.cs" />
-    <Compile Include="Service\when_building_email_html.cs" />
-    <Compile Include="Service\when_building_email_html_with_unknown_email_part.cs" />
     <Compile Include="Domain\Users\when_changing_password.cs" />
     <Compile Include="Domain\Users\when_changing_password_with_incorrect_old_password.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\when_handling_email_enqueued_to_be_sent_event_message.cs" />
-    <Compile Include="Service\when_handling_send_email_for_email_recipient_message.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoreDdd.Tests\CoreDdd.Tests.csproj">
-      <Project>{1043E886-7CE3-41B1-9602-8558B75ACAD7}</Project>
-      <Name>CoreDdd.Tests</Name>
+    <ProjectReference Include="..\CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj">
+      <Project>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</Project>
+      <Name>CoreDdd.TestHelpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>

@@ -34,10 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate, Version=1.3.0.733, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -76,11 +76,19 @@
     <Compile Include="DatabaseTests\Queries\when_querying_email_variable_parts.cs" />
     <Compile Include="DatabaseTests\Queries\when_querying_existing_recipients.cs" />
     <Compile Include="DatabaseTests\Queries\when_querying_for_user_details_by_emailaddress.cs" />
-    <Compile Include="DatabaseTests\RunOncePerTestRun.cs" />
+    <Compile Include="RunOncePerTestRun.cs" />
     <Compile Include="DatabaseTests\when_generating_emailmaker_database_schema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
+      <Project>{63e96b9e-20a3-4576-a402-22c6aba75292}</Project>
+      <Name>CoreDdd.Nhibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj">
+      <Project>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</Project>
+      <Name>CoreDdd.TestHelpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoreDdd.Tests\CoreDdd.Tests.csproj">
       <Project>{1043E886-7CE3-41B1-9602-8558B75ACAD7}</Project>
       <Name>CoreDdd.Tests</Name>
@@ -92,6 +100,10 @@
     <ProjectReference Include="..\CoreDto\CoreDto.csproj">
       <Project>{59AAFFC1-CF3B-441B-B49C-76952772C4FD}</Project>
       <Name>CoreDto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
+      <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
+      <Name>CoreIoC</Name>
     </ProjectReference>
     <ProjectReference Include="..\CoreTest\CoreTest.csproj">
       <Project>{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}</Project>

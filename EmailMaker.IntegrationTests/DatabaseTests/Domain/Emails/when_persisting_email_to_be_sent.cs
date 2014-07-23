@@ -1,5 +1,5 @@
 using System.Linq;
-using CoreDdd.Tests.Helpers.Extensions;
+using CoreDdd.TestHelpers.Extensions;
 using CoreTest;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;

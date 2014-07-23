@@ -1,5 +1,5 @@
 using System.Linq;
-using CoreDdd.Tests.Helpers.DomainEvents;
+using CoreDdd.TestHelpers.DomainEvents;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.Events.Emails;

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using CoreDdd.Domain;
-using CoreDdd.Infrastructure;
+using CoreDdd.Nhibernate.UnitOfWorks;
+using CoreIoC;
 using CoreUtils;
 using CoreUtils.Extensions;
 using NHibernate;
@@ -11,32 +12,38 @@ namespace CoreTest
     public abstract class BasePersistenceTest
     {
         protected ISession Session;
+        private NhibernateUnitOfWork _unitOfWork;
 
         protected abstract void Context();
 
         [TestFixtureSetUp]
-        public void SetUp()
+        public void TestFixtureSetUp()
         {
-            Session = UnitOfWork.CurrentSession;
+            _unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
+            _unitOfWork.BeginTransaction();
+            Session = _unitOfWork.Session;
+
             ClearDatabase();
             Context();
+        }
+        
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            _unitOfWork.Commit();
         }
 
         protected abstract IAggregateRootTypesToClearProvider GetAggregateRootTypesToClearProvider();
 
         protected void ClearDatabase()
         {
-            using (var tx = Session.BeginTransaction())
-            {
-                GetAggregateRootTypesToClearProvider().GetAggregateRootTypesToClear().Each(x =>
-                    {
-                        var typeName = x.Name;
-                        var isAggregateRoot = x.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IAggregateRoot<>));
-                        Guard.Hope(isAggregateRoot, typeName + " is not implementing " + typeof(IAggregateRoot).Name);
-                        Session.Delete("from " + typeName);
-                    });
-                tx.Commit();
-            }  
+            GetAggregateRootTypesToClearProvider().GetAggregateRootTypesToClear().Each(x =>
+                {
+                    var typeName = x.Name;
+                    var isAggregateRoot = x.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IAggregateRoot<>));
+                    Guard.Hope(isAggregateRoot, typeName + " is not implementing " + typeof(IAggregateRoot).Name);
+                    Session.Delete("from " + typeName);
+                });
         }
 
         protected void Save(params IAggregateRoot[] aggregateRoots)

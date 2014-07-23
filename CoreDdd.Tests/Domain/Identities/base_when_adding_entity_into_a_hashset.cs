@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CoreDdd.TestHelpers.Extensions;
 using CoreDdd.Tests.Helpers.Extensions;
 using NUnit.Framework;
 using Shouldly;

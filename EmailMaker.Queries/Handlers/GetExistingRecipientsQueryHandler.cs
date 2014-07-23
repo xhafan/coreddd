@@ -1,5 +1,5 @@
 using System.Linq;
-using CoreDdd.Queries;
+using CoreDdd.Nhibernate.Queries;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Queries.Messages;
 using NHibernate;

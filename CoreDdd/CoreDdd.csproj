@@ -33,25 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentNHibernate, Version=1.3.0.733, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
-      <HintPath>..\packages\NHibernateProfiler.1.0.0.939\lib\Net40\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -63,45 +44,25 @@
     <Compile Include="Commands\BaseCommandHandler.cs" />
     <Compile Include="Commands\CommandExecutedArgs.cs" />
     <Compile Include="Commands\CommandExecutor.cs" />
-    <Compile Include="Commands\CommandExecutorInstaller.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandExecutor.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
-    <Compile Include="DatabaseSchemaGenerators\DatabaseSchemaGenerator.cs" />
     <Compile Include="Domain\Entity.cs" />
     <Compile Include="Domain\IAggregateRoot.cs" />
     <Compile Include="Domain\Repositories\IRepository[T, TId].cs" />
-    <Compile Include="Domain\Repositories\NhibernateRepository[T,TId].cs" />
-    <Compile Include="Infrastructure\Conventions\ColumnNullabilityConvention.cs" />
-    <Compile Include="Infrastructure\Conventions\ForeignKeyConstraintNameConvention.cs" />
-    <Compile Include="Infrastructure\Conventions\DateTimeConvention.cs" />
-    <Compile Include="Infrastructure\Conventions\DisableLazyLoadForDtosConvention.cs" />
-    <Compile Include="Infrastructure\INhibernateConfigurator.cs" />
-    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Domain\Events\DomainEvents.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
     <Compile Include="Domain\Events\IDomainEventHandler.cs" />
     <Compile Include="Domain\IAggregateRoot[TId].cs" />
     <Compile Include="Domain\Entity[TId].cs" />
     <Compile Include="Domain\Repositories\IRepository[T].cs" />
-    <Compile Include="Infrastructure\AutomappingConfiguration.cs" />
-    <Compile Include="Infrastructure\Conventions\CustomForeignKeyConvention.cs" />
-    <Compile Include="Infrastructure\Conventions\HasManyForDomainConvention.cs" />
-    <Compile Include="Infrastructure\Conventions\PrimaryKeyConvention.cs" />
-    <Compile Include="Infrastructure\Conventions\StringColumnLengthConvention.cs" />
-    <Compile Include="Infrastructure\IgnoreAutoMapAttribute.cs" />
-    <Compile Include="Infrastructure\NhibernateConfigurator.cs" />
-    <Compile Include="Domain\Repositories\NhibernateRepository[T].cs" />
-    <Compile Include="Domain\Repositories\NhibernateRepositoryInstaller.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\BaseQueryOverHandler.cs" />
-    <Compile Include="Queries\BaseNhibernateQueryHandler.cs" />
     <Compile Include="Queries\IQueryExecutor.cs" />
     <Compile Include="Queries\IQuery.cs" />
     <Compile Include="Queries\IQueryHandler.cs" />
     <Compile Include="Queries\QueryExecutor.cs" />
-    <Compile Include="Queries\QueryExecutorInstaller.cs" />
     <Compile Include="Web\Extensions\HtmlExtensions.cs" />
     <Compile Include="Web\IoCControllerFactory.cs" />
     <Compile Include="Web\ModelBinders\EnumConverterModelBinder.cs" />

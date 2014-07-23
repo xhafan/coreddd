@@ -1,32 +1,25 @@
-﻿using CoreDdd.Domain;
-using CoreDdd.Domain.Repositories;
-using NHibernate;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Rhino.Mocks;
 
 namespace CoreDdd.Tests.Domain.Repositories
 {
     [TestFixture]
-    public class when_getting_aggregate_root_entity_by_id
+    public class when_getting_aggregate_root_entity_by_id : NhibernateRepositorySetup
     {
-        private ISession _session;
+        private const int Id = 1;
 
-        private abstract class TestEntity : Entity, IAggregateRoot
-        {
-        }
-        
         [SetUp]
-        public void Context()
+        public override void Context()
         {
-            _session = MockRepository.GenerateMock<ISession>();
-            var repository = new NhibernateRepository<TestEntity>(_session);
-            repository.GetById(1);
+            base.Context();
+
+            Repository.GetById(Id);
         }
 
         [Test]
         public void get_by_id_was_called_on_session()
         {
-            _session.AssertWasCalled(a => a.Get<TestEntity>(1));
+            Session.AssertWasCalled(x => x.Get<TestEntity>(Id));
         }
     }
 }

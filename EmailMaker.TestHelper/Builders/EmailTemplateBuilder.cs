@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CoreDdd.TestHelpers.Extensions;
 using CoreDdd.Tests.Helpers.Extensions;
 using CoreUtils.Extensions;
 using EmailMaker.Domain.EmailTemplates;

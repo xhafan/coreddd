@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace CoreUtils.Extensions
 {
-    // todo: test this
     public static class CollectionExtensions
     {
         public static void Each<T>(this IEnumerable<T> objects, Action<T> action)

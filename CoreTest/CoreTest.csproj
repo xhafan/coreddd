@@ -64,9 +64,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
+      <Project>{63E96B9E-20A3-4576-A402-22C6ABA75292}</Project>
+      <Name>CoreDdd.Nhibernate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
       <Name>CoreDdd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
+      <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
+      <Name>CoreIoC</Name>
     </ProjectReference>
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
       <Project>{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}</Project>

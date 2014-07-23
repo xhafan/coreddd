@@ -1,11 +1,14 @@
-﻿using System.Data;
+﻿using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
 using CoreDdd.Infrastructure;
+using CoreDdd.Nhibernate.Configurations;
+using CoreDdd.Nhibernate.Register.Castle;
 using CoreDdd.Queries;
+using CoreDdd.Register.Castle;
 using CoreDdd.Web;
 using CoreDdd.Web.ModelBinders;
 using CoreIoC;
@@ -66,34 +69,41 @@ namespace EmailMaker.Website
                 FromAssembly.Containing<QueryExecutorInstaller>(),
                 FromAssembly.Containing<CommandHandlerInstaller>(),
                 FromAssembly.Containing<EventHandlerInstaller>(),
-                FromAssembly.Containing<QueryHandlerInstaller>()
+                FromAssembly.Containing<QueryHandlerInstaller>(),
+                FromAssembly.Containing<NhibernateInstaller>(),
+                FromAssembly.Containing<EmailMakerNhibernateInstaller>()
                 );
             IoC.Initialize(container);
 
             ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory());
             ModelBinders.Binders.DefaultBinder = new EnumConverterModelBinder();
 
-            UnitOfWorkInitializer.Initialize();
+            ConfigureNhibernate();
+        }
+
+        private void ConfigureNhibernate()
+        {
+            IoC.Resolve<INhibernateConfigurator>();
         }
 
         public virtual void Application_BeginRequest()
         {
-            UnitOfWork.Current.BeginTransaction(IsolationLevel.ReadCommitted);
+            GetUnitOfWorkForCurrentThread().BeginTransaction();
         }
 
         public virtual void Application_EndRequest()
         {
-            if (!UnitOfWork.IsStarted) return;
-            UnitOfWork.Current.TransactionalFlush();
-            UnitOfWork.Current.Dispose();
+            GetUnitOfWorkForCurrentThread().Commit();
         }
 
         public virtual void Application_Error()
         {
-            if (!UnitOfWork.IsStarted) return;
-            UnitOfWork.Current.TransactionalRollback();
-            UnitOfWork.Current.Dispose();
+            GetUnitOfWorkForCurrentThread().Rollback();
         }
-    
+
+        private IUnitOfWork GetUnitOfWorkForCurrentThread()
+        {
+            return IoC.Resolve<IUnitOfWork>();
+        }   
     }
 }

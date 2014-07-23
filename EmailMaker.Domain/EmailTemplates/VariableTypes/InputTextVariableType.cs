@@ -1,4 +1,4 @@
-﻿using CoreDdd.Infrastructure;
+﻿using CoreDdd.Nhibernate.Configurations;
 
 namespace EmailMaker.Domain.EmailTemplates.VariableTypes
 {
