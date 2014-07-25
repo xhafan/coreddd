@@ -97,10 +97,6 @@
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
       <Name>CoreDdd</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CoreDto\CoreDto.csproj">
-      <Project>{59AAFFC1-CF3B-441B-B49C-76952772C4FD}</Project>
-      <Name>CoreDto</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj">
       <Project>{568EB03F-98D6-4AA2-80DD-5A8D2B8AEFA2}</Project>
       <Name>CoreIoC.Castle</Name>

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using CoreDto;
+using CoreDdd.Nhibernate;
 
 namespace EmailMaker.Dtos.Emails
 {
-    public class EmailDto : IDto
+    public class EmailDto : IAutoMappedDto
     {
         public int EmailId { get; set; }
         public IEnumerable<EmailPartDto> Parts { get; set; }

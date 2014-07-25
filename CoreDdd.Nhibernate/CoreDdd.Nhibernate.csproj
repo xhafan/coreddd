@@ -59,6 +59,7 @@
     <Compile Include="Conventions\PrimaryKeyConvention.cs" />
     <Compile Include="Conventions\StringColumnLengthConvention.cs" />
     <Compile Include="DatabaseSchemaGenerators\DatabaseSchemaGenerator.cs" />
+    <Compile Include="IAutoMappedDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\BaseNhibernateQueryHandler.cs" />
     <Compile Include="Queries\BaseQueryOverHandler.cs" />
@@ -70,10 +71,6 @@
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
       <Project>{a55844fe-7bba-4fe9-9c12-e233e944ae1e}</Project>
       <Name>CoreDdd</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreDto\CoreDto.csproj">
-      <Project>{59aaffc1-cf3b-441b-b49c-76952772c4fd}</Project>
-      <Name>CoreDto</Name>
     </ProjectReference>
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
       <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>

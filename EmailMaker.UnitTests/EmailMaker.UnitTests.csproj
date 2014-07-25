@@ -110,6 +110,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
+      <Project>{63E96B9E-20A3-4576-A402-22C6ABA75292}</Project>
+      <Name>CoreDdd.Nhibernate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj">
       <Project>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</Project>
       <Name>CoreDdd.TestHelpers</Name>
@@ -117,10 +121,6 @@
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
       <Name>CoreDdd</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreDto\CoreDto.csproj">
-      <Project>{59AAFFC1-CF3B-441B-B49C-76952772C4FD}</Project>
-      <Name>CoreDto</Name>
     </ProjectReference>
     <ProjectReference Include="..\CoreTest\CoreTest.csproj">
       <Project>{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}</Project>

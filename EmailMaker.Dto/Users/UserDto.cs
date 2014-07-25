@@ -1,8 +1,8 @@
-﻿using CoreDto;
+﻿using CoreDdd.Nhibernate;
 
 namespace EmailMaker.Dtos.Users
 {
-    public class UserDto : IDto
+    public class UserDto : IAutoMappedDto
     {
         public int UserId { get; set; }
         public string FirstName { get; set; }

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using CoreDto;
+using CoreDdd.Nhibernate;
 
 namespace EmailMaker.Dtos.EmailTemplates
 {
-    public class EmailTemplateDto : IDto
+    public class EmailTemplateDto : IAutoMappedDto
     {
         public int EmailTemplateId { get; set; }
         public string Name { get; set; }

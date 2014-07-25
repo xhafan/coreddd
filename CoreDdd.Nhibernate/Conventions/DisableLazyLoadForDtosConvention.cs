@@ -1,4 +1,3 @@
-using CoreDto;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;
@@ -10,7 +9,7 @@ namespace CoreDdd.Nhibernate.Conventions
     {
         public void Accept(IAcceptanceCriteria<IClassInspector> criteria)
         {
-            criteria.Expect(x => typeof(IDto).IsAssignableFrom(x.EntityType));
+            criteria.Expect(x => typeof(IAutoMappedDto).IsAssignableFrom(x.EntityType));
         }
 
         public void Apply(IClassInstance instance)
