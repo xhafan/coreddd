@@ -1,4 +1,4 @@
-namespace CoreDdd.Infrastructure
+namespace CoreDdd.UnitOfWorks
 {
     public interface IUnitOfWork
     {

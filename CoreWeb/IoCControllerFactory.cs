@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using CoreIoC;
 
-namespace CoreDdd.Web
+namespace CoreWeb
 {
     public class IoCControllerFactory : DefaultControllerFactory
     {

@@ -2,9 +2,9 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CoreDdd.Domain.Repositories;
-using CoreDdd.Infrastructure;
 using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
+using CoreDdd.UnitOfWorks;
 
 namespace CoreDdd.Nhibernate.Register.Castle
 {

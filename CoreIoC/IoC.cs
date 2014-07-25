@@ -3,7 +3,7 @@ using Castle.Windsor;
 
 namespace CoreIoC
 {
-    public static class IoC
+    public static class IoC // todo: make this lib indepedent on Castle
     {
         private static IWindsorContainer _container;
 

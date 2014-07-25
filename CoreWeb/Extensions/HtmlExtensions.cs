@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Web.Mvc;
-using CoreDdd.Web.Utilities;
+using CoreWeb.Utilities;
 
-namespace CoreDdd.Web.Extensions
+namespace CoreWeb.Extensions
 {
     public static class HtmlExtensions
     {

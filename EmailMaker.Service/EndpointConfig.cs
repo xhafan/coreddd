@@ -1,11 +1,7 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.Windsor;
+﻿using Castle.Windsor;
 using Castle.Windsor.Installer;
-using CoreDdd.Infrastructure;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Register.Castle;
-using CoreDdd.Nhibernate.UnitOfWorks;
-using CoreDdd.Queries;
 using CoreDdd.Register.Castle;
 using CoreIoC;
 using EmailMaker.Infrastructure;

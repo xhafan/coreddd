@@ -1,6 +1,6 @@
 ﻿using System;
-using CoreDdd.Infrastructure;
 using CoreDdd.Nhibernate.Configurations;
+using CoreDdd.UnitOfWorks;
 using NHibernate;
 
 namespace CoreDdd.Nhibernate.UnitOfWorks

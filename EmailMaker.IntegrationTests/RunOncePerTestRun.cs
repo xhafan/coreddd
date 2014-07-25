@@ -1,6 +1,5 @@
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using CoreDdd.Infrastructure;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;

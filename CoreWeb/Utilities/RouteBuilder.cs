@@ -6,7 +6,7 @@ using System.Web.Routing;
 using CoreUtils;
 using CoreUtils.Extensions;
 
-namespace CoreDdd.Web.Utilities
+namespace CoreWeb.Utilities
 {
     // http://stackoverflow.com/questions/369102/using-a-strongly-typed-actionlink-when-the-action-method-doesnt-take-a-primitive
     public class RouteBuilder

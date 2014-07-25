@@ -174,6 +174,10 @@
       <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
       <Name>CoreIoC</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CoreWeb\CoreWeb.csproj">
+      <Project>{84703bd6-f546-4eee-bb43-18201771c3b0}</Project>
+      <Name>CoreWeb</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmailMaker.Commands\EmailMaker.Commands.csproj">
       <Project>{DB6DC588-8415-4184-8B4B-6485374A2E68}</Project>
       <Name>EmailMaker.Commands</Name>

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Web.Mvc;
 
-namespace CoreDdd.Web.ModelBinders
+namespace CoreWeb.ModelBinders
 {
     // http://stackoverflow.com/questions/4582233/asp-net-mvc3-why-does-the-default-support-for-json-model-binding-fail-to-decode
     public class EnumConverterModelBinder : DefaultModelBinder

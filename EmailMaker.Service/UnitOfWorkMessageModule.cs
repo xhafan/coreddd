@@ -1,4 +1,4 @@
-﻿using CoreDdd.Infrastructure;
+﻿using CoreDdd.UnitOfWorks;
 using NServiceBus;
 
 namespace EmailMaker.Service

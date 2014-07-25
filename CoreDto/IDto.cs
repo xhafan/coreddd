@@ -1,6 +1,6 @@
 namespace CoreDto
 {
-    public interface IDto
+    public interface IDto // todo: remove this whole library?
     {
     }
 }

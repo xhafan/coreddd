@@ -36,9 +36,6 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\BaseCommandHandler.cs" />
@@ -50,7 +47,7 @@
     <Compile Include="Domain\Entity.cs" />
     <Compile Include="Domain\IAggregateRoot.cs" />
     <Compile Include="Domain\Repositories\IRepository[T, TId].cs" />
-    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWorks\IUnitOfWork.cs" />
     <Compile Include="Domain\Events\DomainEvents.cs" />
     <Compile Include="Domain\Events\IDomainEvent.cs" />
     <Compile Include="Domain\Events\IDomainEventHandler.cs" />
@@ -63,10 +60,6 @@
     <Compile Include="Queries\IQuery.cs" />
     <Compile Include="Queries\IQueryHandler.cs" />
     <Compile Include="Queries\QueryExecutor.cs" />
-    <Compile Include="Web\Extensions\HtmlExtensions.cs" />
-    <Compile Include="Web\IoCControllerFactory.cs" />
-    <Compile Include="Web\ModelBinders\EnumConverterModelBinder.cs" />
-    <Compile Include="Web\Utilities\RouteBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
