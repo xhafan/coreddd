@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace CoreDdd.Tests.Domain.Repositories
+namespace CoreDdd.Nhibernate.Tests.Repositories
 {
     [TestFixture]
     public class when_getting_aggregate_root_entity_by_id : NhibernateRepositorySetup

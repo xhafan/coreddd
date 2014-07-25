@@ -7,7 +7,7 @@ using NHibernate;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace CoreDdd.Tests.Domain.Repositories
+namespace CoreDdd.Nhibernate.Tests.Repositories
 {
     public abstract class NhibernateRepositorySetup : BaseTest
     {

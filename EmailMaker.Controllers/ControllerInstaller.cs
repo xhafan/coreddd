@@ -9,7 +9,7 @@ namespace EmailMaker.Controllers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(AllTypes
+            container.Register(Classes
                                    .FromThisAssembly()
                                    .BasedOn<IController>()
                                    .Configure(x => x.LifestyleTransient()));

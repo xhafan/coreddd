@@ -1,5 +1,5 @@
 ﻿using CoreDdd.Domain;
-using CoreDdd.Extensions;
+using CoreUtils.Extensions;
 using Rhino.Mocks;
 
 namespace CoreTest

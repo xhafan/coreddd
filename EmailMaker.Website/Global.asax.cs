@@ -8,6 +8,7 @@ using CoreDdd.Nhibernate.Register.Castle;
 using CoreDdd.Register.Castle;
 using CoreDdd.UnitOfWorks;
 using CoreIoC;
+using CoreIoC.Castle;
 using CoreWeb;
 using CoreWeb.ModelBinders;
 using EmailMaker.Commands;
@@ -50,19 +51,19 @@ namespace EmailMaker.Website
                                                 typeof (IMessage).Assembly,
                                                 typeof (Configure).Assembly,
                                             };
-            var container = new WindsorContainer();
+            var windsorContainer = new WindsorContainer();
             Configure
                 .With(nserviceBusAssemblies)
                 .Log4Net()
-                .CastleWindsorBuilder(container)
+                .CastleWindsorBuilder(windsorContainer)
                 .BinarySerializer()
                 .MsmqTransport()
                 .UnicastBus()
                 .LoadMessageHandlers()
                 .CreateBus()
                 .Start();
-            
-            container.Install(
+
+            windsorContainer.Install(
                 FromAssembly.Containing<ControllerInstaller>(),
                 FromAssembly.Containing<QueryExecutorInstaller>(),
                 FromAssembly.Containing<CommandHandlerInstaller>(),
@@ -71,7 +72,7 @@ namespace EmailMaker.Website
                 FromAssembly.Containing<NhibernateInstaller>(),
                 FromAssembly.Containing<EmailMakerNhibernateInstaller>()
                 );
-            IoC.Initialize(container);
+            IoC.Initialize(new CastleContainer(windsorContainer));
 
             ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory());
             ModelBinders.Binders.DefaultBinder = new EnumConverterModelBinder();

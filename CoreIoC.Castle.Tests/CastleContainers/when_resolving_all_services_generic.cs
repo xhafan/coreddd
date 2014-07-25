@@ -2,10 +2,10 @@ using NUnit.Framework;
 using Rhino.Mocks;
 using Shouldly;
 
-namespace CoreIoC.Tests.IoCs
+namespace CoreIoC.Castle.Tests.CastleContainers
 {
     [TestFixture]
-    public class when_resolving_all_services_generic : IoCSetup
+    public class when_resolving_all_services_generic : CastleContainerSetup
     {
         private interface IServiceType { }
         private class ServiceTypeOne : IServiceType { }
@@ -22,9 +22,9 @@ namespace CoreIoC.Tests.IoCs
             base.Context();
             _serviceTypeOne = new ServiceTypeOne();
             _serviceTypeTwo = new ServiceTypeTwo();
-            Container.Stub(x => x.ResolveAll<IServiceType>()).Return(new IServiceType[] { _serviceTypeOne, _serviceTypeTwo });
+            WindsorContainer.Stub(x => x.ResolveAll<IServiceType>()).Return(new IServiceType[] { _serviceTypeOne, _serviceTypeTwo });
 
-            _result = IoC.ResolveAll<IServiceType>();
+            _result = CastleContainer.ResolveAll<IServiceType>();
         }
 
         [Test]

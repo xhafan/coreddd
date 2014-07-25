@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</ProjectGuid>
+    <ProjectGuid>{E8642B0C-EDFC-46FB-8118-BB800903A1BC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoreDdd.TestHelpers</RootNamespace>
-    <AssemblyName>CoreDdd.TestHelpers</AssemblyName>
+    <RootNamespace>CoreIoC.Castle.Tests</RootNamespace>
+    <AssemblyName>CoreIoC.Castle.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus">
-      <HintPath>..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.dll</HintPath>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Shouldly">
+      <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,16 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\BaseControllerTest.cs" />
-    <Compile Include="DomainEvents\BaseDomainEventTest.cs" />
-    <Compile Include="Extensions\BusExtensions.cs" />
-    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="CastleContainers\CastleContainerSetup.cs" />
+    <Compile Include="CastleContainers\when_releasing_service_instance.cs" />
+    <Compile Include="CastleContainers\when_resolving_all_services_generic.cs" />
+    <Compile Include="CastleContainers\when_resolving_service.cs" />
+    <Compile Include="CastleContainers\when_resolving_service_generic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
-      <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
-      <Name>CoreDdd</Name>
+    <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj">
+      <Project>{568EB03F-98D6-4AA2-80DD-5A8D2B8AEFA2}</Project>
+      <Name>CoreIoC.Castle</Name>
     </ProjectReference>
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
       <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>

@@ -8,11 +8,11 @@ namespace CoreIoC.Tests.IoCs
     public class when_getting_container_without_initialization
     {
         [Test]
-        public void Context()
+        public void exception_is_thrown()
         {
             IoC.Initialize(null);
 
-            var ex = Should.Throw<InvalidOperationException>(() => { var container = IoC.Container; });
+            var ex = Should.Throw<InvalidOperationException>(() => IoC.Resolve<object>());
 
             ex.Message.ToLower().ShouldMatch("container.*not.*initialized");
         }

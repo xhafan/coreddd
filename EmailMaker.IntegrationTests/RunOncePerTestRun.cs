@@ -3,6 +3,7 @@ using Castle.Windsor;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
+using CoreIoC.Castle;
 using EmailMaker.Infrastructure;
 using NUnit.Framework;
 
@@ -14,8 +15,8 @@ namespace EmailMaker.IntegrationTests
         [SetUp]
         public void SetUp()
         {
-            var container = new WindsorContainer();
-            container.Register(
+            var windsorContainer = new WindsorContainer();
+            windsorContainer.Register(
                 Component.For<INhibernateConfigurator>()
                     .ImplementedBy<EmailMakerNhibernateConfigurator>()
                     .LifeStyle.Singleton,
@@ -23,7 +24,7 @@ namespace EmailMaker.IntegrationTests
                     .ImplementedBy<NhibernateUnitOfWork>()
                     .LifeStyle.PerThread
                 );
-            IoC.Initialize(container);
+            IoC.Initialize(new CastleContainer(windsorContainer));
         }
     }
 }

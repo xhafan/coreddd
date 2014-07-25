@@ -10,7 +10,7 @@ namespace EmailMaker.Commands
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly()
+                Classes.FromThisAssembly()
                     .BasedOn(typeof(ICommandHandler<>))
                     .WithService.FirstInterface()
                     .Configure(x => x.LifestyleTransient()));

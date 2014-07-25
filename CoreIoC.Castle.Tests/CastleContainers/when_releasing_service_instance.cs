@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace CoreIoC.Tests.IoCs
+namespace CoreIoC.Castle.Tests.CastleContainers
 {
     [TestFixture]
-    public class when_releasing_service_instance : IoCSetup
+    public class when_releasing_service_instance : CastleContainerSetup
     {
         private object _serviceInstance;
 
@@ -14,13 +14,13 @@ namespace CoreIoC.Tests.IoCs
             base.Context();
             _serviceInstance = new object();
 
-            IoC.Release(_serviceInstance);
+            CastleContainer.Release(_serviceInstance);
         }
 
         [Test]
         public void release_was_called_on_container()
         {
-            Container.AssertWasCalled(x => x.Release(_serviceInstance));
+            WindsorContainer.AssertWasCalled(x => x.Release(_serviceInstance));
         }
     }
 }

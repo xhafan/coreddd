@@ -1,7 +1,7 @@
 ﻿using System;
-using Castle.Windsor;
 using CoreDdd.Commands;
 using CoreIoC;
+using CoreTest;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Shouldly;
@@ -9,7 +9,7 @@ using Shouldly;
 namespace CoreDdd.Tests.Commands
 {
     [TestFixture]
-    public class when_executing_command
+    public class when_executing_command : BaseTest
     {        
         public class TestCommand : ICommand { }
         public class TestCommandHandler : ICommandHandler<TestCommand>
@@ -36,7 +36,7 @@ namespace CoreDdd.Tests.Commands
         [SetUp]
         public void Context()
         {
-            var container = MockRepository.GenerateStub<IWindsorContainer>();
+            var container = Stub<IContainer>();
             IoC.Initialize(container);
 
             _testCommandHandler = new TestCommandHandler();

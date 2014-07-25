@@ -1,6 +1,6 @@
 using System;
 
-namespace CoreDdd.Extensions
+namespace CoreUtils.Extensions
 {
     public static class TypeExtensions
     {

@@ -10,7 +10,7 @@ namespace EmailMaker.Domain.EventHandlers
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                AllTypes.FromThisAssembly()
+                Classes.FromThisAssembly()
                     .BasedOn(typeof(IDomainEventHandler<>))
                     .WithService.FirstInterface()
                     .Configure(x => x.LifestyleTransient()));

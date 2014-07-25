@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="CoreException.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Guard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

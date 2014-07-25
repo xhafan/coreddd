@@ -1,25 +1,23 @@
 ﻿using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace CoreDdd.Tests.Domain.Repositories
+namespace CoreDdd.Nhibernate.Tests.Repositories
 {
     [TestFixture]
-    public class when_loading_aggregate_root_entity_by_id : NhibernateRepositorySetup
-    {
-        private const int Id = 1;
-
+    public class when_deleting_aggregate_root_entity : NhibernateRepositorySetup
+    {    
         [SetUp]
         public override void Context()
         {
             base.Context();
 
-            Repository.Load(Id);
+            Repository.Delete(Entity);
         }
 
         [Test]
         public void get_by_id_was_called_on_session()
         {
-            Session.AssertWasCalled(x => x.Load<TestEntity>(Id));
+            Session.AssertWasCalled(x => x.Delete(Entity));
         }
     }
 }

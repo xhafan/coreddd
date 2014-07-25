@@ -1,18 +1,17 @@
 using System;
-using Castle.Windsor;
 
 namespace CoreIoC
 {
-    public static class IoC // todo: make this lib indepedent on Castle
+    public static class IoC
     {
-        private static IWindsorContainer _container;
+        private static IContainer _container;
 
-        public static void Initialize(IWindsorContainer container)
+        public static void Initialize(IContainer container)
         {
             _container = container;
         }
 
-        public static IWindsorContainer Container
+        private static IContainer Container
         {
             get
             {
@@ -26,23 +25,22 @@ namespace CoreIoC
         
         public static object Resolve(Type service)
         {
-            return Container.Resolve(service);
+            return Container.Resolve(service);            
         }
 
         public static T Resolve<T>()
         {
-            return Container.Resolve<T>();
+            return Container.Resolve<T>();            
         }
 
         public static T[] ResolveAll<T>()
         {
-            return Container.ResolveAll<T>();
+            return Container.ResolveAll<T>();            
         }
 
         public static void Release(object instance)
         {
             Container.Release(instance);
-        }
-    
+        }    
     }
 }

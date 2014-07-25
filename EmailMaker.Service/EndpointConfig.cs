@@ -4,6 +4,7 @@ using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Register.Castle;
 using CoreDdd.Register.Castle;
 using CoreIoC;
+using CoreIoC.Castle;
 using EmailMaker.Infrastructure;
 using EmailMaker.Messages;
 using EmailMaker.Queries;
@@ -24,22 +25,22 @@ namespace EmailMaker.Service
                                                 typeof (SendEmailForEmailRecipientMessageHandler).Assembly
                                             };
             SetLoggingLibrary.Log4Net(log4net.Config.XmlConfigurator.Configure);
-            var container = new WindsorContainer();
+            var windsorContainer = new WindsorContainer();
             Configure
                 .With(nserviceBusAssemblies)
-                .CastleWindsorBuilder(container)
+                .CastleWindsorBuilder(windsorContainer)
                 .BinarySerializer()
                 .MsmqTransport()
                 .MsmqSubscriptionStorage()
                 .UnicastBus();
-            container.Install(
+            windsorContainer.Install(
                 FromAssembly.Containing<QueryExecutorInstaller>(),
                 FromAssembly.Containing<EmailSenderInstaller>(),
                 FromAssembly.Containing<QueryHandlerInstaller>(),
                 FromAssembly.Containing<NhibernateInstaller>(),
                 FromAssembly.Containing<EmailMakerNhibernateInstaller>()
                 );            
-            IoC.Initialize(container);
+            IoC.Initialize(new CastleContainer(windsorContainer));
             
             ConfigureNhibernate();            
         }

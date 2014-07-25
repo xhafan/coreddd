@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace CoreTest
 {
-    public abstract class BasePersistenceTest
+    public abstract class BasePersistenceTest // todo: move this file to CoreIntegrationTest (independent on nhibernate?)
     {
         protected ISession Session;
         private NhibernateUnitOfWork _unitOfWork;

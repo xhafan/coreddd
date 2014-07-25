@@ -1,5 +1,5 @@
 using CoreDdd.Domain;
-using CoreDdd.Extensions;
+using CoreUtils.Extensions;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;

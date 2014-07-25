@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CoreDdd.Extensions;
+using CoreUtils.Extensions;
 using FluentNHibernate;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Inspections;

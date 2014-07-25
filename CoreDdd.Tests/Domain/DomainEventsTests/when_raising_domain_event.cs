@@ -1,13 +1,13 @@
-using Castle.Windsor;
 using CoreDdd.Domain.Events;
 using CoreIoC;
+using CoreTest;
 using NUnit.Framework;
 using Rhino.Mocks;
 
 namespace CoreDdd.Tests.Domain.DomainEventsTests
 {
     [TestFixture]
-    public class when_raising_domain_event
+    public class when_raising_domain_event : BaseTest
     {
         private IDomainEventHandler<TestDomainEvent> _testDomainHandler;
         private TestDomainEvent _testDomainEvent;
@@ -19,7 +19,7 @@ namespace CoreDdd.Tests.Domain.DomainEventsTests
         [SetUp]
         public void Context()
         {
-            var container = MockRepository.GenerateStub<IWindsorContainer>();
+            var container = Stub<IContainer>();
             _testDomainHandler = MockRepository.GenerateMock<IDomainEventHandler<TestDomainEvent>>();
             container.Stub(a => a.ResolveAll<IDomainEventHandler<TestDomainEvent>>()).Return(new[] { _testDomainHandler });
             IoC.Initialize(container);

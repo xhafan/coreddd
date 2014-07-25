@@ -1,6 +1,6 @@
-using Castle.Windsor;
 using CoreDdd.Domain.Events;
 using CoreIoC;
+using CoreTest;
 using CoreUtils;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -9,7 +9,7 @@ using Shouldly;
 namespace CoreDdd.Tests.Domain.DomainEventsTests
 {
     [TestFixture]
-    public class when_raising_domain_event_with_no_handler
+    public class when_raising_domain_event_with_no_handler : BaseTest
     {
         private CoreException _exception;
 
@@ -20,8 +20,8 @@ namespace CoreDdd.Tests.Domain.DomainEventsTests
         [SetUp]
         public void Context()
         {
-            var container = MockRepository.GenerateStub<IWindsorContainer>();
-            container.Stub(a => a.ResolveAll<IDomainEventHandler<TestDomainEvent>>()).Return(new IDomainEventHandler<TestDomainEvent>[0]);
+            var container = Stub<IContainer>();
+            container.Stub(x => x.ResolveAll<IDomainEventHandler<TestDomainEvent>>()).Return(new IDomainEventHandler<TestDomainEvent>[0]);
             IoC.Initialize(container);
 
             _exception = Should.Throw<CoreException>(() => DomainEvents.RaiseEvent(new TestDomainEvent()));

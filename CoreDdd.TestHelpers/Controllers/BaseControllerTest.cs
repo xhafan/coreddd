@@ -1,11 +1,11 @@
 ﻿using CoreDdd.Commands;
 using CoreDdd.Queries;
+using CoreTest;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace CoreDdd.TestHelpers.Controllers
 {
-    public abstract class BaseControllerTest
+    public abstract class BaseControllerTest : BaseTest
     {
         protected ICommandExecutor CommandExecutor;
         protected IQueryExecutor QueryExecutor;
@@ -16,8 +16,8 @@ namespace CoreDdd.TestHelpers.Controllers
         [SetUp]
         public void SetUp()
         {
-            CommandExecutor = MockRepository.GenerateMock<ICommandExecutor>();
-            QueryExecutor = MockRepository.GenerateMock<IQueryExecutor>();
+            CommandExecutor = Mock<ICommandExecutor>();
+            QueryExecutor = Mock<IQueryExecutor>();
             ExtraSetUp();
             Context();
         }

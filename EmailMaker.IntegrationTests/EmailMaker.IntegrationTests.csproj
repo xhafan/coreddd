@@ -101,6 +101,10 @@
       <Project>{59AAFFC1-CF3B-441B-B49C-76952772C4FD}</Project>
       <Name>CoreDto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj">
+      <Project>{568EB03F-98D6-4AA2-80DD-5A8D2B8AEFA2}</Project>
+      <Name>CoreIoC.Castle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
       <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
       <Name>CoreIoC</Name>

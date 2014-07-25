@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net40\Castle.Windsor.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -52,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IoCs\when_getting_container_without_initialization.cs" />
-    <Compile Include="IoCs\when_initializing_ioc.cs" />
+    <Compile Include="IoCs\IoCSetup.cs" />
     <Compile Include="IoCs\when_releasing_service_instance.cs" />
     <Compile Include="IoCs\when_resolving_all_services_generic.cs" />
     <Compile Include="IoCs\when_resolving_service.cs" />
@@ -63,6 +60,10 @@
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
       <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
       <Name>CoreIoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreTest\CoreTest.csproj">
+      <Project>{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}</Project>
+      <Name>CoreTest</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

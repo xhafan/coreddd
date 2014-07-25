@@ -33,27 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.2.0\lib\net40-client\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net40\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus">
-      <HintPath>..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.Core.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -99,21 +78,12 @@
     <Compile Include="Domain\Identities\base_when_comparing_entities_of_the_same_type_and_of_the_same_id.cs" />
     <Compile Include="Domain\Identities\base_when_comparing_transient_entities_of_the_same_type_and_of_the_same_id.cs" />
     <Compile Include="Domain\Identities\when_getting_entity_id.cs" />
-    <Compile Include="Domain\Repositories\NhibernateRepositorySetup.cs" />
-    <Compile Include="Domain\Repositories\when_deleting_aggregate_root_entity.cs" />
-    <Compile Include="Domain\Repositories\when_getting_aggregate_root_entity_by_id.cs" />
-    <Compile Include="Domain\Repositories\when_loading_aggregate_root_entity_by_id.cs" />
-    <Compile Include="Domain\Repositories\when_saving_aggregate_root_entity.cs" />
     <Compile Include="Helpers\Extensions\CultureHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\when_executing_query.cs" />
     <Compile Include="Queries\when_executing_query_with_result_transformer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
-      <Project>{63e96b9e-20a3-4576-a402-22c6aba75292}</Project>
-      <Name>CoreDdd.Nhibernate</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj">
       <Project>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</Project>
       <Name>CoreDdd.TestHelpers</Name>
