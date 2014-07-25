@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
-using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Register.Castle;
 using CoreDdd.Register.Castle;
 using CoreDdd.UnitOfWorks;
@@ -76,13 +75,6 @@ namespace EmailMaker.Website
 
             ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory());
             ModelBinders.Binders.DefaultBinder = new EnumConverterModelBinder();
-
-            ConfigureNhibernate();
-        }
-
-        private void ConfigureNhibernate()
-        {
-            IoC.Resolve<INhibernateConfigurator>();
         }
 
         public virtual void Application_BeginRequest()

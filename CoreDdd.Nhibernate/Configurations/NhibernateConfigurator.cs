@@ -7,7 +7,6 @@ using CoreDdd.Nhibernate.Conventions;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Utils;
-using HibernatingRhinos.Profiler.Appender.NHibernate;
 using NHibernate;
 using Configuration = NHibernate.Cfg.Configuration;
 
@@ -31,10 +30,7 @@ namespace CoreDdd.Nhibernate.Configurations
             var discriminatedTypes = GetDiscriminatedTypes();
             var mapDefaultConventions = ShouldMapDefaultConventions();
             var assemblyWithAdditionalConventions = GetAssemblyWithAdditionalConventions();
-
-#if(DEBUG)
-            NHibernateProfiler.Initialize(); // todo: remove nhibernate profiler
-#endif
+            
             _configuration = new Configuration();
             _configuration.Configure();
             var autoPersistenceModel = AutoMap.Assemblies(new AutomappingConfiguration(discriminatedTypes.ToArray()), assembliesToMap);

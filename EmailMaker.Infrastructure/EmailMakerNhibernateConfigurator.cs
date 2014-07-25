@@ -8,6 +8,7 @@ using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Dtos.Emails;
 using EmailMaker.Infrastructure.Conventions;
+using HibernatingRhinos.Profiler.Appender.NHibernate;
 
 namespace EmailMaker.Infrastructure
 {
@@ -16,10 +17,14 @@ namespace EmailMaker.Infrastructure
         private readonly bool _mapDtoAssembly = true;
 
         public EmailMakerNhibernateConfigurator()
-        {            
+        {
+#if(DEBUG)
+            NHibernateProfiler.Initialize();
+#endif
         }
 
         public EmailMakerNhibernateConfigurator(bool mapDtoAssembly)
+            : this()
         {
             _mapDtoAssembly = mapDtoAssembly;
         }
