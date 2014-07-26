@@ -1,10 +1,9 @@
 using CoreDdd.TestHelpers.Extensions;
-using CoreDdd.Tests.Helpers.Extensions;
-using CoreTest;
 using CoreUtils.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;
+using EmailMaker.TestHelper.Extensions;
 using Iesi.Collections.Generic;
 
 namespace EmailMaker.TestHelper.Builders

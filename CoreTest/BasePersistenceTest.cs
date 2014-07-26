@@ -1,36 +1,36 @@
 ﻿using System.Linq;
 using CoreDdd.Domain;
-using CoreDdd.Nhibernate.UnitOfWorks;
-using CoreIoC;
+using CoreDdd.UnitOfWorks;
 using CoreUtils;
 using CoreUtils.Extensions;
-using NHibernate;
 using NUnit.Framework;
 
 namespace CoreTest
 {
-    public abstract class BasePersistenceTest // todo: move this file to CoreIntegrationTest (independent on nhibernate?)
+    public abstract class BasePersistenceTest
     {
-        protected ISession Session;
-        private NhibernateUnitOfWork _unitOfWork;
+        protected IUnitOfWork UnitOfWork;
 
         protected abstract void Context();
+
+        protected abstract IUnitOfWork ResolveUnitOfWork();
+        protected abstract void GetSessionFromUnitOfWork(); // todo: refactor it? For other ORMs it might not be a suitable name
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            _unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
-            _unitOfWork.BeginTransaction();
-            Session = _unitOfWork.Session;
+            UnitOfWork = ResolveUnitOfWork();
+            UnitOfWork.BeginTransaction();
+            GetSessionFromUnitOfWork();
 
             ClearDatabase();
             Context();
         }
-        
+
         [TestFixtureTearDown]
         public void TestFixtureTearDown()
         {
-            _unitOfWork.Commit();
+            UnitOfWork.Commit();
         }
 
         protected abstract IAggregateRootTypesToClearProvider GetAggregateRootTypesToClearProvider();
@@ -42,19 +42,19 @@ namespace CoreTest
                     var typeName = x.Name;
                     var isAggregateRoot = x.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IAggregateRoot<>));
                     Guard.Hope(isAggregateRoot, typeName + " is not implementing " + typeof(IAggregateRoot).Name);
-                    Session.Delete("from " + typeName);
+                    Delete("from " + typeName);
                 });
         }
 
         protected void Save(params IAggregateRoot[] aggregateRoots)
         {
-            aggregateRoots.Each(e => Session.SaveOrUpdate(e));
-            Session.Flush();
+            aggregateRoots.Each(SaveOrUpdate);
+            Flush();
         }
 
-        protected TAggregateRoot Get<TAggregateRoot>(int id) where TAggregateRoot : IAggregateRoot
-        {
-            return Session.Get<TAggregateRoot>(id);
-        }
+        protected abstract void SaveOrUpdate(object entity);
+        protected abstract void Flush();
+        protected abstract TAggregateRoot Get<TAggregateRoot>(int id) where TAggregateRoot : IAggregateRoot;
+        protected abstract void Delete(string query);
     }
 }

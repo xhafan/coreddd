@@ -1,8 +1,9 @@
+using CoreIntegrationTest.Nhibernate;
 using CoreTest;
 
 namespace EmailMaker.IntegrationTests.DatabaseTests
 {
-    public abstract class BaseEmailMakerPersistenceTest : BasePersistenceTest
+    public abstract class BaseEmailMakerPersistenceTest : BaseNhibernatePersistenceTest
     {
         protected override IAggregateRootTypesToClearProvider GetAggregateRootTypesToClearProvider()
         {

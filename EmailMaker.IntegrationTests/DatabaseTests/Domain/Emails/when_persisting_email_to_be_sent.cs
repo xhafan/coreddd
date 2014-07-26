@@ -1,10 +1,10 @@
 using System.Linq;
 using CoreDdd.TestHelpers.Extensions;
-using CoreTest;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.TestHelper.Builders;
+using EmailMaker.TestHelper.Extensions;
 using NUnit.Framework;
 using Shouldly;
 

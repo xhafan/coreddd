@@ -97,6 +97,10 @@
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
       <Name>CoreDdd</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CoreIntegrationTest.Nhibernate\CoreIntegrationTest.Nhibernate.csproj">
+      <Project>{3D97C62D-6FFB-4A6A-951F-257CD25E4816}</Project>
+      <Name>CoreIntegrationTest.Nhibernate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj">
       <Project>{568EB03F-98D6-4AA2-80DD-5A8D2B8AEFA2}</Project>
       <Name>CoreIoC.Castle</Name>

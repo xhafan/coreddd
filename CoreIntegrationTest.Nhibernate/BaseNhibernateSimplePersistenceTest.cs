@@ -1,6 +1,6 @@
-﻿namespace CoreTest
+﻿namespace CoreIntegrationTest.Nhibernate
 {
-    public abstract class BaseSimplePersistenceTest : BasePersistenceTest
+    public abstract class BaseNhibernateSimplePersistenceTest : BaseNhibernatePersistenceTest
     {
         protected abstract void PersistenceContext();
 

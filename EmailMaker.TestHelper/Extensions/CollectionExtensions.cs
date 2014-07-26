@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CoreTest
+namespace EmailMaker.TestHelper.Extensions
 {
     public static class CollectionExtensions
     {
