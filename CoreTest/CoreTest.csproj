@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CoreSharedAssemblyInfo.cs">
+      <Link>Properties\CoreSharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="BasePersistenceTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="IAggregateRootTypesToClearProvider.cs" />

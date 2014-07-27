@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CoreSharedAssemblyInfo.cs">
+      <Link>Properties\CoreSharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="IContainer.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CoreSharedAssemblyInfo.cs">
+      <Link>Properties\CoreSharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="IoCControllerFactory.cs" />
     <Compile Include="ModelBinders\EnumConverterModelBinder.cs" />

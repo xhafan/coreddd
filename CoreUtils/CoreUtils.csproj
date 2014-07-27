@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CoreSharedAssemblyInfo.cs">
+      <Link>Properties\CoreSharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="CoreException.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />

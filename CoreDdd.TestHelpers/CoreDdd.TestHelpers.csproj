@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CoreSharedAssemblyInfo.cs">
+      <Link>Properties\CoreSharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Controllers\BaseControllerTest.cs" />
     <Compile Include="DomainEvents\BaseDomainEventTest.cs" />
     <Compile Include="Extensions\BusExtensions.cs" />

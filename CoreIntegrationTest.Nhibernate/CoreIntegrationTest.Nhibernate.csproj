@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CoreSharedAssemblyInfo.cs">
+      <Link>Properties\CoreSharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="BaseNhibernatePersistenceTest.cs" />
     <Compile Include="BaseNhibernateSimplePersistenceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
