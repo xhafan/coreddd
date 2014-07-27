@@ -63,10 +63,6 @@
       <Project>{a55844fe-7bba-4fe9-9c12-e233e944ae1e}</Project>
       <Name>CoreDdd</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
-      <Project>{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}</Project>
-      <Name>CoreUtils</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

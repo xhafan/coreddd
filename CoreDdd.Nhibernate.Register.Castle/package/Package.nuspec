@@ -14,7 +14,6 @@
       <dependency id="Castle.Windsor" version="3.2.0" />
       <dependency id="CoreDdd" version="2.0.0" />
       <dependency id="CoreDdd.Nhibernate" version="2.0.0" />
-      <dependency id="CoreUtils" version="2.0.0" />
     </dependencies>
   </metadata>
 </package>

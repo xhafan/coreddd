@@ -7,7 +7,6 @@ using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.UnitOfWorks;
-using CoreUtils;
 
 namespace CoreDdd.Nhibernate.Register.Castle
 {
@@ -22,7 +21,10 @@ namespace CoreDdd.Nhibernate.Register.Castle
 
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            Guard.Hope(_setUnitOfWorkLifeStyleFunc != null, "Call first NhibernateInstaller.SetUnitOfWorkLifeStyle() to set unit of work lifestyle");
+            if (_setUnitOfWorkLifeStyleFunc == null)
+            {
+                throw new Exception("Call first NhibernateInstaller.SetUnitOfWorkLifeStyle() to set unit of work lifestyle");
+            }
 
             container.Register(
 
