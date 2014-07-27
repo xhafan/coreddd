@@ -1,20 +1,18 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>CoreTest</id>
+    <id>CoreIoC.Castle</id>
     <version>2.0.0</version>
     <authors>xhafan</authors>
     <owners>xhafan</owners>
     <projectUrl>http://xhafan.com/blog/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Test helpers for CoreDdd library</description>
-    <tags>CoreDdd test helper</tags>
+    <description>Castle IoC for CoreDdd library. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library</description>
+    <tags>CoreDdd castle IoC DI</tags>
     <dependencies>
-      <dependency id="CoreDdd" version="2.0.0" />
+      <dependency id="Castle.Core" version="3.2.0" />
+      <dependency id="Castle.Windsor" version="3.2.0" />
       <dependency id="CoreIoC" version="2.0.0" />
-      <dependency id="CoreUtils" version="2.0.0" />
-      <dependency id="NUnit" version="2.6.1" />
-      <dependency id="RhinoMocks" version="3.6.1" />
     </dependencies>
   </metadata>
 </package>

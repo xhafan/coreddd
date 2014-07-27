@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CoreUtils</id>
+    <version>2.0.0</version>
+    <authors>xhafan</authors>
+    <owners>xhafan</owners>
+    <projectUrl>http://xhafan.com/blog/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Helpers for CoreDdd library. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library</description>
+    <tags>CoreDdd helper</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>

@@ -51,8 +51,11 @@
     <Compile Include="..\CoreSharedAssemblyInfo.cs">
       <Link>Properties\CoreSharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BaseControllerTest.cs" />
+    <Compile Include="BaseDomainEventTest.cs" />
     <Compile Include="BasePersistenceTest.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="IAggregateRootTypesToClearProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RhinoMocksExtensions.cs" />

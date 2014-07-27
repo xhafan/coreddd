@@ -1,9 +1,8 @@
 using CoreDdd.Domain.Events;
 using CoreIoC;
-using CoreTest;
 using Rhino.Mocks;
 
-namespace CoreDdd.TestHelpers.DomainEvents
+namespace CoreTest
 {
     public class BaseDomainEventTest<TDomainEvent> : BaseTest, IDomainEventHandler<TDomainEvent> where TDomainEvent : IDomainEvent
     {

@@ -85,9 +85,9 @@
       <Project>{63e96b9e-20a3-4576-a402-22c6aba75292}</Project>
       <Name>CoreDdd.Nhibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj">
+    <ProjectReference Include="..\CoreNserviceBusTest\CoreNserviceBusTest.csproj">
       <Project>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</Project>
-      <Name>CoreDdd.TestHelpers</Name>
+      <Name>CoreNserviceBusTest</Name>
     </ProjectReference>
     <ProjectReference Include="..\CoreDdd.Tests\CoreDdd.Tests.csproj">
       <Project>{1043E886-7CE3-41B1-9602-8558B75ACAD7}</Project>

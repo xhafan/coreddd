@@ -3,7 +3,7 @@ using System.Linq;
 using NServiceBus;
 using Rhino.Mocks;
 
-namespace CoreDdd.TestHelpers.Extensions
+namespace CoreNserviceBusTest.Extensions
 {
     public static class BusExtensions
     {

@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace CoreDdd.TestHelpers.Extensions
+namespace CoreTest.Extensions
 {
     public static class ObjectExtensions
     {

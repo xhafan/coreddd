@@ -60,7 +60,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Nhibernate.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Service.Tests", "EmailMaker.Service.Tests\EmailMaker.Service.Tests.csproj", "{0A3294D7-05DD-49E9-9A3E-7D5B530F9FCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.TestHelpers", "CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj", "{60E5A375-9CD0-48C8-9620-F0BE12B8D084}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreNserviceBusTest", "CoreNserviceBusTest\CoreNserviceBusTest.csproj", "{60E5A375-9CD0-48C8-9620-F0BE12B8D084}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Register.Castle", "CoreDdd.Register.Castle\CoreDdd.Register.Castle.csproj", "{B8045320-C387-42DD-9486-BAAC52A02022}"
 EndProject

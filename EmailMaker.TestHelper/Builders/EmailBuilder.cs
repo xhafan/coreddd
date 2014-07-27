@@ -1,4 +1,4 @@
-using CoreDdd.TestHelpers.Extensions;
+using CoreTest.Extensions;
 using CoreUtils.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;

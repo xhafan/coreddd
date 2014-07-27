@@ -1,25 +1,19 @@
 ﻿using CoreDdd.Commands;
 using CoreDdd.Queries;
-using CoreTest;
 using NUnit.Framework;
 
-namespace CoreDdd.TestHelpers.Controllers
+namespace CoreTest
 {
     public abstract class BaseControllerTest : BaseTest
     {
         protected ICommandExecutor CommandExecutor;
-        protected IQueryExecutor QueryExecutor;
-
-        public abstract void ExtraSetUp();
-        public abstract void Context();
+        protected IQueryExecutor QueryExecutor;        
 
         [SetUp]
-        public void SetUp()
+        public virtual void Context()
         {
             CommandExecutor = Mock<ICommandExecutor>();
             QueryExecutor = Mock<IQueryExecutor>();
-            ExtraSetUp();
-            Context();
         }
     }
 }

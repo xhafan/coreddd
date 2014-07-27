@@ -7,8 +7,8 @@
     <ProjectGuid>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoreDdd.TestHelpers</RootNamespace>
-    <AssemblyName>CoreDdd.TestHelpers</AssemblyName>
+    <RootNamespace>CoreNserviceBusTest</RootNamespace>
+    <AssemblyName>CoreNserviceBusTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,9 +33,6 @@
     <Reference Include="NServiceBus">
       <HintPath>..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
     </Reference>
@@ -51,27 +48,13 @@
     <Compile Include="..\CoreSharedAssemblyInfo.cs">
       <Link>Properties\CoreSharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Controllers\BaseControllerTest.cs" />
-    <Compile Include="DomainEvents\BaseDomainEventTest.cs" />
     <Compile Include="Extensions\BusExtensions.cs" />
-    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
-      <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
-      <Name>CoreDdd</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
-      <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
-      <Name>CoreIoC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreTest\CoreTest.csproj">
-      <Project>{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}</Project>
-      <Name>CoreTest</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y /D $(TargetPath) $(ProjectDir)package\lib\net40</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

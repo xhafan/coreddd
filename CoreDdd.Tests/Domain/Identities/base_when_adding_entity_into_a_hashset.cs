@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using CoreDdd.TestHelpers.Extensions;
-using CoreDdd.Tests.Helpers.Extensions;
+using CoreTest.Extensions;
 using NUnit.Framework;
 using Shouldly;
 

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CoreDdd.TestHelpers.Extensions;
+using CoreTest.Extensions;
 using EmailMaker.Core;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;

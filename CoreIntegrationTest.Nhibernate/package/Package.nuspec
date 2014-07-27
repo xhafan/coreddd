@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CoreIntegrationTest.Nhibernate</id>
+    <version>2.0.0</version>
+    <authors>xhafan</authors>
+    <owners>xhafan</owners>
+    <projectUrl>http://xhafan.com/blog/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NHibernate persistence for CoreDdd library. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library</description>
+    <tags>DDD CQRS IoC DI</tags>
+    <dependencies>
+      <dependency id="CoreDdd" version="2.0.0" />
+      <dependency id="CoreDdd.Nhibernate" version="2.0.0" />
+      <dependency id="CoreIoC" version="2.0.0" />
+      <dependency id="CoreTest" version="2.0.0" />
+      <dependency id="NHibernate" version="3.3.1.4000" />
+    </dependencies>
+  </metadata>
+</package>

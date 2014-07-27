@@ -1,15 +1,19 @@
-using CoreDdd.TestHelpers.Controllers;
+using CoreTest;
 using EmailMaker.Dtos.Users;
 using EmailMaker.Queries.Messages;
+using NUnit.Framework;
 using Rhino.Mocks;
 
 namespace EmailMaker.UnitTests.Controllers
 {
     public abstract class BaseEmailmakerControllerTest : BaseControllerTest
     {
-        public override void ExtraSetUp()
+        [SetUp]
+        public override void Context()
         {
-            QueryExecutor.Stub(a => a.Execute<GetUserDetailsByEmailAddressQuery, UserDto>(Arg<GetUserDetailsByEmailAddressQuery>.Is.Anything))
+            base.Context();
+
+            QueryExecutor.Stub(x => x.Execute<GetUserDetailsByEmailAddressQuery, UserDto>(Arg<GetUserDetailsByEmailAddressQuery>.Is.Anything))
                 .Return(new[] { new UserDto() });
         }
     }

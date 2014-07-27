@@ -10,8 +10,11 @@ namespace EmailMaker.UnitTests.Controllers.Templates
     {
         private CreateVariableCommand _createVariableCommand;
 
+        [SetUp]
         public override void Context()
         {
+            base.Context();
+
             var controller = new TemplateController(CommandExecutor, null);
             _createVariableCommand = new CreateVariableCommand();
             controller.CreateVariable(_createVariableCommand);
