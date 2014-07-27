@@ -64,7 +64,6 @@
     <Compile Include="Conventions\PrimaryKeyConvention.cs" />
     <Compile Include="Conventions\StringColumnLengthConvention.cs" />
     <Compile Include="DatabaseSchemaGenerators\DatabaseSchemaGenerator.cs" />
-    <Compile Include="IAutoMappedDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\BaseNhibernateQueryHandler.cs" />
     <Compile Include="Queries\BaseQueryOverHandler.cs" />

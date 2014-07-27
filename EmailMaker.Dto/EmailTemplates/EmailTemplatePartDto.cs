@@ -1,8 +1,6 @@
-﻿using CoreDdd.Nhibernate;
-
-namespace EmailMaker.Dtos.EmailTemplates
+﻿namespace EmailMaker.Dtos.EmailTemplates
 {
-    public class EmailTemplatePartDto : IAutoMappedDto
+    public class EmailTemplatePartDto
     {
         public int EmailTemplateId { get; set; }
         public int PartId { get; set; }

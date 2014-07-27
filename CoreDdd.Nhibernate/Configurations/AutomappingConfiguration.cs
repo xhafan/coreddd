@@ -27,7 +27,7 @@ namespace CoreDdd.Nhibernate.Configurations
 
         private bool IsDto(Type type)
         {
-            return typeof(IAutoMappedDto).IsAssignableFrom(type);
+            return type.Name.EndsWith("Dto");
         }
 
         private static bool IsDomainEntity(Type type)

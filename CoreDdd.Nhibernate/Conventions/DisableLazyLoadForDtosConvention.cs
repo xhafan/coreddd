@@ -9,7 +9,7 @@ namespace CoreDdd.Nhibernate.Conventions
     {
         public void Accept(IAcceptanceCriteria<IClassInspector> criteria)
         {
-            criteria.Expect(x => typeof(IAutoMappedDto).IsAssignableFrom(x.EntityType));
+            criteria.Expect(x => x.EntityType.Name.EndsWith("Dto"));
         }
 
         public void Apply(IClassInstance instance)
