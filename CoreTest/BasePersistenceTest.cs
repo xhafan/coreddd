@@ -14,7 +14,7 @@ namespace CoreTest
         protected abstract void Context();
 
         protected abstract IUnitOfWork ResolveUnitOfWork();
-        protected abstract void GetSessionFromUnitOfWork(); // todo: refactor it? For other ORMs it might not be a suitable name
+        protected abstract void GetSessionFromUnitOfWork();
 
         [TestFixtureSetUp]
         public void TestFixtureSetUp()

@@ -1,6 +1,8 @@
+using System;
+
 namespace CoreDdd.UnitOfWorks
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         void BeginTransaction();
         void Commit();

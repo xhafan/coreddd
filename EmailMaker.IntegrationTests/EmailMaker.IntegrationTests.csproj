@@ -77,6 +77,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.Nhibernate.Register.Castle\CoreDdd.Nhibernate.Register.Castle.csproj">
+      <Project>{17d2da72-caca-4adf-8068-5598090cf563}</Project>
+      <Name>CoreDdd.Nhibernate.Register.Castle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
       <Project>{63e96b9e-20a3-4576-a402-22c6aba75292}</Project>
       <Name>CoreDdd.Nhibernate</Name>

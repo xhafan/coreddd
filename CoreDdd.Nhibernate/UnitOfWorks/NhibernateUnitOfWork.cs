@@ -26,6 +26,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void Commit()
         {
+            if (!IsActive()) return;
             InvokeTransactionActionAndDisposeBothTransactionAndSession(tx =>
             {
                 try
@@ -70,6 +71,11 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         public bool IsActive()
         {
             return Session != null;
+        }
+
+        public void Dispose()
+        {
+            Commit();
         }
     }
 }

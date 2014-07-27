@@ -33,6 +33,7 @@ namespace EmailMaker.Service
                 .MsmqTransport()
                 .MsmqSubscriptionStorage()
                 .UnicastBus();
+            NhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerThread);
             windsorContainer.Install(
                 FromAssembly.Containing<QueryExecutorInstaller>(),
                 FromAssembly.Containing<EmailSenderInstaller>(),

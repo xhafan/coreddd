@@ -4,7 +4,7 @@ using Rhino.Mocks;
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 {
     [TestFixture]
-    public class when_rolling_transaction_back_on_inactive_session : NhibernateUnitOfWorkWithCommittedTransactionSetup
+    public class when_rolling_transaction_back_with_inactive_session : NhibernateUnitOfWorkWithCommittedTransactionSetup
     {
         [SetUp]
         public override void Context()

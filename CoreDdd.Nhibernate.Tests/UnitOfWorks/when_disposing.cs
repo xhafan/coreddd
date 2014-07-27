@@ -5,8 +5,16 @@ using Shouldly;
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 {
     [TestFixture]
-    public class when_committing : NhibernateUnitOfWorkWithCommittedTransactionSetup
+    public class when_disposing : NhibernateUnitOfWorkWithStartedTransactionSetup
     {
+        [SetUp]
+        public override void Context()
+        {
+            base.Context();
+
+            UnitOfWork.Dispose();
+        }
+
         [Test]
         public void commit_was_called_on_transaction()
         {

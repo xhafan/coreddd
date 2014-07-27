@@ -61,7 +61,7 @@ namespace EmailMaker.Website
                 .LoadMessageHandlers()
                 .CreateBus()
                 .Start();
-
+            NhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerWebRequest);
             windsorContainer.Install(
                 FromAssembly.Containing<ControllerInstaller>(),
                 FromAssembly.Containing<QueryExecutorInstaller>(),
@@ -79,20 +79,15 @@ namespace EmailMaker.Website
 
         public virtual void Application_BeginRequest()
         {
-            GetUnitOfWorkForCurrentThread().BeginTransaction();
-        }
-
-        public virtual void Application_EndRequest()
-        {
-            GetUnitOfWorkForCurrentThread().Commit();
+            GetUnitOfWorkPerWebRequest().BeginTransaction();
         }
 
         public virtual void Application_Error()
         {
-            GetUnitOfWorkForCurrentThread().Rollback();
+            GetUnitOfWorkPerWebRequest().Rollback();
         }
 
-        private IUnitOfWork GetUnitOfWorkForCurrentThread()
+        private IUnitOfWork GetUnitOfWorkPerWebRequest()
         {
             return IoC.Resolve<IUnitOfWork>();
         }   

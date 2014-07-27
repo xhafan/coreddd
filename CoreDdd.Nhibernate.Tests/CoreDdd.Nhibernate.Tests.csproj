@@ -64,13 +64,15 @@
     <Compile Include="UnitOfWorks\NhibernateUnitOfWorkWithCommittedTransactionSetup.cs" />
     <Compile Include="UnitOfWorks\NhibernateUnitOfWorkWithStartedTransactionSetup.cs" />
     <Compile Include="UnitOfWorks\when_beginning_transaction.cs" />
+    <Compile Include="UnitOfWorks\when_committing_transaction_with_inactive_session.cs" />
     <Compile Include="UnitOfWorks\when_committing_with_an_exception.cs" />
     <Compile Include="UnitOfWorks\when_committing.cs" />
     <Compile Include="UnitOfWorks\when_constructing.cs" />
+    <Compile Include="UnitOfWorks\when_disposing.cs" />
     <Compile Include="UnitOfWorks\when_flushing.cs" />
     <Compile Include="UnitOfWorks\when_getting_session.cs" />
     <Compile Include="UnitOfWorks\when_rolling_transaction_back.cs" />
-    <Compile Include="UnitOfWorks\when_rolling_transaction_back_on_inactive_session.cs" />
+    <Compile Include="UnitOfWorks\when_rolling_transaction_back_with_inactive_session.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
