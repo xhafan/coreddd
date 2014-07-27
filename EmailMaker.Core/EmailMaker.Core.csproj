@@ -41,13 +41,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
-      <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
-      <Name>CoreDdd</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
       <Project>{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}</Project>
       <Name>CoreUtils</Name>

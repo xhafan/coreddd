@@ -44,7 +44,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -84,10 +83,6 @@
     <Compile Include="Queries\when_executing_query_with_result_transformer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoreNserviceBusTest\CoreNserviceBusTest.csproj">
-      <Project>{60E5A375-9CD0-48C8-9620-F0BE12B8D084}</Project>
-      <Name>CoreNserviceBusTest</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
       <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
       <Name>CoreDdd</Name>

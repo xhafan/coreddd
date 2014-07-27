@@ -36,9 +36,6 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.3.1.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="NServiceBus">
       <HintPath>..\packages\NServiceBus.3.2.6\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
@@ -157,10 +154,6 @@
     <ProjectReference Include="..\EmailMaker.Queries\EmailMaker.Queries.csproj">
       <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
       <Name>EmailMaker.Queries</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Service\EmailMaker.Service.csproj">
-      <Project>{3B63F0F4-1E42-4139-A0A9-1C8B3FED61FF}</Project>
-      <Name>EmailMaker.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailMaker.TestHelper\EmailMaker.TestHelper.csproj">
       <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>
