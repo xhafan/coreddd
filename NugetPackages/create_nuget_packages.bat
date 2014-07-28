@@ -16,6 +16,9 @@ cd ..\CoreIntegrationTest.Nhibernate
 cd ..\CoreIoC
 ..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
 
+cd ..\CoreIoC.Castle
+..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
+
 cd ..\CoreNserviceBusTest
 ..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
 

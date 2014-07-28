@@ -13,5 +13,6 @@
       <dependency id="CoreIoC" version="2.0.0" />
       <dependency id="CoreUtils" version="2.0.0" />
     </dependencies>
+    <releaseNotes>Library was split into multiple libraries (CoreDdd.Nhibernate, CoreIoC, CoreUtils) to remove 3rd party dependencies</releaseNotes>
   </metadata>
 </package>
