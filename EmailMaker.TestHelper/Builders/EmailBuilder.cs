@@ -1,48 +1,23 @@
+using System.Collections.Generic;
 using CoreTest.Extensions;
 using CoreUtils.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.EmailTemplates;
-using EmailMaker.TestHelper.Extensions;
-using Iesi.Collections.Generic;
 
 namespace EmailMaker.TestHelper.Builders
 {
-
     public class EmailBuilder
     {       
-        private int _nextPartId;
-        private int _id;
         private EmailTemplate _emailTemplate;
         private EmailState _state = EmailState.Draft;
-        private readonly ISet<Recipient> _recipients = new HashedSet<Recipient>();
-
-        private int NextPartId
-        {
-            get
-            {
-                _nextPartId++;
-                return _nextPartId;
-            }
-        }
-
-        public static EmailBuilder New
-        {
-            get
-            {
-                return new EmailBuilder();
-            }
-        }
+        private readonly ICollection<Recipient> _recipients = new List<Recipient>();
+        private string _fromAddress;
+        private string _subject;
 
         public EmailBuilder WithEmailTemplate(EmailTemplate emailTemplate)
         {
             _emailTemplate = emailTemplate;
-            return this;
-        }
-
-        public EmailBuilder WithId(int id)
-        {
-            _id = id;
             return this;
         }
 
@@ -52,19 +27,32 @@ namespace EmailMaker.TestHelper.Builders
             return this;
         }
 
-        public EmailBuilder WithRecipient(string emailAddress, string name)
+        public EmailBuilder WithRecipient(Recipient recipient)
         {
-            _recipients.Add(new Recipient(emailAddress, name));
+            _recipients.Add(recipient);
+            return this;
+        }
+
+        public EmailBuilder WithFromAddress(string fromAddress)
+        {
+            _fromAddress = fromAddress;
+            return this;
+        }
+
+        public EmailBuilder WithSubject(string subject)
+        {
+            _subject = subject;
             return this;
         }
 
         public Email Build()
         {
             var email = new Email(_emailTemplate);
-            email.SetPrivateProperty(x => x.Id, _id);
-            email.Parts.Each(part => part.SetPrivateProperty(x => x.Id, NextPartId));
-            email.SetPrivateProperty("State", _state);
-            _recipients.Each(r => email.EmailRecipients.AsSet().Add(new EmailRecipient(email, r)));
+            email.SetPrivateProperty(x => x.State, _state);
+            email.SetPrivateProperty(x => x.FromAddress, _fromAddress);
+            email.SetPrivateProperty(x => x.Subject, _subject);
+            var emailRecipients = (ICollection<EmailRecipient>)email.EmailRecipients;
+            _recipients.Each(r => emailRecipients.Add(new EmailRecipient(email, r)));
             return email;
         }
     }

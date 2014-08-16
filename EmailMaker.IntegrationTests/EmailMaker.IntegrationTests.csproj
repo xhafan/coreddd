@@ -59,7 +59,7 @@
     <Compile Include="DatabaseTests\BaseEmailMakerPersistenceTest.cs" />
     <Compile Include="DatabaseTests\BaseEmailMakerSimplePersistenceTest.cs" />
     <Compile Include="DatabaseTests\Domain\Emails\when_persisting_email.cs" />
-    <Compile Include="DatabaseTests\Domain\Emails\when_persisting_email_to_be_sent.cs" />
+    <Compile Include="DatabaseTests\Domain\Emails\when_persisting_email_with_recipients.cs" />
     <Compile Include="DatabaseTests\Domain\EmailTemplates\when_persisting_email_template.cs" />
     <Compile Include="DatabaseTests\Domain\EmailTemplates\when_persisting_email_template_while_creating_and_deleting_variables.cs" />
     <Compile Include="DatabaseTests\Domain\Users\when_persisting_user.cs" />

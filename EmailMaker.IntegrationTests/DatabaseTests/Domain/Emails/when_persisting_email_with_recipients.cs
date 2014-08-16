@@ -1,10 +1,8 @@
 using System.Linq;
-using CoreTest.Extensions;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.TestHelper.Builders;
-using EmailMaker.TestHelper.Extensions;
 using NUnit.Framework;
 using Shouldly;
 
@@ -39,16 +37,14 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Domain.Emails
             Save(_recipientOne);
             Save(_recipientTwo);
 
-            _email = new Email(_emailTemplate);
-            Save(_email);
-
-            _email.SetPrivateProperty("FromAddress", FromAddress);
-            _email.EmailRecipients.AsSet().Add(new EmailRecipient(_email, _recipientOne));
-            _email.EmailRecipients.AsSet().Add(new EmailRecipient(_email, _recipientTwo));
-            
-            _email.SetPrivateProperty("Subject", Subject);
-
-            Save(_email);
+            _email = new EmailBuilder()
+                .WithEmailTemplate(_emailTemplate)
+                .WithFromAddress(FromAddress)
+                .WithSubject(Subject)
+                .WithRecipient(_recipientOne)
+                .WithRecipient(_recipientTwo)
+                .Build();
+            Save(_email);           
         }
 
         protected override void PersistenceQuery()

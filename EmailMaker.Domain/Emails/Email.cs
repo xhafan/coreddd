@@ -16,24 +16,8 @@ namespace EmailMaker.Domain.Emails
 {
     public class Email : Entity, IAggregateRoot
     {
-        public virtual EmailTemplate EmailTemplate { get; protected set; }
-
         private readonly IList<EmailPart> _parts = new List<EmailPart>();
-        public virtual IEnumerable<EmailPart> Parts
-        {
-            get { return _parts; }
-        }
-
-        public virtual string FromAddress { get; protected set; }
-        public virtual string Subject { get; protected set; }
-        public virtual EmailState State { get; protected set; }
-
         private readonly Iesi.Collections.Generic.ISet<EmailRecipient> _emailRecipients = new HashedSet<EmailRecipient>();
-        public virtual IEnumerable<EmailRecipient> EmailRecipients
-        {
-            get { return _emailRecipients; }
-        }
-
 
         protected Email() {}
 
@@ -60,6 +44,13 @@ namespace EmailMaker.Domain.Emails
                 }
             }           
         }
+
+        public virtual EmailTemplate EmailTemplate { get; protected set; }
+        public virtual string FromAddress { get; protected set; }
+        public virtual string Subject { get; protected set; }
+        public virtual EmailState State { get; protected set; }
+        public virtual IEnumerable<EmailPart> Parts { get { return _parts; } }
+        public virtual IEnumerable<EmailRecipient> EmailRecipients { get { return _emailRecipients; } }
 
         public virtual void UpdateVariables(EmailDto emailDto)
         {
