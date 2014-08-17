@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using EmailMaker.Domain.Emails.EmailStates;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.AcceptanceCriteria;

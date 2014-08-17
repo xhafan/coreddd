@@ -1,11 +1,9 @@
-﻿using CoreDdd.Nhibernate.Configurations;
-
-namespace EmailMaker.Domain.EmailTemplates.VariableTypes
+﻿namespace EmailMaker.Domain.EmailTemplates.VariableTypes
 {
-    [IgnoreAutoMap]
-    internal class TranslationVariableType : VariableType
+    public class TranslationVariableType : VariableType
     {
-        internal TranslationVariableType() : base(4, "List")
+        public TranslationVariableType()
+            : base(4, "List")
         {
         }
     }

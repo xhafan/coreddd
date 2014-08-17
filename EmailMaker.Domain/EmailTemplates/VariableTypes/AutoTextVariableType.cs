@@ -1,11 +1,9 @@
-﻿using CoreDdd.Nhibernate.Configurations;
-
-namespace EmailMaker.Domain.EmailTemplates.VariableTypes
+﻿namespace EmailMaker.Domain.EmailTemplates.VariableTypes
 {
-    [IgnoreAutoMap]
-    internal class AutoTextVariableType : VariableType
+    public class AutoTextVariableType : VariableType
     {
-        internal AutoTextVariableType() : base(2, "AutoText")
+        public AutoTextVariableType() 
+            : base(2, "AutoText")
         {
         }
     }

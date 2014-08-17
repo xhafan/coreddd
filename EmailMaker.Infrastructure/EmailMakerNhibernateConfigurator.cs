@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
-using CoreDdd.Domain;
 using CoreDdd.Nhibernate.Configurations;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
+using EmailMaker.Domain.EmailTemplates.VariableTypes;
 using EmailMaker.Domain.NhibernateMapping.Emails;
 using EmailMaker.Dtos.Emails;
 using EmailMaker.Infrastructure.Conventions;
@@ -39,10 +40,20 @@ namespace EmailMaker.Infrastructure
 
         protected override IEnumerable<Type> GetIncludeBaseTypes()
         {
-            yield return typeof(Entity<>);
-            yield return typeof(EmailPart);
-            yield return typeof(EmailState);
-            yield return typeof(EmailTemplatePart);
+            return base.GetIncludeBaseTypes().Union(new[]
+            {
+                typeof (EmailPart),
+                typeof (EmailState),
+                typeof (EmailTemplatePart)
+            });
+        }
+
+        protected override IEnumerable<Type> GetIgnoreBaseTypes()
+        {
+            yield return typeof(AutoTextVariableType);
+            yield return typeof(InputTextVariableType);
+            yield return typeof(ListVariableType);
+            yield return typeof(TranslationVariableType);
         }
 
         protected override IEnumerable<Type> GetDiscriminatedTypes()
@@ -50,14 +61,9 @@ namespace EmailMaker.Infrastructure
             yield return typeof(EmailState);
         }
 
-        protected override bool ShouldMapDefaultConventions()
+        protected override IEnumerable<Assembly> GetAssembliesWithAdditionalConventions()
         {
-            return true;
-        }
-
-        protected override Assembly GetAssemblyWithAdditionalConventions()
-        {
-            return typeof (EmailStateSubclassConvention).Assembly;
+            yield return typeof(EmailStateSubclassConvention).Assembly;
         }
     }
 }

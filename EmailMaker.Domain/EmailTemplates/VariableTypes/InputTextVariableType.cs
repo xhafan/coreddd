@@ -1,11 +1,9 @@
-﻿using CoreDdd.Nhibernate.Configurations;
-
-namespace EmailMaker.Domain.EmailTemplates.VariableTypes
+﻿namespace EmailMaker.Domain.EmailTemplates.VariableTypes
 {
-    [IgnoreAutoMap]
-    internal class InputTextVariableType : VariableType
+    public class InputTextVariableType : VariableType
     {
-        internal InputTextVariableType() : base(1, "InputText")
+        public InputTextVariableType()
+            : base(1, "InputText")
         {
         }
     }
