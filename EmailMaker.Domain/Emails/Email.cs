@@ -10,14 +10,13 @@ using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Events.Emails;
 using EmailMaker.Dtos;
 using EmailMaker.Dtos.Emails;
-using Iesi.Collections.Generic;
 
 namespace EmailMaker.Domain.Emails
 {
     public class Email : Entity, IAggregateRoot
     {
         private readonly IList<EmailPart> _parts = new List<EmailPart>();
-        private readonly Iesi.Collections.Generic.ISet<EmailRecipient> _emailRecipients = new HashedSet<EmailRecipient>();
+        private readonly ICollection<EmailRecipient> _emailRecipients = new HashSet<EmailRecipient>();
 
         protected Email() {}
 
@@ -83,7 +82,7 @@ namespace EmailMaker.Domain.Emails
             _GetVariablePart(variablePartId).SetValue(value);
         }
 
-        public virtual void EnqueueEmailToBeSent(string fromAddress, HashedSet<Recipient> recipients, string subject)
+        public virtual void EnqueueEmailToBeSent(string fromAddress, HashSet<Recipient> recipients, string subject)
         {
             Guard.Hope(State.CanSend, "cannot enqeue email in the current state: " + State.Name);
             Guard.Hope(_emailRecipients.Count == 0, "recipients must be empty");

@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using System.Linq;
 using CoreTest;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.Domain.Events.Emails;
 using EmailMaker.TestHelper.Builders;
-using Iesi.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
 
@@ -35,7 +35,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
             _recipientOne = new Recipient(ToAddressOne, NameOne);
             _recipientTwo = new Recipient(ToAddressTwo, NameTwo);
             _email.EnqueueEmailToBeSent(FromAddress,
-                                        new HashedSet<Recipient>
+                                        new HashSet<Recipient>
                                             {
                                                 _recipientOne,
                                                 _recipientTwo

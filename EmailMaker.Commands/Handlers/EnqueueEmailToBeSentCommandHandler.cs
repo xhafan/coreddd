@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using CoreDdd.Commands;
 using CoreDdd.Domain.Repositories;
@@ -6,7 +7,6 @@ using CoreUtils.Extensions;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Queries.Messages;
-using Iesi.Collections.Generic;
 
 namespace EmailMaker.Commands.Handlers
 {
@@ -35,7 +35,7 @@ namespace EmailMaker.Commands.Handlers
                     {
                         RecipientEmailAddresses = emailAddressesAndNames.Keys
                     }).ToDictionary(k => k.EmailAddress);
-            var recipients = new HashedSet<Recipient>(existingRecipients.Values);
+            var recipients = new HashSet<Recipient>(existingRecipients.Values);
             var recipientsToBeCreated = emailAddressesAndNames.Where(p => !existingRecipients.ContainsKey(p.Key));
             recipientsToBeCreated.Each(r =>
                                            {

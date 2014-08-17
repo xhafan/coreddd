@@ -24,18 +24,19 @@ namespace CoreDdd.Nhibernate.Conventions
             if (field != null)
             {
                 instance.Access.ReadOnlyPropertyThroughCamelCaseField(CamelCasePrefix.Underscore);
-                if (!field.PropertyType.IsSubclassOfRawGeneric(typeof (IList<>)))
-                {
-                    instance.Inverse(); // inverse by default if not ordered list
-                }
+                SetInverseAndAsSetIfNotAList(field.PropertyType, instance);
             }
             else
             {
-                if (!property.PropertyType.IsSubclassOfRawGeneric(typeof (IList<>)))
-                {
-                    instance.Inverse(); // inverse by default if not ordered list
-                }
+                SetInverseAndAsSetIfNotAList(property.PropertyType, instance);
             }
+        }
+
+        private void SetInverseAndAsSetIfNotAList(Type collectionType, IOneToManyCollectionInstance instance)
+        {
+            if (collectionType.IsSubclassOfRawGeneric(typeof (IList<>))) return;
+            instance.Inverse(); // inverse by default if not an ordered list
+            instance.AsSet();
         }
     }
 }

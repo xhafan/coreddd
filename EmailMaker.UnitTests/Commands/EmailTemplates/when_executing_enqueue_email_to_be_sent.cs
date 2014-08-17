@@ -6,7 +6,6 @@ using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Queries.Messages;
-using Iesi.Collections.Generic;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -64,7 +63,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         public void email_enqued_was_called()
         {
             _email.AssertWasCalled(a => a.EnqueueEmailToBeSent(Arg<string>.Matches(p => p == FromAddress),
-                                                          Arg<HashedSet<Recipient>>.Matches(p =>
+                                                          Arg<HashSet<Recipient>>.Matches(p =>
                                                                                            p.Count() == 2
                                                                                            && p.Any(x => x.EmailAddress == AddressOne && x.Name == NameOne)
                                                                                            && p.Any(x => x.EmailAddress == AddressTwo && x.Name == NameTwo)

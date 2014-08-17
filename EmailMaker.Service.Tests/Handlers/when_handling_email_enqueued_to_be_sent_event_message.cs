@@ -1,11 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CoreDdd.Domain.Repositories;
 using CoreNserviceBusTest.Extensions;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Messages;
 using EmailMaker.Service.Handlers;
 using EmailMaker.TestHelper.Builders;
-using Iesi.Collections.Generic;
 using NServiceBus;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -41,7 +41,7 @@ namespace EmailMaker.Service.Tests.Handlers
 
             _recipientOne = RecipientBuilder.New.WithId(RecipientOneId).WithEmailAddress(RecipientOneEmailAddress).WithName(RecipientOneName).Build();
             _recipientTwo = RecipientBuilder.New.WithId(RecipientTwoId).WithEmailAddress(RecipientTwoEmailAddress).WithName(RecipientTwoName).Build();
-            _email.Stub(a => a.EmailRecipients).Return(new HashedSet<EmailRecipient>
+            _email.Stub(a => a.EmailRecipients).Return(new HashSet<EmailRecipient>
                                                           {
                                                               new EmailRecipient(_email, _recipientOne),
                                                               new EmailRecipient(_email, _recipientTwo)
