@@ -17,7 +17,7 @@ namespace CoreDdd.Nhibernate.Configurations
 
         public override bool ShouldMap(Type type)
         {
-            return HasNotIgnoreAttribute(type) && (IsDomainEntity(type) || IsDto(type));
+            return IsDomainEntity(type) || IsDto(type);
         }
 
         public override bool IsDiscriminated(Type type)
@@ -33,11 +33,6 @@ namespace CoreDdd.Nhibernate.Configurations
         private static bool IsDomainEntity(Type type)
         {
             return type.IsSubclassOfRawGeneric(typeof(Entity<>));
-        }
-
-        private bool HasNotIgnoreAttribute(Type type)
-        {
-            return Attribute.GetCustomAttribute(type, typeof (IgnoreAutoMapAttribute)) == null;                
         }
     }
 }

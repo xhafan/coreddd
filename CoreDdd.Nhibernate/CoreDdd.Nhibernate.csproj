@@ -52,7 +52,6 @@
       <Link>Properties\CoreSharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Configurations\AutomappingConfiguration.cs" />
-    <Compile Include="Configurations\IgnoreAutoMapAttribute.cs" />
     <Compile Include="Configurations\INhibernateConfigurator.cs" />
     <Compile Include="Configurations\NhibernateConfigurator.cs" />
     <Compile Include="Conventions\ColumnNullabilityConvention.cs" />
