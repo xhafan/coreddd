@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CoreDdd.Nhibernate</id>
-    <version>2.1.1</version>
+    <version>2.1.2</version>
     <authors>xhafan</authors>
     <owners>xhafan</owners>
     <projectUrl>http://xhafan.com/blog/</projectUrl>
