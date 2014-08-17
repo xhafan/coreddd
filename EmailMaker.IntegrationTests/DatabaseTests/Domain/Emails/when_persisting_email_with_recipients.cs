@@ -38,6 +38,7 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Domain.Emails
             Save(_recipientTwo);
 
             _email = new EmailBuilder()
+                .WithoutAssigningIdsToParts()
                 .WithEmailTemplate(_emailTemplate)
                 .WithFromAddress(FromAddress)
                 .WithSubject(Subject)

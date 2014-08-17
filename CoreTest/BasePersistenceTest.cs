@@ -16,7 +16,7 @@ namespace CoreTest
         protected abstract IUnitOfWork ResolveUnitOfWork();
         protected abstract void GetSessionFromUnitOfWork();
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             UnitOfWork = ResolveUnitOfWork();
@@ -27,7 +27,7 @@ namespace CoreTest
             Context();
         }
 
-        [TestFixtureTearDown]
+        [TearDown]
         public void TestFixtureTearDown()
         {
             UnitOfWork.Commit();

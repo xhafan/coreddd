@@ -8,16 +8,34 @@ using EmailMaker.Domain.EmailTemplates;
 namespace EmailMaker.TestHelper.Builders
 {
     public class EmailBuilder
-    {       
+    {
+        private int _nextPartId;
+        private int _id;
         private EmailTemplate _emailTemplate;
         private EmailState _state = EmailState.Draft;
         private readonly ICollection<Recipient> _recipients = new List<Recipient>();
         private string _fromAddress;
         private string _subject;
+        private bool _assignIdsToParts = true;
+
+        private int NextPartId
+        {
+            get
+            {
+                _nextPartId++;
+                return _nextPartId;
+            }
+        }
 
         public EmailBuilder WithEmailTemplate(EmailTemplate emailTemplate)
         {
             _emailTemplate = emailTemplate;
+            return this;
+        }
+
+        public EmailBuilder WithId(int id)
+        {
+            _id = id;
             return this;
         }
 
@@ -45,9 +63,17 @@ namespace EmailMaker.TestHelper.Builders
             return this;
         }
 
+        public EmailBuilder WithoutAssigningIdsToParts()
+        {
+            _assignIdsToParts = false;
+            return this;
+        }
+
         public Email Build()
         {
             var email = new Email(_emailTemplate);
+            email.SetPrivateProperty(x => x.Id, _id);
+            if (_assignIdsToParts) email.Parts.Each(part => part.SetPrivateProperty(x => x.Id, NextPartId));
             email.SetPrivateProperty(x => x.State, _state);
             email.SetPrivateProperty(x => x.FromAddress, _fromAddress);
             email.SetPrivateProperty(x => x.Subject, _subject);

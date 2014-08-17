@@ -1,7 +1,8 @@
+using EmailMaker.Domain.EmailTemplates;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Automapping.Alterations;
 
-namespace EmailMaker.Domain.EmailTemplates
+namespace EmailMaker.Domain.NhibernateMapping.EmailTemplates
 {
     public class EmailTemplateAutoMap : IAutoMappingOverride<EmailTemplate>
     {

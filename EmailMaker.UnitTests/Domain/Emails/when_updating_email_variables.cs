@@ -22,7 +22,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
                 .WithVariable(1, 1)
                 .Build();
             const int emailId = 78;
-            _email = EmailBuilder.New
+            _email = new EmailBuilder()
                 .WithId(emailId)
                 .WithEmailTemplate(template)
                 .Build();

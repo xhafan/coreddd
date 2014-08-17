@@ -6,6 +6,7 @@ using CoreDdd.Nhibernate.Configurations;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
+using EmailMaker.Domain.NhibernateMapping.Emails;
 using EmailMaker.Dtos.Emails;
 using EmailMaker.Infrastructure.Conventions;
 using HibernatingRhinos.Profiler.Appender.NHibernate;
@@ -31,7 +32,7 @@ namespace EmailMaker.Infrastructure
 
         protected override Assembly[] GetAssembliesToMap()
         {
-            var assembliesToMap = new List<Assembly> { typeof(Email).Assembly };
+            var assembliesToMap = new List<Assembly> { typeof(Email).Assembly, typeof(EmailAutoMap).Assembly };
             if (_mapDtoAssembly) assembliesToMap.Add(typeof(EmailDto).Assembly);
             return assembliesToMap.ToArray();
         }

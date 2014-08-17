@@ -28,7 +28,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
         public void Context()
         {            
             var template = EmailTemplateBuilder.New.Build();
-            _email = EmailBuilder.New
+            _email = new EmailBuilder()
                 .WithEmailTemplate(template)
                 .WithId(EmailId)
                 .Build();

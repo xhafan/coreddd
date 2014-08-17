@@ -24,7 +24,7 @@ namespace EmailMaker.UnitTests.Domain.Emails
             var state = Stub<EmailState>();
             state.Stub(a => a.CanSend).Return(false);
             state.Stub(a => a.Name).Return("state");
-            _email = EmailBuilder.New
+            _email = new EmailBuilder()
                 .WithEmailTemplate(template)
                 .WithState(state)
                 .Build();

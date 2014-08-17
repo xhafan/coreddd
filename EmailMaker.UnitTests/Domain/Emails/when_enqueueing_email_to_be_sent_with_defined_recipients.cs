@@ -1,4 +1,5 @@
 using CoreUtils;
+using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
@@ -18,10 +19,10 @@ namespace EmailMaker.UnitTests.Domain.Emails
             var template = EmailTemplateBuilder.New.Build();
             var state = MockRepository.GenerateMock<EmailState>();
             state.Stub(a => a.CanSend).Return(true);
-            var email = EmailBuilder.New
+            var email = new EmailBuilder()
                 .WithEmailTemplate(template)
                 .WithState(state)
-                .WithRecipient("email", "name")
+                .WithRecipient(new Recipient("email", "name"))
                 .Build();
 
             _exception = Should.Throw<CoreException>(() => email.EnqueueEmailToBeSent(null, null, null));
