@@ -18,7 +18,7 @@ namespace CoreDdd.Nhibernate.Configurations
         private readonly ISessionFactory _sessionFactory;
         private readonly Configuration _configuration;
 
-        protected abstract Assembly[] GetAssembliesToMap();
+        protected abstract Assembly[] GetAssembliesToMap(bool mapDtoAssembly);
 
         protected virtual IEnumerable<Type> GetIncludeBaseTypes()
         {
@@ -45,9 +45,9 @@ namespace CoreDdd.Nhibernate.Configurations
             yield break;
         }
 
-        protected NhibernateConfigurator()
+        protected NhibernateConfigurator(bool mapDtoAssembly)
         {
-            var assembliesToMap = GetAssembliesToMap();
+            var assembliesToMap = GetAssembliesToMap(mapDtoAssembly);
             var includeBaseTypes = GetIncludeBaseTypes();
             var ignoreBaseTypes = GetIgnoreBaseTypes();
             var discriminatedTypes = GetDiscriminatedTypes();

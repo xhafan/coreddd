@@ -16,25 +16,23 @@ namespace EmailMaker.Infrastructure
 {
     public class EmailMakerNhibernateConfigurator : NhibernateConfigurator
     {
-        private readonly bool _mapDtoAssembly = true;
-
         public EmailMakerNhibernateConfigurator()
+            : this(true)
+        {
+        }
+
+        public EmailMakerNhibernateConfigurator(bool mapDtoAssembly)
+            : base(mapDtoAssembly)
         {
 #if(DEBUG)
             NHibernateProfiler.Initialize();
 #endif
         }
 
-        public EmailMakerNhibernateConfigurator(bool mapDtoAssembly)
-            : this()
-        {
-            _mapDtoAssembly = mapDtoAssembly;
-        }
-
-        protected override Assembly[] GetAssembliesToMap()
+        protected override Assembly[] GetAssembliesToMap(bool mapDtoAssembly)
         {
             var assembliesToMap = new List<Assembly> { typeof(Email).Assembly, typeof(EmailAutoMap).Assembly };
-            if (_mapDtoAssembly) assembliesToMap.Add(typeof(EmailDto).Assembly);
+            if (mapDtoAssembly) assembliesToMap.Add(typeof(EmailDto).Assembly);
             return assembliesToMap.ToArray();
         }
 
