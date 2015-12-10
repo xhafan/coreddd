@@ -33,7 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,7 +62,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /D $(TargetPath) $(SolutionDir)\NugetPackages\$(ProjectName)\lib\net40</PostBuildEvent>
+    <PostBuildEvent>mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib 2&gt;nul
+mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib\net40 2&gt;nul
+xcopy /Y /D $(TargetPath) $(SolutionDir)\NugetPackages\$(ProjectName)\lib\net40</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
