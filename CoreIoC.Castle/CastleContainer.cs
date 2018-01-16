@@ -26,10 +26,5 @@ namespace CoreIoC.Castle
         {
             return _windsorContainer.ResolveAll<T>();
         }
-
-        public void Release(object instance)
-        {
-            _windsorContainer.Release(instance);
-        }
     }
 }

@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CastleContainers\CastleContainerSetup.cs" />
-    <Compile Include="CastleContainers\when_releasing_service_instance.cs" />
     <Compile Include="CastleContainers\when_resolving_all_services_generic.cs" />
     <Compile Include="CastleContainers\when_resolving_service.cs" />
     <Compile Include="CastleContainers\when_resolving_service_generic.cs" />

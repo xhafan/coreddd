@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="IoCs\when_getting_container_without_initialization.cs" />
     <Compile Include="IoCs\IoCSetup.cs" />
-    <Compile Include="IoCs\when_releasing_service_instance.cs" />
     <Compile Include="IoCs\when_resolving_all_services_generic.cs" />
     <Compile Include="IoCs\when_resolving_service.cs" />
     <Compile Include="IoCs\when_resolving_service_generic.cs" />

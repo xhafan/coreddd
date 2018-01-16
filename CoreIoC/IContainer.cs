@@ -7,6 +7,5 @@ namespace CoreIoC
         object Resolve(Type service);
         T Resolve<T>();
         T[] ResolveAll<T>();
-        void Release(object instance);
     }
 }

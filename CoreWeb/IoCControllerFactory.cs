@@ -14,12 +14,6 @@ namespace CoreWeb
                 return base.GetControllerInstance(requestContext, null);
             }
             return (IController)IoC.Resolve(controllerType);
-        }
-
-        public override void ReleaseController(IController controller)
-        {
-            IoC.Release(controller);
-        }        
+        }       
     }
-
 }

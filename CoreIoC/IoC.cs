@@ -37,10 +37,5 @@ namespace CoreIoC
         {
             return Container.ResolveAll<T>();            
         }
-
-        public static void Release(object instance)
-        {
-            Container.Release(instance);
-        }    
     }
 }
