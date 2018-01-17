@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CoreTest.Extensions;
 using CoreUtils.Extensions;
@@ -11,26 +10,14 @@ namespace EmailMaker.TestHelper.Builders
     {       
         private string _initialHtml = "html";
         private int _nextPartId;
-        private readonly IList<Tuple<int, int>> _variables = new List<Tuple<int, int>>();
+        private readonly IList<(int startIndexOfLastHtmlPart, int length)> _variables = new List<(int startIndexOfLastHtmlPart, int length)>();
         private int _id;
         private string _name = "name";
         private int _userId;
 
-        private int NextPartId
-        {
-            get
-            {
-                return _nextPartId++;
-            }
-        }
+        private int NextPartId => _nextPartId++;
 
-        public static EmailTemplateBuilder New
-        {
-            get
-            {
-                return new EmailTemplateBuilder();
-            }
-        }
+        public static EmailTemplateBuilder New => new EmailTemplateBuilder();
 
         public EmailTemplateBuilder WithInitialHtml(string html)
         {
@@ -40,7 +27,7 @@ namespace EmailMaker.TestHelper.Builders
 
         public EmailTemplateBuilder WithVariable(int startIndexOfLastHtmlPart, int length)
         {
-            _variables.Add(new Tuple<int, int>(startIndexOfLastHtmlPart, length));
+            _variables.Add((startIndexOfLastHtmlPart, length));
             return this;
         }
 
