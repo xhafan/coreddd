@@ -9,13 +9,7 @@ namespace EmailMaker.TestHelper.Builders
         private int _id;
         private string _name;
 
-        public static RecipientBuilder New
-        {
-            get
-            {
-                return new RecipientBuilder();
-            }
-        }
+        public static RecipientBuilder New => new RecipientBuilder();
 
         public RecipientBuilder WithEmailAddress(string emailAddress)
         {

@@ -64,7 +64,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         {
             _email.AssertWasCalled(a => a.EnqueueEmailToBeSent(Arg<string>.Matches(p => p == FromAddress),
                                                           Arg<HashSet<Recipient>>.Matches(p =>
-                                                                                           p.Count() == 2
+                                                                                           p.Count == 2
                                                                                            && p.Any(x => x.EmailAddress == AddressOne && x.Name == NameOne)
                                                                                            && p.Any(x => x.EmailAddress == AddressTwo && x.Name == NameTwo)
                                                                                            ),

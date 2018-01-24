@@ -2,7 +2,7 @@
 {
     public static class Guard
     {
-        static public void Hope(bool condition, string message)
+        public static void Hope(bool condition, string message)
         {
             if (!condition)
             {

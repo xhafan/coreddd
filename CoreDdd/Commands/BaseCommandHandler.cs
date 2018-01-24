@@ -9,7 +9,7 @@ namespace CoreDdd.Commands
 
         protected void RaiseEvent(CommandExecutedArgs eventArgs)
         {
-            CommandExecuted(this, eventArgs);
+            CommandExecuted?.Invoke(this, eventArgs);
         }
     }
 }

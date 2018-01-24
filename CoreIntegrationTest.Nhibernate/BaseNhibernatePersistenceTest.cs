@@ -15,10 +15,7 @@ namespace CoreIntegrationTest.Nhibernate
             return IoC.Resolve<NhibernateUnitOfWork>();
         }
 
-        private NhibernateUnitOfWork NhibernateUnitOfWork
-        {
-            get { return (NhibernateUnitOfWork) UnitOfWork; }
-        }
+        private NhibernateUnitOfWork NhibernateUnitOfWork => (NhibernateUnitOfWork) UnitOfWork;
 
         protected override void GetSessionFromUnitOfWork()
         {

@@ -7,7 +7,7 @@ namespace CoreDdd.Nhibernate.Conventions
     {
         public void Apply(IManyToOneInstance instance)
         {
-            instance.ForeignKey(string.Format("FK_{0}_{1}", instance.EntityType.Name, instance.Property.PropertyType.Name));
+            instance.ForeignKey($"FK_{instance.EntityType.Name}_{instance.Property.PropertyType.Name}");
         }
     }
 }

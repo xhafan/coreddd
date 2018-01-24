@@ -15,14 +15,8 @@ namespace CoreDdd.Tests.Commands
         public class TestCommandHandler : ICommandHandler<TestCommand>
         {
             public bool CommandWasExecuted;
-            public bool EventHandlerWasAssigned
-            {
-                get
-                {
-                    return CommandExecuted != null;
-                }
-            }
-            
+            public bool EventHandlerWasAssigned => CommandExecuted != null;
+
             public void Execute(TestCommand command)
             {
                 CommandWasExecuted = true;

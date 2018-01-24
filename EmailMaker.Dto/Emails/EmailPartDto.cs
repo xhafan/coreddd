@@ -23,7 +23,7 @@
             return Equals((EmailPartDto)obj);
         }
 
-        public override int GetHashCode()
+        public override int GetHashCode() // todo: try improve getting hash code in dtos
         {
             unchecked
             {

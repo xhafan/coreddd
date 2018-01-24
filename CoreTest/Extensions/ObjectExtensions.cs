@@ -4,6 +4,7 @@ using System.Reflection;
 
 namespace CoreTest.Extensions
 {
+    // todo: remove this class - construct object properly using their public methods
     public static class ObjectExtensions
     {
         public static void SetPrivateAttribute(this object obj, string attributeName, object value)

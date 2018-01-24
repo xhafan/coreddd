@@ -12,7 +12,7 @@ namespace CoreWeb.Extensions
         {
             var url = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             var routeValues = RouteBuilder.GetRouteValuesFromExpression(action, false);
-            return url.Content(string.Format("~/{0}/{1}", routeValues["Controller"], routeValues["Action"]));
+            return url.Content($"~/{routeValues["Controller"]}/{routeValues["Action"]}");
         }
     }
 }

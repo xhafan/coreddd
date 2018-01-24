@@ -5,7 +5,7 @@ namespace EmailMaker.Tools
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Choose from the following options:");
             Console.WriteLine("1 Generate database schema sql file");

@@ -6,13 +6,7 @@ namespace EmailMaker.TestHelper.Builders
     {
         private string _password = "password";
 
-        public static UserBuilder New
-        {
-            get
-            {
-                return new UserBuilder();
-            }
-        }
+        public static UserBuilder New => new UserBuilder();
 
         public UserBuilder WithPassword(string password)
         {

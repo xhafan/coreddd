@@ -13,16 +13,13 @@ namespace CoreWeb.ModelBinders
             if (propertyType.IsEnum)
             {
                 var providerValue = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
-                if (null != providerValue)
+                var value = providerValue?.RawValue;
+                if (value != null)
                 {
-                    var value = providerValue.RawValue;
-                    if (null != value)
+                    var valueType = value.GetType();
+                    if (!valueType.IsEnum)
                     {
-                        var valueType = value.GetType();
-                        if (!valueType.IsEnum)
-                        {
-                            return Enum.ToObject(propertyType, value);
-                        }
+                        return Enum.ToObject(propertyType, value);
                     }
                 }
             }
