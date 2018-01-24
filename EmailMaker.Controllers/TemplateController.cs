@@ -96,19 +96,17 @@ namespace EmailMaker.Controllers
             var sb = new StringBuilder();
             emailTemplatePartDtos.Each(part =>
             {
-                if (part.PartType == PartType.Html)
+                switch (part.PartType)
                 {
-                    sb.Append(part.Html);
+                    case PartType.Html:
+                        sb.Append(part.Html);
+                        break;
+                    case PartType.Variable:
+                        sb.Append(part.VariableValue);
+                        break;
+                    default:
+                        throw new EmailMakerException("Unknown part type:" + part.PartType);
                 }
-                else if (part.PartType == PartType.Variable)
-                {
-                    sb.Append(part.VariableValue);
-                }
-                else
-                {
-                    throw new EmailMakerException("Unknown part type:" + part.PartType);
-                }
-
             });
             return sb.ToString();
         }

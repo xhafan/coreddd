@@ -13,19 +13,17 @@ namespace EmailMaker.Service.Handlers
             var sb = new StringBuilder();
             emailParts.Each(part =>
             {
-                if (part is HtmlEmailPart)
+                switch (part)
                 {
-                    sb.Append(((HtmlEmailPart)part).Html);
+                    case HtmlEmailPart htmlEmailPart:
+                        sb.Append(htmlEmailPart.Html);
+                        break;
+                    case VariableEmailPart variableEmailPart:
+                        sb.Append(variableEmailPart.Value);
+                        break;
+                    default:
+                        throw new EmailMakerException("Unknown part type: " + part);
                 }
-                else if (part is VariableEmailPart)
-                {
-                    sb.Append(((VariableEmailPart)part).Value);
-                }
-                else
-                {
-                    throw new EmailMakerException("Unknown part type: " + part);
-                }
-
             });
             return sb.ToString();
         }

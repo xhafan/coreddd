@@ -27,19 +27,16 @@ namespace EmailMaker.Domain.Emails
 
             foreach (var emailTemplatePart in emailTemplate.Parts)
             {
-                if (emailTemplatePart is HtmlEmailTemplatePart)
+                switch (emailTemplatePart)
                 {
-                    var htmlEmailTemplatePart = (HtmlEmailTemplatePart) emailTemplatePart;
-                    _parts.Add(new HtmlEmailPart(htmlEmailTemplatePart.Html));
-                }
-                else if (emailTemplatePart is VariableEmailTemplatePart)
-                {
-                    var variableEmailTemplatePart = (VariableEmailTemplatePart)emailTemplatePart;
-                    _parts.Add(new VariableEmailPart(variableEmailTemplatePart.VariableType, variableEmailTemplatePart.Value));                    
-                }
-                else
-                {
-                    throw new EmailMakerException("Unsupported email template part: " + emailTemplatePart.GetType());
+                    case HtmlEmailTemplatePart htmlEmailTemplatePart:
+                        _parts.Add(new HtmlEmailPart(htmlEmailTemplatePart.Html));
+                        break;
+                    case VariableEmailTemplatePart variableEmailTemplatePart:
+                        _parts.Add(new VariableEmailPart(variableEmailTemplatePart.VariableType, variableEmailTemplatePart.Value));
+                        break;
+                    default:
+                        throw new EmailMakerException("Unsupported email template part: " + emailTemplatePart.GetType());
                 }
             }           
         }
@@ -48,8 +45,8 @@ namespace EmailMaker.Domain.Emails
         public virtual string FromAddress { get; protected set; }
         public virtual string Subject { get; protected set; }
         public virtual EmailState State { get; protected set; }
-        public virtual IEnumerable<EmailPart> Parts { get { return _parts; } }
-        public virtual IEnumerable<EmailRecipient> EmailRecipients { get { return _emailRecipients; } }
+        public virtual IEnumerable<EmailPart> Parts => _parts;
+        public virtual IEnumerable<EmailRecipient> EmailRecipients => _emailRecipients;
 
         public virtual void UpdateVariables(EmailDto emailDto)
         {

@@ -60,17 +60,16 @@ namespace EmailMaker.IntegrationTests.DatabaseTests.Domain.EmailTemplates
                 var part = _emailTemplate.Parts.First(x => x.Id == retrievedPart.Id);
                 retrievedPart.Position.ShouldBe(position++);
 
-                if (retrievedPart is HtmlEmailTemplatePart)
+                switch (retrievedPart)
                 {
-                    var htmlRetrievedPart = (HtmlEmailTemplatePart)retrievedPart;
-                    var htmlPart = (HtmlEmailTemplatePart)part;
-                    htmlRetrievedPart.Html.ShouldBe(htmlPart.Html);                    
-                }
-                else if (retrievedPart is VariableEmailTemplatePart)
-                {
-                    var variableRetrievedPart = (VariableEmailTemplatePart)retrievedPart;
-                    var variablePart = (VariableEmailTemplatePart)part;
-                    variableRetrievedPart.Value.ShouldBe(variablePart.Value);
+                    case HtmlEmailTemplatePart htmlRetrievedPart:
+                        var htmlPart = (HtmlEmailTemplatePart)part;
+                        htmlRetrievedPart.Html.ShouldBe(htmlPart.Html);
+                        break;
+                    case VariableEmailTemplatePart variableRetrievedPart:
+                        var variablePart = (VariableEmailTemplatePart)part;
+                        variableRetrievedPart.Value.ShouldBe(variablePart.Value);
+                        break;
                 }                
             }
         }

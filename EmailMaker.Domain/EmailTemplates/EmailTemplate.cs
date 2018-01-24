@@ -13,10 +13,7 @@ namespace EmailMaker.Domain.EmailTemplates
     {
         public virtual string Name { get; protected set; }
         private readonly IList<EmailTemplatePart> _parts = new List<EmailTemplatePart>();
-        public virtual IEnumerable<EmailTemplatePart> Parts
-        {
-            get { return _parts; }
-        }
+        public virtual IEnumerable<EmailTemplatePart> Parts => _parts;
         public virtual int UserId { get; protected set; }
 
         protected EmailTemplate() {}
@@ -26,12 +23,6 @@ namespace EmailMaker.Domain.EmailTemplates
             Name = null;
             _parts.Add(new HtmlEmailTemplatePart());
             UserId = userId;        
-        }
-
-        private void _SetHtml(int htmlTemplatePartId, string html)
-        {
-            var htmlTemplatePart = _GetHtmlPart(htmlTemplatePartId);
-            htmlTemplatePart.SetHtml(html);
         }
 
         public virtual void CreateVariable(int htmlTemplatePartId, int htmlStartIndex, int length)
@@ -80,30 +71,35 @@ namespace EmailMaker.Domain.EmailTemplates
             return Parts.First(x => x.Id == partId);
         }
 
-        private void _SetVariableValue(int variablePartId, string value)
-        {
-            _GetVariablePart(variablePartId).SetValue(value);
-        }
-
         public virtual void Update(EmailTemplateDto emailTemplateDto)
         {
             Guard.Hope(Id == emailTemplateDto.EmailTemplateId, "Invalid email template id");
             emailTemplateDto.Parts.Each(part =>
             {
-                if (part.PartType == PartType.Html)
+                switch (part.PartType)
                 {
-                    _SetHtml(part.PartId, part.Html);
-                }
-                else if (part.PartType == PartType.Variable)
-                {
-                    _SetVariableValue(part.PartId, part.VariableValue);
-                }
-                else
-                {
-                    throw new EmailMakerException("Unknown email template part type: " + part.PartType);
+                    case PartType.Html:
+                        SetHtml(part.PartId, part.Html);
+                        break;
+                    case PartType.Variable:
+                        SetVariableValue(part.PartId, part.VariableValue);
+                        break;
+                    default:
+                        throw new EmailMakerException("Unknown email template part type: " + part.PartType);
                 }
             });
             Name = emailTemplateDto.Name;
+
+            void SetHtml(int htmlTemplatePartId, string html)
+            {
+                var htmlTemplatePart = _GetHtmlPart(htmlTemplatePartId);
+                htmlTemplatePart.SetHtml(html);
+            }
+
+            void SetVariableValue(int variablePartId, string value)
+            {
+                _GetVariablePart(variablePartId).SetValue(value);
+            }
         }
     }
 }
