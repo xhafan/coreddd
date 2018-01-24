@@ -8,37 +8,19 @@
         public string Html { get; set; }
         public string VariableValue { get; set; }
 
-        public bool Equals(EmailPartDto other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return other.EmailId == EmailId && other.PartId == PartId;
-        }
-
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof(EmailPartDto)) return false;
-            return Equals((EmailPartDto)obj);
+            return obj is EmailPartDto dto &&
+                   EmailId == dto.EmailId &&
+                   PartId == dto.PartId;
         }
 
-        public override int GetHashCode() // todo: try improve getting hash code in dtos
+        public override int GetHashCode()
         {
-            unchecked
-            {
-                return (EmailId * 397) ^ PartId;
-            }
-        }
-
-        public static bool operator ==(EmailPartDto left, EmailPartDto right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(EmailPartDto left, EmailPartDto right)
-        {
-            return !Equals(left, right);
+            var hashCode = 1230688051;
+            hashCode = hashCode * -1521134295 + EmailId.GetHashCode();
+            hashCode = hashCode * -1521134295 + PartId.GetHashCode();
+            return hashCode;
         }
     }
 }
