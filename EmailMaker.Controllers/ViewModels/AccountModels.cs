@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
+using Compare=System.ComponentModel.DataAnnotations.CompareAttribute;
 
 namespace EmailMaker.Controllers.ViewModels
 {
