@@ -76,7 +76,6 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <PropertyGroup>
     <PostBuildEvent>mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib 2&gt;nul
 mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib\net40 2&gt;nul

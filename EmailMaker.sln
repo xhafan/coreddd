@@ -1,16 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{39EEE678-E12E-4BFE-AB64-66A11AC4D074}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BAA07007-8BEA-4DA9-8FC1-2266C2D53DCE}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\nuget.exe = .nuget\nuget.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Domain", "EmailMaker.Domain\EmailMaker.Domain.csproj", "{09698B3F-4CF5-49DC-BA64-27790733B2D2}"
 EndProject
@@ -46,9 +39,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Tests", "CoreDdd.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTest", "CoreTest\CoreTest.csproj", "{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIoC", "CoreIoC\CoreIoC.csproj", "{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIoC", "CoreIoC\CoreIoC.csproj", "{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreUtils", "CoreUtils\CoreUtils.csproj", "{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreUtils", "CoreUtils\CoreUtils.csproj", "{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIoC.Tests", "CoreIoC.Tests\CoreIoC.Tests.csproj", "{FA736D74-65BA-41F1-9661-BAA6C3727115}"
 EndProject
@@ -68,7 +61,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreUtils.Tests", "CoreUtil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWeb", "CoreWeb\CoreWeb.csproj", "{84703BD6-F546-4EEE-BB43-18201771C3B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIoC.Castle", "CoreIoC.Castle\CoreIoC.Castle.csproj", "{568EB03F-98D6-4AA2-80DD-5A8D2B8AEFA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIoC.Castle", "CoreIoC.Castle\CoreIoC.Castle.csproj", "{568EB03F-98D6-4AA2-80DD-5A8D2B8AEFA2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIoC.Castle.Tests", "CoreIoC.Castle.Tests\CoreIoC.Castle.Tests.csproj", "{E8642B0C-EDFC-46FB-8118-BB800903A1BC}"
 EndProject
