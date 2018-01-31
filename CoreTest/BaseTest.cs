@@ -4,6 +4,7 @@ using Rhino.Mocks;
 
 namespace CoreTest
 {
+    // todo: rename this to BaseMockingTest, or better implement these as extension methods
     public abstract class BaseTest
     {
         protected T Stub<T>(params object[] argumentsForConstructor) where T : class

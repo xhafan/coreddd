@@ -4,6 +4,7 @@ using Rhino.Mocks;
 
 namespace CoreTest
 {
+    // todo: reevaluate if this is still needed
     public class BaseDomainEventTest<TDomainEvent> : BaseTest, IDomainEventHandler<TDomainEvent> where TDomainEvent : IDomainEvent
     {
         protected TDomainEvent RaisedDomainEvent;

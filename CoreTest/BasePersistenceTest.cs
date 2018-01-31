@@ -7,6 +7,7 @@ using NUnit.Framework;
 
 namespace CoreTest
 {
+    // todo: move this out of this assembly - this is related to DB persistence and does not have to be here
     public abstract class BasePersistenceTest
     {
         protected IUnitOfWork UnitOfWork;
