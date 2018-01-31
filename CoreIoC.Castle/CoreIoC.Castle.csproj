@@ -1,9 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net45;netstandard1.6</TargetFrameworks>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>3.0.0</Version>
+    <Authors>xhafan</Authors>
+    <Company>xhafan</Company>
+    <Product />
+    <Description>Castle IoC for CoreDdd library. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library</Description>
+    <PackageTags>CoreDdd castle IoC DI</PackageTags>
+    <PackageProjectUrl>http://xhafan.com/blog/</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,9 +21,5 @@
   <ItemGroup>
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib 2&gt;nul&#xD;&#xA;mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib\netstandard1.6 2&gt;nul&#xD;&#xA;xcopy /Y /D $(TargetPath) $(SolutionDir)\NugetPackages\$(ProjectName)\lib\netstandard1.6" />
-  </Target>
 
 </Project>
