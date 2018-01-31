@@ -9,6 +9,7 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
+    // todo: implement some conventions as opt-in
     public class HasManyForDomainConvention : IHasManyConvention
     {
         public void Apply(IOneToManyCollectionInstance instance)
