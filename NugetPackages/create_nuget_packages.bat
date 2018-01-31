@@ -13,9 +13,6 @@ cd ..\CoreDdd.Register.Castle
 cd ..\CoreIntegrationTest.Nhibernate
 ..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
 
-cd ..\CoreIoC
-..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
-
 cd ..\CoreIoC.Castle
 ..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
 
