@@ -1,106 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{63E96B9E-20A3-4576-A402-22C6ABA75292}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoreDdd.Nhibernate</RootNamespace>
-    <AssemblyName>CoreDdd.Nhibernate</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
+    <TargetFrameworks>net45</TargetFrameworks>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>3.0.0</Version>
+    <Authors>xhafan</Authors>
+    <Company>xhafan</Company>
+    <Product />
+    <Description>NHibernate persistence for CoreDdd library. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library</Description>
+    <PackageTags>CoreDdd Nhibernate</PackageTags>
+    <PackageProjectUrl>http://xhafan.com/blog/</PackageProjectUrl>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.3.3.4000\lib\Net35\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
+    <PackageReference Include="FluentNHibernate" Version="1.3.0.733" />
+    <PackageReference Include="NHibernate" Version="3.3.3.4000" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
+    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
+    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\CoreSharedAssemblyInfo.cs">
-      <Link>Properties\CoreSharedAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="Configurations\AutomappingConfiguration.cs" />
-    <Compile Include="Configurations\INhibernateConfigurator.cs" />
-    <Compile Include="Configurations\NhibernateConfigurator.cs" />
-    <Compile Include="Conventions\ColumnNullabilityConvention.cs" />
-    <Compile Include="Conventions\CustomForeignKeyConvention.cs" />
-    <Compile Include="Conventions\DateTimeConvention.cs" />
-    <Compile Include="Conventions\DisableLazyLoadForDtosConvention.cs" />
-    <Compile Include="Conventions\ForeignKeyConstraintNameConvention.cs" />
-    <Compile Include="Conventions\HasManyForDomainConvention.cs" />
-    <Compile Include="Conventions\PrimaryKeyConvention.cs" />
-    <Compile Include="Conventions\StringColumnLengthConvention.cs" />
-    <Compile Include="DatabaseSchemaGenerators\DatabaseSchemaGenerator.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\BaseNhibernateQueryHandler.cs" />
-    <Compile Include="Queries\BaseQueryOverHandler.cs" />
-    <Compile Include="Repositories\NhibernateRepository[T,TId].cs" />
-    <Compile Include="Repositories\NhibernateRepository[T].cs" />
-    <Compile Include="UnitOfWorks\NhibernateUnitOfWork.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
-      <Project>{a55844fe-7bba-4fe9-9c12-e233e944ae1e}</Project>
-      <Name>CoreDdd</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
-      <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
-      <Name>CoreIoC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
-      <Project>{c4955667-0fb6-4a9f-b9bc-f671ab4dae69}</Project>
-      <Name>CoreUtils</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib 2&gt;nul
-mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib\net40 2&gt;nul
-xcopy /Y /D $(TargetPath) $(SolutionDir)\NugetPackages\$(ProjectName)\lib\net40</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
