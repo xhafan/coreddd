@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace CoreDdd.Domain
 {    
@@ -16,7 +17,8 @@ namespace CoreDdd.Domain
             {
                 var otherType = other.GetUnproxiedType();
                 var thisType = GetUnproxiedType();
-                return thisType.IsAssignableFrom(otherType) || otherType.IsAssignableFrom(thisType);
+                return thisType.GetTypeInfo().IsAssignableFrom(otherType.GetTypeInfo()) 
+                       || otherType.GetTypeInfo().IsAssignableFrom(thisType.GetTypeInfo());
             }
             return false;
         }
