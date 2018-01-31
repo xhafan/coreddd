@@ -19,8 +19,5 @@ cd ..\CoreNserviceBusTest
 cd ..\CoreTest
 ..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
 
-cd ..\CoreUtils
-..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
-
 cd ..\CoreWeb
 ..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
