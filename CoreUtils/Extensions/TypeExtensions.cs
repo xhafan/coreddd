@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 
 namespace CoreUtils.Extensions
 {
@@ -9,12 +10,12 @@ namespace CoreUtils.Extensions
         {
             while (toCheck != typeof(object) && toCheck != null)
             {
-                var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+                var cur = toCheck.GetTypeInfo().IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
                 if (generic == cur)
                 {
                     return true;
                 }
-                toCheck = toCheck.BaseType;
+                toCheck = toCheck.GetTypeInfo().BaseType;
             }
             return false;
         }        
