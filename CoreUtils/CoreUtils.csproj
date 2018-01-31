@@ -2,7 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
   </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib 2&gt;nul&#xD;&#xA;mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib\netstandard2.0 2&gt;nul&#xD;&#xA;xcopy /Y /D $(TargetPath) $(SolutionDir)\NugetPackages\$(ProjectName)\lib\netstandard2.0" />
+  </Target>
 
 </Project>

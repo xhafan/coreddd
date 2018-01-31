@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,5 +13,9 @@
   <ItemGroup>
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib 2&gt;nul&#xD;&#xA;mkdir $(SolutionDir)\NugetPackages\$(ProjectName)\lib\netstandard1.6 2&gt;nul&#xD;&#xA;xcopy /Y /D $(TargetPath) $(SolutionDir)\NugetPackages\$(ProjectName)\lib\netstandard1.6" />
+  </Target>
 
 </Project>
