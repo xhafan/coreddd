@@ -10,12 +10,20 @@ namespace CoreUtils.Extensions
         {
             while (toCheck != typeof(object) && toCheck != null)
             {
+#if NET40
+                var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+#else
                 var cur = toCheck.GetTypeInfo().IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+#endif
                 if (generic == cur)
                 {
                     return true;
                 }
+#if NET40
+                toCheck = toCheck.BaseType;
+#else
                 toCheck = toCheck.GetTypeInfo().BaseType;
+#endif
             }
             return false;
         }        

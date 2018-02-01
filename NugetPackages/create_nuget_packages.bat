@@ -1,12 +1,3 @@
-cd CoreDdd
-..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
-
-cd ..\CoreDdd.Nhibernate
-..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
-
-cd ..\CoreDdd.Nhibernate.Register.Castle
-..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
-
 cd ..\CoreDdd.Register.Castle
 ..\..\.nuget\nuget.exe pack Package.nuspec -OutputDirectory ..\
 

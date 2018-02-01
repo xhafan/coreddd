@@ -17,8 +17,13 @@ namespace CoreDdd.Domain
             {
                 var otherType = other.GetUnproxiedType();
                 var thisType = GetUnproxiedType();
+#if NET40
+                return thisType.IsAssignableFrom(otherType)
+                       || otherType.IsAssignableFrom(thisType);
+#else
                 return thisType.GetTypeInfo().IsAssignableFrom(otherType.GetTypeInfo()) 
                        || otherType.GetTypeInfo().IsAssignableFrom(thisType.GetTypeInfo());
+#endif
             }
             return false;
         }
