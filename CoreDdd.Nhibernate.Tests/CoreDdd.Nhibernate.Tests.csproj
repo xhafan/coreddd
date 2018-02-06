@@ -1,108 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{453909C1-1F03-4DC6-B12B-ABF4FF25EE69}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoreDdd.Nhibernate.Tests</RootNamespace>
-    <AssemblyName>CoreDdd.Nhibernate.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
+    <TargetFrameworks>net40;net45</TargetFrameworks>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NHibernate.3.3.3.4000\lib\Net35\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Mocks">
-      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
-    </Reference>
-    <Reference Include="Shouldly">
-      <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\portable-net40+sl4+win8+wp8\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="NHibernate" Version="4.1.1.4000" />
+    <PackageReference Include="FluentNHibernate" Version="2.0.3" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\NhibernateRepositorySetup.cs" />
-    <Compile Include="Repositories\when_deleting_aggregate_root_entity.cs" />
-    <Compile Include="Repositories\when_getting_aggregate_root_entity_by_id.cs" />
-    <Compile Include="Repositories\when_loading_aggregate_root_entity_by_id.cs" />
-    <Compile Include="Repositories\when_saving_aggregate_root_entity.cs" />
-    <Compile Include="UnitOfWorks\NhibernateUnitOfWorkSetup.cs" />
-    <Compile Include="UnitOfWorks\NhibernateUnitOfWorkWithCommittedTransactionSetup.cs" />
-    <Compile Include="UnitOfWorks\NhibernateUnitOfWorkWithStartedTransactionSetup.cs" />
-    <Compile Include="UnitOfWorks\when_beginning_transaction.cs" />
-    <Compile Include="UnitOfWorks\when_committing_transaction_with_inactive_session.cs" />
-    <Compile Include="UnitOfWorks\when_committing_with_an_exception.cs" />
-    <Compile Include="UnitOfWorks\when_committing.cs" />
-    <Compile Include="UnitOfWorks\when_constructing.cs" />
-    <Compile Include="UnitOfWorks\when_disposing.cs" />
-    <Compile Include="UnitOfWorks\when_flushing.cs" />
-    <Compile Include="UnitOfWorks\when_getting_session.cs" />
-    <Compile Include="UnitOfWorks\when_rolling_transaction_back.cs" />
-    <Compile Include="UnitOfWorks\when_rolling_transaction_back_with_inactive_session.cs" />
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
+    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
+    <ProjectReference Include="..\CoreTest\CoreTest.csproj" />
+    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
-      <Project>{63e96b9e-20a3-4576-a402-22c6aba75292}</Project>
-      <Name>CoreDdd.Nhibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
-      <Project>{a55844fe-7bba-4fe9-9c12-e233e944ae1e}</Project>
-      <Name>CoreDdd</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreTest\CoreTest.csproj">
-      <Project>{f0bde5c4-8c20-4319-9e87-455f2bd79bbf}</Project>
-      <Name>CoreTest</Name>
-    </ProjectReference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
