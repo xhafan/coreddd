@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net461</TargetFrameworks>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
@@ -11,6 +11,11 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="Castle.Core" Version="4.2.1" />
+    <PackageReference Include="Castle.Windsor" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
     <PackageReference Include="Castle.Core" Version="4.2.1" />
     <PackageReference Include="Castle.Windsor" Version="4.1.0" />
   </ItemGroup>

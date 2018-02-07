@@ -1,18 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFrameworks>net40;net461</TargetFrameworks>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
-    <PackageReference Include="FluentNHibernate" Version="2.0.3" />
-    <PackageReference Include="Iesi.Collections" Version="4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="NHibernate" Version="5.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
+    <PackageReference Include="FluentNHibernate" Version="2.0.3" />
+    <PackageReference Include="Iesi.Collections" Version="4.0.3" />
   </ItemGroup>
 
 </Project>
