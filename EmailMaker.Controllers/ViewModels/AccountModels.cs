@@ -4,12 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
-using Compare=System.ComponentModel.DataAnnotations.CompareAttribute;
+#if NET40
+#else
+using Compare = System.ComponentModel.DataAnnotations.CompareAttribute;
+#endif
 
 namespace EmailMaker.Controllers.ViewModels
 {
 
-    #region Models
+#region Models
 
     public class ChangePasswordModel
     {
@@ -68,17 +71,17 @@ namespace EmailMaker.Controllers.ViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
-    #endregion
+#endregion
 
-    #region Services
+#region Services
     // The FormsAuthentication type is sealed and contains static members, so it is difficult to
     // unit test code that calls its members. The interface and helper class below demonstrate
     // how to create an abstract wrapper around such a type in order to make the AccountController
     // code unit testable.
 
-    #endregion
+#endregion
 
-    #region Validation
+#region Validation
     public static class AccountValidation
     {
         public static string ErrorCodeToString(MembershipCreateStatus createStatus)
@@ -149,6 +152,6 @@ namespace EmailMaker.Controllers.ViewModels
             };
         }
     }
-    #endregion
+#endregion
 
 }

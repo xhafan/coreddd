@@ -1,111 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DB6DC588-8415-4184-8B4B-6485374A2E68}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailMaker.Commands</RootNamespace>
-    <AssemblyName>EmailMaker.Commands</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
+    <TargetFrameworks>net40;net45;net461</TargetFrameworks>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Windsor.4.1.0\lib\net45\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+    <PackageReference Include="Castle.Core" Version="3.2.1" />
+    <PackageReference Include="Castle.Windsor" Version="3.2.1" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CommandHandlerInstaller.cs" />
-    <Compile Include="Handlers\ChangePasswordForUserCommandHandler.cs" />
-    <Compile Include="Handlers\CreateEmailCommandHandler.cs" />
-    <Compile Include="Handlers\CreateEmailTemplateCommandHandler.cs" />
-    <Compile Include="Handlers\CreateUserCommandHandler.cs" />
-    <Compile Include="Handlers\CreateVariableCommandHandler.cs" />
-    <Compile Include="Handlers\DeleteVariableCommandHandler.cs" />
-    <Compile Include="Handlers\EnqueueEmailToBeSentCommandHandler.cs" />
-    <Compile Include="Handlers\IRecipientParser.cs" />
-    <Compile Include="Handlers\RecipientParserInstaller.cs" />
-    <Compile Include="Handlers\UpdateEmailVariablesCommandHandler.cs" />
-    <Compile Include="Handlers\SaveEmailTemplateCommandHandler.cs" />
-    <Compile Include="Messages\ChangePasswordForUserCommand.cs" />
-    <Compile Include="Messages\CreateEmailCommand.cs" />
-    <Compile Include="Messages\CreateEmailTemplateCommand.cs" />
-    <Compile Include="Messages\CreateUserCommand.cs" />
-    <Compile Include="Messages\CreateVariableCommand.cs" />
-    <Compile Include="Messages\DeleteVariableCommand.cs" />
-    <Compile Include="Messages\EnqueueEmailToBeSentCommand.cs" />
-    <Compile Include="Handlers\RecipientParser.cs" />
-    <Compile Include="Messages\UpdateEmailVariablesCommand.cs" />
-    <Compile Include="Messages\SaveEmailTemplateCommand.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="Castle.Core" Version="4.2.1" />
+    <PackageReference Include="Castle.Windsor" Version="4.1.0" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
-      <Project>{63E96B9E-20A3-4576-A402-22C6ABA75292}</Project>
-      <Name>CoreDdd.Nhibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
-      <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
-      <Name>CoreDdd</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
-      <Project>{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}</Project>
-      <Name>CoreUtils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
-      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
-      <Name>EmailMaker.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Dto\EmailMaker.Dtos.csproj">
-      <Project>{9EC89380-5186-450A-BFCE-A08CF74BE535}</Project>
-      <Name>EmailMaker.Dtos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Queries\EmailMaker.Queries.csproj">
-      <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
-      <Name>EmailMaker.Queries</Name>
-    </ProjectReference>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="Castle.Core" Version="4.2.1" />
+    <PackageReference Include="Castle.Windsor" Version="4.1.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
+    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
+    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj" />
+    <ProjectReference Include="..\EmailMaker.Dto\EmailMaker.Dtos.csproj" />
+    <ProjectReference Include="..\EmailMaker.Queries\EmailMaker.Queries.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

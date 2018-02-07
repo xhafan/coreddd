@@ -1,159 +1,63 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{10790F2C-1370-4050-A0BF-7B0D4B509AF3}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailMaker.IntegrationTests</RootNamespace>
-    <AssemblyName>EmailMaker.IntegrationTests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
+    <TargetFrameworks>net40;net45;net461</TargetFrameworks>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Windsor.4.1.0\lib\net45\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.3.1.4000\lib\Net35\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.3.3.4000\lib\Net35\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Shouldly">
-      <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+    <PackageReference Include="Castle.Core" Version="3.2.1" />
+    <PackageReference Include="Castle.Windsor" Version="3.2.1" />
+    <PackageReference Include="NHibernate" Version="4.1.1.4000" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DatabaseTests\BaseEmailMakerPersistenceTest.cs" />
-    <Compile Include="DatabaseTests\BaseEmailMakerSimplePersistenceTest.cs" />
-    <Compile Include="DatabaseTests\Domain\Emails\when_persisting_email.cs" />
-    <Compile Include="DatabaseTests\Domain\Emails\when_persisting_email_with_recipients.cs" />
-    <Compile Include="DatabaseTests\Domain\EmailTemplates\when_persisting_email_template.cs" />
-    <Compile Include="DatabaseTests\Domain\EmailTemplates\when_persisting_email_template_while_creating_and_deleting_variables.cs" />
-    <Compile Include="DatabaseTests\Domain\Users\when_persisting_user.cs" />
-    <Compile Include="DatabaseTests\EmailMakerAggregateRootTypesToClearProvider.cs" />
-    <Compile Include="DatabaseTests\Queries\when_querying_all_email_template_details.cs" />
-    <Compile Include="DatabaseTests\Queries\when_querying_email.cs" />
-    <Compile Include="DatabaseTests\Queries\when_querying_email_parts.cs" />
-    <Compile Include="DatabaseTests\Queries\when_querying_email_template.cs" />
-    <Compile Include="DatabaseTests\Queries\when_querying_email_template_parts.cs" />
-    <Compile Include="DatabaseTests\Queries\when_querying_email_variable_parts.cs" />
-    <Compile Include="DatabaseTests\Queries\when_querying_existing_recipients.cs" />
-    <Compile Include="DatabaseTests\Queries\when_querying_for_user_details_by_emailaddress.cs" />
-    <Compile Include="RunOncePerTestRun.cs" />
-    <Compile Include="DatabaseTests\when_generating_emailmaker_database_schema.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="Castle.Core" Version="4.2.1" />
+    <PackageReference Include="Castle.Windsor" Version="4.1.0" />
+    <PackageReference Include="NHibernate" Version="4.1.1.4000" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CoreDdd.Nhibernate.Register.Castle\CoreDdd.Nhibernate.Register.Castle.csproj">
-      <Project>{17d2da72-caca-4adf-8068-5598090cf563}</Project>
-      <Name>CoreDdd.Nhibernate.Register.Castle</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj">
-      <Project>{63e96b9e-20a3-4576-a402-22c6aba75292}</Project>
-      <Name>CoreDdd.Nhibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj">
-      <Project>{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}</Project>
-      <Name>CoreDdd</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreIntegrationTest.Nhibernate\CoreIntegrationTest.Nhibernate.csproj">
-      <Project>{3D97C62D-6FFB-4A6A-951F-257CD25E4816}</Project>
-      <Name>CoreIntegrationTest.Nhibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj">
-      <Project>{568EB03F-98D6-4AA2-80DD-5A8D2B8AEFA2}</Project>
-      <Name>CoreIoC.Castle</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj">
-      <Project>{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}</Project>
-      <Name>CoreIoC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreTest\CoreTest.csproj">
-      <Project>{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}</Project>
-      <Name>CoreTest</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj">
-      <Project>{c4955667-0fb6-4a9f-b9bc-f671ab4dae69}</Project>
-      <Name>CoreUtils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj">
-      <Project>{09698B3F-4CF5-49DC-BA64-27790733B2D2}</Project>
-      <Name>EmailMaker.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Dto\EmailMaker.Dtos.csproj">
-      <Project>{9EC89380-5186-450A-BFCE-A08CF74BE535}</Project>
-      <Name>EmailMaker.Dtos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Infrastructure\EmailMaker.Infrastructure.csproj">
-      <Project>{4EC67C85-CA58-4ECC-BDAA-836A67C030C5}</Project>
-      <Name>EmailMaker.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.Queries\EmailMaker.Queries.csproj">
-      <Project>{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}</Project>
-      <Name>EmailMaker.Queries</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmailMaker.TestHelper\EmailMaker.TestHelper.csproj">
-      <Project>{E1F1BD03-EC27-4AE8-8021-4580560A0E29}</Project>
-      <Name>EmailMaker.TestHelper</Name>
-    </ProjectReference>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="Castle.Core" Version="4.2.1" />
+    <PackageReference Include="Castle.Windsor" Version="4.1.0" />
+    <PackageReference Include="NHibernate" Version="5.0.3" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="App.config" />
-    <Content Include="..\EmailMaker.Website\hibernate.cfg.xml">
-      <Link>hibernate.cfg.xml</Link>
+    <Content Include="..\EmailMaker.Website\hibernate.cfg.xml" Link="hibernate.cfg.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="connectionStrings.config">
-      <SubType>Designer</SubType>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Iesi.Collections" Version="4.0.3" />
+    <PackageReference Include="NUnit" Version="2.6.1" />
+    <PackageReference Include="Shouldly" Version="1.1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.Nhibernate.Register.Castle\CoreDdd.Nhibernate.Register.Castle.csproj" />
+    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
+    <ProjectReference Include="..\CoreIntegrationTest.Nhibernate\CoreIntegrationTest.Nhibernate.csproj" />
+    <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj" />
+    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
+    <ProjectReference Include="..\CoreTest\CoreTest.csproj" />
+    <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
+    <ProjectReference Include="..\EmailMaker.Domain\EmailMaker.Domain.csproj" />
+    <ProjectReference Include="..\EmailMaker.Dto\EmailMaker.Dtos.csproj" />
+    <ProjectReference Include="..\EmailMaker.Infrastructure\EmailMaker.Infrastructure.csproj" />
+    <ProjectReference Include="..\EmailMaker.Queries\EmailMaker.Queries.csproj" />
+    <ProjectReference Include="..\EmailMaker.TestHelper\EmailMaker.TestHelper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.config" />
+    <None Update="connectionStrings.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
