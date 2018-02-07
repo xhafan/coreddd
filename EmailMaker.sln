@@ -5,71 +5,71 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{39EEE678-E12E-4BFE-AB64-66A11AC4D074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Domain", "EmailMaker.Domain\EmailMaker.Domain.csproj", "{09698B3F-4CF5-49DC-BA64-27790733B2D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Domain", "EmailMaker.Domain\EmailMaker.Domain.csproj", "{09698B3F-4CF5-49DC-BA64-27790733B2D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Website", "EmailMaker.Website\EmailMaker.Website.csproj", "{BA9916C7-48D4-4824-A4ED-2D3FEF5CA9F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Controllers", "EmailMaker.Controllers\EmailMaker.Controllers.csproj", "{A34ED149-1B63-44AC-B72A-A81C5FD42190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Controllers", "EmailMaker.Controllers\EmailMaker.Controllers.csproj", "{A34ED149-1B63-44AC-B72A-A81C5FD42190}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.TestHelper", "EmailMaker.TestHelper\EmailMaker.TestHelper.csproj", "{E1F1BD03-EC27-4AE8-8021-4580560A0E29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.TestHelper", "EmailMaker.TestHelper\EmailMaker.TestHelper.csproj", "{E1F1BD03-EC27-4AE8-8021-4580560A0E29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Queries", "EmailMaker.Queries\EmailMaker.Queries.csproj", "{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Queries", "EmailMaker.Queries\EmailMaker.Queries.csproj", "{B6CA3CBC-8ABD-4CCC-8E38-44D624F2174B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Commands", "EmailMaker.Commands\EmailMaker.Commands.csproj", "{DB6DC588-8415-4184-8B4B-6485374A2E68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Commands", "EmailMaker.Commands\EmailMaker.Commands.csproj", "{DB6DC588-8415-4184-8B4B-6485374A2E68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Messages", "EmailMaker.Messages\EmailMaker.Messages.csproj", "{5FF5C804-51CA-4D7F-81F5-DEE992EA018C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Messages", "EmailMaker.Messages\EmailMaker.Messages.csproj", "{5FF5C804-51CA-4D7F-81F5-DEE992EA018C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Service", "EmailMaker.Service\EmailMaker.Service.csproj", "{3B63F0F4-1E42-4139-A0A9-1C8B3FED61FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Service", "EmailMaker.Service\EmailMaker.Service.csproj", "{3B63F0F4-1E42-4139-A0A9-1C8B3FED61FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.UnitTests", "EmailMaker.UnitTests\EmailMaker.UnitTests.csproj", "{B157AFD0-7402-436D-9156-B9D62854D77C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.UnitTests", "EmailMaker.UnitTests\EmailMaker.UnitTests.csproj", "{B157AFD0-7402-436D-9156-B9D62854D77C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Infrastructure", "EmailMaker.Infrastructure\EmailMaker.Infrastructure.csproj", "{4EC67C85-CA58-4ECC-BDAA-836A67C030C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Infrastructure", "EmailMaker.Infrastructure\EmailMaker.Infrastructure.csproj", "{4EC67C85-CA58-4ECC-BDAA-836A67C030C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Core", "EmailMaker.Core\EmailMaker.Core.csproj", "{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Core", "EmailMaker.Core\EmailMaker.Core.csproj", "{AC889EB1-719B-4FFD-B179-514F0AC5F5CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.IntegrationTests", "EmailMaker.IntegrationTests\EmailMaker.IntegrationTests.csproj", "{10790F2C-1370-4050-A0BF-7B0D4B509AF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.IntegrationTests", "EmailMaker.IntegrationTests\EmailMaker.IntegrationTests.csproj", "{10790F2C-1370-4050-A0BF-7B0D4B509AF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Dtos", "EmailMaker.Dto\EmailMaker.Dtos.csproj", "{9EC89380-5186-450A-BFCE-A08CF74BE535}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Dtos", "EmailMaker.Dto\EmailMaker.Dtos.csproj", "{9EC89380-5186-450A-BFCE-A08CF74BE535}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Tools", "EmailMaker.Tools\EmailMaker.Tools.csproj", "{A68D470F-F2A4-4ED3-8A33-3D32934EB6F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Tools", "EmailMaker.Tools\EmailMaker.Tools.csproj", "{A68D470F-F2A4-4ED3-8A33-3D32934EB6F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd", "CoreDdd\CoreDdd.csproj", "{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd", "CoreDdd\CoreDdd.csproj", "{A55844FE-7BBA-4FE9-9C12-E233E944AE1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Tests", "CoreDdd.Tests\CoreDdd.Tests.csproj", "{1043E886-7CE3-41B1-9602-8558B75ACAD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Tests", "CoreDdd.Tests\CoreDdd.Tests.csproj", "{1043E886-7CE3-41B1-9602-8558B75ACAD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTest", "CoreTest\CoreTest.csproj", "{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreTest", "CoreTest\CoreTest.csproj", "{F0BDE5C4-8C20-4319-9E87-455F2BD79BBF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIoC", "CoreIoC\CoreIoC.csproj", "{BFFB3AD8-2EE2-4E6C-99D6-1D8563D696DC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreUtils", "CoreUtils\CoreUtils.csproj", "{C4955667-0FB6-4A9F-B9BC-F671AB4DAE69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIoC.Tests", "CoreIoC.Tests\CoreIoC.Tests.csproj", "{FA736D74-65BA-41F1-9661-BAA6C3727115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIoC.Tests", "CoreIoC.Tests\CoreIoC.Tests.csproj", "{FA736D74-65BA-41F1-9661-BAA6C3727115}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Nhibernate", "CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj", "{63E96B9E-20A3-4576-A402-22C6ABA75292}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Nhibernate", "CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj", "{63E96B9E-20A3-4576-A402-22C6ABA75292}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Nhibernate.Register.Castle", "CoreDdd.Nhibernate.Register.Castle\CoreDdd.Nhibernate.Register.Castle.csproj", "{17D2DA72-CACA-4ADF-8068-5598090CF563}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Nhibernate.Register.Castle", "CoreDdd.Nhibernate.Register.Castle\CoreDdd.Nhibernate.Register.Castle.csproj", "{17D2DA72-CACA-4ADF-8068-5598090CF563}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Nhibernate.Tests", "CoreDdd.Nhibernate.Tests\CoreDdd.Nhibernate.Tests.csproj", "{453909C1-1F03-4DC6-B12B-ABF4FF25EE69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Nhibernate.Tests", "CoreDdd.Nhibernate.Tests\CoreDdd.Nhibernate.Tests.csproj", "{453909C1-1F03-4DC6-B12B-ABF4FF25EE69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Service.Tests", "EmailMaker.Service.Tests\EmailMaker.Service.Tests.csproj", "{0A3294D7-05DD-49E9-9A3E-7D5B530F9FCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Service.Tests", "EmailMaker.Service.Tests\EmailMaker.Service.Tests.csproj", "{0A3294D7-05DD-49E9-9A3E-7D5B530F9FCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreNserviceBusTest", "CoreNserviceBusTest\CoreNserviceBusTest.csproj", "{60E5A375-9CD0-48C8-9620-F0BE12B8D084}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreNserviceBusTest", "CoreNserviceBusTest\CoreNserviceBusTest.csproj", "{60E5A375-9CD0-48C8-9620-F0BE12B8D084}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Register.Castle", "CoreDdd.Register.Castle\CoreDdd.Register.Castle.csproj", "{B8045320-C387-42DD-9486-BAAC52A02022}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Register.Castle", "CoreDdd.Register.Castle\CoreDdd.Register.Castle.csproj", "{B8045320-C387-42DD-9486-BAAC52A02022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreUtils.Tests", "CoreUtils.Tests\CoreUtils.Tests.csproj", "{C782F505-1A93-4DF0-BABE-CA6667AD9255}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreUtils.Tests", "CoreUtils.Tests\CoreUtils.Tests.csproj", "{C782F505-1A93-4DF0-BABE-CA6667AD9255}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWeb", "CoreWeb\CoreWeb.csproj", "{84703BD6-F546-4EEE-BB43-18201771C3B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWeb", "CoreWeb\CoreWeb.csproj", "{84703BD6-F546-4EEE-BB43-18201771C3B0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIoC.Castle", "CoreIoC.Castle\CoreIoC.Castle.csproj", "{568EB03F-98D6-4AA2-80DD-5A8D2B8AEFA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIoC.Castle.Tests", "CoreIoC.Castle.Tests\CoreIoC.Castle.Tests.csproj", "{E8642B0C-EDFC-46FB-8118-BB800903A1BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIoC.Castle.Tests", "CoreIoC.Castle.Tests\CoreIoC.Castle.Tests.csproj", "{E8642B0C-EDFC-46FB-8118-BB800903A1BC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3CA39745-F560-43DC-98C2-D009E3B1060E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIntegrationTest.Nhibernate", "CoreIntegrationTest.Nhibernate\CoreIntegrationTest.Nhibernate.csproj", "{3D97C62D-6FFB-4A6A-951F-257CD25E4816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIntegrationTest.Nhibernate", "CoreIntegrationTest.Nhibernate\CoreIntegrationTest.Nhibernate.csproj", "{3D97C62D-6FFB-4A6A-951F-257CD25E4816}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMaker.Domain.NhibernateMapping", "EmailMaker.Domain.NhibernateMapping\EmailMaker.Domain.NhibernateMapping.csproj", "{02D6DAB6-D492-4DAF-A8C2-42D7C3FBB4A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Domain.NhibernateMapping", "EmailMaker.Domain.NhibernateMapping\EmailMaker.Domain.NhibernateMapping.csproj", "{02D6DAB6-D492-4DAF-A8C2-42D7C3FBB4A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
