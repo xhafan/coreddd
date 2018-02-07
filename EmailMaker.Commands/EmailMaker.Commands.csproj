@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Iesi.Collections" Version="4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
