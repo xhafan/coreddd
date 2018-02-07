@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EmailMaker.Service": {
+      "commandName": "Executable",
+      "executablePath": ".\\bin\\Debug\\net40\\NServiceBus.Host.exe"
+    }
+  }
+}
