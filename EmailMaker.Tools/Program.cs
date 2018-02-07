@@ -12,7 +12,7 @@ namespace EmailMaker.Tools
             var line = Console.ReadLine();
             if (line == "1")
             {
-                new EmailMakerDatabaseSchemaGenerator(@"..\..\..\EmailMaker.Database\EmailMaker_generated_database_schema.sql").Generate();
+                new EmailMakerDatabaseSchemaGenerator(@"..\..\..\..\EmailMaker.Database\EmailMaker_generated_database_schema.sql").Generate();
                 Console.WriteLine("Database schema sql file has been generated");
             }
         }
