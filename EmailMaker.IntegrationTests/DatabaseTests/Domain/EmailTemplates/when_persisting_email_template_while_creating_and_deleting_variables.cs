@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using CoreIntegrationTest.Nhibernate;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
@@ -7,7 +8,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.Domain.EmailTemplates
 {
     [TestFixture]
-    public class when_persisting_email_template_while_creating_and_deleting_variables : BaseEmailMakerPersistenceTest
+    public class when_persisting_email_template_while_creating_and_deleting_variables : BaseNhibernatePersistenceTest
     {
         private EmailTemplate _emailTemplate;
         private EmailTemplate _retrievedEmailTemplate;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CoreIntegrationTest.Nhibernate;
 using EmailMaker.Domain.Users;
 using EmailMaker.Dtos.Users;
 using EmailMaker.Queries.Handlers;
@@ -10,7 +11,7 @@ using Shouldly;
 namespace EmailMaker.IntegrationTests.DatabaseTests.Queries
 {
     [TestFixture]
-    public class when_querying_for_user_details_by_emailaddress : BaseEmailMakerSimplePersistenceTest
+    public class when_querying_for_user_details_by_emailaddress : BaseNhibernateSimplePersistenceTest
     {
         private User _user;
         private IEnumerable<UserDto>  _results;

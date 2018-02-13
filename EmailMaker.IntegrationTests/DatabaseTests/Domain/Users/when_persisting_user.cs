@@ -1,11 +1,12 @@
-﻿using EmailMaker.Domain.Users;
+﻿using CoreIntegrationTest.Nhibernate;
+using EmailMaker.Domain.Users;
 using NUnit.Framework;
 using Shouldly;
 
 namespace EmailMaker.IntegrationTests.DatabaseTests.Domain.Users
 {
     [TestFixture]
-    public class when_persisting_user : BaseEmailMakerSimplePersistenceTest
+    public class when_persisting_user : BaseNhibernateSimplePersistenceTest
     {
         private const string FirstName = "first name";
         private const string LastName = "last name";

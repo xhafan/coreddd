@@ -1,7 +1,6 @@
 ﻿using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.UnitOfWorks;
 using CoreIoC;
-using CoreTest;
 using NHibernate;
 
 namespace CoreIntegrationTest.Nhibernate
