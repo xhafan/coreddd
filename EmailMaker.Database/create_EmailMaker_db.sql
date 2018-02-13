@@ -17,5 +17,7 @@ end
 
 create database EmailMaker
 go
+alter database EmailMaker SET READ_COMMITTED_SNAPSHOT ON
+go
 use EmailMaker;  
 go    

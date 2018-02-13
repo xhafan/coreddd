@@ -17,5 +17,7 @@ end
 
 create database EmailMakerTest
 go
-use EmailMakerTest;  
+alter database EmailMakerTest SET READ_COMMITTED_SNAPSHOT ON
 go
+use EmailMakerTest;  
+go    
