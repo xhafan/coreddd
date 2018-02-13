@@ -31,7 +31,7 @@ namespace CoreTest
         [TearDown]
         public void TestFixtureTearDown()
         {
-            UnitOfWork.Commit();
+            UnitOfWork.Rollback();
         }
 
         protected abstract IAggregateRootTypesToClearProvider GetAggregateRootTypesToClearProvider();
