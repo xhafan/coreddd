@@ -1,5 +1,5 @@
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 {
@@ -17,7 +17,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
         [Test]
         public void rollback_was_not_called_on_transaction()
         {
-            Transaction.AssertWasNotCalled(x => x.Rollback());
+            A.CallTo(() => Transaction.Rollback()).MustNotHaveHappened();
         }
     }
 }

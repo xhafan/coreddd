@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using Rhino.Mocks;
+﻿using FakeItEasy;
+using NUnit.Framework;
 
 namespace EmailMaker.Service.Tests.UnitOfWorkMessageModules
 {
@@ -9,7 +9,7 @@ namespace EmailMaker.Service.Tests.UnitOfWorkMessageModules
         [Test]
         public void unit_of_work_begins_transaction()
         {
-            UnitOfWork.AssertWasCalled(x => x.BeginTransaction());
+            A.CallTo(() => UnitOfWork.BeginTransaction()).MustHaveHappened();
         }
     }
 }

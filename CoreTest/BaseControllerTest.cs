@@ -1,5 +1,6 @@
 ﻿using CoreDdd.Commands;
 using CoreDdd.Queries;
+using FakeItEasy;
 using NUnit.Framework;
 
 namespace CoreTest
@@ -13,8 +14,8 @@ namespace CoreTest
         [SetUp]
         public virtual void Context()
         {
-            CommandExecutor = Mock<ICommandExecutor>();
-            QueryExecutor = Mock<IQueryExecutor>();
+            CommandExecutor = A.Fake<ICommandExecutor>();
+            QueryExecutor = A.Fake<IQueryExecutor>();
         }
     }
 }

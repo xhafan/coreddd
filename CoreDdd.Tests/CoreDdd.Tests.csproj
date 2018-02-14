@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="2.6.1" />
-    <PackageReference Include="RhinoMocks" Version="3.6.1" />
+    <PackageReference Include="FakeItEasy" Version="4.4.0" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
     <PackageReference Include="Shouldly" Version="3.0.0" />
   </ItemGroup>
 

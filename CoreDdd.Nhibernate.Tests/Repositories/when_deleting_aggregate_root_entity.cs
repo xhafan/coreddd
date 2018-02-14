@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using Rhino.Mocks;
+﻿using FakeItEasy;
+using NUnit.Framework;
 
 namespace CoreDdd.Nhibernate.Tests.Repositories
 {
@@ -17,7 +17,7 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
         [Test]
         public void get_by_id_was_called_on_session()
         {
-            Session.AssertWasCalled(x => x.Delete(Entity));
+            A.CallTo(() => Session.Delete(Entity)).MustHaveHappened();
         }
     }
 }

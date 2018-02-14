@@ -1,5 +1,6 @@
 using CoreTest;
 using EmailMaker.Domain.Emails;
+using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
 
@@ -15,8 +16,8 @@ namespace EmailMaker.UnitTests.Domain.Emails
         [SetUp]
         public void Context()
         {
-            _recipient = Stub<Recipient>();
-            _email = Stub<Email>();
+            _recipient = A.Fake<Recipient>();
+            _email = A.Fake<Email>();
             _emailRecipient = new EmailRecipient(_email, _recipient);
         }
 

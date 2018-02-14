@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Iesi.Collections" Version="4.0.3" />
-    <PackageReference Include="NUnit" Version="2.6.1" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
   </ItemGroup>
 
   <ItemGroup>

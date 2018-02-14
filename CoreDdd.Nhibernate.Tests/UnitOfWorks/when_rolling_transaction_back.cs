@@ -1,5 +1,5 @@
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 using Shouldly;
 
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
@@ -18,19 +18,19 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
         [Test]
         public void rollback_was_called_on_transaction()
         {
-            Transaction.AssertWasCalled(x => x.Rollback());
+            A.CallTo(() => Transaction.Rollback()).MustHaveHappened();
         }
 
         [Test]
         public void transaction_is_disposed()
         {
-            Transaction.AssertWasCalled(x => x.Dispose());
+            A.CallTo(() => Transaction.Dispose()).MustHaveHappened();
         }
 
         [Test]
         public void session_was_disposed()
         {
-            Session.AssertWasCalled(x => x.Dispose());
+            A.CallTo(() => Session.Dispose()).MustHaveHappened();
         }
 
         [Test]

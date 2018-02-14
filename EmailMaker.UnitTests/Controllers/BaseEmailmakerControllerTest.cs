@@ -1,8 +1,8 @@
 using CoreTest;
 using EmailMaker.Dtos.Users;
 using EmailMaker.Queries.Messages;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace EmailMaker.UnitTests.Controllers
 {
@@ -13,8 +13,8 @@ namespace EmailMaker.UnitTests.Controllers
         {
             base.Context();
 
-            QueryExecutor.Stub(x => x.Execute<GetUserDetailsByEmailAddressQuery, UserDto>(Arg<GetUserDetailsByEmailAddressQuery>.Is.Anything))
-                .Return(new[] { new UserDto() });
+            A.CallTo(() => QueryExecutor.Execute<GetUserDetailsByEmailAddressQuery, UserDto>(A<GetUserDetailsByEmailAddressQuery>.That.IsNotNull()))
+                .Returns(new[] { new UserDto() });
         }
     }
 }

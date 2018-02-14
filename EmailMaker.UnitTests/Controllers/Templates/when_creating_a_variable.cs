@@ -1,7 +1,7 @@
 ﻿using EmailMaker.Commands.Messages;
 using EmailMaker.Controllers;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace EmailMaker.UnitTests.Controllers.Templates
 {
@@ -23,7 +23,7 @@ namespace EmailMaker.UnitTests.Controllers.Templates
         [Test]
         public void command_was_executed()
         {
-            CommandExecutor.AssertWasCalled(a => a.Execute(_createVariableCommand));
+            A.CallTo(() => CommandExecutor.Execute(_createVariableCommand)).MustHaveHappened();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CoreDdd.UnitOfWorks;
 using CoreTest;
+using FakeItEasy;
 using NUnit.Framework;
 
 namespace EmailMaker.Service.Tests.UnitOfWorkMessageModules
@@ -12,7 +13,7 @@ namespace EmailMaker.Service.Tests.UnitOfWorkMessageModules
         [SetUp]
         public virtual void Context()
         {
-            UnitOfWork = Mock<IUnitOfWork>();
+            UnitOfWork = A.Fake<IUnitOfWork>();
             Module = new UnitOfWorkMessageModule(UnitOfWork);
 
             Module.HandleBeginMessage();

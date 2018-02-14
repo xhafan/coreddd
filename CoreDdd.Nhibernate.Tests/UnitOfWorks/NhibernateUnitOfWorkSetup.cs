@@ -1,9 +1,9 @@
 ﻿using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreTest;
+using FakeItEasy;
 using NHibernate;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 {
@@ -16,11 +16,14 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
         [SetUp]
         public virtual void Context()
         {
-            Transaction = Mock<ITransaction>();
-            Session = Stub<ISession>().Stubs(x => x.Transaction).Returns(Transaction);
+            Transaction = A.Fake<ITransaction>();
+            Session = A.Fake<ISession>();
+            A.CallTo(() => Session.Transaction).Returns(Transaction);
 
-            var sessionFactory = Stub<ISessionFactory>().Stubs(x => x.OpenSession()).Returns(Session);
-            var nhibernateConfigurator = Stub<INhibernateConfigurator>().Stubs(x => x.GetSessionFactory()).Returns(sessionFactory);
+            var sessionFactory = A.Fake<ISessionFactory>();
+            A.CallTo(() => sessionFactory.OpenSession()).Returns(Session);
+            var nhibernateConfigurator = A.Fake<INhibernateConfigurator>();
+            A.CallTo(() => nhibernateConfigurator.GetSessionFactory()).Returns(sessionFactory);
             
             UnitOfWork = new NhibernateUnitOfWork(nhibernateConfigurator);
         }

@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using Rhino.Mocks;
+﻿using FakeItEasy;
+using NUnit.Framework;
 using Shouldly;
 
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
@@ -16,7 +16,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
         [Test]
         public void begin_transaction_was_called_on_session()
         {
-            Session.AssertWasCalled(x => x.BeginTransaction());
+            A.CallTo(() => Session.BeginTransaction()).MustHaveHappened();
         }
 
         [Test]

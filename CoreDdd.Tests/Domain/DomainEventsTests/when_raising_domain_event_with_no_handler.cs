@@ -2,8 +2,8 @@ using CoreDdd.Domain.Events;
 using CoreIoC;
 using CoreTest;
 using CoreUtils;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 using Shouldly;
 
 namespace CoreDdd.Tests.Domain.DomainEventsTests
@@ -20,8 +20,8 @@ namespace CoreDdd.Tests.Domain.DomainEventsTests
         [SetUp]
         public void Context()
         {
-            var container = Stub<IContainer>();
-            container.Stub(x => x.ResolveAll<IDomainEventHandler<TestDomainEvent>>()).Return(new IDomainEventHandler<TestDomainEvent>[0]);
+            var container = A.Fake<IContainer>();
+            A.CallTo(() => container.ResolveAll<IDomainEventHandler<TestDomainEvent>>()).Returns(new IDomainEventHandler<TestDomainEvent>[0]);
             IoC.Initialize(container);
 
             _exception = Should.Throw<CoreException>(() => DomainEvents.RaiseEvent(new TestDomainEvent()));

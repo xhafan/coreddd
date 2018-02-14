@@ -3,8 +3,8 @@ using System.Linq;
 using CoreDdd.Queries;
 using CoreIoC;
 using CoreTest;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 using Shouldly;
 
 namespace CoreDdd.Tests.Queries
@@ -21,14 +21,14 @@ namespace CoreDdd.Tests.Queries
         [SetUp]
         public void Context()
         {
-            var container = Stub<IContainer>();
+            var container = A.Fake<IContainer>();
             IoC.Initialize(container);
 
-            _testQueryHandler = Mock<IQueryHandler<TestQuery>>();
+            _testQueryHandler = A.Fake<IQueryHandler<TestQuery>>();
             _testQuery = new TestQuery();
-            _testQueryHandler.Expect(a => a.Execute<bool>(Arg<TestQuery>.Matches(p => p == _testQuery))).Return(new[] { true });
+            A.CallTo(() => _testQueryHandler.Execute<bool>(A<TestQuery>.That.Matches(p => p == _testQuery))).Returns(new[] { true });
 
-            container.Stub(x => x.Resolve<IQueryHandler<TestQuery>>()).Return(_testQueryHandler);
+            A.CallTo(() => container.Resolve<IQueryHandler<TestQuery>>()).Returns(_testQueryHandler);
 
             var queryExecutor = new QueryExecutor();
             _result = queryExecutor.Execute<TestQuery, bool>(_testQuery);
@@ -37,7 +37,7 @@ namespace CoreDdd.Tests.Queries
         [Test]
         public void query_was_executed_by_handler()
         {
-            _testQueryHandler.AssertWasCalled(a => a.Execute<bool>(_testQuery));            
+            A.CallTo(() => _testQueryHandler.Execute<bool>(_testQuery)).MustHaveHappened();
         }
 
         [Test]

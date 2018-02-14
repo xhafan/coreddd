@@ -3,8 +3,8 @@ using CoreTest;
 using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Users;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace EmailMaker.UnitTests.Commands.EmailTemplates
 {
@@ -20,9 +20,9 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         [SetUp]
         public void Context()
         {
-            _user = Mock<User>();
-            _userRepository = Stub<IRepository<User>>();
-            _userRepository.Stub(a => a.GetById(UserId)).Return(_user);
+            _user = A.Fake<User>();
+            _userRepository = A.Fake<IRepository<User>>();
+            A.CallTo(() => _userRepository.GetById(UserId)).Returns(_user);
             var handler = new ChangePasswordForUserCommandHandler(_userRepository);
             handler.Execute(new ChangePasswordForUserCommand { UserId = UserId, OldPassword = OldPassword, NewPassword = NewPassword});
         }
@@ -30,7 +30,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         [Test]
         public void password_was_changed()
         {
-            _user.AssertWasCalled(a => a.ChangePassword(OldPassword, NewPassword));
+            A.CallTo(() => _user.ChangePassword(OldPassword, NewPassword)).MustHaveHappened();
         }
 
     }

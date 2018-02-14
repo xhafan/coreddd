@@ -2,8 +2,8 @@
 using CoreDdd.Commands;
 using CoreIoC;
 using CoreTest;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 using Shouldly;
 
 namespace CoreDdd.Tests.Commands
@@ -30,13 +30,13 @@ namespace CoreDdd.Tests.Commands
         [SetUp]
         public void Context()
         {
-            var container = Stub<IContainer>();
+            var container = A.Fake<IContainer>();
             IoC.Initialize(container);
 
             _testCommandHandler = new TestCommandHandler();
             var testCommand = new TestCommand();
 
-            container.Stub(a => a.Resolve<ICommandHandler<TestCommand>>()).Return(_testCommandHandler);
+            A.CallTo(() => container.Resolve<ICommandHandler<TestCommand>>()).Returns(_testCommandHandler);
 
             var commandExecutor = new CommandExecutor();
             commandExecutor.CommandExecuted += (sender, args) => {};

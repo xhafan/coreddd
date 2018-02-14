@@ -1,6 +1,6 @@
 using CoreDdd.Domain.Events;
 using CoreIoC;
-using Rhino.Mocks;
+using FakeItEasy;
 
 namespace CoreTest
 {
@@ -16,8 +16,8 @@ namespace CoreTest
 
         protected BaseDomainEventTest()
         {
-            var container = Stub<IContainer>();
-            container.Stub(x => x.ResolveAll<IDomainEventHandler<TDomainEvent>>()).Return(new[]{this});
+            var container = A.Fake<IContainer>();
+            A.CallTo(() => container.ResolveAll<IDomainEventHandler<TDomainEvent>>()).Returns(new[]{this});
             IoC.Initialize(container);
         }
     }

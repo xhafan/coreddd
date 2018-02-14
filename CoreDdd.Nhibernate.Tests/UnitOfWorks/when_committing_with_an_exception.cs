@@ -1,6 +1,6 @@
 using System;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 using Shouldly;
 
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
@@ -17,7 +17,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
             base.Context();
 
             _exception = new Exception();
-            Transaction.Stub(x => x.Commit()).Throw(_exception);
+            A.CallTo(() => Transaction.Commit()).Throws(_exception);
 
             _thrownException = Should.Throw<Exception>(() => UnitOfWork.Commit());
         }
@@ -25,13 +25,13 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
         [Test]
         public void rollback_was_called_on_transaction()
         {
-            Transaction.AssertWasCalled(x => x.Rollback());
+            A.CallTo(() => Transaction.Rollback()).MustHaveHappened();
         }
 
         [Test]
         public void transaction_was_disposed()
         {
-            Transaction.AssertWasCalled(x => x.Dispose());
+            A.CallTo(() => Transaction.Dispose()).MustHaveHappened();
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
         [Test]
         public void session_was_disposed()
         {
-            Session.AssertWasCalled(x => x.Dispose());
+            A.CallTo(() => Session.Dispose()).MustHaveHappened();
         }
 
         [Test]

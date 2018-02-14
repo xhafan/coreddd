@@ -3,8 +3,8 @@ using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 using Shouldly;
 
 namespace EmailMaker.UnitTests.Commands.EmailTemplates
@@ -19,10 +19,10 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         [SetUp]
         public void Context()
         {
-            _emailRepository = MockRepository.GenerateMock<IRepository<Email>>();
-            _emailTemplateRepository = MockRepository.GenerateStub<IRepository<EmailTemplate>>();
+            _emailRepository = A.Fake<IRepository<Email>>();
+            _emailTemplateRepository = A.Fake<IRepository<EmailTemplate>>();
             const int emailTemplateId = 23;
-            _emailTemplateRepository.Stub(a => a.GetById(emailTemplateId)).Return(new EmailTemplate(123));
+            A.CallTo(() => _emailTemplateRepository.GetById(emailTemplateId)).Returns(new EmailTemplate(123));
 
             var handler = new CreateEmailCommandHandler(_emailRepository, _emailTemplateRepository);
             handler.CommandExecuted += (sender, args) => _eventRaised = true;
@@ -32,7 +32,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         [Test]
         public void email_was_saved()
         {
-            _emailRepository.AssertWasCalled(a => a.Save(Arg<Email>.Is.NotNull));
+            A.CallTo(() => _emailRepository.Save(A<Email>.That.IsNotNull())).MustHaveHappened();
         }
 
         [Test]

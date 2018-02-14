@@ -11,7 +11,7 @@ namespace EmailMaker.PersistenceTests
     [SetUpFixture]
     public class RunOncePerTestRun
     {
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             NhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerThread);
