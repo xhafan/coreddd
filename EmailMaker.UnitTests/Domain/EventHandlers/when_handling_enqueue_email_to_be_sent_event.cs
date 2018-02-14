@@ -2,9 +2,9 @@
 using EmailMaker.Domain.EventHandlers;
 using EmailMaker.Domain.Events.Emails;
 using EmailMaker.Messages;
+using FakeItEasy;
 using NServiceBus;
 using NUnit.Framework;
-using Rhino.Mocks;
 using Shouldly;
 
 namespace EmailMaker.UnitTests.Domain.EventHandlers
@@ -18,7 +18,7 @@ namespace EmailMaker.UnitTests.Domain.EventHandlers
         [SetUp]
         public void Context()
         {
-            _bus = MockRepository.GenerateMock<IBus>();
+            _bus = A.Fake<IBus>();
 
             var evnt = new EmailEnqueuedToBeSentEvent{ EmailId = EmailId };
             var handler = new EmailEnqueuedToBeSentEventHandler(_bus);

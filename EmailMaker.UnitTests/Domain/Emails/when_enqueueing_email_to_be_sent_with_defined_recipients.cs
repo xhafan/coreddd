@@ -2,8 +2,8 @@ using CoreUtils;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;
 using EmailMaker.TestHelper.Builders;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 using Shouldly;
 
 namespace EmailMaker.UnitTests.Domain.Emails
@@ -17,8 +17,8 @@ namespace EmailMaker.UnitTests.Domain.Emails
         public void Context()
         {
             var template = EmailTemplateBuilder.New.Build();
-            var state = MockRepository.GenerateMock<EmailState>();
-            state.Stub(a => a.CanSend).Return(true);
+            var state = A.Fake<EmailState>();
+            A.CallTo(() => state.CanSend).Returns(true);
             var email = new EmailBuilder()
                 .WithEmailTemplate(template)
                 .WithState(state)

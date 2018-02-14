@@ -3,8 +3,8 @@ using System.Net.Mail;
 using Castle.Core.Smtp;
 using EmailMaker.Messages;
 using EmailMaker.Service.Handlers;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace EmailMaker.Service.Tests.Handlers
 {
@@ -23,7 +23,7 @@ namespace EmailMaker.Service.Tests.Handlers
         [SetUp]
         public void Context()
         {
-            _emailSender = MockRepository.GenerateMock<IEmailSender>();
+            _emailSender = A.Fake<IEmailSender>();
             var handler = new SendEmailForEmailRecipientMessageHandler(_emailSender);
             handler.Handle(new SendEmailForEmailRecipientMessage
                                {
@@ -41,9 +41,7 @@ namespace EmailMaker.Service.Tests.Handlers
         [Test]
         public void email_was_sent()
         {
-            _emailSender.AssertWasCalled(a => a.Send(Arg<MailMessage>.Matches(p => 
-                _MatchMailMessage(p)
-                )));        
+            A.CallTo(() => _emailSender.Send(A<MailMessage>.That.Matches(p => _MatchMailMessage(p)))).MustHaveHappened();        
         }
 
         private bool _MatchMailMessage(MailMessage p)

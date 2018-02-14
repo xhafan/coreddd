@@ -2,8 +2,8 @@ using CoreDdd.Domain.Repositories;
 using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Users;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace EmailMaker.UnitTests.Commands.EmailTemplates
 {
@@ -17,7 +17,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         [SetUp]
         public void Context()
         {
-            _userRepository = MockRepository.GenerateMock<IRepository<User>>();
+            _userRepository = A.Fake<IRepository<User>>();
 
             var handler = new CreateUserCommandHandler(_userRepository);
             handler.Execute(new CreateUserCommand { EmailAddress = EmailAddress, Password = Password});
@@ -26,7 +26,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         [Test]
         public void user_was_created()
         {
-            _userRepository.AssertWasCalled(a => a.Save(Arg<User>.Matches(p => p.EmailAddress == EmailAddress && p.Password == Password)));
+            A.CallTo(() => _userRepository.Save(A<User>.That.Matches(p => p.EmailAddress == EmailAddress && p.Password == Password))).MustHaveHappened();
         }
 
     }

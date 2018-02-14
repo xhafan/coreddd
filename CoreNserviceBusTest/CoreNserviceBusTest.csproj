@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FakeItEasy" Version="4.4.0" />
     <PackageReference Include="NServiceBus" Version="3.2.6" />
     <PackageReference Include="RhinoMocks" Version="3.6.1" />
   </ItemGroup>

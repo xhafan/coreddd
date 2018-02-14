@@ -3,8 +3,8 @@ using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Dtos.Emails;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace EmailMaker.UnitTests.Commands.EmailTemplates
 {
@@ -17,11 +17,11 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         [SetUp]
         public void Context()
         {
-            _email = MockRepository.GenerateMock<Email>();
+            _email = A.Fake<Email>();
 
             const int emailId = 23;
-            var emailRepository = MockRepository.GenerateStub<IRepository<Email>>();
-            emailRepository.Stub(a => a.GetById(emailId)).Return(_email);
+            var emailRepository = A.Fake<IRepository<Email>>();
+            A.CallTo(() => emailRepository.GetById(emailId)).Returns(_email);
 
             _emailDto = new EmailDto
                                     {
@@ -38,7 +38,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         [Test]
         public void html_and_variable_values_were_set()
         {
-            _email.AssertWasCalled(a => a.UpdateVariables(_emailDto));
+            A.CallTo(() => _email.UpdateVariables(_emailDto)).MustHaveHappened();
         }
 
     }

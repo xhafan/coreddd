@@ -6,9 +6,9 @@ using EmailMaker.Domain.Emails;
 using EmailMaker.Messages;
 using EmailMaker.Service.Handlers;
 using EmailMaker.TestHelper.Builders;
+using FakeItEasy;
 using NServiceBus;
 using NUnit.Framework;
-using Rhino.Mocks;
 using Shouldly;
 
 namespace EmailMaker.Service.Tests.Handlers
@@ -34,29 +34,29 @@ namespace EmailMaker.Service.Tests.Handlers
         [SetUp]
         public void Context()
         {
-            _email = MockRepository.GenerateMock<Email>();
+            _email = A.Fake<Email>();
             var emailParts = new EmailPart[0];
-            _email.Stub(a => a.Id).Return(EmailId);
-            _email.Stub(a => a.Parts).Return(emailParts);
+            A.CallTo(() => _email.Id).Returns(EmailId);
+            A.CallTo(() => _email.Parts).Returns(emailParts);
 
             _recipientOne = RecipientBuilder.New.WithId(RecipientOneId).WithEmailAddress(RecipientOneEmailAddress).WithName(RecipientOneName).Build();
             _recipientTwo = RecipientBuilder.New.WithId(RecipientTwoId).WithEmailAddress(RecipientTwoEmailAddress).WithName(RecipientTwoName).Build();
-            _email.Stub(a => a.EmailRecipients).Return(new HashSet<EmailRecipient>
-                                                          {
-                                                              new EmailRecipient(_email, _recipientOne),
-                                                              new EmailRecipient(_email, _recipientTwo)
-                                                          });
+            A.CallTo(() => _email.EmailRecipients).Returns(new HashSet<EmailRecipient>
+                                                           {
+                                                               new EmailRecipient(_email, _recipientOne),
+                                                               new EmailRecipient(_email, _recipientTwo)
+                                                           });
 
-            _email.Stub(a => a.FromAddress).Return(FromAddress);
-            _email.Stub(a => a.Subject).Return(Subject);
+            A.CallTo(() => _email.FromAddress).Returns(FromAddress);
+            A.CallTo(() => _email.Subject).Returns(Subject);
 
-            var emailRepository = MockRepository.GenerateStub<IRepository<Email>>();
-            emailRepository.Stub(a => a.GetById(EmailId)).Return(_email);
+            var emailRepository = A.Fake<IRepository<Email>>();
+            A.CallTo(() => emailRepository.GetById(EmailId)).Returns(_email);
 
-            var emailHtmlBuilder = MockRepository.GenerateStub<IEmailHtmlBuilder>();
-            emailHtmlBuilder.Stub(a => a.BuildHtmlEmail(emailParts)).Return(EmailHtml);
+            var emailHtmlBuilder = A.Fake<IEmailHtmlBuilder>();
+            A.CallTo(() => emailHtmlBuilder.BuildHtmlEmail(emailParts)).Returns(EmailHtml);
 
-            _bus = MockRepository.GenerateStub<IBus>();
+            _bus = A.Fake<IBus>();
 
             var handler = new EmailEnqueuedToBeSentEventMessageHandler(emailRepository, emailHtmlBuilder, _bus);
             handler.Handle(new EmailEnqueuedToBeSentEventMessage {EmailId = EmailId});

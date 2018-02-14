@@ -6,8 +6,8 @@ using EmailMaker.Commands.Handlers;
 using EmailMaker.Commands.Messages;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Queries.Messages;
+using FakeItEasy;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace EmailMaker.UnitTests.Commands.EmailTemplates
 {
@@ -28,26 +28,25 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         public void Context()
         {
             const int emailId = 23;
-            _email = MockRepository.GenerateMock<Email>();
-            var emailRepository = MockRepository.GenerateStub<IRepository<Email>>();
-            emailRepository.Stub(a => a.GetById(emailId)).Return(_email);
+            _email = A.Fake<Email>();
+            var emailRepository = A.Fake<IRepository<Email>>();
+            A.CallTo(() => emailRepository.GetById(emailId)).Returns(_email);
 
-            var recipientParser = MockRepository.GenerateStub<IRecipientParser>();
-            recipientParser.Stub(a => a.Parse(Recipients)).Return(new Dictionary<string, string>{{AddressOne, NameOne}, {AddressTwo, NameTwo}});
+            var recipientParser = A.Fake<IRecipientParser>();
+            A.CallTo(() => recipientParser.Parse(Recipients)).Returns(new Dictionary<string, string>{{AddressOne, NameOne}, {AddressTwo, NameTwo}});
 
-            var queryExecutor = MockRepository.GenerateStub<IQueryExecutor>();
-            queryExecutor.Stub(
-                a =>
-                a.Execute<GetExistingRecipientsQuery, Recipient>(
-                    Arg<GetExistingRecipientsQuery>.Matches(p => p.RecipientEmailAddresses.Contains(AddressOne)
+            var queryExecutor = A.Fake<IQueryExecutor>();
+            A.CallTo(() => queryExecutor.
+                    Execute<GetExistingRecipientsQuery, Recipient>(
+                    A<GetExistingRecipientsQuery>.That.Matches(p => p.RecipientEmailAddresses.Contains(AddressOne)
                                                                            &&
                                                                            p.RecipientEmailAddresses.Contains(AddressTwo))))
-                .Return(new[]
+                .Returns(new[]
                             {
                                 new Recipient(AddressOne, NameOne)
                             });
 
-            _recipientRepository = MockRepository.GenerateMock<IRepository<Recipient>>();
+            _recipientRepository = A.Fake<IRepository<Recipient>>();
 
             var handler = new EnqueueEmailToBeSentCommandHandler(emailRepository, recipientParser, queryExecutor, _recipientRepository);
             handler.Execute(new EnqueueEmailToBeSentCommand
@@ -62,20 +61,21 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         [Test]
         public void email_enqued_was_called()
         {
-            _email.AssertWasCalled(a => a.EnqueueEmailToBeSent(Arg<string>.Matches(p => p == FromAddress),
-                                                          Arg<HashSet<Recipient>>.Matches(p =>
+            A.CallTo(() => _email.EnqueueEmailToBeSent(A<string>.That.Matches(p => p == FromAddress),
+                                                       A<HashSet<Recipient>>.That.Matches(p =>
                                                                                            p.Count == 2
                                                                                            && p.Any(x => x.EmailAddress == AddressOne && x.Name == NameOne)
                                                                                            && p.Any(x => x.EmailAddress == AddressTwo && x.Name == NameTwo)
                                                                                            ),
-                                                          Arg<string>.Matches(p => p == Subject)));
+                                                       A<string>.That.Matches(p => p == Subject)
+                )).MustHaveHappened();
         }
 
         [Test]
         public void only_new_recipients_were_created()
         {
-            _recipientRepository.AssertWasCalled(a => a.Save(Arg<Recipient>.Matches(p => p.EmailAddress == AddressTwo && p.Name == NameTwo)));
-            _recipientRepository.AssertWasNotCalled(a => a.Save(Arg<Recipient>.Matches(p => p.EmailAddress == AddressOne && p.Name == NameOne)));
+            A.CallTo(() => _recipientRepository.Save(A<Recipient>.That.Matches(p => p.EmailAddress == AddressTwo && p.Name == NameTwo))).MustHaveHappened();
+            A.CallTo(() => _recipientRepository.Save(A<Recipient>.That.Matches(p => p.EmailAddress == AddressOne && p.Name == NameOne))).MustHaveHappened();
         }
 
     }

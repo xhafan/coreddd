@@ -32,7 +32,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         [Test]
         public void email_was_saved()
         {
-            A.CallTo(() => _emailRepository.Save(A<Email>.That.IsNotNull())).MustHaveHappened();
+            A.CallTo(() => _emailRepository.Save(A<Email>._)).MustHaveHappened();
         }
 
         [Test]
