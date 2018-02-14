@@ -3,7 +3,7 @@ using CoreDdd.UnitOfWorks;
 using CoreUtils.Extensions;
 using NUnit.Framework;
 
-namespace CoreIntegrationTest.Nhibernate
+namespace CorePersistenceTest
 {
     public abstract class BasePersistenceTest
     {

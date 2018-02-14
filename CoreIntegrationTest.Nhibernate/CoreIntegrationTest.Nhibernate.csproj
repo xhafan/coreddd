@@ -24,13 +24,14 @@
 
   <ItemGroup>
     <PackageReference Include="Iesi.Collections" Version="4.0.3" />
+    <PackageReference Include="NUnit" Version="2.6.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
-    <ProjectReference Include="..\CoreTest\CoreTest.csproj" />
+    <ProjectReference Include="..\CorePersistenceTest\CorePersistenceTest.csproj" />
   </ItemGroup>
 
 </Project>

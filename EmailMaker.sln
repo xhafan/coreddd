@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{39EEE678-E12E-4BFE-AB64-66A11AC4D074}"
 EndProject
@@ -70,6 +70,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIntegrationTest.Nhibernate", "CoreIntegrationTest.Nhibernate\CoreIntegrationTest.Nhibernate.csproj", "{3D97C62D-6FFB-4A6A-951F-257CD25E4816}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Domain.NhibernateMapping", "EmailMaker.Domain.NhibernateMapping\EmailMaker.Domain.NhibernateMapping.csproj", "{02D6DAB6-D492-4DAF-A8C2-42D7C3FBB4A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorePersistenceTest", "CorePersistenceTest\CorePersistenceTest.csproj", "{39E85D00-5840-4EC8-A849-8D05C17F4BEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -205,6 +207,10 @@ Global
 		{02D6DAB6-D492-4DAF-A8C2-42D7C3FBB4A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02D6DAB6-D492-4DAF-A8C2-42D7C3FBB4A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02D6DAB6-D492-4DAF-A8C2-42D7C3FBB4A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E85D00-5840-4EC8-A849-8D05C17F4BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E85D00-5840-4EC8-A849-8D05C17F4BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E85D00-5840-4EC8-A849-8D05C17F4BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E85D00-5840-4EC8-A849-8D05C17F4BEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -230,6 +236,7 @@ Global
 		{568EB03F-98D6-4AA2-80DD-5A8D2B8AEFA2} = {3CA39745-F560-43DC-98C2-D009E3B1060E}
 		{E8642B0C-EDFC-46FB-8118-BB800903A1BC} = {39EEE678-E12E-4BFE-AB64-66A11AC4D074}
 		{3D97C62D-6FFB-4A6A-951F-257CD25E4816} = {39EEE678-E12E-4BFE-AB64-66A11AC4D074}
+		{39E85D00-5840-4EC8-A849-8D05C17F4BEB} = {39EEE678-E12E-4BFE-AB64-66A11AC4D074}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8EFCD531-755C-4738-A710-61E0CB7030C6}

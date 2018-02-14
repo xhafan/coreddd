@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net40</TargetFrameworks>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>3.0.0</Version>
+    <Authors>xhafan</Authors>
+    <Company>xhafan</Company>
+    <Product />
+    <Description>Persistence test helpers for CoreDdd library</Description>
+    <PackageTags>CoreDdd persistence test helper</PackageTags>
+    <PackageProjectUrl>http://xhafan.com/blog/</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="2.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
+  </ItemGroup>
+
+</Project>
