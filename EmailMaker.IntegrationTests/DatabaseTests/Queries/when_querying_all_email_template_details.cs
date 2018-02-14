@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CoreIntegrationTest.Nhibernate;
+using CorePersistenceTest.Nhibernate;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Users;
 using EmailMaker.Dtos.EmailTemplates;

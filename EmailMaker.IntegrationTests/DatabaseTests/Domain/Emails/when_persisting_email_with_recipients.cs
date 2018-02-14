@@ -1,5 +1,5 @@
 using System.Linq;
-using CoreIntegrationTest.Nhibernate;
+using CorePersistenceTest.Nhibernate;
 using EmailMaker.Domain.EmailTemplates;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Domain.Emails.EmailStates;

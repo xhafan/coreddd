@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using CoreIntegrationTest.Nhibernate;
+using CorePersistenceTest.Nhibernate;
 using EmailMaker.Domain.Emails;
 using EmailMaker.Queries.Handlers;
 using EmailMaker.Queries.Messages;

@@ -67,11 +67,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIoC.Castle.Tests", "Cor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3CA39745-F560-43DC-98C2-D009E3B1060E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIntegrationTest.Nhibernate", "CoreIntegrationTest.Nhibernate\CoreIntegrationTest.Nhibernate.csproj", "{3D97C62D-6FFB-4A6A-951F-257CD25E4816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorePersistenceTest.Nhibernate", "CorePersistenceTest.Nhibernate\CorePersistenceTest.Nhibernate.csproj", "{3D97C62D-6FFB-4A6A-951F-257CD25E4816}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMaker.Domain.NhibernateMapping", "EmailMaker.Domain.NhibernateMapping\EmailMaker.Domain.NhibernateMapping.csproj", "{02D6DAB6-D492-4DAF-A8C2-42D7C3FBB4A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorePersistenceTest", "CorePersistenceTest\CorePersistenceTest.csproj", "{39E85D00-5840-4EC8-A849-8D05C17F4BEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorePersistenceTest", "CorePersistenceTest\CorePersistenceTest.csproj", "{39E85D00-5840-4EC8-A849-8D05C17F4BEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

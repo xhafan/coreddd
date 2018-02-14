@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net40;net461</TargetFrameworks>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>3.0.0</Version>
+    <Authors>xhafan</Authors>
+    <Company>xhafan</Company>
+    <Product />
+    <Description>Integration test helpers for CoreDdd.Nhibernate library. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library</Description>
+    <PackageTags>CoreDdd Nhibernate test helper</PackageTags>
+    <PackageProjectUrl>http://xhafan.com/blog/</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+    <PackageReference Include="NHibernate" Version="4.1.1.4000" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="NHibernate" Version="5.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Iesi.Collections" Version="4.0.3" />
+    <PackageReference Include="NUnit" Version="2.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
+    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
+    <ProjectReference Include="..\CorePersistenceTest\CorePersistenceTest.csproj" />
+  </ItemGroup>
+
+</Project>

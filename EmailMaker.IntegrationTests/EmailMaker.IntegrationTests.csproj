@@ -41,7 +41,7 @@
     <ProjectReference Include="..\CoreDdd.Nhibernate.Register.Castle\CoreDdd.Nhibernate.Register.Castle.csproj" />
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
-    <ProjectReference Include="..\CoreIntegrationTest.Nhibernate\CoreIntegrationTest.Nhibernate.csproj" />
+    <ProjectReference Include="..\CorePersistenceTest.Nhibernate\CorePersistenceTest.Nhibernate.csproj" />
     <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj" />
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
     <ProjectReference Include="..\CoreTest\CoreTest.csproj" />

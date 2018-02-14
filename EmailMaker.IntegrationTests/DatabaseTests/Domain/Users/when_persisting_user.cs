@@ -1,4 +1,4 @@
-﻿using CoreIntegrationTest.Nhibernate;
+﻿using CorePersistenceTest.Nhibernate;
 using EmailMaker.Domain.Users;
 using NUnit.Framework;
 using Shouldly;
