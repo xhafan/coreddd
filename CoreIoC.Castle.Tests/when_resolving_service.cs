@@ -1,9 +1,10 @@
 ﻿using System;
+using Castle.Windsor;
 using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreIoC.Tests
+namespace CoreIoC.Castle.Tests
 {
     [TestFixture]
     public class when_resolving_service
@@ -11,7 +12,8 @@ namespace CoreIoC.Tests
         private interface IServiceType {}
         private class ServiceType : IServiceType { }
 
-        private IContainer _container;
+        private IWindsorContainer _windsorContainer;
+        private CastleContainer _castleContainer;
         private object _result;
         private ServiceType _serviceType;
         private Type _iServiceType;
@@ -19,14 +21,14 @@ namespace CoreIoC.Tests
         [SetUp]
         public void Context()
         {
-            _container = A.Fake<IContainer>();
-            IoC.Initialize(_container);
+            _windsorContainer = A.Fake<IWindsorContainer>();
+            _castleContainer = new CastleContainer(_windsorContainer);
 
             _serviceType = new ServiceType();
             _iServiceType = typeof(IServiceType);
-            A.CallTo(() => _container.Resolve(_iServiceType)).Returns(_serviceType);
+            A.CallTo(() => _windsorContainer.Resolve(_iServiceType)).Returns(_serviceType);
 
-            _result = IoC.Resolve(_iServiceType);
+            _result = _castleContainer.Resolve(_iServiceType);
         }
 
         [Test]

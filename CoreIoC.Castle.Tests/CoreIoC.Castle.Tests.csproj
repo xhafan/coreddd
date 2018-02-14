@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45</TargetFrameworks>
+    <TargetFrameworks>net40;net45;netcoreapp2.0</TargetFrameworks>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
@@ -15,16 +15,22 @@
     <PackageReference Include="Castle.Windsor" Version="4.1.0" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
+    <PackageReference Include="Castle.Core" Version="4.2.1" />
+    <PackageReference Include="Castle.Windsor" Version="4.1.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+  </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="2.6.1" />
-    <PackageReference Include="RhinoMocks" Version="3.6.1" />
+    <PackageReference Include="FakeItEasy" Version="4.4.0" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
     <PackageReference Include="Shouldly" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj" />
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
-    <ProjectReference Include="..\CoreTest\CoreTest.csproj" />
   </ItemGroup>
 
 </Project>
