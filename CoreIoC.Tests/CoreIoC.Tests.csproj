@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
-    <ProjectReference Include="..\CoreTest\CoreTest.csproj" />
   </ItemGroup>
 
 </Project>
