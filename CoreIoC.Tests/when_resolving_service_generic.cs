@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using Rhino.Mocks;
+﻿using FakeItEasy;
+using NUnit.Framework;
 using Shouldly;
 
 namespace CoreIoC.Tests
@@ -17,11 +17,11 @@ namespace CoreIoC.Tests
         [SetUp]
         public void Context()
         {
-            container = MockRepository.GenerateStub<IContainer>();
+            container = A.Fake<IContainer>();
             IoC.Initialize(container);
 
             _serviceType = new ServiceType();
-            container.Stub(x => x.Resolve<IServiceType>()).Return(_serviceType);
+            A.CallTo(() => container.Resolve<IServiceType>()).Returns(_serviceType);
 
             _result = IoC.Resolve<IServiceType>();
         }
