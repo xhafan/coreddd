@@ -3,7 +3,7 @@ using EmailMaker.Domain.Users;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EmailMaker.PersistenceTests.DatabaseTests.Domain.Users
+namespace EmailMaker.PersistenceTests.Domain.Users
 {
     [TestFixture]
     public class when_persisting_user : BaseNhibernateSimplePersistenceTest

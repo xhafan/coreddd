@@ -7,7 +7,7 @@ using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EmailMaker.PersistenceTests.DatabaseTests.Domain.EmailTemplates
+namespace EmailMaker.PersistenceTests.Domain.EmailTemplates
 {
     [TestFixture]
     public class when_persisting_email_template : BaseNhibernateSimplePersistenceTest

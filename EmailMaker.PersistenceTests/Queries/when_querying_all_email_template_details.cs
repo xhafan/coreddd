@@ -10,7 +10,7 @@ using EmailMaker.TestHelper.Builders;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EmailMaker.PersistenceTests.DatabaseTests.Queries
+namespace EmailMaker.PersistenceTests.Queries
 {
     [TestFixture]
     public class when_querying_all_email_template_details : BaseNhibernateSimplePersistenceTest

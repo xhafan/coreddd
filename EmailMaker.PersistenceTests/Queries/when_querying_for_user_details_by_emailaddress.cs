@@ -8,7 +8,7 @@ using EmailMaker.Queries.Messages;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EmailMaker.PersistenceTests.DatabaseTests.Queries
+namespace EmailMaker.PersistenceTests.Queries
 {
     [TestFixture]
     public class when_querying_for_user_details_by_emailaddress : BaseNhibernateSimplePersistenceTest

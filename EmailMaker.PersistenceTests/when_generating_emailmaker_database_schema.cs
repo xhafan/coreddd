@@ -1,7 +1,7 @@
 ﻿using EmailMaker.Infrastructure;
 using NUnit.Framework;
 
-namespace EmailMaker.PersistenceTests.DatabaseTests
+namespace EmailMaker.PersistenceTests
 {
     [TestFixture]
     public class when_generating_emailmaker_database_schema
