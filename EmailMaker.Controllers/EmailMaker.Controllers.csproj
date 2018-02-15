@@ -44,7 +44,11 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="Microsoft.CSharp" />
-
   </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
 
 </Project>

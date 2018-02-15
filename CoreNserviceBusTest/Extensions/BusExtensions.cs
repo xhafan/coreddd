@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FakeItEasy;
 using NServiceBus;
@@ -7,21 +8,27 @@ namespace CoreNserviceBusTest.Extensions
 {
     public static class BusExtensions
     {
-        public static TMessage MessageShouldHaveBeenSent<TMessage>(this IBus bus) where TMessage : class, new()
+        public static void ExpectMessageSent<TMessage>(this IBus bus, Action<TMessage> onSend) 
+            where TMessage : class, new()
         {
-            object[] messages = null;
-            A.CallTo(() => bus.Send(A<object[]>._)).MustHaveHappened();
-            A.CallTo(() => bus.Send(A<object[]>._)).Invokes((object[] x) => messages = x);
-            return messages[0] as TMessage;
+            A.CallTo(() => bus.Send(A<object[]>._))
+                .Invokes((object[] messages) =>
+                {
+                    onSend(messages.OfType<TMessage>().SingleOrDefault());
+                });
         }
 
-        // todo: implement this method
-        public static IEnumerable<TMessage> MessagesShouldHaveBeenSentLocally<TMessage>(this IBus bus) where TMessage : class, new()
+        public static void ExpectMessagesSentLocally<TMessage>(
+            this IBus bus, 
+            Action<IEnumerable<TMessage>> onSend
+        )
+            where TMessage : class, new()
         {
-            //var allMessages = bus.GetArgumentsForCallsMadeOn(a => a.SendLocal(Arg<object[]>.Is.Anything));
-            //var flatAllMessages = allMessages.SelectMany(x => x).SelectMany(x => x as object[]);
-            //return flatAllMessages.OfType<TMessage>();
-            return null;
+            A.CallTo(() => bus.SendLocal(A<object[]>._))
+                .Invokes((object[] messages) =>
+                {
+                    onSend(messages.OfType<TMessage>());
+                });
         }
     }
 }

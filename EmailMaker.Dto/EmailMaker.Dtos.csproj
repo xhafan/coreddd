@@ -18,4 +18,9 @@
     <PackageReference Include="Iesi.Collections" Version="4.0.3" />
   </ItemGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
 </Project>

@@ -9,4 +9,9 @@
     <PackageReference Include="NServiceBus" version="3.2.6" />
   </ItemGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
 </Project>

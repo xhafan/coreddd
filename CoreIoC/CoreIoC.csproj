@@ -14,4 +14,9 @@
     <PackageProjectUrl>http://xhafan.com/blog/</PackageProjectUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
 </Project>

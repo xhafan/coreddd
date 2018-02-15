@@ -20,4 +20,9 @@
     <PackageReference Include="RhinoMocks" Version="3.6.1" />
   </ItemGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
 </Project>
