@@ -75,7 +75,7 @@ namespace EmailMaker.UnitTests.Commands.EmailTemplates
         public void only_new_recipients_were_created()
         {
             A.CallTo(() => _recipientRepository.Save(A<Recipient>.That.Matches(p => p.EmailAddress == AddressTwo && p.Name == NameTwo))).MustHaveHappened();
-            A.CallTo(() => _recipientRepository.Save(A<Recipient>.That.Matches(p => p.EmailAddress == AddressOne && p.Name == NameOne))).MustHaveHappened();
+            A.CallTo(() => _recipientRepository.Save(A<Recipient>.That.Matches(p => p.EmailAddress == AddressOne && p.Name == NameOne))).MustNotHaveHappened();
         }
 
     }

@@ -30,7 +30,7 @@ namespace EmailMaker.Service.Tests.Handlers
         private const string RecipientOneName = "name one";
         private const string RecipientTwoName = "name two";
         private Email _email;
-        private IEnumerable<SendEmailForEmailRecipientMessage> _sentMessages;
+        private readonly List<SendEmailForEmailRecipientMessage> _sentMessages = new List<SendEmailForEmailRecipientMessage>();
 
         [SetUp]
         public void Context()
@@ -58,7 +58,7 @@ namespace EmailMaker.Service.Tests.Handlers
             A.CallTo(() => emailHtmlBuilder.BuildHtmlEmail(emailParts)).Returns(EmailHtml);
 
             _bus = A.Fake<IBus>();
-            _bus.ExpectMessagesSentLocally<SendEmailForEmailRecipientMessage>(x => _sentMessages = x);
+            _bus.ExpectMessagesSentLocally<SendEmailForEmailRecipientMessage>(x => _sentMessages.AddRange(x));
 
             var handler = new EmailEnqueuedToBeSentEventMessageHandler(emailRepository, emailHtmlBuilder, _bus);
             handler.Handle(new EmailEnqueuedToBeSentEventMessage {EmailId = EmailId});
@@ -67,7 +67,9 @@ namespace EmailMaker.Service.Tests.Handlers
 
         [Test]
         public void messages_were_sent_for_each_email_recipient()
-        {          
+        {
+            _sentMessages.Count.ShouldBe(2);
+
             var sentMessage = _sentMessages.First();
             sentMessage.EmailId.ShouldBe(EmailId);
             sentMessage.RecipientId.ShouldBe(RecipientOneId);
