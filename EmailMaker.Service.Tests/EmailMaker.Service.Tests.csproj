@@ -26,7 +26,6 @@
     <PackageReference Include="Iesi.Collections" Version="4.0.3" />
     <PackageReference Include="NServiceBus" version="3.2.6" />
     <PackageReference Include="NUnit" Version="3.9.0" />
-    <PackageReference Include="RhinoMocks" Version="3.6.1" />
     <PackageReference Include="Shouldly" Version="3.0.0" />
   </ItemGroup>
 

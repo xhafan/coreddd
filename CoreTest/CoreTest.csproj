@@ -17,7 +17,6 @@
   <ItemGroup>
     <PackageReference Include="FakeItEasy" Version="4.4.0" />
     <PackageReference Include="NUnit" Version="3.9.0" />
-    <PackageReference Include="RhinoMocks" Version="3.6.1" />
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 
