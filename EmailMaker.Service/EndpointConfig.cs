@@ -31,6 +31,7 @@ namespace EmailMaker.Service
                 .CastleWindsorBuilder(windsorContainer)
                 .BinarySerializer()
                 .MsmqTransport()
+                .DisableTimeoutManager()
                 .MsmqSubscriptionStorage()
                 .UnicastBus();
             NhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerThread);
