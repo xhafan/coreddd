@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net40;netcoreapp2.0</TargetFrameworks>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <TestProjectType>UnitTest</TestProjectType>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
@@ -19,7 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
-    <ProjectReference Include="..\CoreTest\CoreTest.csproj" />
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
   </ItemGroup>
 

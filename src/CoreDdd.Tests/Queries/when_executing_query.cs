@@ -2,7 +2,6 @@
 using System.Linq;
 using CoreDdd.Queries;
 using CoreIoC;
-using CoreTest;
 using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
@@ -10,7 +9,7 @@ using Shouldly;
 namespace CoreDdd.Tests.Queries
 {
     [TestFixture]
-    public class when_executing_query : BaseTest
+    public class when_executing_query
     {
         private IEnumerable<bool> _result;
         private IQueryHandler<TestQuery> _testQueryHandler;

@@ -1,6 +1,5 @@
 using CoreDdd.Domain.Events;
 using CoreIoC;
-using CoreTest;
 using CoreUtils;
 using FakeItEasy;
 using NUnit.Framework;
@@ -9,7 +8,7 @@ using Shouldly;
 namespace CoreDdd.Tests.Domain.DomainEventsTests
 {
     [TestFixture]
-    public class when_raising_domain_event_with_no_handler : BaseTest
+    public class when_raising_domain_event_with_no_handler
     {
         private CoreException _exception;
 

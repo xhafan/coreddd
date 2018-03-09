@@ -1,13 +1,12 @@
 ﻿using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.UnitOfWorks;
-using CoreTest;
 using FakeItEasy;
 using NHibernate;
 using NUnit.Framework;
 
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 {
-    public abstract class NhibernateUnitOfWorkSetup : BaseTest
+    public abstract class NhibernateUnitOfWorkSetup
     {
         protected ISession Session;
         protected NhibernateUnitOfWork UnitOfWork;

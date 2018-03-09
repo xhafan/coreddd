@@ -1,7 +1,6 @@
 ﻿using System;
 using CoreDdd.Commands;
 using CoreIoC;
-using CoreTest;
 using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
@@ -9,7 +8,7 @@ using Shouldly;
 namespace CoreDdd.Tests.Commands
 {
     [TestFixture]
-    public class when_executing_command : BaseTest
+    public class when_executing_command
     {        
         public class TestCommand : ICommand { }
         public class TestCommandHandler : ICommandHandler<TestCommand>

@@ -1,13 +1,12 @@
 using CoreDdd.Domain.Events;
 using CoreIoC;
-using CoreTest;
 using FakeItEasy;
 using NUnit.Framework;
 
 namespace CoreDdd.Tests.Domain.DomainEventsTests
 {
     [TestFixture]
-    public class when_raising_domain_event : BaseTest
+    public class when_raising_domain_event
     {
         private IDomainEventHandler<TestDomainEvent> _testDomainHandler;
         private TestDomainEvent _testDomainEvent;

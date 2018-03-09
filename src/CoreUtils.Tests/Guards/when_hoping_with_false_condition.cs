@@ -1,11 +1,10 @@
-﻿using CoreTest;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Shouldly;
 
 namespace CoreUtils.Tests.Guards
 {
     [TestFixture]
-    public class when_hoping_with_false_condition : BaseTest
+    public class when_hoping_with_false_condition
     {
         private const string ExceptionMessage = "exception message";
         private CoreException _coreException;

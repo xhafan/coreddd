@@ -2,14 +2,13 @@
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
-using CoreTest;
 using FakeItEasy;
 using NHibernate;
 using NUnit.Framework;
 
 namespace CoreDdd.Nhibernate.Tests.Repositories
 {
-    public abstract class NhibernateRepositorySetup : BaseTest
+    public abstract class NhibernateRepositorySetup
     {
         protected ISession Session;
         protected TestEntity Entity;

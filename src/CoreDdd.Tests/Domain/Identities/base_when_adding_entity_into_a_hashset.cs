@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CoreTest.Extensions;
 using NUnit.Framework;
 using Shouldly;
 
@@ -28,7 +27,7 @@ namespace CoreDdd.Tests.Domain.Identities
         [Test]
         public void change_transient_entity_to_persitent_entity_and_check_hashset()
         {
-            _transientEntityOne.SetPrivateProperty(x => x.Id, GetId());
+            _transientEntityOne.SetId(GetId());
             _entities.Contains(_transientEntityOne).ShouldBe(true);
         }
 

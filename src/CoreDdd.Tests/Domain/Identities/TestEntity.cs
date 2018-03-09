@@ -12,6 +12,10 @@ namespace CoreDdd.Tests.Domain.Identities
         {
             Id = id;
         }
-    }
 
+        public void SetId(TId id)
+        {
+            Id = id;
+        }
+    }
 }

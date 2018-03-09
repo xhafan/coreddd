@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net40;net461</TargetFrameworks>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <TestProjectType>UnitTest</TestProjectType>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
@@ -24,7 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
-    <ProjectReference Include="..\CoreTest\CoreTest.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using CoreTest;
 using CoreUtils.Extensions;
 using NUnit.Framework;
 
 namespace CoreUtils.Tests.Extensions.CollectionExtensions
 {
     [TestFixture]
-    public class when_invoking_action_for_each_item : BaseTest
+    public class when_invoking_action_for_each_item
     {
         private List<int> _list;
         private int[] _items;
