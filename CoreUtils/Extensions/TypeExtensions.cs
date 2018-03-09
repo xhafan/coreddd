@@ -1,5 +1,8 @@
 using System;
+#if NET40
+#else
 using System.Reflection;
+#endif
 
 namespace CoreUtils.Extensions
 {
