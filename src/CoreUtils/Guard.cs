@@ -1,13 +1,16 @@
-﻿namespace CoreUtils
+﻿using System;
+
+namespace CoreUtils
 {
     public static class Guard
     {
-        public static void Hope(bool condition, string message)
+        public static void Hope<TException>(bool condition, string message)
+            where TException : Exception
         {
-            if (!condition)
-            {
-                throw new CoreException(message);
-            }
+            if (condition) return;
+
+            var exception = (TException)Activator.CreateInstance(typeof(TException), message);
+            throw exception;
         }
     }
 }

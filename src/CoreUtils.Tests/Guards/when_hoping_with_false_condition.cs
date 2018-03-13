@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Shouldly;
 
 namespace CoreUtils.Tests.Guards
@@ -7,18 +8,18 @@ namespace CoreUtils.Tests.Guards
     public class when_hoping_with_false_condition
     {
         private const string ExceptionMessage = "exception message";
-        private CoreException _coreException;
+        private Exception _exception;
 
         [SetUp]
         public void Context()
         {
-            _coreException = Should.Throw<CoreException>(() => Guard.Hope(false, ExceptionMessage));
+            _exception = Should.Throw<Exception>(() => Guard.Hope<Exception>(false, ExceptionMessage));
         }
 
         [Test]
         public void exception_is_thrown()
         {
-            _coreException.Message.ShouldBe(ExceptionMessage);
+            _exception.Message.ShouldBe(ExceptionMessage);
         }
     }
 }

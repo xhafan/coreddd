@@ -22,5 +22,10 @@ namespace CoreUtils.Extensions
                 action(i, objectList[i]);
             }
         }
+
+        public static bool IsEmpty<T>(this IEnumerable<T> objects)
+        {
+            return !objects.Any();
+        }
     }
 }

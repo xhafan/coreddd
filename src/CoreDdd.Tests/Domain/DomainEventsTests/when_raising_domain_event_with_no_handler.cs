@@ -1,6 +1,5 @@
 using CoreDdd.Domain.Events;
 using CoreIoC;
-using CoreUtils;
 using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
@@ -10,7 +9,7 @@ namespace CoreDdd.Tests.Domain.DomainEventsTests
     [TestFixture]
     public class when_raising_domain_event_with_no_handler
     {
-        private CoreException _exception;
+        private MissingDomainEventHandlerException _exception;
 
         public class TestDomainEvent : IDomainEvent
         {            
@@ -23,7 +22,7 @@ namespace CoreDdd.Tests.Domain.DomainEventsTests
             A.CallTo(() => container.ResolveAll<IDomainEventHandler<TestDomainEvent>>()).Returns(new IDomainEventHandler<TestDomainEvent>[0]);
             IoC.Initialize(container);
 
-            _exception = Should.Throw<CoreException>(() => DomainEvents.RaiseEvent(new TestDomainEvent()));
+            _exception = Should.Throw<MissingDomainEventHandlerException>(() => DomainEvents.RaiseEvent(new TestDomainEvent()));
         }
 
         [Test]

@@ -5,7 +5,7 @@
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>3.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.0</Version>
+    <Version>3.0.1</Version>
     <Authors>Martin Havlista</Authors>
     <Company></Company>
     <Product />
@@ -13,7 +13,7 @@
     <PackageTags>DDD CQRS</PackageTags>
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Library was split into multiple libraries (CoreDdd.Nhibernate, CoreIoC, CoreIoC.Castle, CoreUtils, CoreDdd.Register.Castle, CoreDdd.Nhibernate.Register.Castle) to remove 3rd party dependencies</PackageReleaseNotes>
+    <PackageReleaseNotes>Removed CoreException and non-generic Guard.Hope method</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
