@@ -13,7 +13,7 @@
     <PackageTags>DDD CQRS</PackageTags>
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Library was split into multiple libraries (CoreDdd.Nhibernate, CoreIoC, CoreUtils, etc) to remove 3rd party dependencies</PackageReleaseNotes>
+    <PackageReleaseNotes>Library was split into multiple libraries (CoreDdd.Nhibernate, CoreIoC, CoreIoC.Castle, CoreUtils, CoreDdd.Register.Castle, CoreDdd.Nhibernate.Register.Castle) to remove 3rd party dependencies</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
