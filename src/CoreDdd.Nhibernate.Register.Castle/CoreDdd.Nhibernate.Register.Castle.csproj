@@ -6,12 +6,13 @@
     <FileVersion>3.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>3.0.0</Version>
-    <Authors>xhafan</Authors>
-    <Company>xhafan</Company>
+    <Authors>Martin Havlista</Authors>
+    <Company></Company>
     <Product />
     <Description>Castle IoC registration for CoreDdd.Nhibernate library. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library</Description>
     <PackageTags>CoreDdd nhibernate castle IoC DI</PackageTags>
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
