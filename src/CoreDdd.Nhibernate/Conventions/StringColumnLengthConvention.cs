@@ -14,7 +14,7 @@ namespace CoreDdd.Nhibernate.Conventions
 
         public void Apply(IPropertyInstance instance)
         {
-            instance.Length(10000);
+            instance.Length(10000); // todo: is this sql server only or generic?
         }
     }
 }

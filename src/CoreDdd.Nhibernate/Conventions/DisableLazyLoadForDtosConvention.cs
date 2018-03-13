@@ -9,7 +9,7 @@ namespace CoreDdd.Nhibernate.Conventions
     {
         public void Accept(IAcceptanceCriteria<IClassInspector> criteria)
         {
-            criteria.Expect(x => x.EntityType.Name.EndsWith("Dto"));
+            criteria.Expect(x => x.EntityType.Name.EndsWith("Dto")); // todo: configure how to recognize Dtos in the app
         }
 
         public void Apply(IClassInstance instance)

@@ -17,7 +17,7 @@ namespace CoreDdd.Nhibernate.Conventions
         public void Apply(IIdentityInstance instance)
         {
             instance.Column("Id");
-            instance.GeneratedBy.HiLo("100");
+            instance.GeneratedBy.HiLo("100"); // todo: configure in the app somehow
         }
     }
 }

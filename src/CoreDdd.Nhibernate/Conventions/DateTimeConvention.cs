@@ -17,7 +17,7 @@ namespace CoreDdd.Nhibernate.Conventions
 
         public void Apply(IPropertyInstance instance)
         {
-            instance.CustomType<TimestampType>();
+            instance.CustomType<TimestampType>(); // todo: replace by DateTimeType - add a test that it actually preserves miliseconds
         }
     }
 }

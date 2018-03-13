@@ -27,7 +27,7 @@ namespace CoreDdd.Nhibernate.Configurations
 
         private bool IsDto(Type type)
         {
-            return type.Name.EndsWith("Dto");
+            return type.Name.EndsWith("Dto"); // todo: configure in the app how to recognize Dto
         }
 
         private static bool IsDomainEntity(Type type)
