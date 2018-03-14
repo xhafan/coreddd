@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;netstandard1.0</TargetFrameworks>
-    <AssemblyVersion>3.0.0.0</AssemblyVersion>
-    <FileVersion>3.0.0.0</FileVersion>
+    <AssemblyVersion>3.0.3.0</AssemblyVersion>
+    <FileVersion>3.0.3.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>3.0.2</Version>
+    <Version>3.0.3</Version>
     <Authors>Martin Havlista</Authors>
     <Company></Company>
     <Product />
