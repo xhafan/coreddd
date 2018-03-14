@@ -13,7 +13,7 @@ namespace CoreUtils.Tests.Guards
         [SetUp]
         public void Context()
         {
-            _exception = Should.Throw<Exception>(() => Guard.Hope<Exception>(false, ExceptionMessage));
+            _exception = Should.Throw<Exception>(() => Guard.Hope(false, ExceptionMessage));
         }
 
         [Test]

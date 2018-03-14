@@ -4,6 +4,11 @@ namespace CoreUtils
 {
     public static class Guard
     {
+        public static void Hope(bool condition, string message)
+        {
+            Hope<Exception>(condition, message);
+        }
+
         public static void Hope<TException>(bool condition, string message)
             where TException : Exception
         {

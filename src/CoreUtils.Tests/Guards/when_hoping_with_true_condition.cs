@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace CoreUtils.Tests.Guards
 {
@@ -9,7 +8,7 @@ namespace CoreUtils.Tests.Guards
         [Test]
         public void no_exception_is_thrown()
         {
-            Guard.Hope<Exception>(true, "exception message");
+            Guard.Hope(true, "exception message");
         }
     }
 }
