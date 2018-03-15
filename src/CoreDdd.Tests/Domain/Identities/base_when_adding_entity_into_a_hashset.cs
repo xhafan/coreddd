@@ -4,6 +4,7 @@ using Shouldly;
 
 namespace CoreDdd.Tests.Domain.Identities
 {
+    // todo: refactor test inheritance
     public abstract class base_when_adding_entity_into_a_hashset<TId>
     {
         private TestEntity<TId> _transientEntityOne;

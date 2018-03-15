@@ -3,6 +3,7 @@ using Shouldly;
 
 namespace CoreDdd.Tests.Domain.Identities
 {
+    // todo: refactor test inheritance
     public abstract class base_when_comparing_entities_of_the_different_type_and_of_the_same_id<TId>
     {
         private TestEntity<TId> _entity;

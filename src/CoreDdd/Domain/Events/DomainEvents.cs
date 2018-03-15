@@ -1,4 +1,6 @@
-﻿using CoreIoC;
+﻿using System.Linq;
+using CoreIoC;
+using CoreUtils;
 using CoreUtils.Extensions;
 
 namespace CoreDdd.Domain.Events
@@ -8,7 +10,7 @@ namespace CoreDdd.Domain.Events
         public static void RaiseEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
             var domainEventHandlers = IoC.ResolveAll<IDomainEventHandler<TDomainEvent>>();
-            if (domainEventHandlers.IsEmpty()) throw new MissingDomainEventHandlerException("No domain event handler for " + domainEvent);
+            Guard.Hope<MissingDomainEventHandlerException>(domainEventHandlers.Any(), "No domain event handler for " + domainEvent);
             domainEventHandlers.Each(e => e.Handle(domainEvent));
         }
     }

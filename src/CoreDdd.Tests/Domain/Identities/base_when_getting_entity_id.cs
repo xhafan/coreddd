@@ -3,6 +3,7 @@ using Shouldly;
 
 namespace CoreDdd.Tests.Domain.Identities
 {
+    // todo: refactor test inheritance
     public abstract class base_when_getting_entity_id<TId>
     {
         private TId _id;
