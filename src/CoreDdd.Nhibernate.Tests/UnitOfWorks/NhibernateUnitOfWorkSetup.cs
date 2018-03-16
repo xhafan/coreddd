@@ -6,6 +6,7 @@ using NUnit.Framework;
 
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 {
+    // todo: refactor these test hierarchies - instead of mocking stuff, use sqllite to test it in a real world
     public abstract class NhibernateUnitOfWorkSetup
     {
         protected ISession Session;

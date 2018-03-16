@@ -18,8 +18,8 @@ namespace CoreDdd.Domain
 
             if (!IsTransient(other) && !IsTransient(this) && Id.Equals(other.Id))
             {
-                var otherType = other.GetType();
-                var thisType = GetType();
+                var otherType = other.GetUnproxiedType();
+                var thisType = GetUnproxiedType();
 #if NET40
                 return thisType.IsAssignableFrom(otherType)
                        || otherType.IsAssignableFrom(thisType);
@@ -35,6 +35,11 @@ namespace CoreDdd.Domain
                 return Equals(entity.Id, default(TId));
             }
         }
+
+        protected virtual Type GetUnproxiedType() // todo: test this "virtual" GetType() call using nhibernate and real DB (sqllite) inside CoreDdd.Nhibernate tests
+        {
+            return GetType();
+        }  
 
         private int? _originalHashCode;
         public override int GetHashCode()
