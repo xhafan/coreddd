@@ -18,8 +18,8 @@ namespace CoreDdd.Domain
 
             if (!IsTransient(other) && !IsTransient(this) && Id.Equals(other.Id))
             {
-                var otherType = other.GetUnproxiedType();
-                var thisType = GetUnproxiedType();
+                var otherType = other.GetType();
+                var thisType = GetType();
 #if NET40
                 return thisType.IsAssignableFrom(otherType)
                        || otherType.IsAssignableFrom(thisType);
@@ -29,24 +29,21 @@ namespace CoreDdd.Domain
 #endif
             }
             return false;
-        }
 
-        private bool IsTransient(Entity<TId> entity)
-        {
-            return Equals(entity.Id, default(TId));
+            bool IsTransient(Entity<TId> entity)
+            {
+                return Equals(entity.Id, default(TId));
+            }
         }
-
-        public virtual Type GetUnproxiedType()
-        {
-            return GetType();
-        }  
 
         private int? _originalHashCode;
         public override int GetHashCode()
         {
             if (!_originalHashCode.HasValue)
             {
-                _originalHashCode = Equals(Id, default(TId)) ? base.GetHashCode() : Id.GetHashCode();
+                _originalHashCode = Equals(Id, default(TId))
+                    ? base.GetHashCode()
+                    : Id.GetHashCode();
             }
             return _originalHashCode.Value; // hashset/dictionary requires that GetHashCode() returns the same value for the lifetime of the object
         }
