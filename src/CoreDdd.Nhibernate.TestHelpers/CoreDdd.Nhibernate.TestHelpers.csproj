@@ -2,7 +2,17 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;net461</TargetFrameworks>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>3.0.0</Version>
+    <Authors>xhafan</Authors>
+    <Company>xhafan</Company>
+    <Product />
+    <Description>Persistence test helpers for CoreDdd library</Description>
+    <PackageTags>CoreDdd persistence test helper</PackageTags>
+    <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>

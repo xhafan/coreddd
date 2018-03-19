@@ -13,7 +13,7 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
         {
             base.Context();
 
-            Repository.GetById(Id);
+            Repository.Get(Id);
         }
 
         [Test]

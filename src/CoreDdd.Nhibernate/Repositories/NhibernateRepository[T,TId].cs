@@ -14,7 +14,7 @@ namespace CoreDdd.Nhibernate.Repositories
             _session = unitOfWork.Session;
         }
 
-        public T GetById(TId id)
+        public T Get(TId id)
         {
             return _session.Get<T>(id);
         }
