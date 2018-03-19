@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0EB0DB15
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Nhibernate.PersistenceTests", "CoreDdd.Nhibernate.PersistenceTests\CoreDdd.Nhibernate.PersistenceTests.csproj", "{9541655A-0561-4A3C-B7B0-3E4676600D3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Nhibernate.TestHelpers", "CoreDdd.Nhibernate.TestHelpers\CoreDdd.Nhibernate.TestHelpers.csproj", "{F615908D-368C-4DC7-8A6D-7F99BE62BA19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Nhibernate.TestHelpers", "CoreDdd.Nhibernate.TestHelpers\CoreDdd.Nhibernate.TestHelpers.csproj", "{F615908D-368C-4DC7-8A6D-7F99BE62BA19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
