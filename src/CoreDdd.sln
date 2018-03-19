@@ -29,6 +29,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIoC.Castle.Tests", "Cor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0EB0DB15-4772-4365-B5BC-AD8A425CE284}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Nhibernate.PersistenceTests", "CoreDdd.Nhibernate.PersistenceTests\CoreDdd.Nhibernate.PersistenceTests.csproj", "{9541655A-0561-4A3C-B7B0-3E4676600D3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Nhibernate.TestHelpers", "CoreDdd.Nhibernate.TestHelpers\CoreDdd.Nhibernate.TestHelpers.csproj", "{F615908D-368C-4DC7-8A6D-7F99BE62BA19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,14 @@ Global
 		{E8642B0C-EDFC-46FB-8118-BB800903A1BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8642B0C-EDFC-46FB-8118-BB800903A1BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8642B0C-EDFC-46FB-8118-BB800903A1BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9541655A-0561-4A3C-B7B0-3E4676600D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9541655A-0561-4A3C-B7B0-3E4676600D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9541655A-0561-4A3C-B7B0-3E4676600D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9541655A-0561-4A3C-B7B0-3E4676600D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F615908D-368C-4DC7-8A6D-7F99BE62BA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F615908D-368C-4DC7-8A6D-7F99BE62BA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F615908D-368C-4DC7-8A6D-7F99BE62BA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F615908D-368C-4DC7-8A6D-7F99BE62BA19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +105,8 @@ Global
 		{453909C1-1F03-4DC6-B12B-ABF4FF25EE69} = {0EB0DB15-4772-4365-B5BC-AD8A425CE284}
 		{C782F505-1A93-4DF0-BABE-CA6667AD9255} = {0EB0DB15-4772-4365-B5BC-AD8A425CE284}
 		{E8642B0C-EDFC-46FB-8118-BB800903A1BC} = {0EB0DB15-4772-4365-B5BC-AD8A425CE284}
+		{9541655A-0561-4A3C-B7B0-3E4676600D3D} = {0EB0DB15-4772-4365-B5BC-AD8A425CE284}
+		{F615908D-368C-4DC7-8A6D-7F99BE62BA19} = {0EB0DB15-4772-4365-B5BC-AD8A425CE284}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8EFCD531-755C-4738-A710-61E0CB7030C6}

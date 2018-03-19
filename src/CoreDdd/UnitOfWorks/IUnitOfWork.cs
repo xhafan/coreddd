@@ -8,6 +8,7 @@ namespace CoreDdd.UnitOfWorks
         void Commit();
         void Rollback();
         void Flush();
+        void Clear();
         bool IsActive();
     }
 }

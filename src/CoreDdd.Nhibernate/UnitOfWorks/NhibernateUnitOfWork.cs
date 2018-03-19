@@ -68,6 +68,11 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             Session.Flush();
         }
 
+        public void Clear()
+        {
+            Session.Clear();
+        }
+
         public bool IsActive()
         {
             return Session != null;

@@ -36,7 +36,7 @@ namespace CoreDdd.Domain
             }
         }
 
-        protected virtual Type GetUnproxiedType() // todo: test this "virtual" GetType() call using nhibernate and real DB (sqllite) inside CoreDdd.Nhibernate tests
+        protected virtual Type GetUnproxiedType()
         {
             return GetType();
         }  
