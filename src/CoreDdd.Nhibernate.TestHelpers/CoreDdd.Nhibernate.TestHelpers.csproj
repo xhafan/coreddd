@@ -2,12 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;net461</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Persistence test helpers for CoreDdd library</Description>
     <PackageTags>CoreDdd persistence test helper</PackageTags>
   </PropertyGroup>
 
-  <Import Project="..\CommonAssemblyInfo.props" />
+  <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.9.0" />

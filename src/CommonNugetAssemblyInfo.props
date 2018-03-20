@@ -9,9 +9,14 @@
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
-  <Target Name="CopyPackage" AfterTargets="Pack">
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <Target Name="CopyPackage" AfterTargets="Pack" Condition="'$(Configuration)'=='Release'">
     <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(SolutionDir)..\build" />
   </Target>
 

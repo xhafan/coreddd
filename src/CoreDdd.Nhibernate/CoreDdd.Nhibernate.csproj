@@ -2,12 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;net461</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>NHibernate persistence for CoreDdd library. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library</Description>
     <PackageTags>CoreDdd Nhibernate</PackageTags>
   </PropertyGroup>
 
-  <Import Project="..\CommonAssemblyInfo.props" />
+  <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
