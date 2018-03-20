@@ -9,9 +9,15 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    // todo: implement conventions as opt-in
     public class HasManyForDomainConvention : IHasManyConvention
     {
+        private static Func<string, string> _propertyNameToBackingFieldNameFunc;
+
+        public static void SetPropertyNameToBackingFieldNameFunc(Func<string, string> propertyNameToBackingFieldNameFunc)
+        {
+            _propertyNameToBackingFieldNameFunc = propertyNameToBackingFieldNameFunc;
+        }
+
         public void Apply(IOneToManyCollectionInstance instance)
         {
             instance.Cascade.AllDeleteOrphan();
@@ -20,7 +26,10 @@ namespace CoreDdd.Nhibernate.Conventions
             var declaringType = instance.Member.DeclaringType;
             var property = declaringType.GetInstanceProperties().FirstOrDefault(x => x.Name == propertyName);
             if (property == null) return;
-            var backingFieldName = "_" + Char.ToLower(propertyName[0]) + propertyName.Substring(1); // todo: backing field name - configure it in the app?
+
+            var backingFieldName = _propertyNameToBackingFieldNameFunc?.Invoke(propertyName)
+                                   ?? "_" + Char.ToLower(propertyName[0]) + propertyName.Substring(1);
+
             var field = declaringType.GetInstanceFields().FirstOrDefault(x => x.Name == backingFieldName);
             if (field != null)
             {

@@ -45,6 +45,21 @@ namespace CoreDdd.Nhibernate.Configurations
             yield break;
         }
 
+        protected virtual Func<Type, bool> GetFuncToDetermineIfTypeIsDto()
+        {
+            return null;
+        }
+
+        protected virtual Func<string, string> GetPropertyNameToBackingFieldNameFunc()
+        {
+            return null;
+        }
+
+        protected virtual string GetIdentityHiLoMaxLo()
+        {
+            return null;
+        }
+
         protected NhibernateConfigurator(bool mapDtoAssembly)
         {
             var assembliesToMap = GetAssembliesToMap(mapDtoAssembly);
@@ -56,11 +71,20 @@ namespace CoreDdd.Nhibernate.Configurations
             
             _configuration = new Configuration();
             _configuration.Configure();
-            var autoPersistenceModel = AutoMap.Assemblies(new AutomappingConfiguration(discriminatedTypes.ToArray()), assembliesToMap);
+            var autoPersistenceModel = AutoMap.Assemblies(
+                new AutomappingConfiguration(discriminatedTypes.ToArray(), GetFuncToDetermineIfTypeIsDto()), 
+                assembliesToMap
+                );
             includeBaseTypes.Each(x => autoPersistenceModel.IncludeBase(x));
             ignoreBaseTypes.Each(x => autoPersistenceModel.IgnoreBase(x));
             assembliesToMap.Each(x => autoPersistenceModel.UseOverridesFromAssembly(x));
-            if (mapDefaultConventions) autoPersistenceModel.Conventions.AddFromAssemblyOf<PrimaryKeyConvention>();
+            if (mapDefaultConventions)
+            {
+                DisableLazyLoadForDtosConvention.SetFuncToDetermineIfTypeIsDto(GetFuncToDetermineIfTypeIsDto());
+                HasManyForDomainConvention.SetPropertyNameToBackingFieldNameFunc(GetPropertyNameToBackingFieldNameFunc());
+                PrimaryKeyConvention.SetIdentityHiLoMaxLo(GetIdentityHiLoMaxLo());
+                autoPersistenceModel.Conventions.AddFromAssemblyOf<PrimaryKeyConvention>();
+            }
             assemblyWithAdditionalConventions.Each(x => autoPersistenceModel.Conventions.AddAssembly(x));
 
             _sessionFactory = Fluently.Configure(_configuration)

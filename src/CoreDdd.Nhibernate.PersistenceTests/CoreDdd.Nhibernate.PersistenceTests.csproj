@@ -60,6 +60,9 @@
 
   <ItemGroup>
     <None Update="App.config" />
+    <None Update="connectionStrings.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

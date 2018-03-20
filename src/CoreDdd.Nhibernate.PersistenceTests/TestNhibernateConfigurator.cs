@@ -9,7 +9,7 @@ namespace CoreDdd.Nhibernate.PersistenceTests
         public TestNhibernateConfigurator()
             : base(false)
         {
-#if(DEBUG)
+#if DEBUG
             NHibernateProfiler.Initialize();
 #endif
         }

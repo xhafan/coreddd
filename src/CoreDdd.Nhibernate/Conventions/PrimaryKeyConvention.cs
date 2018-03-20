@@ -9,6 +9,13 @@ namespace CoreDdd.Nhibernate.Conventions
 {
     public class PrimaryKeyConvention : IIdConvention, IIdConventionAcceptance
     {
+        private static string _maxLo;
+
+        public static void SetIdentityHiLoMaxLo(string maxLo)
+        {
+            _maxLo = maxLo;
+        }
+
         public void Accept(IAcceptanceCriteria<IIdentityInspector> criteria)
         {
             criteria.Expect(x => x.EntityType.IsSubclassOfRawGeneric(typeof (Entity<>)));
@@ -17,7 +24,7 @@ namespace CoreDdd.Nhibernate.Conventions
         public void Apply(IIdentityInstance instance)
         {
             instance.Column("Id");
-            instance.GeneratedBy.HiLo("100"); // todo: configure in the app somehow
+            instance.GeneratedBy.HiLo(_maxLo ?? "100");
         }
     }
 }

@@ -9,9 +9,14 @@ namespace CoreDdd.Nhibernate.Configurations
     public class AutomappingConfiguration : DefaultAutomappingConfiguration
     {
         private readonly Type[] _discriminatedTypes;
+        private readonly Func<Type, bool> _isTypeDtoFunc;
 
-        public AutomappingConfiguration(params Type[] discriminatedTypes)
+        public AutomappingConfiguration(
+            Type[] discriminatedTypes,
+            Func<Type, bool> isTypeDtoFunc = null
+            )
         {
+            _isTypeDtoFunc = isTypeDtoFunc;
             _discriminatedTypes = discriminatedTypes;
         }
 
@@ -27,7 +32,7 @@ namespace CoreDdd.Nhibernate.Configurations
 
         private bool IsDto(Type type)
         {
-            return type.Name.EndsWith("Dto"); // todo: configure in the app how to recognize Dto
+            return _isTypeDtoFunc?.Invoke(type) ?? type.Name.EndsWith("Dto");
         }
 
         private static bool IsDomainEntity(Type type)
