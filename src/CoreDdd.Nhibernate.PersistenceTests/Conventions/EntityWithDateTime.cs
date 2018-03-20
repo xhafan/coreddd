@@ -1,7 +1,7 @@
 ﻿using System;
 using CoreDdd.Domain;
 
-namespace CoreDdd.Nhibernate.PersistenceTests
+namespace CoreDdd.Nhibernate.PersistenceTests.Conventions
 {
     public class EntityWithDateTime : Entity, IAggregateRoot
     {

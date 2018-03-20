@@ -1,6 +1,6 @@
 ﻿using CoreDdd.Domain;
 
-namespace CoreDdd.Nhibernate.PersistenceTests
+namespace CoreDdd.Nhibernate.PersistenceTests.Conventions
 {
     public class EntityWithText : Entity, IAggregateRoot
     {

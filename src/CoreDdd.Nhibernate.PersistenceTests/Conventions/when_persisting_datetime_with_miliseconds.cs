@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.PersistenceTests
+namespace CoreDdd.Nhibernate.PersistenceTests.Conventions
 {
     [TestFixture]
     public class when_persisting_datetime_with_miliseconds : BasePersistenceTestWithDatabaseCreation

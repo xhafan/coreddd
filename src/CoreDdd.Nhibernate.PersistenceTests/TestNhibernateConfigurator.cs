@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using CoreDdd.Nhibernate.Configurations;
+using CoreDdd.Nhibernate.PersistenceTests.EntityProxyEquality;
 using HibernatingRhinos.Profiler.Appender.NHibernate;
 
 namespace CoreDdd.Nhibernate.PersistenceTests
@@ -16,7 +17,7 @@ namespace CoreDdd.Nhibernate.PersistenceTests
 
         protected override Assembly[] GetAssembliesToMap(bool mapDtoAssembly)
         {
-            return new[] { typeof(TestEntityOne).Assembly };
+            return new[] { typeof(EqualityEntity).Assembly };
         }
     }
 }

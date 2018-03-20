@@ -1,8 +1,8 @@
 ﻿using CoreDdd.Domain;
 
-namespace CoreDdd.Nhibernate.PersistenceTests
+namespace CoreDdd.Nhibernate.PersistenceTests.EntityProxyEquality
 {
-    public class TestEntityOne : Entity, IAggregateRoot
+    public class EqualityEntity : Entity, IAggregateRoot
     {
         public virtual void SetId(int id)
         {
