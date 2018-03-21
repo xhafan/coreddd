@@ -1,5 +1,4 @@
-﻿using System;
-using CoreDdd.Nhibernate.Configurations;
+﻿using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.UnitOfWorks;
 using NHibernate;
 
@@ -8,8 +7,6 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
     public class NhibernateUnitOfWork : IUnitOfWork
     {
         private readonly INhibernateConfigurator _configurator;
-
-        protected NhibernateUnitOfWork() {}
 
         public NhibernateUnitOfWork(INhibernateConfigurator configurator)
         {
@@ -26,38 +23,34 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void Commit()
         {
-            if (!IsActive()) return;
-            InvokeTransactionActionAndDisposeBothTransactionAndSession(tx =>
+            var tx = Session.Transaction;
+            try
             {
-                try
-                {
-                    tx.Commit();
-                }
-                catch
-                {
-                    tx.Rollback();
-                    throw;
-                }
-            });
+                tx.Commit();
+            }
+            catch
+            {
+                tx.Rollback();
+                throw;
+            }
+            finally
+            {
+                tx.Dispose();
+                Session.Dispose();
+                Session = null;
+            }
         }
 
         public void Rollback()
         {
-            if (!IsActive()) return;
-            InvokeTransactionActionAndDisposeBothTransactionAndSession(tx => tx.Rollback());
-        }
-
-        private void InvokeTransactionActionAndDisposeBothTransactionAndSession(Action<ITransaction> action)
-        {
+            var tx = Session.Transaction;
             try
             {
-                using (var tx = Session.Transaction)
-                {
-                    action(tx);
-                }
+                tx.Rollback();
             }
             finally
             {
+                tx.Dispose();
                 Session.Dispose();
                 Session = null;
             }
@@ -73,6 +66,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             Session.Clear();
         }
 
+        // todo: hide this method
         public bool IsActive()
         {
             return Session != null;
@@ -80,6 +74,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void Dispose()
         {
+            if (!IsActive()) return;
+
             Commit();
         }
     }
