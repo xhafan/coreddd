@@ -1,34 +1,32 @@
-﻿using CoreDdd.Nhibernate.PersistenceTests.TestEntities;
-using CoreDdd.Nhibernate.Repositories;
+﻿using CoreDdd.Nhibernate.Repositories;
+using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.PersistenceTests.UnitOfWorks
+namespace CoreDdd.Nhibernate.Tests.Repositories
 {
     [TestFixture]
-    public class when_flushing_unit_of_work
+    public class when_saving_and_getting_aggregate_root_entity : BasePersistenceTest
     {
         [Test]
-        public void entities_are_persisted()
+        public void entity_is_persisted()
         {
             var unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
-            unitOfWork.BeginTransaction();
             var testEntityRepository = new NhibernateRepository<TestEntity>(unitOfWork);
             var testEntity = new TestEntity();
+
+
             testEntityRepository.Save(testEntity);
 
-
+            
             unitOfWork.Flush();
-
-
             unitOfWork.Clear();
             testEntity = testEntityRepository.Get(testEntity.Id);
 
-            testEntity.ShouldNotBeNull();
-
-            unitOfWork.Rollback();
+            testEntity.ShouldNotBeNull();            
         }
     }
 }

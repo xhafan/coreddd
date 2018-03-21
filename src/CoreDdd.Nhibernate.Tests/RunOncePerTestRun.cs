@@ -13,7 +13,7 @@ using CoreIoC.Castle;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
 
-namespace CoreDdd.Nhibernate.PersistenceTests
+namespace CoreDdd.Nhibernate.Tests
 {
     [SetUpFixture]
     public class RunOncePerTestRun

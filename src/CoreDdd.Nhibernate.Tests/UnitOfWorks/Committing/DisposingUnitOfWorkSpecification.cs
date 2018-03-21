@@ -1,6 +1,6 @@
 ﻿using CoreDdd.UnitOfWorks;
 
-namespace CoreDdd.Nhibernate.PersistenceTests.UnitOfWorks.Committing
+namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.Committing
 {
     public class DisposingUnitOfWorkSpecification : ICommittingUnitOfWorkSpecification
     {

@@ -1,11 +1,11 @@
-﻿using CoreDdd.Nhibernate.PersistenceTests.TestEntities;
-using CoreDdd.Nhibernate.Repositories;
+﻿using CoreDdd.Nhibernate.Repositories;
+using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.PersistenceTests.UnitOfWorks
+namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 {
     [TestFixture]
     public class when_rolling_back_unit_of_work

@@ -1,9 +1,9 @@
-﻿using CoreDdd.Nhibernate.PersistenceTests.TestEntities;
-using CoreDdd.Nhibernate.TestHelpers;
+﻿using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.Nhibernate.Tests.TestEntities;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.PersistenceTests.EntityProxyEquality
+namespace CoreDdd.Nhibernate.Tests.EntityProxyEquality
 {
     [TestFixture]
     public class when_comparing_derived_entity_with_parent_entity_proxy : BasePersistenceTest

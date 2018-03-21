@@ -3,7 +3,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CoreDdd.Nhibernate.Configurations;
 
-namespace CoreDdd.Nhibernate.PersistenceTests
+namespace CoreDdd.Nhibernate.Tests
 {
     public class TestNhibernateInstaller : IWindsorInstaller
     {

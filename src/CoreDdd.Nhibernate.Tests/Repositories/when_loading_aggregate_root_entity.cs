@@ -1,13 +1,12 @@
-﻿using CoreDdd.Nhibernate.PersistenceTests.TestEntities;
-using CoreDdd.Nhibernate.PersistenceTests.UnitOfWorks;
-using CoreDdd.Nhibernate.Repositories;
+﻿using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.PersistenceTests.Repositories
+namespace CoreDdd.Nhibernate.Tests.Repositories
 {
     [TestFixture]
     public class when_loading_aggregate_root_entity : BasePersistenceTest

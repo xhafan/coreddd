@@ -1,11 +1,11 @@
-﻿using CoreDdd.Nhibernate.PersistenceTests.TestEntities;
-using CoreDdd.Nhibernate.Repositories;
+﻿using CoreDdd.Nhibernate.Repositories;
+using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.PersistenceTests.UnitOfWorks.Committing
+namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.Committing
 {
     [TestFixture(TypeArgs = new[] { typeof(CommittingUnitOfWorkSpecification) })]
     [TestFixture(TypeArgs = new[] { typeof(DisposingUnitOfWorkSpecification) })]
