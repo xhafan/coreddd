@@ -66,17 +66,16 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             Session.Clear();
         }
 
-        // todo: hide this method
-        public bool IsActive()
-        {
-            return Session != null;
-        }
-
         public void Dispose()
         {
-            if (!IsActive()) return;
+            if (!_isActive()) return;
 
             Commit();
+
+            bool _isActive()
+            {
+                return Session != null;
+            }
         }
     }
 }

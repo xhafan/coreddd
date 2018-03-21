@@ -8,6 +8,7 @@ using NUnit.Framework;
 
 namespace CoreDdd.Nhibernate.Tests.Repositories
 {
+    // todo: refactor test inheritance
     public abstract class NhibernateRepositorySetup
     {
         protected ISession Session;

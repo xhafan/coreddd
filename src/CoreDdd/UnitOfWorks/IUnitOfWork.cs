@@ -9,6 +9,5 @@ namespace CoreDdd.UnitOfWorks
         void Rollback();
         void Flush();
         void Clear();
-        bool IsActive();
     }
 }
