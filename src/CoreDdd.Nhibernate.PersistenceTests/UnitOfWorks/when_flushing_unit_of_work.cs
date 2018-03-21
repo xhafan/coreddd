@@ -1,4 +1,5 @@
-﻿using CoreDdd.Nhibernate.Repositories;
+﻿using CoreDdd.Nhibernate.PersistenceTests.TestEntities;
+using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
 using NUnit.Framework;

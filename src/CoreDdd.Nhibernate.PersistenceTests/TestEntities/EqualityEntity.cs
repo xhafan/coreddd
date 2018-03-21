@@ -1,6 +1,6 @@
 ﻿using CoreDdd.Domain;
 
-namespace CoreDdd.Nhibernate.PersistenceTests.EntityProxyEquality
+namespace CoreDdd.Nhibernate.PersistenceTests.TestEntities
 {
     public class EqualityEntity : Entity, IAggregateRoot
     {

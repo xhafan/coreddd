@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using CoreDdd.Nhibernate.PersistenceTests.TestEntities;
 using CoreDdd.Nhibernate.TestHelpers;
 using NUnit.Framework;
 using Shouldly;
