@@ -1,8 +1,8 @@
 ﻿using CoreDdd.Domain;
 
-namespace CoreDdd.Tests.Domain.Identities
+namespace CoreDdd.Tests.Domain.EntityEquality
 {
-    internal class TestEntity<TId> : Entity<TId>
+    public class TestEntity<TId> : Entity<TId>
     {
         public TestEntity()
         {            

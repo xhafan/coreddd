@@ -1,13 +1,9 @@
 ﻿using CoreDdd.Domain;
 
-namespace CoreDdd.Tests.Domain.Identities
+namespace CoreDdd.Tests.Domain.EntityEquality
 {
-    internal class AnotherTestEntity<TId> : Entity<TId>
+    public class AnotherTestEntity<TId> : Entity<TId>
     {
-        public AnotherTestEntity()
-        {            
-        }
-
         public AnotherTestEntity(TId id)
         {
             Id = id;

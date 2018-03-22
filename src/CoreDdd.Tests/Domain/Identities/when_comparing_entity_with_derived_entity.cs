@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Tests.Domain.Identities
+namespace CoreDdd.Tests.Domain.EntityEquality
 {
     [TestFixture]
     public class when_comparing_entity_with_derived_entity
