@@ -23,8 +23,12 @@ namespace CoreDdd.Nhibernate.Conventions
 
         public void Apply(IIdentityInstance instance)
         {
-            instance.Column("Id");
-            instance.GeneratedBy.HiLo(_maxLo ?? "100");
+            if (instance.Type == typeof(int) 
+                || instance.Type == typeof(long))
+            {
+                instance.Column("Id");
+                instance.GeneratedBy.HiLo(_maxLo ?? "100");
+            }
         }
     }
 }

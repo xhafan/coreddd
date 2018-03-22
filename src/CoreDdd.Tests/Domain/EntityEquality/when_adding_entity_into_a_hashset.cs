@@ -7,6 +7,7 @@ namespace CoreDdd.Tests.Domain.EntityEquality
     [TestFixture(TypeArgs = new[] { typeof(int), typeof(GenerateIdValueForIntegerIdTypeSpecification) })]
     [TestFixture(TypeArgs = new[] { typeof(long), typeof(GenerateIdValueForLongIdTypeSpecification) })]
     [TestFixture(TypeArgs = new[] { typeof(string), typeof(GenerateIdValueForStringIdTypeSpecification) })]
+    [TestFixture(TypeArgs = new[] { typeof(CompositeId), typeof(GenerateIdValueForCompositeIdIdTypeSpecification) })]
     public class when_adding_entity_into_a_hashset<TId, TGenerateIdValueForIdTypeSpecification>
         where TGenerateIdValueForIdTypeSpecification : IGenerateIdValueForIdTypeSpecification<TId>, new()
     {

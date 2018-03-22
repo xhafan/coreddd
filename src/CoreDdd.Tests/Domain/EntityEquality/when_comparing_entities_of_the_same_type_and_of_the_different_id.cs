@@ -6,6 +6,7 @@ namespace CoreDdd.Tests.Domain.EntityEquality
     [TestFixture(TypeArgs = new[] { typeof(int), typeof(GenerateIdValueForIntegerIdTypeSpecification) })]
     [TestFixture(TypeArgs = new[] { typeof(long), typeof(GenerateIdValueForLongIdTypeSpecification) })]
     [TestFixture(TypeArgs = new[] { typeof(string), typeof(GenerateIdValueForStringIdTypeSpecification) })]
+    [TestFixture(TypeArgs = new[] { typeof(CompositeId), typeof(GenerateIdValueForCompositeIdIdTypeSpecification) })]
     public class when_comparing_entities_of_the_same_type_and_of_the_different_id<TId, TGenerateIdValueForIdTypeSpecification>
         where TGenerateIdValueForIdTypeSpecification : IGenerateIdValueForIdTypeSpecification<TId>, new()
     {

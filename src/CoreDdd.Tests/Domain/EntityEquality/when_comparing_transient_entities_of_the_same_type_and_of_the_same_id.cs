@@ -3,10 +3,10 @@ using Shouldly;
 
 namespace CoreDdd.Tests.Domain.EntityEquality
 {
-    // todo: test Ids of type struct or class
     [TestFixture(TypeArgs = new[] { typeof(int) })]
     [TestFixture(TypeArgs = new[] { typeof(long) })]
     [TestFixture(TypeArgs = new[] { typeof(string) })]
+    [TestFixture(TypeArgs = new[] { typeof(CompositeId) })]
     public class when_comparing_transient_entities_of_the_same_type_and_of_the_same_id<TId>
     {
         private TestEntity<TId> _entityOne;

@@ -16,7 +16,7 @@ namespace CoreDdd.Domain
             if (ReferenceEquals(other, null)) return false;
             if (ReferenceEquals(other, this)) return true;
 
-            if (!IsTransient(other) && !IsTransient(this) && Id.Equals(other.Id))
+            if (!_isTransient(other) && !_isTransient(this) && Id.Equals(other.Id))
             {
                 var otherType = other.GetUnproxiedType();
                 var thisType = GetUnproxiedType();
@@ -30,7 +30,7 @@ namespace CoreDdd.Domain
             }
             return false;
 
-            bool IsTransient(Entity<TId> entity)
+            bool _isTransient(Entity<TId> entity)
             {
                 return Equals(entity.Id, default(TId));
             }
