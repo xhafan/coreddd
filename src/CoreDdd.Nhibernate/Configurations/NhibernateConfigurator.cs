@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using CoreDdd.Domain;
@@ -60,6 +59,11 @@ namespace CoreDdd.Nhibernate.Configurations
             return null;
         }
 
+        protected virtual string GetExportNhibernateMappingsFolder()
+        {
+            return null;
+        }
+
         protected NhibernateConfigurator(bool mapDtoAssembly)
         {
             var assembliesToMap = GetAssembliesToMap(mapDtoAssembly);
@@ -91,7 +95,7 @@ namespace CoreDdd.Nhibernate.Configurations
                 .Mappings(x =>
                               {
                                   var mappingsContainer = x.AutoMappings.Add(autoPersistenceModel);
-                                  var exportNhibernateMappingsFolder = ConfigurationManager.AppSettings["ExportNhibernateMappingsFolder"];
+                                  var exportNhibernateMappingsFolder = GetExportNhibernateMappingsFolder();
                                   if (!string.IsNullOrWhiteSpace(exportNhibernateMappingsFolder)) mappingsContainer.ExportTo(exportNhibernateMappingsFolder);
                               })
                 .BuildSessionFactory();
