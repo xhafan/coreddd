@@ -34,14 +34,14 @@ namespace CoreDdd.Nhibernate.Conventions
             if (field != null)
             {
                 instance.Access.ReadOnlyPropertyThroughCamelCaseField(CamelCasePrefix.Underscore);
-                SetInverseAndAsSetIfNotAList(field.PropertyType);
+                _setInverseAndAsSetIfNotAList(field.PropertyType);
             }
             else
             {
-                SetInverseAndAsSetIfNotAList(property.PropertyType);
+                _setInverseAndAsSetIfNotAList(property.PropertyType);
             }
 
-            void SetInverseAndAsSetIfNotAList(Type collectionType)
+            void _setInverseAndAsSetIfNotAList(Type collectionType)
             {
                 if (collectionType.IsSubclassOfRawGeneric(typeof(IList<>))) return;
                 instance.Inverse(); // inverse by default if not an ordered list

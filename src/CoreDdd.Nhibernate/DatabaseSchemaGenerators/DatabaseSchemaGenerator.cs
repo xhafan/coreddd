@@ -18,7 +18,10 @@ namespace CoreDdd.Nhibernate.DatabaseSchemaGenerators
             var schemaExport = new SchemaExport(nHibernateConfigurator.GetConfiguration());
             schemaExport.SetOutputFile(databaseSchemaFileName);
             schemaExport.Create(true, false);
-            if (!File.Exists(databaseSchemaFileName) || new FileInfo(databaseSchemaFileName).Length == 0) throw new Exception("Error generating database schema");
+            if (!File.Exists(databaseSchemaFileName) || new FileInfo(databaseSchemaFileName).Length == 0)
+            {
+                throw new Exception("Error generating database schema");
+            }
         }
     }
 }
