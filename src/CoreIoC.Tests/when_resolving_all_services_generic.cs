@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
@@ -12,7 +13,7 @@ namespace CoreIoC.Tests
         private class ServiceTypeTwo : IServiceType { }
 
         private IContainer _container;
-        private IServiceType[] _result;
+        private IEnumerable<IServiceType> _result;
         private ServiceTypeOne _serviceTypeOne;
         private ServiceTypeTwo _serviceTypeTwo;
 

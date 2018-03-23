@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor;
 using CoreUtils.Extensions;
+using Ninject;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreIoC.Castle.Tests
+namespace CoreIoC.Ninject.Tests
 {
     [TestFixture]
     public class when_resolving_all_services_generic
@@ -21,20 +20,22 @@ namespace CoreIoC.Castle.Tests
         [SetUp]
         public void Context()
         {
-            var windsorContainer = new WindsorContainer();
+#if NET40
+            var kernel = new StandardKernel();
+#else
+            var kernel = new KernelConfiguration();
+#endif
+            kernel.Bind<IServiceType>().To<ServiceTypeOne>();
+            kernel.Bind<IServiceType>().To<ServiceTypeTwo>();
 
-            windsorContainer.Register(
-                Component.For<IServiceType>()
-                    .ImplementedBy<ServiceTypeOne>()
-                    .LifeStyle.Transient,
-                Component.For<IServiceType>()
-                    .ImplementedBy<ServiceTypeTwo>()
-                    .LifeStyle.Transient
-            );
+#if NET40
+            var ninjectContainer = new NinjectContainer(kernel);
+#else
+            var ninjectContainer = new NinjectContainer(kernel.BuildReadonlyKernel());
+#endif
 
-            var castleContainer = new CastleContainer(windsorContainer);
 
-            _result = castleContainer.ResolveAll<IServiceType>();
+            _result = ninjectContainer.ResolveAll<IServiceType>();
         }
 
         [Test]

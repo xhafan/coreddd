@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Castle.Windsor;
 
 namespace CoreIoC.Castle
@@ -22,7 +23,7 @@ namespace CoreIoC.Castle
             return _windsorContainer.Resolve<T>();
         }
 
-        public T[] ResolveAll<T>()
+        public IEnumerable<T> ResolveAll<T>()
         {
             return _windsorContainer.ResolveAll<T>();
         }

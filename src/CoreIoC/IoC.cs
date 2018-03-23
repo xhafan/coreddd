@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace CoreIoC
 {
@@ -33,7 +34,7 @@ namespace CoreIoC
             return Container.Resolve<T>();            
         }
 
-        public static T[] ResolveAll<T>()
+        public static IEnumerable<T> ResolveAll<T>()
         {
             return Container.ResolveAll<T>();            
         }

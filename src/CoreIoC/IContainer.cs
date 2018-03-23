@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace CoreIoC
 {
@@ -6,6 +7,6 @@ namespace CoreIoC
     {
         object Resolve(Type service);
         T Resolve<T>();
-        T[] ResolveAll<T>();
+        IEnumerable<T> ResolveAll<T>();
     }
 }
