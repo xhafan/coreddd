@@ -27,5 +27,11 @@ namespace CoreUtils.Extensions
         {
             return !objects.Any();
         }
+
+        public static TSource Second<TSource>(this IEnumerable<TSource> source)
+        {
+            return source.ElementAt(1);
+        }
+
     }
 }

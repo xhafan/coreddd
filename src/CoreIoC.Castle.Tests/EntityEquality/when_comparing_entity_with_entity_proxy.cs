@@ -3,7 +3,7 @@ using CoreDdd.Domain;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreIoC.Castle.Tests
+namespace CoreIoC.Castle.Tests.EntityEquality
 {
     [TestFixture]
     public class when_comparing_entity_with_entity_proxy

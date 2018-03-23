@@ -1,5 +1,7 @@
+using System.Linq;
+using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using FakeItEasy;
+using CoreUtils.Extensions;
 using NUnit.Framework;
 using Shouldly;
 
@@ -9,33 +11,39 @@ namespace CoreIoC.Castle.Tests
     public class when_resolving_all_services_generic
     {
         private interface IServiceType { }
-        private class ServiceTypeOne : IServiceType { }
-        private class ServiceTypeTwo : IServiceType { }
+        protected class ServiceTypeOne : IServiceType { }
+        protected class ServiceTypeTwo : IServiceType { }
 
         private IWindsorContainer _windsorContainer;
         private CastleContainer _castleContainer;
         private IServiceType[] _result;
-        private ServiceTypeOne _serviceTypeOne;
-        private ServiceTypeTwo _serviceTypeTwo;
 
 
         [SetUp]
         public void Context()
         {
-            _windsorContainer = A.Fake<IWindsorContainer>();
-            _castleContainer = new CastleContainer(_windsorContainer);
+            _windsorContainer = new WindsorContainer();
 
-            _serviceTypeOne = new ServiceTypeOne();
-            _serviceTypeTwo = new ServiceTypeTwo();
-            A.CallTo(() => _windsorContainer.ResolveAll<IServiceType>()).Returns(new IServiceType[] { _serviceTypeOne, _serviceTypeTwo });
+            _windsorContainer.Register(
+                Component.For<IServiceType>()
+                    .ImplementedBy<ServiceTypeOne>()
+                    .LifeStyle.Transient,
+                Component.For<IServiceType>()
+                    .ImplementedBy<ServiceTypeTwo>()
+                    .LifeStyle.Transient
+            );
+
+            _castleContainer = new CastleContainer(_windsorContainer);
 
             _result = _castleContainer.ResolveAll<IServiceType>();
         }
 
         [Test]
-        public void all_service_types_is_resolved()
+        public void all_service_are_resolved()
         {
-            _result.ShouldBe(new IServiceType[] { _serviceTypeOne, _serviceTypeTwo });
+            _result.Length.ShouldBe(2);
+            _result.First().ShouldBeOfType<ServiceTypeOne>();
+            _result.Second().ShouldBeOfType<ServiceTypeTwo>();
         }
     }
 }

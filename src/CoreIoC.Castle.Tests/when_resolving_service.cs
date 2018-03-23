@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using FakeItEasy;
 using NUnit.Framework;
 using Shouldly;
 
@@ -10,31 +9,32 @@ namespace CoreIoC.Castle.Tests
     public class when_resolving_service
     {
         private interface IServiceType {}
-        private class ServiceType : IServiceType { }
+        protected class ServiceType : IServiceType { }
 
         private IWindsorContainer _windsorContainer;
         private CastleContainer _castleContainer;
         private object _result;
-        private ServiceType _serviceType;
-        private Type _iServiceType;
 
         [SetUp]
         public void Context()
         {
-            _windsorContainer = A.Fake<IWindsorContainer>();
+            _windsorContainer = new WindsorContainer();
+
+            _windsorContainer.Register(
+                Component.For<IServiceType>()
+                    .ImplementedBy<ServiceType>()
+                    .LifeStyle.Transient
+            );
+
             _castleContainer = new CastleContainer(_windsorContainer);
 
-            _serviceType = new ServiceType();
-            _iServiceType = typeof(IServiceType);
-            A.CallTo(() => _windsorContainer.Resolve(_iServiceType)).Returns(_serviceType);
-
-            _result = _castleContainer.Resolve(_iServiceType);
+            _result = _castleContainer.Resolve(typeof(IServiceType));
         }
 
         [Test]
-        public void container_is_correctly_set()
+        public void service_is_resolved()
         {
-            _result.ShouldBe(_serviceType);
+            _result.ShouldBeOfType<ServiceType>();
         }
     }
 }
