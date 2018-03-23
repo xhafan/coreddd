@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;netstandard1.0</TargetFrameworks>
-    <Description>Abtract IoC used by CoreDdd library. Tutorial on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library</Description>
+    <Description>Abtract IoC used by CoreDdd library</Description>
     <PackageTags>CoreDdd IoC DI</PackageTags>
   </PropertyGroup>
 
