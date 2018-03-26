@@ -2,7 +2,7 @@
 
 namespace CoreDdd.Nhibernate.Tests.EntityWithNonIntegerIdPersistence
 {
-    public class EntityWithStringId : Entity<string>, IAggregateRoot<string>
+    public class EntityWithStringId : Entity<string>, IAggregateRoot
     {
         public EntityWithStringId() {}
 

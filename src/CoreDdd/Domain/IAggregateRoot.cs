@@ -1,6 +1,6 @@
 namespace CoreDdd.Domain
 {
-    public interface IAggregateRoot : IAggregateRoot<int>
+    public interface IAggregateRoot
     {
     }
 }

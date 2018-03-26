@@ -4,7 +4,7 @@ using CoreDdd.Nhibernate.UnitOfWorks;
 
 namespace CoreDdd.Nhibernate.Repositories
 {
-    public class NhibernateRepository<T, TId> : IRepository<T, TId> where T : IAggregateRoot<TId>
+    public class NhibernateRepository<T, TId> : IRepository<T, TId> where T : IAggregateRoot
     {
         private readonly NhibernateUnitOfWork _nhibernateUnitOfWork;
 

@@ -30,7 +30,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
             Flush();
         }
 
-        protected void SaveGeneric<TAggregateRoot, TId>(TAggregateRoot entity) where TAggregateRoot : IAggregateRoot<TId>
+        protected void SaveGeneric<TAggregateRoot, TId>(TAggregateRoot entity) where TAggregateRoot : IAggregateRoot
         {
             var repository = new NhibernateRepository<TAggregateRoot, TId>(UnitOfWork);
             repository.Save(entity);
@@ -43,7 +43,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
             return repository.Get(id);
         }
 
-        protected TAggregateRoot GetGeneric<TAggregateRoot, TId>(TId id) where TAggregateRoot : IAggregateRoot<TId>
+        protected TAggregateRoot GetGeneric<TAggregateRoot, TId>(TId id) where TAggregateRoot : IAggregateRoot
         {
             var repository = new NhibernateRepository<TAggregateRoot, TId>(UnitOfWork);
             return repository.Get(id);

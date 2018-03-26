@@ -2,7 +2,7 @@
 
 namespace CoreDdd.Nhibernate.Tests.EntityWithNonIntegerIdPersistence
 {
-    public class EntityWithCompositeId : Entity<CompositeId>, IAggregateRoot<CompositeId>
+    public class EntityWithCompositeId : Entity<CompositeId>, IAggregateRoot
     {
         protected EntityWithCompositeId() {}
 
