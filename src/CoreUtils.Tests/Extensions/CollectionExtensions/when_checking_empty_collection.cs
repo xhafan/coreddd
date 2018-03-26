@@ -1,5 +1,6 @@
 ﻿using CoreUtils.Extensions;
 using NUnit.Framework;
+using Shouldly;
 
 namespace CoreUtils.Tests.Extensions.CollectionExtensions
 {
@@ -9,13 +10,13 @@ namespace CoreUtils.Tests.Extensions.CollectionExtensions
         [Test]
         public void empty_collection()
         {
-            Assert.That(new int[0].IsEmpty(), Is.True);
+           new int[0].IsEmpty().ShouldBeTrue();
         }
 
         [Test]
         public void not_empty_collection()
         {
-            Assert.That(new[] { 1, 2 }.IsEmpty(), Is.False);
+            new[] { 1, 2 }.IsEmpty().ShouldBeFalse();
         }
     }
 }

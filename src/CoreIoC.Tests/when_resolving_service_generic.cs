@@ -38,7 +38,7 @@ namespace CoreIoC.Tests
         }
 
         [Test]
-        public void container_is_correctly_set()
+        public void service_is_resolved()
         {
             _result.ShouldBeOfType<ServiceType>();
         }

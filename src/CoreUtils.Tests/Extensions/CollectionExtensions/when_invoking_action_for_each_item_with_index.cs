@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CoreUtils.Extensions;
 using NUnit.Framework;
+using Shouldly;
 
 namespace CoreUtils.Tests.Extensions.CollectionExtensions
 {
@@ -27,13 +28,13 @@ namespace CoreUtils.Tests.Extensions.CollectionExtensions
         [Test]
         public void all_items_are_added_to_list()
         {
-            Assert.That(_list, Is.EqualTo(_items));
+            _list.ShouldBe(_items);
         }
 
         [Test]
         public void indexes_generated_correctly()
         {
-            Assert.That(_indexList, Is.EqualTo(new[] {0, 1, 2}));
+            _indexList.ShouldBe(new[] {0, 1, 2});
         }
 
     }

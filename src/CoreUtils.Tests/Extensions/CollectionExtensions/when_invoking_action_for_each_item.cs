@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CoreUtils.Extensions;
 using NUnit.Framework;
+using Shouldly;
 
 namespace CoreUtils.Tests.Extensions.CollectionExtensions
 {
@@ -21,7 +22,7 @@ namespace CoreUtils.Tests.Extensions.CollectionExtensions
         [Test]
         public void all_items_are_added_to_list()
         {
-            Assert.That(_list, Is.EqualTo(_items));
+            _list.ShouldBe(_items);
         }
     }
 }
