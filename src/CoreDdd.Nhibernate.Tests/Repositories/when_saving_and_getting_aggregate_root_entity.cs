@@ -12,7 +12,7 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
     public class when_saving_and_getting_aggregate_root_entity : BasePersistenceTest
     {
         [Test]
-        public void entity_is_persisted()
+        public void entity_is_persisted_and_retrieved()
         {
             var unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
             var testEntityRepository = new NhibernateRepository<TestEntity>(unitOfWork);

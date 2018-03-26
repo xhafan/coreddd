@@ -15,11 +15,11 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
             _entity = new TestEntityWithDomainEvent();
 
 
-            _entity.BehaviourRaisingDomainEvent();
+            _entity.BehaviourMethodWithRaisingDomainEvent();
         }
 
         [Test]
-        public void domain_event_was_handled()
+        public void domain_event_is_handled()
         {
             TestDomainEventHandler.DomainEventWasHandled.ShouldBeTrue();
         }

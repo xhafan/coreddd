@@ -31,7 +31,7 @@ namespace CoreDdd.Tests.Domain.EntityEquality
         }
 
         [Test]
-        public void change_transient_entity_to_persitent_entity_and_check_hashset()
+        public void changing_transient_entity_to_persitent_entity_and_checking_the_hashset()
         {
             var id = _specification.GetIdForEntityOne();
             _transientEntityOne.SetId(id);

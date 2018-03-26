@@ -12,7 +12,7 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
     public class when_deleting_aggregate_root_entity : BasePersistenceTest
     {
         [Test]
-        public void entity_is_fetched_from_database()
+        public void entity_is_deleted()
         {
             var unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
             var testEntityRepository = new NhibernateRepository<TestEntity>(unitOfWork);

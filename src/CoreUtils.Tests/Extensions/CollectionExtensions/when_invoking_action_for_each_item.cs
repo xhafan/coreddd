@@ -16,6 +16,7 @@ namespace CoreUtils.Tests.Extensions.CollectionExtensions
         {
             _items = new[] {1, 2, 3};
             _list = new List<int>();
+
             _items.Each(_list.Add);
         }
 

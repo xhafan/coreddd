@@ -5,7 +5,7 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
 {
     public class TestEntityWithDomainEvent : Entity, IAggregateRoot
     {
-        public virtual void BehaviourRaisingDomainEvent()
+        public virtual void BehaviourMethodWithRaisingDomainEvent()
         {
             DomainEvents.RaiseEvent(new TestDomainEvent());
         }

@@ -33,7 +33,7 @@ namespace CoreDdd.Nhibernate.Tests.Queries
         }
 
         [Test]
-        public void result_is_correct()
+        public void two_entities_are_counted()
         {
             _result.Count().ShouldBe(1);
             _result.First().ShouldBe(2);

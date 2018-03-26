@@ -11,7 +11,7 @@ namespace CoreDdd.Nhibernate.Tests.Queries
         {
             container.Register(
                 Component.For<IQueryHandler<GetTestEntityCountTestQueryOverQuery>>()
-                    .ImplementedBy<GetTestEntityCountTestQueryOverHandler>()
+                    .ImplementedBy<GetTestEntityCountTestQueryOverQueryHandler>()
                     .LifeStyle.Transient,            
                 Component.For<IQueryHandler<GetTestEntityCountTestNhibernateQuery>>()
                     .ImplementedBy<GetTestEntityCountTestNhibernateQueryHandler>()

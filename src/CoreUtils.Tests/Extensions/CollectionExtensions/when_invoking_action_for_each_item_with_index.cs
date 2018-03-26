@@ -18,6 +18,7 @@ namespace CoreUtils.Tests.Extensions.CollectionExtensions
             _items = new[] {1, 2, 3};
             _indexList = new List<int>();
             _list = new List<int>();
+
             _items.Each((i, x) =>
             {
                 _indexList.Add(i);

@@ -5,7 +5,7 @@ using NHibernate.Criterion;
 
 namespace CoreDdd.Nhibernate.Tests.Queries
 {
-    public class GetTestEntityCountTestQueryOverHandler : BaseQueryOverHandler<GetTestEntityCountTestQueryOverQuery>
+    public class GetTestEntityCountTestQueryOverQueryHandler : BaseQueryOverHandler<GetTestEntityCountTestQueryOverQuery>
     {
         protected override IQueryOver GetQueryOver<TResult>(GetTestEntityCountTestQueryOverQuery query)
         {
