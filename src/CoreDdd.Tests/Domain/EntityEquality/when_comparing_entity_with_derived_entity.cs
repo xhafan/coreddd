@@ -31,7 +31,7 @@ namespace CoreDdd.Tests.Domain.EntityEquality
             Equals(derivedTestEntityOne, testEntityOne).ShouldBeFalse();
         }
 
-        public class TestEntityOne : Entity
+        private class TestEntityOne : Entity
         {
             public void SetId(int id)
             {
@@ -39,15 +39,7 @@ namespace CoreDdd.Tests.Domain.EntityEquality
             }
         }
 
-        public class TestEntityTwo : Entity
-        {
-            public void SetId(int id)
-            {
-                Id = id;
-            }
-        }
-
-        public class DerivedTestEntityOne : TestEntityOne
+        private class DerivedTestEntityOne : TestEntityOne
         {
         }
     }

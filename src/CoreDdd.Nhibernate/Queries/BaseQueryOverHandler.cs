@@ -6,7 +6,7 @@ namespace CoreDdd.Nhibernate.Queries
 {
     public abstract class BaseQueryOverHandler<TQuery> : BaseNhibernateQueryHandler<TQuery> where TQuery : IQuery
     {
-        public abstract IQueryOver GetQueryOver<TResult>(TQuery query);
+        protected abstract IQueryOver GetQueryOver<TResult>(TQuery query);
 
         public override IEnumerable<TResult> Execute<TResult>(TQuery query)
         {

@@ -7,7 +7,7 @@ namespace CoreDdd.Nhibernate.Tests.Queries
 {
     public class GetTestEntityCountTestQueryOverHandler : BaseQueryOverHandler<GetTestEntityCountTestQueryOverQuery>
     {
-        public override IQueryOver GetQueryOver<TResult>(GetTestEntityCountTestQueryOverQuery query)
+        protected override IQueryOver GetQueryOver<TResult>(GetTestEntityCountTestQueryOverQuery query)
         {
             return Session.QueryOver<TestEntity>().Select(Projections.RowCount());
         }
