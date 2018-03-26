@@ -9,9 +9,9 @@ namespace CoreDdd.Domain.Events
     {
         public static void RaiseEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
-            var domainEventHandlers = IoC.ResolveAll<IDomainEventHandler<TDomainEvent>>();
+            var domainEventHandlers = IoC.ResolveAll<IDomainEventHandler<TDomainEvent>>().ToList();
             Guard.Hope<MissingDomainEventHandlerException>(domainEventHandlers.Any(), "No domain event handler for " + domainEvent);
-            domainEventHandlers.Each(e => e.Handle(domainEvent));
+            domainEventHandlers.Each(x => x.Handle(domainEvent));
         }
     }
 }

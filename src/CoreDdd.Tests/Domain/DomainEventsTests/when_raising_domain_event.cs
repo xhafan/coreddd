@@ -11,21 +11,25 @@ namespace CoreDdd.Tests.Domain.DomainEventsTests
         private IDomainEventHandler<TestDomainEvent> _testDomainHandler;
         private TestDomainEvent _testDomainEvent;
 
-        public class TestDomainEvent : IDomainEvent
-        {            
-        }
-
         [SetUp]
         public void Context()
         {
-            var container = A.Fake<IContainer>();
-            _testDomainHandler = A.Fake<IDomainEventHandler<TestDomainEvent>>();
-            A.CallTo(() => container.ResolveAll<IDomainEventHandler<TestDomainEvent>>()).Returns(new[] { _testDomainHandler });
-            IoC.Initialize(container);
-
+            _setupContainerToResolveDomainEventHandlers();
             _testDomainEvent = new TestDomainEvent();
+
+
             DomainEvents.RaiseEvent(_testDomainEvent);
+
+
+            void _setupContainerToResolveDomainEventHandlers()
+            {
+                var container = A.Fake<IContainer>();
+                _testDomainHandler = A.Fake<IDomainEventHandler<TestDomainEvent>>();
+                A.CallTo(() => container.ResolveAll<IDomainEventHandler<TestDomainEvent>>()).Returns(new[] { _testDomainHandler });
+                IoC.Initialize(container);
+            }
         }
+
 
         [Test]
         public void event_was_handled()
@@ -33,5 +37,8 @@ namespace CoreDdd.Tests.Domain.DomainEventsTests
             A.CallTo(() =>_testDomainHandler.Handle(_testDomainEvent)).MustHaveHappened();
         }
 
+        public class TestDomainEvent : IDomainEvent
+        {
+        }
     }
 }

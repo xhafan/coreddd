@@ -11,24 +11,32 @@ namespace CoreDdd.Tests.Domain.DomainEventsTests
     {
         private MissingDomainEventHandlerException _exception;
 
-        public class TestDomainEvent : IDomainEvent
-        {            
-        }
-
         [SetUp]
         public void Context()
         {
-            var container = A.Fake<IContainer>();
-            A.CallTo(() => container.ResolveAll<IDomainEventHandler<TestDomainEvent>>()).Returns(new IDomainEventHandler<TestDomainEvent>[0]);
-            IoC.Initialize(container);
+            _setupContainerNotToResolveAnyDomainEventHandlers();
+
 
             _exception = Should.Throw<MissingDomainEventHandlerException>(() => DomainEvents.RaiseEvent(new TestDomainEvent()));
+
+
+            void _setupContainerNotToResolveAnyDomainEventHandlers()
+            {
+                var container = A.Fake<IContainer>();
+                A.CallTo(() => container.ResolveAll<IDomainEventHandler<TestDomainEvent>>())
+                    .Returns(new IDomainEventHandler<TestDomainEvent>[0]);
+                IoC.Initialize(container);
+            }
         }
 
         [Test]
         public void exception_was_thrown()
         {
             _exception.Message.ShouldContain("No domain event handler for ");
+        }
+
+        public class TestDomainEvent : IDomainEvent
+        {
         }
 
     }

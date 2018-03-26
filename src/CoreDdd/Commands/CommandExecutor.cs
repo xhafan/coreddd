@@ -5,11 +5,11 @@ namespace CoreDdd.Commands
 {
     public class CommandExecutor : ICommandExecutor
     {
-        public void Execute<TCommandMessage>(TCommandMessage commandMessage) where TCommandMessage : ICommand
+        public void Execute<TCommand>(TCommand command) where TCommand : ICommand
         {
-            var handler = IoC.Resolve<ICommandHandler<TCommandMessage>>();
-            handler.CommandExecuted += CommandExecuted;
-            handler.Execute(commandMessage);
+            var commandHandler = IoC.Resolve<ICommandHandler<TCommand>>();
+            commandHandler.CommandExecuted += CommandExecuted;
+            commandHandler.Execute(command);
         }
 
         public event EventHandler<CommandExecutedArgs> CommandExecuted;

@@ -7,7 +7,7 @@ namespace CoreDdd.Commands
         public abstract void Execute(TCommand message);
         public event EventHandler<CommandExecutedArgs> CommandExecuted;
 
-        protected void RaiseEvent(CommandExecutedArgs eventArgs)
+        protected void RaiseCommandExecutedEvent(CommandExecutedArgs eventArgs)
         {
             CommandExecuted?.Invoke(this, eventArgs);
         }
