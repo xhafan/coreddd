@@ -1,15 +1,12 @@
-﻿using System;
-using CoreDdd.Commands;
+﻿using CoreDdd.Commands;
 
 namespace CoreDdd.Nhibernate.Tests.Commands
 {
-    public class TestCommandHandler : ICommandHandler<TestCommand>
+    public class TestCommandHandler : BaseCommandHandler<TestCommand>
     {
-        public void Execute(TestCommand command)
+        public override void Execute(TestCommand command)
         {
-            CommandExecuted?.Invoke(this, new CommandExecutedArgs { Args = command.CommandExecutedArgs });
+            RaiseCommandExecutedEvent(new CommandExecutedArgs { Args = command.CommandExecutedArgs });
         }
-
-        public event EventHandler<CommandExecutedArgs> CommandExecuted;
     }
 }

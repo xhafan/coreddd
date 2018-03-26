@@ -12,6 +12,6 @@ namespace CoreDdd.Commands
             commandHandler.Execute(command);
         }
 
-        public event EventHandler<CommandExecutedArgs> CommandExecuted;
+        public event Action<CommandExecutedArgs> CommandExecuted;
     }
 }

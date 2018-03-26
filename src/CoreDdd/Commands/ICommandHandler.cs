@@ -2,9 +2,9 @@
 
 namespace CoreDdd.Commands
 {
-    public interface ICommandHandler<in TCommandMessage> where TCommandMessage: ICommand
+    public interface ICommandHandler<in TCommand> where TCommand: ICommand
     {
-        void Execute(TCommandMessage command);
-        event EventHandler<CommandExecutedArgs> CommandExecuted;
+        void Execute(TCommand command);
+        event Action<CommandExecutedArgs> CommandExecuted;
     }
 }

@@ -15,7 +15,7 @@ namespace CoreDdd.Nhibernate.Tests.Commands
             var testCommand = new TestCommand {CommandExecutedArgs = "args"};
 
             var commandExecutor = new CommandExecutor();
-            commandExecutor.CommandExecuted += (sender, args) =>
+            commandExecutor.CommandExecuted += args =>
             {
                 if ((string) args.Args == "args") _commandExecutedEventWasRaised = true;
             };

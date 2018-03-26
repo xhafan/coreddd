@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace CoreDdd.Commands
+﻿namespace CoreDdd.Commands
 {
-    public class CommandExecutedArgs : EventArgs
+    public class CommandExecutedArgs
     {
         public object Args { get; set; }
     }
