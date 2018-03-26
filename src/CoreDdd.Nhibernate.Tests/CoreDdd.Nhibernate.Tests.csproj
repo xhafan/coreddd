@@ -36,7 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FakeItEasy" Version="4.4.0" />
     <PackageReference Include="FluentNHibernate" Version="2.0.3" />
     <PackageReference Include="Iesi.Collections" Version="4.0.3" />
     <PackageReference Include="NUnit" Version="3.9.0" />
