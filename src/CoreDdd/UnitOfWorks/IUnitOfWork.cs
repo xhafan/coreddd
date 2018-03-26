@@ -7,7 +7,5 @@ namespace CoreDdd.UnitOfWorks
         void BeginTransaction();
         void Commit();
         void Rollback();
-        void Flush();
-        void Clear();
     }
 }

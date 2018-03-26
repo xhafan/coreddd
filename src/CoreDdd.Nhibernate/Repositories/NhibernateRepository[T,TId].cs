@@ -6,31 +6,31 @@ namespace CoreDdd.Nhibernate.Repositories
 {
     public class NhibernateRepository<T, TId> : IRepository<T, TId> where T : IAggregateRoot
     {
-        private readonly NhibernateUnitOfWork _nhibernateUnitOfWork;
+        private readonly NhibernateUnitOfWork _unitOfWork;
 
         public NhibernateRepository(NhibernateUnitOfWork unitOfWork)
         {
-            _nhibernateUnitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public T Get(TId id)
         {
-            return _nhibernateUnitOfWork.Session.Get<T>(id);
+            return _unitOfWork.Session.Get<T>(id);
         }
 
         public T Load(TId id)
         {
-            return _nhibernateUnitOfWork.Session.Load<T>(id);
+            return _unitOfWork.Session.Load<T>(id);
         }
 
         public void Save(T objectToSave)
         {
-            _nhibernateUnitOfWork.Session.Save(objectToSave);
+            _unitOfWork.Session.Save(objectToSave);
         }
 
         public void Delete(T objectToDelete)
         {
-            _nhibernateUnitOfWork.Session.Delete(objectToDelete);
+            _unitOfWork.Session.Delete(objectToDelete);
         }
     }
 }

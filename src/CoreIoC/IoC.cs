@@ -28,14 +28,14 @@ namespace CoreIoC
             return _getContainer().Resolve(service);
         }
 
-        public static T Resolve<T>()
+        public static TService Resolve<TService>()
         {
-            return _getContainer().Resolve<T>();
+            return _getContainer().Resolve<TService>();
         }
 
-        public static IEnumerable<T> ResolveAll<T>()
+        public static IEnumerable<TService> ResolveAll<TService>()
         {
-            return _getContainer().ResolveAll<T>();
+            return _getContainer().ResolveAll<TService>();
         }
     }
 }

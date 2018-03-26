@@ -23,7 +23,7 @@ namespace CoreDdd.Nhibernate.Register.Castle
         {
             if (_setUnitOfWorkLifeStyleFunc == null)
             {
-                throw new Exception("Call first NhibernateInstaller.SetUnitOfWorkLifeStyle() to set unit of work lifestyle " +
+                throw new Exception("First call NhibernateInstaller.SetUnitOfWorkLifeStyle() to set unit of work lifestyle " +
                                     "(e.g. NhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerWebRequest)");
             }
 

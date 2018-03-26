@@ -96,7 +96,10 @@ namespace CoreDdd.Nhibernate.Configurations
                               {
                                   var mappingsContainer = x.AutoMappings.Add(autoPersistenceModel);
                                   var exportNhibernateMappingsFolder = GetExportNhibernateMappingsFolder();
-                                  if (!string.IsNullOrWhiteSpace(exportNhibernateMappingsFolder)) mappingsContainer.ExportTo(exportNhibernateMappingsFolder);
+                                  if (!string.IsNullOrWhiteSpace(exportNhibernateMappingsFolder))
+                                  {
+                                      mappingsContainer.ExportTo(exportNhibernateMappingsFolder);
+                                  }
                               })
                 .BuildSessionFactory();
         }

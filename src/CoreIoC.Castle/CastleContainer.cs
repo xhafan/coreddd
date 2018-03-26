@@ -18,14 +18,14 @@ namespace CoreIoC.Castle
             return _windsorContainer.Resolve(service);
         }
 
-        public T Resolve<T>()
+        public TService Resolve<TService>()
         {
-            return _windsorContainer.Resolve<T>();
+            return _windsorContainer.Resolve<TService>();
         }
 
-        public IEnumerable<T> ResolveAll<T>()
+        public IEnumerable<TService> ResolveAll<TService>()
         {
-            return _windsorContainer.ResolveAll<T>();
+            return _windsorContainer.ResolveAll<TService>();
         }
     }
 }

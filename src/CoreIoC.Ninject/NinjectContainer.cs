@@ -19,14 +19,14 @@ namespace CoreIoC.Ninject
             return _kernel.Get(service);
         }
 
-        public T Resolve<T>()
+        public TService Resolve<TService>()
         {
-            return _kernel.Get<T>();
+            return _kernel.Get<TService>();
         }
 
-        public IEnumerable<T> ResolveAll<T>()
+        public IEnumerable<TService> ResolveAll<TService>()
         {
-            return _kernel.GetAll<T>();
+            return _kernel.GetAll<TService>();
         }
     }
 }
