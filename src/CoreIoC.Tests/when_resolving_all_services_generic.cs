@@ -1,5 +1,9 @@
 using System.Collections.Generic;
-using FakeItEasy;
+using System.Linq;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using CoreIoC.Castle;
+using CoreUtils.Extensions;
 using NUnit.Framework;
 using Shouldly;
 
@@ -9,32 +13,43 @@ namespace CoreIoC.Tests
     public class when_resolving_all_services_generic
     {
         private interface IServiceType { }
-        private class ServiceTypeOne : IServiceType { }
-        private class ServiceTypeTwo : IServiceType { }
+        protected class ServiceTypeOne : IServiceType { }
+        protected class ServiceTypeTwo : IServiceType { }
 
-        private IContainer _container;
         private IEnumerable<IServiceType> _result;
-        private ServiceTypeOne _serviceTypeOne;
-        private ServiceTypeTwo _serviceTypeTwo;
-
+        private WindsorContainer _windsorContainer;
 
         [SetUp]
         public void Context()
         {
-            _container = A.Fake<IContainer>();
-            IoC.Initialize(_container);
+            _setupContainerToResolveTheServices();
+            IoC.Initialize(new CastleContainer(_windsorContainer));
 
-            _serviceTypeOne = new ServiceTypeOne();
-            _serviceTypeTwo = new ServiceTypeTwo();
-            A.CallTo(() => _container.ResolveAll<IServiceType>()).Returns(new IServiceType[] { _serviceTypeOne, _serviceTypeTwo });
 
             _result = IoC.ResolveAll<IServiceType>();
+
+
+            void _setupContainerToResolveTheServices()
+            {
+                _windsorContainer = new WindsorContainer();
+
+                _windsorContainer.Register(
+                    Component.For<IServiceType>()
+                        .ImplementedBy<ServiceTypeOne>()
+                        .LifeStyle.Transient,
+                    Component.For<IServiceType>()
+                        .ImplementedBy<ServiceTypeTwo>()
+                        .LifeStyle.Transient
+                );
+            }
         }
 
         [Test]
-        public void all_service_types_is_resolved()
+        public void all_service_are_resolved()
         {
-            _result.ShouldBe(new IServiceType[] { _serviceTypeOne, _serviceTypeTwo });
+            _result.Count().ShouldBe(2);
+            _result.First().ShouldBeOfType<ServiceTypeOne>();
+            _result.Second().ShouldBeOfType<ServiceTypeTwo>();
         }
     }
 }

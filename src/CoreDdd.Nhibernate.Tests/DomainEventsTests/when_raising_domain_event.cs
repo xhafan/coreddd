@@ -11,7 +11,7 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         [SetUp]
         public void Context()
         {
-            TestDomainEventHandler.ResetDomainEventWasHandled();
+            TestDomainEventHandler.ResetDomainEventWasHandledFlag();
             _entity = new TestEntityWithDomainEvent();
 
 

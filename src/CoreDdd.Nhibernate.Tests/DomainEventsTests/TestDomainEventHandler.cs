@@ -11,7 +11,7 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
             DomainEventWasHandled = true;
         }
 
-        public static void ResetDomainEventWasHandled()
+        public static void ResetDomainEventWasHandledFlag()
         {
             DomainEventWasHandled = false;
         }
