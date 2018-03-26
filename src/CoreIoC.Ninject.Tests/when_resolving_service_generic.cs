@@ -1,5 +1,4 @@
-﻿using CoreIoC.Ninject;
-using Ninject;
+﻿using Ninject;
 using NUnit.Framework;
 using Shouldly;
 
