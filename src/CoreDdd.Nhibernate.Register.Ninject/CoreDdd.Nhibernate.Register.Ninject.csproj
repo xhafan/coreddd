@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;netstandard1.3</TargetFrameworks>
-    <Description>Ninject IoC for CoreDdd library</Description>
-    <PackageTags>CoreDdd Ninject IoC DI</PackageTags>
+    <TargetFrameworks>net40;net45</TargetFrameworks>
+    <Description>Ninject IoC registration for CoreDdd.Nhibernate library</Description>
+    <PackageTags>CoreDdd nhibernate ninject IoC DI</PackageTags>
   </PropertyGroup>
-  
+
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
@@ -16,12 +16,15 @@
     <PackageReference Include="Ninject" Version="4.0.0-beta-0134" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
-    <PackageReference Include="Ninject" Version="4.0.0-beta-0134" />
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
+    <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
+    <Reference Include="Ninject">
+      <HintPath>..\..\..\..\Users\admin\.nuget\packages\ninject\3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

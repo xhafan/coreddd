@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;net45;netstandard1.3</TargetFrameworks>
-    <Description>Ninject IoC for CoreDdd library</Description>
-    <PackageTags>CoreDdd Ninject IoC DI</PackageTags>
+    <Description>Ninject IoC registration for CoreDdd library</Description>
+    <PackageTags>CoreDdd ninject IoC DI</PackageTags>
   </PropertyGroup>
-  
+
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
