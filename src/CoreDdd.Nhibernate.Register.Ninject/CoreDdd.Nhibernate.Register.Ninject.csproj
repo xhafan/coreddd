@@ -21,12 +21,6 @@
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Ninject">
-      <HintPath>..\..\..\..\Users\admin\.nuget\packages\ninject\3.0.1.10\lib\net40\Ninject.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
