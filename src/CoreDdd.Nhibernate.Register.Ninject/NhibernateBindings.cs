@@ -10,13 +10,13 @@ namespace CoreDdd.Nhibernate.Register.Ninject
 {
     public class NhibernateBindings : NinjectModule
     {
-        private static Func<IBindingWhenInNamedWithOrOnSyntax<
-            NhibernateUnitOfWork>, IBindingWhenInNamedWithOrOnSyntax<NhibernateUnitOfWork>> _setUnitOfWorkLifeStyleFunc;
+        private static Func<IBindingInSyntax<NhibernateUnitOfWork>,
+            IBindingNamedWithOrOnSyntax<NhibernateUnitOfWork>> _setUnitOfWorkLifeStyleFunc;
 
         public static void SetUnitOfWorkLifeStyle(
-            Func<IBindingWhenInNamedWithOrOnSyntax<NhibernateUnitOfWork>, 
-                 IBindingWhenInNamedWithOrOnSyntax<NhibernateUnitOfWork>> setLifeStyleFunc
-            )
+            Func<IBindingInSyntax<NhibernateUnitOfWork>,
+                IBindingNamedWithOrOnSyntax<NhibernateUnitOfWork>> setLifeStyleFunc
+        )
         {
             _setUnitOfWorkLifeStyleFunc = setLifeStyleFunc;
         }
