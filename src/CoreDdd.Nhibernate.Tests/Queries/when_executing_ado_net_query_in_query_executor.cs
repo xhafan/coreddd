@@ -11,7 +11,7 @@ namespace CoreDdd.Nhibernate.Tests.Queries
     [TestFixture]
     public class when_executing_ado_net_query_in_query_executor : BasePersistenceTest
     {
-        private IEnumerable<long> _result;
+        private IEnumerable<int> _result;
         private GetTestEntityCountTestAdoNetQuery _query;
       
         [SetUp]
@@ -21,7 +21,7 @@ namespace CoreDdd.Nhibernate.Tests.Queries
             _query = new GetTestEntityCountTestAdoNetQuery();
 
             var queryExecutor = new QueryExecutor();
-            _result = queryExecutor.Execute<GetTestEntityCountTestAdoNetQuery, long>(_query);
+            _result = queryExecutor.Execute<GetTestEntityCountTestAdoNetQuery, int>(_query);
 
             void _persistTestEntity()
             {
@@ -37,7 +37,6 @@ namespace CoreDdd.Nhibernate.Tests.Queries
         {
             _result.Count().ShouldBe(1);
             _result.First().ShouldBe(2);
-        }
-    
+        }    
     }
 }

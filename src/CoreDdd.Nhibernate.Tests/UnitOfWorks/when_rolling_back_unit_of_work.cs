@@ -24,6 +24,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 
             _testEntity = new TestEntity();
             _testEntityRepository.Save(_testEntity);
+            _unitOfWork.Flush();
 
             _unitOfWork.Rollback();
         }

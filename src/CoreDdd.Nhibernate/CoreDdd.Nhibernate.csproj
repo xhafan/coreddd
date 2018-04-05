@@ -27,6 +27,10 @@
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>

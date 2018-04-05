@@ -1,4 +1,5 @@
-﻿using CoreDdd.Nhibernate.Configurations;
+﻿using System.Transactions;
+using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.UnitOfWorks;
 using NHibernate;
 
@@ -7,6 +8,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
     public class NhibernateUnitOfWork : IUnitOfWork
     {
         private readonly INhibernateConfigurator _configurator;
+        private bool _isInTransactionScope;
 
         public NhibernateUnitOfWork(INhibernateConfigurator configurator)
         {
@@ -17,12 +19,19 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void BeginTransaction()
         {
+            _isInTransactionScope = Transaction.Current != null;
+
             Session = _configurator.GetSessionFactory().OpenSession();
+
+            if (_isInTransactionScope) return;
+
             Session.BeginTransaction();
         }
 
         public void Commit()
         {
+            if (_isInTransactionScope) return;
+
             var tx = Session.Transaction;
             try
             {
@@ -43,6 +52,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void Rollback()
         {
+            if (_isInTransactionScope) return;
+
             var tx = Session.Transaction;
             try
             {
