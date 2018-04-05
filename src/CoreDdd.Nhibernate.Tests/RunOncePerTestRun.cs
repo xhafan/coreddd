@@ -11,6 +11,7 @@ using CoreDdd.Nhibernate.Register.Castle;
 using CoreIoC;
 using CoreIoC.Castle;
 using NHibernate.Tool.hbm2ddl;
+using Npgsql;
 using NUnit.Framework;
 
 namespace CoreDdd.Nhibernate.Tests
@@ -73,6 +74,8 @@ namespace CoreDdd.Nhibernate.Tests
                             return new SQLiteConnection(connectionString);
                         case string x when x.Contains("SqlClient"):
                             return new SqlConnection(connectionString);
+                        case string x when x.Contains("NpgsqlDriver"): // PostgreSQL
+                            return new NpgsqlConnection(connectionString);
                         default:
                             throw new Exception("Unsupported NHibernate connection.driver_class");
                     }

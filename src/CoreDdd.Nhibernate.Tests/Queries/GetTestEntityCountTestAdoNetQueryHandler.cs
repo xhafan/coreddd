@@ -14,7 +14,7 @@ namespace CoreDdd.Nhibernate.Tests.Queries
             var connection = session.Connection;
             using (var cmd = connection.CreateCommand())
             {
-                cmd.CommandText = "select count(Id) from TestEntity";
+                cmd.CommandText = "select count(Id) from \"TestEntity\"";
                 session.Transaction.Enlist(cmd);
 
                 object result = cmd.ExecuteScalar();
