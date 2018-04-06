@@ -6,10 +6,12 @@ using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
+namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes.Committing
 {
-    [TestFixture]
-    public class when_disposing_unit_of_work_within_transaction_scope
+    [TestFixture(TypeArgs = new[] { typeof(CommittingUnitOfWorkInTransactionScopeSpecification) })]
+    [TestFixture(TypeArgs = new[] { typeof(DisposingUnitOfWorkInTransactionScopeSpecification) })]
+    public class when_committing_unit_of_work_within_transaction_scope<TCommittingUnitOfWorkInTransactionScopeSpecification>
+        where TCommittingUnitOfWorkInTransactionScopeSpecification : ICommittingUnitOfWorkInTransactionScopeSpecification, new()
     {
         private NhibernateUnitOfWork _unitOfWork;
         private NhibernateRepository<TestEntity> _testEntityRepository;
@@ -18,6 +20,8 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
         [SetUp]
         public void Context()
         {
+            var specification = new TCommittingUnitOfWorkInTransactionScopeSpecification();
+
             using (var transactionScope = new TransactionScope())
             {
                 _unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
@@ -27,7 +31,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
                 _testEntity = new TestEntity();
                 _testEntityRepository.Save(_testEntity);
 
-                _unitOfWork.Dispose();
+                specification.CommitAct(_unitOfWork);
 
                 transactionScope.Complete();
             }
@@ -42,6 +46,12 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
             _testEntity.ShouldNotBeNull();
 
             _unitOfWork.Rollback();
+        }
+
+        [Test]
+        public void nhibernate_session_is_closed()
+        {
+            _unitOfWork.Session.ShouldBeNull();
         }
     }
 }

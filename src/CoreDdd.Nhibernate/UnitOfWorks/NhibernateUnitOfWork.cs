@@ -30,7 +30,12 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void Commit()
         {
-            if (_isInTransactionScope) return;
+            if (_isInTransactionScope)
+            {
+                Session?.Dispose();
+                Session = null;
+                return;
+            }
 
             var tx = Session.Transaction;
             try
@@ -52,7 +57,12 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void Rollback()
         {
-            if (_isInTransactionScope) return;
+            if (_isInTransactionScope)
+            {
+                Session?.Dispose();
+                Session = null;
+                return;
+            }
 
             var tx = Session.Transaction;
             try

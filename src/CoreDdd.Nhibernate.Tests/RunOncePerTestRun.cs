@@ -74,7 +74,7 @@ namespace CoreDdd.Nhibernate.Tests
                             return new SQLiteConnection(connectionString);
                         case string x when x.Contains("SqlClient"):
                             return new SqlConnection(connectionString);
-                        case string x when x.Contains("NpgsqlDriver"): // PostgreSQL
+                        case string x when x.Contains("NpgsqlDriver"):
                             return new NpgsqlConnection(connectionString);
                         default:
                             throw new Exception("Unsupported NHibernate connection.driver_class");

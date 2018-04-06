@@ -64,6 +64,13 @@ namespace CoreDdd.Nhibernate.Configurations
             return null;
         }
 
+        protected virtual bool ShouldQuoteTableNamesForDerivedClasses(Configuration configuration)
+        {
+            var connectionDriverClass = configuration.Properties["connection.driver_class"];
+            var isPostgreSql = connectionDriverClass.Contains("NpgsqlDriver");
+            return isPostgreSql;
+        }
+
         protected NhibernateConfigurator(bool mapDtoAssembly)
         {
             var assembliesToMap = GetAssembliesToMap(mapDtoAssembly);
@@ -91,7 +98,12 @@ namespace CoreDdd.Nhibernate.Configurations
             }
             assemblyWithAdditionalConventions.Each(x => autoPersistenceModel.Conventions.AddAssembly(x));
 
-            _sessionFactory = Fluently.Configure(_configuration)
+            if (ShouldQuoteTableNamesForDerivedClasses(_configuration))
+            {
+                _configuration.SetNamingStrategy(new QuoteTableNamesForDerivedClassesNamingStrategy());
+            }
+
+            var fluentConfiguration = Fluently.Configure(_configuration)
                 .Mappings(x =>
                               {
                                   var mappingsContainer = x.AutoMappings.Add(autoPersistenceModel);
@@ -100,8 +112,8 @@ namespace CoreDdd.Nhibernate.Configurations
                                   {
                                       mappingsContainer.ExportTo(exportNhibernateMappingsFolder);
                                   }
-                              })
-                .BuildSessionFactory();
+                              });
+            _sessionFactory = fluentConfiguration.BuildSessionFactory();
         }
 
         public ISessionFactory GetSessionFactory()
