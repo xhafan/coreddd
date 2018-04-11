@@ -17,7 +17,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public ISession Session { get; private set; }
 
-        public void BeginTransaction()
+        public void BeginTransaction(System.Data.IsolationLevel isolationLevel = System.Data.IsolationLevel.Unspecified)
         {
             _isInTransactionScope = Transaction.Current != null;
 
@@ -25,7 +25,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
             if (_isInTransactionScope) return;
 
-            Session.BeginTransaction();
+            Session.BeginTransaction(isolationLevel);
         }
 
         public void Commit()
