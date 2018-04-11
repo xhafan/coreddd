@@ -1,0 +1,13 @@
+version: 3.0.7.{build}
+image: Visual Studio 2017
+before_build:
+- cmd: >-
+    cd src
+    nuget restore
+build:
+  parallel: true
+  verbosity: minimal
+test:
+  assemblies:
+    only:
+    - '**\*Tests.dll'
