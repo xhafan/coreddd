@@ -20,9 +20,10 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes.Committing
         [SetUp]
         public void Context()
         {
-            var specification = new TCommittingUnitOfWorkInTransactionScopeSpecification();
+            var specification = new TCommittingUnitOfWorkInTransactionScopeSpecification();            
 
-            using (var transactionScope = new TransactionScope())
+            using (var transactionScope = new TransactionScope(TransactionScopeOption.Required,
+                new TransactionOptions {IsolationLevel = IsolationLevel.ReadCommitted}))
             {
                 _unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
                 _unitOfWork.BeginTransaction();

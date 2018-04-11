@@ -30,9 +30,11 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void Commit()
         {
+            Flush();
+
             if (_isInTransactionScope)
             {
-                Session?.Dispose();
+                Session.Dispose();
                 Session = null;
                 return;
             }
@@ -57,9 +59,11 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void Rollback()
         {
+            Flush();
+
             if (_isInTransactionScope)
             {
-                Session?.Dispose();
+                Session.Dispose();
                 Session = null;
                 return;
             }

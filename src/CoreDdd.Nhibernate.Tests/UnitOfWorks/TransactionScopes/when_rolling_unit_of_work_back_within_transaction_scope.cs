@@ -19,7 +19,8 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
         [SetUp]
         public void Context()
         {
-            using (var transactionScope = new TransactionScope())
+            using (var transactionScope = new TransactionScope(TransactionScopeOption.Required,
+                new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }))
             {
                 _unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
                 _unitOfWork.BeginTransaction();
@@ -27,7 +28,6 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
                 _testEntityRepository = new NhibernateRepository<TestEntity>(_unitOfWork);
                 _testEntity = new TestEntity();
                 _testEntityRepository.Save(_testEntity);
-                _unitOfWork.Flush();
 
                 _unitOfWork.Rollback();
             }
@@ -36,7 +36,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
         [Test]
         public void entities_are_not_persisted()
         {
-            if (_shouldNotBeTestedDueToOldNhibernateVersionAndOldDatabaseDriverCombination()) return;
+            if (_shouldNotBeTestedDueToOldNhibernateVersionAndSqliteDriver()) return;
 
             _unitOfWork.BeginTransaction();
             _testEntity = _testEntityRepository.Get(_testEntity.Id);
@@ -45,9 +45,11 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
 
             _unitOfWork.Rollback();
 
-            bool _shouldNotBeTestedDueToOldNhibernateVersionAndOldDatabaseDriverCombination()
+            bool _shouldNotBeTestedDueToOldNhibernateVersionAndSqliteDriver()
             {
-                // Nhibernate 4.1.1 and sqllite does not rollback properly within a transaction scope. This is working fine for Nhibernate 5.0.3
+                // Nhibernate 4.1.1 does not rollback properly within a transaction scope for sqllite (latest stable 1.0.108). This is working fine for Nhibernate 5.0.3
+                // strangely, if there is a TestEntity sql select just before the TestEntity sql insert, it all works fine. Anyway, marking it as not working for 
+                // Nhibernate 4.1.1 so it's visible that there might be some issues with transaction scope, nhibernate 4.1.1 and sqlite combination.
 
                 var configuration = IoC.Resolve<INhibernateConfigurator>().GetConfiguration();
                 var connectionDriverClass = configuration.Properties["connection.driver_class"];
@@ -55,10 +57,10 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
 
                 if (isSqlite)
                 {
-#if NET40
+#if NET40 //Nhibernate 4.1.1
                     return true;
 #endif
-#if NET45
+#if NET45 //Nhibernate 4.1.1
                     return true;
 #endif
 #if NET461
