@@ -3,11 +3,17 @@ image: Visual Studio 2017
 before_build:
 - cmd: >-
     cd src
+
     nuget restore
 build:
+  publish_nuget: true
   parallel: true
   verbosity: minimal
 test:
   assemblies:
     only:
     - '**\*Tests.dll'
+deploy:
+- provider: NuGet
+  api_key:
+    secure: TwqH7i+HZTqeCjLGKi7cAI9QKa/Vcc8J39XO5rAfKjgE8uxtkzcufEZZvE3J1orV
