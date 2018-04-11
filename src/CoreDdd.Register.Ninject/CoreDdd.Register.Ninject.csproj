@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;netstandard1.3</TargetFrameworks>
+    <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
     <Description>Ninject IoC registration for CoreDdd library</Description>
     <PackageTags>CoreDdd ninject IoC DI</PackageTags>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <PackageReference Include="Ninject" Version="4.0.0-beta-0134" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Ninject" Version="4.0.0-beta-0134" />
   </ItemGroup>
 
