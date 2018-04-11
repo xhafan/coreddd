@@ -12,12 +12,4 @@
     <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-  </PropertyGroup>
-
-  <Target Name="CopyPackage" AfterTargets="Pack" Condition="'$(Configuration)'=='Release'">
-    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(SolutionDir)..\build" />
-  </Target>
-
 </Project>
