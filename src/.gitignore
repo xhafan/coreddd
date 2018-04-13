@@ -3,5 +3,3 @@
 .vs
 /*/*.user
 /*.user
-/CoreDdd.Nhibernate.Tests/connectionStrings.config
-/CoreDdd.Nhibernate.Tests/hibernate.cfg.xml
