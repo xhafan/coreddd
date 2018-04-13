@@ -29,11 +29,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="hibernate.cfg.xml" />
+    <None Remove="connectionStrings.config.postgresql" />
+    <None Remove="connectionStrings.config.sqlite" />
+    <None Remove="connectionStrings.config.sqlserver" />
+    <None Remove="hibernate.cfg.xml.postgresql" />
+    <None Remove="hibernate.cfg.xml.sqlite" />
+    <None Remove="hibernate.cfg.xml.sqlserver" />
+    <None Remove="set_postgresql_db.bat" />
+    <None Remove="set_sqlite_db.bat" />
+    <None Remove="set_sql_server_db.bat" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="connectionStrings.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -64,9 +78,6 @@
 
   <ItemGroup>
     <None Update="App.config" />
-    <None Update="connectionStrings.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
