@@ -64,7 +64,7 @@ namespace CoreDdd.Nhibernate.Configurations
             return null;
         }
 
-        protected virtual bool ShouldQuoteTableNamesForDerivedClasses(Configuration configuration)
+        protected virtual bool ShouldDoubleQuoteTableNamesForDerivedClasses(Configuration configuration)
         {
             var connectionDriverClass = configuration.Properties["connection.driver_class"];
             var isPostgreSql = connectionDriverClass.Contains("NpgsqlDriver");
@@ -98,7 +98,7 @@ namespace CoreDdd.Nhibernate.Configurations
             }
             assemblyWithAdditionalConventions.Each(x => autoPersistenceModel.Conventions.AddAssembly(x));
 
-            if (ShouldQuoteTableNamesForDerivedClasses(_configuration))
+            if (ShouldDoubleQuoteTableNamesForDerivedClasses(_configuration))
             {
                 _configuration.SetNamingStrategy(new QuoteTableNamesForDerivedClassesNamingStrategy());
             }
