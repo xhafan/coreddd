@@ -13,9 +13,9 @@ namespace CoreIoC.Castle
             _windsorContainer = windsorContainer;
         }
 
-        public object Resolve(Type service)
+        public object Resolve(Type serviceType)
         {
-            return _windsorContainer.Resolve(service);
+            return _windsorContainer.Resolve(serviceType);
         }
 
         public TService Resolve<TService>()

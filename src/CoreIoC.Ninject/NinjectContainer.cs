@@ -14,9 +14,9 @@ namespace CoreIoC.Ninject
             _kernel = kernel;
         }
 
-        public object Resolve(Type service)
+        public object Resolve(Type serviceType)
         {
-            return _kernel.Get(service);
+            return _kernel.Get(serviceType);
         }
 
         public TService Resolve<TService>()

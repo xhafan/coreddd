@@ -23,9 +23,9 @@ namespace CoreIoC
             return _container;
         }
 
-        public static object Resolve(Type service)
+        public static object Resolve(Type serviceType)
         {
-            return _getContainer().Resolve(service);
+            return _getContainer().Resolve(serviceType);
         }
 
         public static TService Resolve<TService>()
