@@ -70,7 +70,7 @@ namespace CoreDdd.Nhibernate.Tests
 
                 DbConnection _getDbConnection()
                 {
-                    var connectionString = ConfigurationManager.ConnectionStrings["CoreDddNhibernateTestsConnection"].ConnectionString;
+                    var connectionString = configuration.Properties["connection.connection_string"];
                     var connectionDriverClass = configuration.Properties["connection.driver_class"];
 
                     switch (connectionDriverClass)

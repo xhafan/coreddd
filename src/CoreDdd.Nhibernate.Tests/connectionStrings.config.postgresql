@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<connectionStrings>
-  <add name="CoreDddNhibernateTestsConnection" connectionString="Server=127.0.0.1;Port=5432;Database=CoreDddNhibernateTests;User Id=coredddnhibernatetests;Password=password01;Enlist=true" />
-</connectionStrings>
