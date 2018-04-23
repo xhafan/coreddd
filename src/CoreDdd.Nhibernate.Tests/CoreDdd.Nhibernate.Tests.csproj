@@ -39,7 +39,7 @@
     <PackageReference Include="NHibernate" Version="5.1.1" />
     <PackageReference Include="FluentNHibernate" Version="2.1.2" />
     <PackageReference Include="Npgsql" Version="3.2.7" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.4.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.0-preview2-26406-04" />
   </ItemGroup>
 
   <ItemGroup>
