@@ -1,4 +1,4 @@
-CoreDdd - .net library helping with DDD and CQRS on your project
+Set of open-source .NET libraries helping with DDD and CQRS
 
 Download from nuget: https://www.nuget.org/packages/CoreDdd
 
