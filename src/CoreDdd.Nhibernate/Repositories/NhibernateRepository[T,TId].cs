@@ -1,8 +1,11 @@
-using System;
-using System.Threading.Tasks;
 using CoreDdd.Domain;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
+
+#if !NET40
+using System;
+using System.Threading.Tasks;
+#endif
 
 namespace CoreDdd.Nhibernate.Repositories
 {
@@ -91,10 +94,12 @@ namespace CoreDdd.Nhibernate.Repositories
         }
 #endif
 
+#if NET40
+#elif NET45
         private NotSupportedException _GetAsyncNotSupportedException()
         {
-            return new NotSupportedException(
-                "Async methods are supported only for .NET 4.6.1+ (NHibernate 5+) . For lower .NET and NHibernate versions, please use sync method instead.");
+            return new NotSupportedException(AsyncErrorMessageConstants.AsyncMethodNotSupportedExceptionMessage);
         }
+#endif
     }
 }

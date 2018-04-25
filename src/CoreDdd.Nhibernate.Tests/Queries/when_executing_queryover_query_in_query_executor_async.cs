@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿#if !NET40 && !NET45
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Queries;
@@ -9,19 +11,19 @@ using Shouldly;
 namespace CoreDdd.Nhibernate.Tests.Queries
 {
     [TestFixture]
-    public class when_executing_queryover_query_in_query_executor : BasePersistenceTest
+    public class when_executing_queryover_query_in_query_executor_async : BasePersistenceTest
     {
         private IEnumerable<int> _result;
         private GetTestEntityCountTestQueryOverQuery _query;
       
         [SetUp]
-        public void Context()
+        public async Task Context()
         {
             _persistTestEntity();
             _query = new GetTestEntityCountTestQueryOverQuery();
 
             var queryExecutor = new QueryExecutor();
-            _result = queryExecutor.Execute<GetTestEntityCountTestQueryOverQuery, int>(_query);
+            _result = await queryExecutor.ExecuteAsync<GetTestEntityCountTestQueryOverQuery, int>(_query);
 
             void _persistTestEntity()
             {
@@ -40,3 +42,4 @@ namespace CoreDdd.Nhibernate.Tests.Queries
         }    
     }
 }
+#endif

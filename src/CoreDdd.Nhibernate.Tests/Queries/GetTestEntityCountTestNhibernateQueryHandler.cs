@@ -2,6 +2,9 @@
 using CoreDdd.Nhibernate.Queries;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using NHibernate.Criterion;
+#if !NET40 && !NET45
+using System.Threading.Tasks;
+#endif
 
 namespace CoreDdd.Nhibernate.Tests.Queries
 {
@@ -13,5 +16,14 @@ namespace CoreDdd.Nhibernate.Tests.Queries
                 .SetProjection(Projections.Count(Projections.Id()))
                 .Future<TResult>();
         }
+
+#if !NET40 && !NET45
+        public override Task<IEnumerable<TResult>> ExecuteAsync<TResult>(GetTestEntityCountTestNhibernateQuery query)
+        {
+            return Session.CreateCriteria<TestEntity>()
+                .SetProjection(Projections.Count(Projections.Id()))
+                .Future<TResult>().GetEnumerableAsync();
+        }
+#endif
     }
 }
