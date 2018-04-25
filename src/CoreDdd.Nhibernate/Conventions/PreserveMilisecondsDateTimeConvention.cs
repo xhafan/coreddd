@@ -16,10 +16,8 @@ namespace CoreDdd.Nhibernate.Conventions
 
         public void Apply(IPropertyInstance instance)
         {
-#if NET40
+#if NET40 || NET45
             instance.CustomType<TimestampType>();
-#else
-
 #endif
         }
     }

@@ -1,4 +1,6 @@
+#if !NET40
 using System.Threading.Tasks;
+#endif
 
 namespace CoreDdd.Domain.Repositories
 {
@@ -6,15 +8,15 @@ namespace CoreDdd.Domain.Repositories
         where T : IAggregateRoot
     {
         T Get(TId id);
-        Task<T> GetAsync(TId id);
-
         T Load(TId id);
-        Task<T> LoadAsync(TId id);
-
         void Save(T objectToSave);
-        Task SaveAsync(T objectToSave);
-
         void Delete(T objectToDelete);
+
+#if !NET40
+        Task<T> LoadAsync(TId id);
+        Task<T> GetAsync(TId id);
+        Task SaveAsync(T objectToSave);
         Task DeleteAsync(T objectToDelete);
+#endif
     }
 }

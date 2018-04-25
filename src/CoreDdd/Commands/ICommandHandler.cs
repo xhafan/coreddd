@@ -1,4 +1,7 @@
 ﻿using System;
+#if !NET40
+using System.Threading.Tasks;
+#endif
 
 namespace CoreDdd.Commands
 {
@@ -6,5 +9,9 @@ namespace CoreDdd.Commands
     {
         void Execute(TCommand command);
         event Action<CommandExecutedArgs> CommandExecuted;
+
+#if !NET40
+        Task ExecuteAsync(TCommand command);
+#endif
     }
 }

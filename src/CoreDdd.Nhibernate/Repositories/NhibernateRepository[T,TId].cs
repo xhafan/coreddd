@@ -20,61 +20,81 @@ namespace CoreDdd.Nhibernate.Repositories
             return _unitOfWork.Session.Get<T>(id);
         }
 
+#if !NET40
         public Task<T> GetAsync(TId id)
         {
+#endif
 #if NET40
+#elif NET45
             throw _GetAsyncNotSupportedException();
 #else
             return _unitOfWork.Session.GetAsync<T>(id);
 #endif
+#if !NET40
         }
+#endif
 
         public T Load(TId id)
         {
             return _unitOfWork.Session.Load<T>(id);
         }
 
+#if !NET40
         public Task<T> LoadAsync(TId id)
         {
+#endif
 #if NET40
+#elif NET45
             throw _GetAsyncNotSupportedException();
 #else
             return _unitOfWork.Session.LoadAsync<T>(id);
 #endif
+#if !NET40
         }
+#endif
 
         public void Save(T objectToSave)
         {
             _unitOfWork.Session.Save(objectToSave);
         }
 
+#if !NET40
         public Task SaveAsync(T objectToSave)
         {
+#endif
 #if NET40
+#elif NET45
             throw _GetAsyncNotSupportedException();
 #else
             return _unitOfWork.Session.SaveAsync(objectToSave);
 #endif
+#if !NET40
         }
+#endif
 
         public void Delete(T objectToDelete)
         {
             _unitOfWork.Session.Delete(objectToDelete);
         }
 
+#if !NET40
         public Task DeleteAsync(T objectToDelete)
         {
+#endif
 #if NET40
+#elif NET45
             throw _GetAsyncNotSupportedException();
 #else
             return _unitOfWork.Session.DeleteAsync(objectToDelete);
 #endif
+#if !NET40
         }
+#endif
 
         private NotSupportedException _GetAsyncNotSupportedException()
         {
-            return new NotSupportedException("Async methods are supported only for .NET 4.6.1+ . For lower .NET versions, please use sync method instead.");
+            return new NotSupportedException(
+                "Async methods are supported only for .NET 4.6.1+ (NHibernate 5+) . For lower .NET and NHibernate versions, please use sync method instead.");
         }
-
     }
 }

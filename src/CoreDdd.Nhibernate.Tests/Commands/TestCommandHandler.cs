@@ -1,4 +1,7 @@
-﻿using CoreDdd.Commands;
+﻿#if !NET40
+using System.Threading.Tasks;
+# endif
+using CoreDdd.Commands;
 
 namespace CoreDdd.Nhibernate.Tests.Commands
 {
@@ -8,5 +11,12 @@ namespace CoreDdd.Nhibernate.Tests.Commands
         {
             RaiseCommandExecutedEvent(new CommandExecutedArgs { Args = command.CommandExecutedArgs });
         }
+
+#if !NET40
+        public async override Task ExecuteAsync(TestCommand command)
+        {
+            RaiseCommandExecutedEvent(new CommandExecutedArgs { Args = command.CommandExecutedArgs });
+        }
+#endif
     }
 }
