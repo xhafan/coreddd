@@ -6,7 +6,7 @@ using FluentNHibernate.Utils;
 
 namespace CoreDdd.Nhibernate.Configurations
 {
-    public class AutomappingConfiguration : DefaultAutomappingConfiguration
+    internal class AutomappingConfiguration : DefaultAutomappingConfiguration
     {
         private readonly Type[] _discriminatedTypes;
         private readonly Func<Type, bool> _isTypeDtoFunc;

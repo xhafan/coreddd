@@ -4,7 +4,7 @@ using NHibernate.Cfg;
 namespace CoreDdd.Nhibernate.Configurations
 {
     // table names for derived classes are not quoted for PostgreSQL so this naming strategy needs to be applied for PostgreSQL DB.
-    public class QuoteTableNamesForDerivedClassesNamingStrategy : INamingStrategy
+    internal class QuoteTableNamesForDerivedClassesNamingStrategy : INamingStrategy
     {
         public string ClassToTableName(string className)
         {
