@@ -9,7 +9,7 @@
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Supporting .NET Core</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
