@@ -19,7 +19,9 @@ namespace CoreDdd.Commands
         }
 
 #if !NET40
-        public async virtual Task ExecuteAsync(TCommand command)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public virtual async Task ExecuteAsync(TCommand command)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
         }
 #endif

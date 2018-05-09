@@ -26,7 +26,9 @@ namespace CoreDdd.Nhibernate.Queries
         }
 
 #if !NET40
-        public async virtual Task<IEnumerable<TResult>> ExecuteAsync<TResult>(TQuery query)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public virtual async Task<IEnumerable<TResult>> ExecuteAsync<TResult>(TQuery query)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             return Enumerable.Empty<TResult>();
         }

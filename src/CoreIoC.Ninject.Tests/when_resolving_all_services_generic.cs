@@ -20,20 +20,10 @@ namespace CoreIoC.Ninject.Tests
         [SetUp]
         public void Context()
         {
-#if NET40
             var kernel = new StandardKernel();
-#else
-            var kernel = new KernelConfiguration();
-#endif
             kernel.Bind<IServiceType>().To<ServiceTypeOne>();
             kernel.Bind<IServiceType>().To<ServiceTypeTwo>();
-
-#if NET40
             var ninjectContainer = new NinjectContainer(kernel);
-#else
-            var ninjectContainer = new NinjectContainer(kernel.BuildReadonlyKernel());
-#endif
-
 
             _result = ninjectContainer.ResolveAll<IServiceType>();
         }

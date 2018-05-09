@@ -13,7 +13,9 @@ namespace CoreDdd.Nhibernate.Tests.Commands
         }
 
 #if !NET40
-        public async override Task ExecuteAsync(TestCommand command)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public override async Task ExecuteAsync(TestCommand command)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             RaiseCommandExecutedEvent(new CommandExecutedArgs { Args = command.CommandExecutedArgs });
         }
