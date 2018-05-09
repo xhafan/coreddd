@@ -1,15 +1,15 @@
 <Project>
 
   <PropertyGroup>
-    <AssemblyVersion>3.0.15.0</AssemblyVersion>
-    <FileVersion>3.0.15.0</FileVersion>
-    <Version>3.0.15</Version>
+    <AssemblyVersion>3.0.16.0</AssemblyVersion>
+    <FileVersion>3.0.16.0</FileVersion>
+    <Version>3.0.16</Version>
     <Authors>Martin Havlista</Authors>
     <Company></Company>
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>Updated Ninject nuget reference (CoreIoC.Ninject and other CoreDdd Ninject projects) to the latest stable version instead of a beta version</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
