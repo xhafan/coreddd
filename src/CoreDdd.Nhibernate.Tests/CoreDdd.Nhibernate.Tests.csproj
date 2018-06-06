@@ -20,7 +20,7 @@
     <PackageReference Include="Castle.Windsor" Version="4.1.0" />
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="FluentNHibernate" Version="2.0.3" />
-    <PackageReference Include="Npgsql" Version="3.2.7" />
+    <PackageReference Include="Npgsql" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
@@ -28,7 +28,7 @@
     <PackageReference Include="Castle.Windsor" Version="4.1.0" />
     <PackageReference Include="NHibernate" Version="5.1.1" />
     <PackageReference Include="FluentNHibernate" Version="2.1.2" />
-    <PackageReference Include="Npgsql" Version="3.2.7" />
+    <PackageReference Include="Npgsql" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
@@ -38,8 +38,8 @@
     <PackageReference Include="Castle.Windsor" Version="4.1.0" />
     <PackageReference Include="NHibernate" Version="5.1.1" />
     <PackageReference Include="FluentNHibernate" Version="2.1.2" />
-    <PackageReference Include="Npgsql" Version="3.2.7" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.5.0-rc1" />
+    <PackageReference Include="Npgsql" Version="4.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,7 +47,7 @@
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="Shouldly" Version="3.0.0" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.108" />
-    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="NHibernateProfiler" Version="5.0.5022" />
   </ItemGroup>
 
