@@ -3,7 +3,7 @@
   <session-factory>
 
     <property name="connection.connection_string">Server=127.0.0.1;Port=5432;Database=CoreDddNhibernateTests;User Id=coredddnhibernatetests;Password=password01;Enlist=true</property>
-    <property name="dialect">NHibernate.Dialect.PostgreSQLDialect</property>
+    <property name="dialect">NHibernate.Dialect.PostgreSQL82Dialect</property>
     <property name="connection.driver_class">NHibernate.Driver.NpgsqlDriver</property>
 
     <property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
