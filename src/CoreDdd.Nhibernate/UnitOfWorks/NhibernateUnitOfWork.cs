@@ -59,6 +59,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void Rollback()
         {
+            if (!_IsActive()) return;
+
             Flush();
 
             if (_isInTransactionScope)
@@ -93,14 +95,14 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         public void Dispose()
         {
-            if (!_isActive()) return;
+            if (!_IsActive()) return;
 
             Commit();
+        }
 
-            bool _isActive()
-            {
-                return Session != null;
-            }
+        private bool _IsActive()
+        {
+            return Session != null;
         }
     }
 }
