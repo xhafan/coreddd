@@ -12,10 +12,15 @@ namespace CoreDdd.Commands
         {
             var commandHandler = IoC.Resolve<ICommandHandler<TCommand>>();
 
-            commandHandler.CommandExecuted += CommandExecuted;
-            commandHandler.Execute(command);
-
-            IoC.Release(commandHandler);
+            try
+            {
+                commandHandler.CommandExecuted += CommandExecuted;
+                commandHandler.Execute(command);
+            }
+            finally
+            {
+                IoC.Release(commandHandler);
+            }
         }
 
 #if !NET40
@@ -23,10 +28,15 @@ namespace CoreDdd.Commands
         {
             var commandHandler = IoC.Resolve<ICommandHandler<TCommand>>();
 
-            commandHandler.CommandExecuted += CommandExecuted;
-            await commandHandler.ExecuteAsync(command);
-
-            IoC.Release(commandHandler);
+            try
+            {
+                commandHandler.CommandExecuted += CommandExecuted;
+                await commandHandler.ExecuteAsync(command);
+            }
+            finally
+            {
+                IoC.Release(commandHandler);
+            }
         }
 #endif
 
