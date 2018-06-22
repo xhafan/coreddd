@@ -1,12 +1,20 @@
 ﻿#if !NET40
 using System.Threading.Tasks;
 # endif
+using System;
 using CoreDdd.Commands;
 
 namespace CoreDdd.Nhibernate.Tests.Commands
 {
-    public class TestCommandHandler : BaseCommandHandler<TestCommand>
+    public class TestCommandHandler : BaseCommandHandler<TestCommand>, IDisposable
     {
+        public static bool IsDisposed { get; private set; }
+
+        public TestCommandHandler()
+        {
+            IsDisposed = false;
+        }
+
         public override void Execute(TestCommand command)
         {
             RaiseCommandExecutedEvent(new CommandExecutedArgs { Args = command.CommandExecutedArgs });
@@ -20,5 +28,9 @@ namespace CoreDdd.Nhibernate.Tests.Commands
             RaiseCommandExecutedEvent(new CommandExecutedArgs { Args = command.CommandExecutedArgs });
         }
 #endif
+        public void Dispose()
+        {
+            IsDisposed = true;
+        }
     }
 }

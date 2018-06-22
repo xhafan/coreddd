@@ -11,16 +11,22 @@ namespace CoreDdd.Commands
         public void Execute<TCommand>(TCommand command) where TCommand : ICommand
         {
             var commandHandler = IoC.Resolve<ICommandHandler<TCommand>>();
+
             commandHandler.CommandExecuted += CommandExecuted;
             commandHandler.Execute(command);
+
+            IoC.Release(commandHandler);
         }
 
 #if !NET40
         public async Task ExecuteAsync<TCommand>(TCommand command) where TCommand : ICommand
         {
             var commandHandler = IoC.Resolve<ICommandHandler<TCommand>>();
+
             commandHandler.CommandExecuted += CommandExecuted;
             await commandHandler.ExecuteAsync(command);
+
+            IoC.Release(commandHandler);
         }
 #endif
 

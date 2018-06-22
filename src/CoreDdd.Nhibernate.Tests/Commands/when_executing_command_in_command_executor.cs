@@ -28,6 +28,12 @@ namespace CoreDdd.Nhibernate.Tests.Commands
         public void command_executed_by_command_handler()
         {
             _commandExecutedEventWasRaised.ShouldBe(true);
-        }    
+        }
+
+        [Test]
+        public void commandhandler_is_released_from_ioc_container()
+        {
+            TestCommandHandler.IsDisposed.ShouldBeTrue();
+        }
     }
 }
