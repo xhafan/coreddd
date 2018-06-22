@@ -37,5 +37,10 @@ namespace CoreIoC
         {
             return _getContainer().ResolveAll<TService>();
         }
+
+        public static void Release(object service)
+        {
+            _getContainer().Release(service);
+        }
     }
 }

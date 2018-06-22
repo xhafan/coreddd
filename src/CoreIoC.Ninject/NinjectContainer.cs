@@ -28,5 +28,10 @@ namespace CoreIoC.Ninject
         {
             return _kernel.GetAll<TService>();
         }
+
+        public void Release(object service)
+        {
+            _kernel.Release(service);
+        }
     }
 }

@@ -27,5 +27,10 @@ namespace CoreIoC.Castle
         {
             return _windsorContainer.ResolveAll<TService>();
         }
+
+        public void Release(object service)
+        {
+            _windsorContainer.Release(service);
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace CoreIoC
         object Resolve(Type serviceType);
         TService Resolve<TService>();
         IEnumerable<TService> ResolveAll<TService>();
+        void Release(object service);
     }
 }

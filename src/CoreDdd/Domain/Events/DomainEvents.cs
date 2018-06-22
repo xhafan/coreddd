@@ -53,7 +53,7 @@ namespace CoreDdd.Domain.Events
             }
         }
 
-        public static void RaiseDelayedEvents(Action<Action> eventHandlingSurroundingAction)
+        public static void RaiseDelayedEvents(Action<Action> eventHandlingSurroundingAction) // todo: try to make this async? test in both asp.net and asp.net core
         {
             var delayedDomainEventHandlingActionsStorage = IoC.Resolve<IStorage<DelayedDomainEventHandlingActions>>();
             var delayedDomainEventHandlingActions = delayedDomainEventHandlingActionsStorage.Get();
