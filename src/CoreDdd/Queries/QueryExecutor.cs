@@ -12,7 +12,15 @@ namespace CoreDdd.Queries
             where TQuery : IQuery
         {
             var queryHandler = IoC.Resolve<IQueryHandler<TQuery>>();
-            return queryHandler.Execute<TResult>(query);
+
+            try
+            {
+                return queryHandler.Execute<TResult>(query);
+            }
+            finally
+            {
+                IoC.Release(queryHandler);
+            }
         }
 
 #if !NET40
@@ -20,7 +28,15 @@ namespace CoreDdd.Queries
             where TQuery : IQuery
         {
             var queryHandler = IoC.Resolve<IQueryHandler<TQuery>>();
-            return queryHandler.ExecuteAsync<TResult>(query);
+
+            try
+            {
+                return queryHandler.ExecuteAsync<TResult>(query);
+            }
+            finally
+            {
+                IoC.Release(queryHandler);
+            }
         }
 #endif
     }
