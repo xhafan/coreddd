@@ -35,7 +35,7 @@ namespace CoreDdd.Nhibernate.Tests
                 FromAssembly.Containing<NhibernateInstaller>(),
                 FromAssembly.Containing<TestNhibernateInstaller>()
                 );
-            _registerDelayedDomainEventHandlingActionsStoragePerThread();
+            _registerDelayedDomainEventHandlingItemsStoragePerThread();
 
             IoC.Initialize(new CastleContainer(container));
 
@@ -87,11 +87,11 @@ namespace CoreDdd.Nhibernate.Tests
 
             }
 
-            void _registerDelayedDomainEventHandlingActionsStoragePerThread()
+            void _registerDelayedDomainEventHandlingItemsStoragePerThread()
             {
                 container.Register(
-                    Component.For<IStorage<DelayedDomainEventHandlingActions>>()
-                        .ImplementedBy<Storage<DelayedDomainEventHandlingActions>>()
+                    Component.For<IStorage<DelayedDomainEventHandlingItems>>()
+                        .ImplementedBy<Storage<DelayedDomainEventHandlingItems>>()
                         .LifeStyle.PerThread);
             }
         }

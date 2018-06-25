@@ -28,44 +28,96 @@ namespace CoreDdd.Domain.Events
             }
             else
             {
-                var domainEventHandlers = IoC.ResolveAll<IDomainEventHandler<TDomainEvent>>();
-                domainEventHandlers.Each(x => x.Handle(domainEvent));
+                _raiseEventNow();
+            }
+
+            void _raiseEventNow()
+            {
+                var domainEventHandlers = IoC.ResolveAll<IDomainEventHandler<TDomainEvent>>().ToList();
+
+                try
+                {
+                    domainEventHandlers.Each(domainEventHandler => domainEventHandler.Handle(domainEvent));
+                }
+                finally
+                {
+                    domainEventHandlers.Each(IoC.Release);
+                }
             }
         }
 
+
         private static void RegisterDelayedEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
-            var delayedDomainEventHandlingActions = _getDelayedDomainEventHandlingActions();
+            var delayedDomainEventHandlingItems = _getDelayedDomainEventHandlingItems();
 
             var domainEventHandlers = IoC.ResolveAll<IDomainEventHandler<TDomainEvent>>();
-            domainEventHandlers.Each(x => delayedDomainEventHandlingActions.Enqueue(() => x.Handle(domainEvent)));
-
-
-            DelayedDomainEventHandlingActions _getDelayedDomainEventHandlingActions()
+            domainEventHandlers.Each(domainEventHandler =>
             {
-                var delayedDomainEventHandlingActionsStorage = IoC.Resolve<IStorage<DelayedDomainEventHandlingActions>>();
-                if (delayedDomainEventHandlingActionsStorage.Get() == null)
+                var delayedDomainEventHandlingItem = new DelayedDomainEventHandlingItem(domainEventHandler, () => domainEventHandler.Handle(domainEvent));
+                delayedDomainEventHandlingItems.Enqueue(delayedDomainEventHandlingItem);
+            });
+
+            DelayedDomainEventHandlingItems _getDelayedDomainEventHandlingItems()
+            {
+                var delayedDomainEventHandlingItemsStorage = IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>();
+                if (delayedDomainEventHandlingItemsStorage.Get() == null)
                 {
-                    delayedDomainEventHandlingActionsStorage.Set(new DelayedDomainEventHandlingActions());
+                    delayedDomainEventHandlingItemsStorage.Set(new DelayedDomainEventHandlingItems());
                 }
 
-                return delayedDomainEventHandlingActionsStorage.Get();
+                return delayedDomainEventHandlingItemsStorage.Get();
             }
         }
 
         public static void RaiseDelayedEvents(Action<Action> eventHandlingSurroundingAction) // todo: try to make this async? test in both asp.net and asp.net core
         {
-            var delayedDomainEventHandlingActionsStorage = IoC.Resolve<IStorage<DelayedDomainEventHandlingActions>>();
-            var delayedDomainEventHandlingActions = delayedDomainEventHandlingActionsStorage.Get();
-            if (delayedDomainEventHandlingActions == null) return;
+            var delayedDomainEventHandlingItemsStorage = IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>();
 
-            while (delayedDomainEventHandlingActions.Any())
+            try
             {
-                var delayedDomainEventHandlingAction = delayedDomainEventHandlingActions.Dequeue();
-                eventHandlingSurroundingAction(delayedDomainEventHandlingAction);
+                var delayedDomainEventHandlingItems = delayedDomainEventHandlingItemsStorage.Get();
+                if (delayedDomainEventHandlingItems == null) return;
+
+                _ExecuteAllDomainEventHandlers(eventHandlingSurroundingAction, delayedDomainEventHandlingItems);
+            }
+            finally
+            {
+                IoC.Release(delayedDomainEventHandlingItemsStorage);
+            }
+        }
+
+        private static void _ExecuteAllDomainEventHandlers(
+            Action<Action> eventHandlingSurroundingAction,
+            DelayedDomainEventHandlingItems delayedDomainEventHandlingItems
+            )
+        {
+            try
+            {
+                while (delayedDomainEventHandlingItems.Any())
+                {
+                    _executeOneHandler();
+                }
+            }
+            finally
+            {
+                delayedDomainEventHandlingItems.Each(x => IoC.Release(x.DomainEventHandler));
             }
 
-            delayedDomainEventHandlingActions.Clear();
+            void _executeOneHandler()
+            {
+                var delayedDomainEventHandlingItem = delayedDomainEventHandlingItems.Dequeue();
+
+                try
+                {
+                    eventHandlingSurroundingAction(delayedDomainEventHandlingItem.DomainEventHandlingAction);
+                }
+                finally
+                {
+                    IoC.Release(delayedDomainEventHandlingItem.DomainEventHandler);
+                }
+            }
+
         }
     }
 }

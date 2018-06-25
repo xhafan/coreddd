@@ -11,20 +11,20 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         [Test]
         public void raising_domain_events_is_handled_gracefully()
         {
-            _resetDelayedDomainEventHandlingActionsStorage();
+            _resetDelayedDomainEventHandlingItemsStorage();
 
             DomainEvents.RaiseDelayedEvents(eventHandlingSurroundingAction => eventHandlingSurroundingAction());
 
 
-            void _resetDelayedDomainEventHandlingActionsStorage()
+            void _resetDelayedDomainEventHandlingItemsStorage()
             {
-                _getDelayedDomainEventHandlingActionsStorage().Set(null);
+                _getDelayedDomainEventHandlingItemsStorage().Set(null);
             }
         }
 
-        private IStorage<DelayedDomainEventHandlingActions> _getDelayedDomainEventHandlingActionsStorage()
+        private IStorage<DelayedDomainEventHandlingItems> _getDelayedDomainEventHandlingItemsStorage()
         {
-            return IoC.Resolve<IStorage<DelayedDomainEventHandlingActions>>();
+            return IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>();
         }
     }
 }

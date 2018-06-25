@@ -15,7 +15,7 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         public void Context()
         {
             DomainEvents.EnableDelayedDomainEventHandling();
-            _resetDelayedDomainEventHandlingActionsStorage();
+            _resetDelayedDomainEventHandlingItemsStorage();
             TestDomainEventHandler.ResetDomainEventWasHandledFlag();
 
             _entity = new TestEntityWithDomainEvent();
@@ -24,9 +24,9 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
             _entity.BehaviouralMethodWithRaisingDomainEvent();
 
 
-            void _resetDelayedDomainEventHandlingActionsStorage()
+            void _resetDelayedDomainEventHandlingItemsStorage()
             {
-                _getDelayedDomainEventHandlingActionsStorage().Set(null);
+                _getDelayedDomainEventHandlingItemsStorage().Set(null);
             }
         }
 
@@ -49,12 +49,12 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         {
             DomainEvents.RaiseDelayedEvents(action => action());
 
-            _getDelayedDomainEventHandlingActionsStorage().Get().ShouldBeEmpty();
+            _getDelayedDomainEventHandlingItemsStorage().Get().ShouldBeEmpty();
         }
 
-        private IStorage<DelayedDomainEventHandlingActions> _getDelayedDomainEventHandlingActionsStorage()
+        private IStorage<DelayedDomainEventHandlingItems> _getDelayedDomainEventHandlingItemsStorage()
         {
-            return IoC.Resolve<IStorage<DelayedDomainEventHandlingActions>>();
+            return IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>();
         }
     }
 }
