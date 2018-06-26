@@ -1,10 +1,10 @@
-<Project>
+﻿<Project>
 
   <PropertyGroup>
     <AssemblyVersion>3.0.17.0</AssemblyVersion>
     <FileVersion>3.0.17.0</FileVersion>
     <Version>3.0.17</Version>
-    <Authors>Martin Havlista</Authors>
+    <Authors>Martin Havlišta</Authors>
     <Company></Company>
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
