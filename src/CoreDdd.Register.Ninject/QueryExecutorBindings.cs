@@ -1,4 +1,5 @@
 using CoreDdd.Queries;
+using Ninject.Extensions.Factory;
 using Ninject.Modules;
 
 namespace CoreDdd.Register.Ninject
@@ -7,6 +8,7 @@ namespace CoreDdd.Register.Ninject
     {
         public override void Load()
         {
+            Bind<IQueryHandlerFactory>().ToFactory();
             Bind<IQueryExecutor>().To<QueryExecutor>().InTransientScope();
         }
     }

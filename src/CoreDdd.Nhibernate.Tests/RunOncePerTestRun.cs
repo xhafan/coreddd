@@ -9,6 +9,7 @@ using Castle.Windsor.Installer;
 using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Register.Castle;
+using CoreDdd.Register.Castle;
 using CoreIoC;
 using CoreIoC.Castle;
 using CoreUtils.Storages;
@@ -33,8 +34,10 @@ namespace CoreDdd.Nhibernate.Tests
             var container = new WindsorContainer();
             container.Install(
                 FromAssembly.Containing<NhibernateInstaller>(),
-                FromAssembly.Containing<TestNhibernateInstaller>()
+                FromAssembly.Containing<TestNhibernateInstaller>(),
+                FromAssembly.Containing<QueryExecutorInstaller>()
                 );
+
             _registerDelayedDomainEventHandlingItemsStoragePerThread();
 
             IoC.Initialize(new CastleContainer(container));

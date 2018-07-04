@@ -3,6 +3,7 @@ using System.Linq;
 using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Queries;
+using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
@@ -20,7 +21,7 @@ namespace CoreDdd.Nhibernate.Tests.Queries
             _persistTestEntity();
             _query = new GetTestEntityCountTestAdoNetQuery();
 
-            var queryExecutor = new QueryExecutor();
+            var queryExecutor = IoC.Resolve<IQueryExecutor>();
             _result = queryExecutor.Execute<GetTestEntityCountTestAdoNetQuery, int>(_query);
 
             void _persistTestEntity()

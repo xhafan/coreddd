@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CoreIoC;
 #if !NET40
 using System.Threading.Tasks;
 #endif
@@ -8,10 +7,17 @@ namespace CoreDdd.Queries
 {
     public class QueryExecutor : IQueryExecutor
     {
+        private readonly IQueryHandlerFactory _queryHandlerFactory;
+
+        public QueryExecutor(IQueryHandlerFactory queryHandlerFactory)
+        {
+            _queryHandlerFactory = queryHandlerFactory;
+        }
+
         public IEnumerable<TResult> Execute<TQuery, TResult>(TQuery query) 
             where TQuery : IQuery
         {
-            var queryHandler = IoC.Resolve<IQueryHandler<TQuery>>();
+            var queryHandler = _queryHandlerFactory.Create<TQuery>();
 
             try
             {
@@ -19,7 +25,7 @@ namespace CoreDdd.Queries
             }
             finally
             {
-                IoC.Release(queryHandler);
+                _queryHandlerFactory.Release(queryHandler);
             }
         }
 
@@ -27,7 +33,7 @@ namespace CoreDdd.Queries
         public Task<IEnumerable<TResult>> ExecuteAsync<TQuery, TResult>(TQuery query) 
             where TQuery : IQuery
         {
-            var queryHandler = IoC.Resolve<IQueryHandler<TQuery>>();
+            var queryHandler = _queryHandlerFactory.Create<TQuery>();
 
             try
             {
@@ -35,7 +41,7 @@ namespace CoreDdd.Queries
             }
             finally
             {
-                IoC.Release(queryHandler);
+                _queryHandlerFactory.Release(queryHandler);
             }
         }
 #endif

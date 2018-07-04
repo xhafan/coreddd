@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Queries;
+using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
@@ -22,7 +23,7 @@ namespace CoreDdd.Nhibernate.Tests.Queries
             _persistTestEntity();
             _query = new GetTestEntityCountTestNhibernateQuery();
 
-            var queryExecutor = new QueryExecutor();
+            var queryExecutor = IoC.Resolve<IQueryExecutor>();
             _result = await queryExecutor.ExecuteAsync<GetTestEntityCountTestNhibernateQuery, int>(_query);
 
             void _persistTestEntity()
