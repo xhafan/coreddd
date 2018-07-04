@@ -1,5 +1,4 @@
 ﻿using System;
-using CoreIoC;
 #if !NET40
 using System.Threading.Tasks;
 #endif
@@ -8,9 +7,16 @@ namespace CoreDdd.Commands
 {
     public class CommandExecutor : ICommandExecutor
     {
+        private readonly ICommandHandlerFactory _commandHandlerFactory;
+
+        public CommandExecutor(ICommandHandlerFactory commandHandlerFactory)
+        {
+            _commandHandlerFactory = commandHandlerFactory;
+        }
+
         public void Execute<TCommand>(TCommand command) where TCommand : ICommand
         {
-            var commandHandler = IoC.Resolve<ICommandHandler<TCommand>>();
+            var commandHandler = _commandHandlerFactory.Create<TCommand>();
 
             try
             {
@@ -19,14 +25,14 @@ namespace CoreDdd.Commands
             }
             finally
             {
-                IoC.Release(commandHandler);
+                _commandHandlerFactory.Release(commandHandler);
             }
         }
 
 #if !NET40
         public async Task ExecuteAsync<TCommand>(TCommand command) where TCommand : ICommand
         {
-            var commandHandler = IoC.Resolve<ICommandHandler<TCommand>>();
+            var commandHandler = _commandHandlerFactory.Create<TCommand>();
 
             try
             {
@@ -35,7 +41,7 @@ namespace CoreDdd.Commands
             }
             finally
             {
-                IoC.Release(commandHandler);
+                _commandHandlerFactory.Release(commandHandler);
             }
         }
 #endif

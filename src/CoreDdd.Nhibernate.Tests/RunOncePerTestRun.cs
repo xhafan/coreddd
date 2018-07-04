@@ -3,6 +3,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Threading;
+using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
@@ -32,6 +33,8 @@ namespace CoreDdd.Nhibernate.Tests
             NhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerThread);
 
             var container = new WindsorContainer();
+
+            container.AddFacility<TypedFactoryFacility>();
             container.Install(
                 FromAssembly.Containing<NhibernateInstaller>(),
                 FromAssembly.Containing<TestNhibernateInstaller>(),

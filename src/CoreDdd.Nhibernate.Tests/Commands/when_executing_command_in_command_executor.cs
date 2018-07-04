@@ -1,4 +1,5 @@
 ﻿using CoreDdd.Commands;
+using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
@@ -14,7 +15,7 @@ namespace CoreDdd.Nhibernate.Tests.Commands
         {
             var testCommand = new TestCommand {CommandExecutedArgs = "args"};
 
-            var commandExecutor = new CommandExecutor();
+            var commandExecutor = IoC.Resolve<ICommandExecutor>();
             commandExecutor.CommandExecuted += args =>
             {
                 if ((string) args.Args == "args") _commandExecutedEventWasRaised = true;
