@@ -1,8 +1,6 @@
 ﻿using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.Nhibernate.Tests.TestEntities;
-using CoreDdd.Nhibernate.UnitOfWorks;
-using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
@@ -14,12 +12,11 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
         [Test]
         public void entity_is_loaded_from_database()
         {
-            var unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
-            var entityRepository = new NhibernateRepository<EntityWithText>(unitOfWork);
+            var entityRepository = new NhibernateRepository<EntityWithText>(UnitOfWork);
             var entity = new EntityWithText("hello");
-            entityRepository.Save(entity);            
-            unitOfWork.Flush();
-            unitOfWork.Clear();
+            entityRepository.Save(entity);
+            UnitOfWork.Flush();
+            UnitOfWork.Clear();
 
 
             entity = entityRepository.Load(entity.Id);

@@ -16,12 +16,11 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
         [Test]
         public async Task entity_is_loaded_from_database()
         {
-            var unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
-            var entityRepository = new NhibernateRepository<EntityWithText>(unitOfWork);
+            var entityRepository = new NhibernateRepository<EntityWithText>(UnitOfWork);
             var entity = new EntityWithText("hello");
             await entityRepository.SaveAsync(entity);
-            unitOfWork.Flush();
-            unitOfWork.Clear();
+            UnitOfWork.Flush();
+            UnitOfWork.Clear();
 
 
             entity = await entityRepository.LoadAsync(entity.Id);
