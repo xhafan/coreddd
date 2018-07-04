@@ -1,4 +1,5 @@
 ﻿using CoreDdd.Commands;
+using Ninject.Extensions.Factory;
 using Ninject.Modules;
 
 namespace CoreDdd.Register.Ninject
@@ -7,6 +8,7 @@ namespace CoreDdd.Register.Ninject
     {
         public override void Load()
         {
+            Bind<ICommandHandlerFactory>().ToFactory();
             Bind<ICommandExecutor>().To<CommandExecutor>().InTransientScope();
         }
     }
