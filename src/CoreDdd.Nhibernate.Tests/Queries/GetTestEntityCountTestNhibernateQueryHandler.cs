@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CoreDdd.Nhibernate.Queries;
 using CoreDdd.Nhibernate.Tests.TestEntities;
+using CoreDdd.Nhibernate.UnitOfWorks;
 using NHibernate.Criterion;
 #if !NET40 && !NET45
 using System.Threading.Tasks;
@@ -10,6 +11,11 @@ namespace CoreDdd.Nhibernate.Tests.Queries
 {
     public class GetTestEntityCountTestNhibernateQueryHandler : BaseNhibernateQueryHandler<GetTestEntityCountTestNhibernateQuery>
     {
+        public GetTestEntityCountTestNhibernateQueryHandler(NhibernateUnitOfWork unitOfWork)
+            : base(unitOfWork)
+        {
+        }
+
         public override IEnumerable<TResult> Execute<TResult>(GetTestEntityCountTestNhibernateQuery query)
         {
             return Session.CreateCriteria<TestEntity>()

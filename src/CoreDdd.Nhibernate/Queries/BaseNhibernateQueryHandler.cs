@@ -15,9 +15,9 @@ namespace CoreDdd.Nhibernate.Queries
     {
         protected ISession Session;
 
-        protected BaseNhibernateQueryHandler()
+        protected BaseNhibernateQueryHandler(NhibernateUnitOfWork unitOfWork)
         {
-            Session = IoC.Resolve<NhibernateUnitOfWork>().Session;
+            Session = unitOfWork.Session;
         }
 
         public virtual IEnumerable<TResult> Execute<TResult>(TQuery query)

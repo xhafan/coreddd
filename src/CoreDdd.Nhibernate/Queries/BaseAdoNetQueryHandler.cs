@@ -1,4 +1,5 @@
-﻿using IQuery = CoreDdd.Queries.IQuery;
+﻿using CoreDdd.Nhibernate.UnitOfWorks;
+using IQuery = CoreDdd.Queries.IQuery;
 
 #if NET40 || NET45
 using System.Data;
@@ -20,7 +21,8 @@ namespace CoreDdd.Nhibernate.Queries
         protected DbConnection Connection;
 #endif
 
-        protected BaseAdoNetQueryHandler()
+        protected BaseAdoNetQueryHandler(NhibernateUnitOfWork unitOfWork) 
+            : base(unitOfWork)
         {
             Connection = Session.Connection;
         }

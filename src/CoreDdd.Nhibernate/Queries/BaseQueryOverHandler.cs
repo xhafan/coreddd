@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CoreDdd.Nhibernate.UnitOfWorks;
 using NHibernate;
 using IQuery = CoreDdd.Queries.IQuery;
 #if !NET40
@@ -10,6 +11,11 @@ namespace CoreDdd.Nhibernate.Queries
 {
     public abstract class BaseQueryOverHandler<TQuery> : BaseNhibernateQueryHandler<TQuery> where TQuery : IQuery
     {
+        protected BaseQueryOverHandler(NhibernateUnitOfWork unitOfWork) 
+            : base(unitOfWork)
+        {            
+        }
+
         protected abstract IQueryOver GetQueryOver<TResult>(TQuery query);
 
         public override IEnumerable<TResult> Execute<TResult>(TQuery query)
