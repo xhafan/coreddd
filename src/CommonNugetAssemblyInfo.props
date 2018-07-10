@@ -1,15 +1,15 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <AssemblyVersion>3.0.19.0</AssemblyVersion>
-    <FileVersion>3.0.19.0</FileVersion>
-    <Version>3.0.19</Version>
+    <AssemblyVersion>3.0.20.0</AssemblyVersion>
+    <FileVersion>3.0.20.0</FileVersion>
+    <Version>3.0.20</Version>
     <Authors>Martin Havlišta</Authors>
     <Company></Company>
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Query executor and command executor now use abstract factory to resolve handlers</PackageReleaseNotes>
+    <PackageReleaseNotes>Allowing to control if dtos from the same assembly as entities should be automapped. Handy when creating a database from the entities in the code when dtos are in the same assembly.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
