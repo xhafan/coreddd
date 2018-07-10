@@ -17,7 +17,9 @@ namespace CoreDdd.Nhibernate.Configurations
         private readonly ISessionFactory _sessionFactory;
         private readonly Configuration _configuration;
 
-        protected abstract Assembly[] GetAssembliesToMap(bool shouldMapDtos);
+        protected bool ShouldMapDtos;
+
+        protected abstract Assembly[] GetAssembliesToMap();
 
         protected virtual IEnumerable<Type> GetIncludeBaseTypes()
         {
@@ -71,9 +73,11 @@ namespace CoreDdd.Nhibernate.Configurations
             return isPostgreSql;
         }
 
-        protected NhibernateConfigurator(bool shouldMapDtos)
+        protected NhibernateConfigurator(bool shouldMapDtos = true)
         {
-            var assembliesToMap = GetAssembliesToMap(shouldMapDtos);
+            ShouldMapDtos = shouldMapDtos;
+
+            var assembliesToMap = GetAssembliesToMap();
             var includeBaseTypes = GetIncludeBaseTypes();
             var ignoreBaseTypes = GetIgnoreBaseTypes();
             var discriminatedTypes = GetDiscriminatedTypes();
@@ -83,7 +87,7 @@ namespace CoreDdd.Nhibernate.Configurations
             _configuration = new Configuration();
             _configuration.Configure();
             var autoPersistenceModel = AutoMap.Assemblies(
-                new AutomappingConfiguration(discriminatedTypes.ToArray(), GetFuncToDetermineIfTypeIsDto()), 
+                new AutomappingConfiguration(discriminatedTypes.ToArray(), GetFuncToDetermineIfTypeIsDto(), ShouldMapDtos), 
                 assembliesToMap
                 );
             includeBaseTypes.Each(x => autoPersistenceModel.IncludeBase(x));
