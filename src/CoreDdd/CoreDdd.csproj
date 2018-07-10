@@ -4,9 +4,9 @@
     <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
     <Description>Set of open-source libraries helping with DDD and CQRS.
 
-Legacy tutorial (for CoreDdd version 1.1.7.1) available on http://xhafan.com/blog/coreddd-tutorial-real-life-ddd-tdd-asp-net-mvc-wpf-application-built-on-coreddd-library
+CoreDdd documentation: https://github.com/xhafan/coreddd/wiki
 
-No new tutorial for version 3.x.x available yet, but there is a demo email marketing app demonstrating CoreDdd usage: https://github.com/xhafan/emailmaker</Description>
+ASP.NET MVC and ASP.NET Core MVC demo email marketing app demonstrating CoreDdd usage: https://github.com/xhafan/emailmaker</Description>
     <PackageTags>DDD CQRS</PackageTags>
   </PropertyGroup>
 
