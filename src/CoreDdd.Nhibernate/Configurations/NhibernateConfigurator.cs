@@ -17,7 +17,7 @@ namespace CoreDdd.Nhibernate.Configurations
         private readonly ISessionFactory _sessionFactory;
         private readonly Configuration _configuration;
 
-        protected abstract Assembly[] GetAssembliesToMap(bool mapDtoAssembly);
+        protected abstract Assembly[] GetAssembliesToMap(bool shouldMapDtos);
 
         protected virtual IEnumerable<Type> GetIncludeBaseTypes()
         {
@@ -71,9 +71,9 @@ namespace CoreDdd.Nhibernate.Configurations
             return isPostgreSql;
         }
 
-        protected NhibernateConfigurator(bool mapDtoAssembly)
+        protected NhibernateConfigurator(bool shouldMapDtos)
         {
-            var assembliesToMap = GetAssembliesToMap(mapDtoAssembly);
+            var assembliesToMap = GetAssembliesToMap(shouldMapDtos);
             var includeBaseTypes = GetIncludeBaseTypes();
             var ignoreBaseTypes = GetIgnoreBaseTypes();
             var discriminatedTypes = GetDiscriminatedTypes();

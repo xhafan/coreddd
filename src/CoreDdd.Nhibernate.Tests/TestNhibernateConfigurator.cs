@@ -8,14 +8,14 @@ namespace CoreDdd.Nhibernate.Tests
     public class TestNhibernateConfigurator : NhibernateConfigurator
     {
         public TestNhibernateConfigurator()
-            : base(false)
+            : base(shouldMapDtos: false)
         {
 #if DEBUG
             NHibernateProfiler.Initialize();
 #endif
         }
 
-        protected override Assembly[] GetAssembliesToMap(bool mapDtoAssembly)
+        protected override Assembly[] GetAssembliesToMap(bool shouldMapDtos)
         {
             return new[] { typeof(EqualityEntity).Assembly };
         }
