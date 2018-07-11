@@ -23,29 +23,43 @@ namespace CoreDdd.Nhibernate.Conventions
             instance.Cascade.AllDeleteOrphan();
 
             var propertyName = instance.Member.Name;
-            var declaringType = instance.Member.DeclaringType;
-            var property = declaringType.GetInstanceProperties().FirstOrDefault(x => x.Name == propertyName);
-            if (property == null) return;
+            var parentType = instance.Member.DeclaringType;
+            var parentCollectionProperty = parentType.GetInstanceProperties().FirstOrDefault(x => x.Name == propertyName);
+            if (parentCollectionProperty == null) return;
 
-            var backingFieldName = _propertyNameToBackingFieldNameFunc?.Invoke(propertyName)
+            var parentCollectionPropertyBackingFieldName = _propertyNameToBackingFieldNameFunc?.Invoke(propertyName)
                                    ?? "_" + Char.ToLower(propertyName[0]) + propertyName.Substring(1);
 
-            var field = declaringType.GetInstanceFields().FirstOrDefault(x => x.Name == backingFieldName);
-            if (field != null)
+            var parentCollectionPropertyBackingField = parentType.GetInstanceFields().FirstOrDefault(x => x.Name == parentCollectionPropertyBackingFieldName);
+            if (parentCollectionPropertyBackingField != null)
             {
                 instance.Access.ReadOnlyPropertyThroughCamelCaseField(CamelCasePrefix.Underscore);
-                _setInverseAndAsSetIfNotAList(field.PropertyType);
+                _setInverseAndAsSet(parentCollectionPropertyBackingField.PropertyType);
             }
             else
             {
-                _setInverseAndAsSetIfNotAList(property.PropertyType);
+                _setInverseAndAsSet(parentCollectionProperty.PropertyType);
             }
 
-            void _setInverseAndAsSetIfNotAList(Type collectionType)
+            void _setInverseAndAsSet(Type collectionType)
             {
                 if (collectionType.IsSubclassOfRawGeneric(typeof(IList<>))) return;
-                instance.Inverse(); // inverse by default if not an ordered list
+                if (_doesChildReferenceTheParent())
+                {
+                    instance.Inverse();
+                }
                 instance.AsSet();
+            }
+
+            bool _doesChildReferenceTheParent()
+            {
+#if NET40
+                var childType = parentCollectionProperty.PropertyType.GetGenericArguments()[0];
+#else
+                var childType = parentCollectionProperty.PropertyType.GenericTypeArguments[0];
+#endif
+                var parentPropertyInChildType = childType.GetInstanceProperties().FirstOrDefault(x => x.PropertyType == parentType);
+                return parentPropertyInChildType != null;
             }
         }
     }
