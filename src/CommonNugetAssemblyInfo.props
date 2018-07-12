@@ -1,15 +1,15 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <AssemblyVersion>3.0.21.0</AssemblyVersion>
-    <FileVersion>3.0.21.0</FileVersion>
-    <Version>3.0.21</Version>
+    <AssemblyVersion>3.0.22.0</AssemblyVersion>
+    <FileVersion>3.0.22.0</FileVersion>
+    <Version>3.0.22</Version>
     <Authors>Martin Havlišta</Authors>
     <Company></Company>
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Fixed HasManyForDomainConvention - when a child entity does not reference the parent entity, the child entity collection should not be marked as Inverse</PackageReleaseNotes>
+    <PackageReleaseNotes>NhibernateConfigurator implements IDisposable interface to be able to properly dispose NHibernate session factory</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
