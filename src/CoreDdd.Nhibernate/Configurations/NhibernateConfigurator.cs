@@ -12,7 +12,7 @@ using Configuration = NHibernate.Cfg.Configuration;
 
 namespace CoreDdd.Nhibernate.Configurations
 {
-    public abstract class NhibernateConfigurator : INhibernateConfigurator
+    public abstract class NhibernateConfigurator : INhibernateConfigurator, IDisposable
     {
         private readonly ISessionFactory _sessionFactory;
         private readonly Configuration _configuration;
@@ -128,6 +128,20 @@ namespace CoreDdd.Nhibernate.Configurations
         public Configuration GetConfiguration()
         {
             return _configuration;
+        }
+
+        public void Dispose() // https://stackoverflow.com/a/898867/379279
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _sessionFactory.Dispose();
+            }
         }
     }
 }

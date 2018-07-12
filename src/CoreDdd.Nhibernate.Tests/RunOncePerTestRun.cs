@@ -24,6 +24,7 @@ namespace CoreDdd.Nhibernate.Tests
     public class RunOncePerTestRun
     {
         private Mutex _mutex;
+        private WindsorContainer _container;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -32,18 +33,17 @@ namespace CoreDdd.Nhibernate.Tests
 
             NhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerThread);
 
-            var container = new WindsorContainer();
+            _container = new WindsorContainer();
 
-            container.AddFacility<TypedFactoryFacility>();
-            container.Install(
+            _container.Install(
                 FromAssembly.Containing<NhibernateInstaller>(),
                 FromAssembly.Containing<TestNhibernateInstaller>(),
-                FromAssembly.Containing<QueryExecutorInstaller>()
+                FromAssembly.Containing<QueryAndCommandExecutorInstaller>()
                 );
 
             _registerDelayedDomainEventHandlingItemsStoragePerThread();
 
-            IoC.Initialize(new CastleContainer(container));
+            IoC.Initialize(new CastleContainer(_container));
 
             _createDatabase();
 
@@ -95,7 +95,7 @@ namespace CoreDdd.Nhibernate.Tests
 
             void _registerDelayedDomainEventHandlingItemsStoragePerThread()
             {
-                container.Register(
+                _container.Register(
                     Component.For<IStorage<DelayedDomainEventHandlingItems>>()
                         .ImplementedBy<Storage<DelayedDomainEventHandlingItems>>()
                         .LifeStyle.PerThread);
@@ -105,6 +105,8 @@ namespace CoreDdd.Nhibernate.Tests
         [OneTimeTearDown]
         public void TearDown()
         {
+            _container.Dispose();
+
             _mutex.ReleaseMutex();
             _mutex.Dispose();
         }

@@ -18,5 +18,16 @@ namespace CoreDdd.Nhibernate.Tests
         {
             return new[] { typeof(EqualityEntity).Assembly };
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+#if DEBUG
+                NHibernateProfiler.Shutdown();
+#endif
+            }
+            base.Dispose(disposing);
+        }
     }
 }
