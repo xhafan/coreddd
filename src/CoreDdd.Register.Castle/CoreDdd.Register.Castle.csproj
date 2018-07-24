@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
     <Description>Castle IoC registration for CoreDdd library</Description>
     <PackageTags>CoreDdd Castle Windsor IoC DI</PackageTags>
   </PropertyGroup>
@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="Castle.Windsor" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
     <PackageReference Include="Castle.Windsor" Version="4.1.0" />
   </ItemGroup>
 

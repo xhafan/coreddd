@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
     <Description>Set of open-source libraries helping with DDD and CQRS.
 
 CoreDdd documentation: https://github.com/xhafan/coreddd/wiki

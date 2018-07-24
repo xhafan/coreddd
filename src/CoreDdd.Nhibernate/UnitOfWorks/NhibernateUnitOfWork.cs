@@ -3,6 +3,10 @@ using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.UnitOfWorks;
 using NHibernate;
 
+#if !NET40 && !NET45
+using System.Threading.Tasks;
+#endif
+
 namespace CoreDdd.Nhibernate.UnitOfWorks
 {
     public class NhibernateUnitOfWork : IUnitOfWork
@@ -87,6 +91,68 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         {
             Session.Flush();
         }
+
+#if !NET40 && !NET45
+        public async Task CommitAsync()
+        {
+            await FlushAsync();
+
+            if (_isInTransactionScope)
+            {
+                Session.Dispose();
+                Session = null;
+                return;
+            }
+
+            var tx = Session.Transaction;
+            try
+            {
+                await tx.CommitAsync();
+            }
+            catch
+            {
+                await tx.RollbackAsync();
+                throw;
+            }
+            finally
+            {
+                tx.Dispose();
+                Session.Dispose();
+                Session = null;
+            }
+        }
+
+        public async Task RollbackAsync()
+        {
+            if (!_IsActive()) return;
+
+            await FlushAsync();
+
+            if (_isInTransactionScope)
+            {
+                Session.Dispose();
+                Session = null;
+                return;
+            }
+
+            var tx = Session.Transaction;
+            try
+            {
+                await tx.RollbackAsync();
+            }
+            finally
+            {
+                tx.Dispose();
+                Session.Dispose();
+                Session = null;
+            }
+        }
+
+        public Task FlushAsync()
+        {
+            return Session.FlushAsync();
+        }
+#endif
 
         public void Clear()
         {

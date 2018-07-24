@@ -7,10 +7,14 @@ using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
+namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes.RollingBack
 {
-    [TestFixture]
-    public class when_rolling_unit_of_work_back_within_transaction_scope
+    [TestFixture(TypeArgs = new[] { typeof(RollingBackUnitOfWorkInTransactionScopeSpecification) })]
+#if !NET40 && !NET45
+    [TestFixture(TypeArgs = new[] { typeof(RollingBackAsyncUnitOfWorkInTransactionScopeSpecification) })]
+#endif
+    public class when_rolling_unit_of_work_back_within_transaction_scope<TRollingBackUnitOfWorkInTransactionScopeSpecification>
+        where TRollingBackUnitOfWorkInTransactionScopeSpecification : IRollingBackUnitOfWorkInTransactionScopeSpecification, new()
     {
         private NhibernateUnitOfWork _unitOfWork;
         private NhibernateRepository<TestEntity> _testEntityRepository;
@@ -19,6 +23,8 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
         [SetUp]
         public void Context()
         {
+            var specification = new TRollingBackUnitOfWorkInTransactionScopeSpecification();
+
             using (var transactionScope = new TransactionScope(TransactionScopeOption.Required,
                 new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }))
             {
@@ -29,7 +35,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes
                 _testEntity = new TestEntity();
                 _testEntityRepository.Save(_testEntity);
 
-                _unitOfWork.Rollback();
+                specification.RollbackAct(_unitOfWork);
             }
         }
 
