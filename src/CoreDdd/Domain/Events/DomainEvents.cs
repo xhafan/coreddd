@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using CoreIoC;
 using CoreUtils.Extensions;
 using CoreUtils.Storages;
 
@@ -8,16 +7,25 @@ namespace CoreDdd.Domain.Events
 {
     public static class DomainEvents
     {
+        private static IDomainEventHandlerFactory _domainEventHandlerFactory;
+        private static IStorageFactory _storageFactory;
+
         private static bool _isDelayedDomainEventHandlingEnabled;
 
-        public static void EnableDelayedDomainEventHandling()
+        public static void Initialize(IDomainEventHandlerFactory domainEventHandlerFactory)
         {
-            _isDelayedDomainEventHandlingEnabled = true;
+            _domainEventHandlerFactory = domainEventHandlerFactory;
+            _isDelayedDomainEventHandlingEnabled = false;
         }
 
-        public static void DisableDelayedDomainEventHandling()
+        public static void InitializeWithDelayedDomainEventHandling(
+            IDomainEventHandlerFactory domainEventHandlerFactory,
+            IStorageFactory storageFactory
+        )
         {
-            _isDelayedDomainEventHandlingEnabled = false;
+            _domainEventHandlerFactory = domainEventHandlerFactory;
+            _storageFactory = storageFactory;
+            _isDelayedDomainEventHandlingEnabled = true;
         }
 
         public static void RaiseEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
@@ -33,7 +41,9 @@ namespace CoreDdd.Domain.Events
 
             void _raiseEventNow()
             {
-                var domainEventHandlers = IoC.ResolveAll<IDomainEventHandler<TDomainEvent>>().ToList();
+                _CheckWasInitialized();
+
+                var domainEventHandlers = _domainEventHandlerFactory.Create<TDomainEvent>().ToList();
 
                 try
                 {
@@ -41,17 +51,36 @@ namespace CoreDdd.Domain.Events
                 }
                 finally
                 {
-                    domainEventHandlers.Each(IoC.Release);
+                    domainEventHandlers.Each(_domainEventHandlerFactory.Release);
                 }
             }
         }
 
+        private static void _CheckWasInitialized()
+        {
+            if (_domainEventHandlerFactory == null)
+            {
+                throw new InvalidOperationException(
+                    "The domain events have not been initialized! Please call DomainEvents.Initialize(...) before using it.");
+            }
+        }
+
+        private static void _CheckWasInitializedWithDelayedDomainEventHandling()
+        {
+            if (_domainEventHandlerFactory == null || _storageFactory == null)
+            {
+                throw new InvalidOperationException(
+                    "The domain events have not been initialized! Please call DomainEvents.InitializeWithDelayedDomainEventHandling(...) before using it.");
+            }
+        }
 
         private static void RegisterDelayedEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
+            _CheckWasInitializedWithDelayedDomainEventHandling();
+
             var delayedDomainEventHandlingItems = _getDelayedDomainEventHandlingItems();
 
-            var domainEventHandlers = IoC.ResolveAll<IDomainEventHandler<TDomainEvent>>();
+            var domainEventHandlers = _domainEventHandlerFactory.Create<TDomainEvent>();
             domainEventHandlers.Each(domainEventHandler =>
             {
                 var delayedDomainEventHandlingItem = new DelayedDomainEventHandlingItem(domainEventHandler, () => domainEventHandler.Handle(domainEvent));
@@ -60,7 +89,7 @@ namespace CoreDdd.Domain.Events
 
             DelayedDomainEventHandlingItems _getDelayedDomainEventHandlingItems()
             {
-                var delayedDomainEventHandlingItemsStorage = IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>();
+                var delayedDomainEventHandlingItemsStorage = _storageFactory.Create<DelayedDomainEventHandlingItems>();
                 if (delayedDomainEventHandlingItemsStorage.Get() == null)
                 {
                     delayedDomainEventHandlingItemsStorage.Set(new DelayedDomainEventHandlingItems());
@@ -72,7 +101,7 @@ namespace CoreDdd.Domain.Events
 
         public static void RaiseDelayedEvents(Action<Action> eventHandlingSurroundingAction) // todo: try to make this async? test in both asp.net and asp.net core
         {
-            var delayedDomainEventHandlingItemsStorage = IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>();
+            var delayedDomainEventHandlingItemsStorage = _storageFactory.Create<DelayedDomainEventHandlingItems>();
 
             try
             {
@@ -83,7 +112,7 @@ namespace CoreDdd.Domain.Events
             }
             finally
             {
-                IoC.Release(delayedDomainEventHandlingItemsStorage);
+                _storageFactory.Release(delayedDomainEventHandlingItemsStorage);
             }
         }
 
@@ -101,7 +130,7 @@ namespace CoreDdd.Domain.Events
             }
             finally
             {
-                delayedDomainEventHandlingItems.Each(x => IoC.Release(x.DomainEventHandler));
+                delayedDomainEventHandlingItems.Each(x => _domainEventHandlerFactory.Release(x.DomainEventHandler));
             }
 
             void _executeOneHandler()
@@ -114,10 +143,9 @@ namespace CoreDdd.Domain.Events
                 }
                 finally
                 {
-                    IoC.Release(delayedDomainEventHandlingItem.DomainEventHandler);
+                    _domainEventHandlerFactory.Release(delayedDomainEventHandlingItem.DomainEventHandler);
                 }
             }
-
         }
     }
 }

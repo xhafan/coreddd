@@ -13,7 +13,6 @@ ASP.NET MVC and ASP.NET Core MVC demo email marketing app demonstrating CoreDdd 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
   </ItemGroup>
 

@@ -8,23 +8,25 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
     [TestFixture]
     public class when_raising_delayed_events_with_no_event_registered
     {
-        [Test]
-        public void raising_domain_events_is_handled_gracefully()
+        [SetUp]
+        public void Context()
         {
+            var domainEventHandlerFactory = IoC.Resolve<IDomainEventHandlerFactory>();
+            var storageFactory = IoC.Resolve<IStorageFactory>();
+            DomainEvents.InitializeWithDelayedDomainEventHandling(domainEventHandlerFactory, storageFactory);
+
             _resetDelayedDomainEventHandlingItemsStorage();
-
-            DomainEvents.RaiseDelayedEvents(eventHandlingSurroundingAction => eventHandlingSurroundingAction());
-
 
             void _resetDelayedDomainEventHandlingItemsStorage()
             {
-                _getDelayedDomainEventHandlingItemsStorage().Set(null);
+                IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>().Set(null);
             }
         }
 
-        private IStorage<DelayedDomainEventHandlingItems> _getDelayedDomainEventHandlingItemsStorage()
+        [Test]
+        public void raising_domain_events_is_handled_gracefully()
         {
-            return IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>();
+            DomainEvents.RaiseDelayedEvents(eventHandlingSurroundingAction => eventHandlingSurroundingAction());
         }
     }
 }

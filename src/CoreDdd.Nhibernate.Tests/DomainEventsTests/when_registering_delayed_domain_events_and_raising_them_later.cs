@@ -14,7 +14,9 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         [SetUp]
         public void Context()
         {
-            DomainEvents.EnableDelayedDomainEventHandling();
+            var domainEventHandlerFactory = IoC.Resolve<IDomainEventHandlerFactory>();
+            var storageFactory = IoC.Resolve<IStorageFactory>();
+            DomainEvents.InitializeWithDelayedDomainEventHandling(domainEventHandlerFactory, storageFactory);            
             _resetDelayedDomainEventHandlingItemsStorage();
             TestDomainEventHandler.ResetDomainEventWasHandledFlag();
 

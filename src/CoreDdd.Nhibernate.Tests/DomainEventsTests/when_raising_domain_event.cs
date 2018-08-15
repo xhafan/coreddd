@@ -1,4 +1,5 @@
 using CoreDdd.Domain.Events;
+using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
@@ -12,10 +13,12 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         [SetUp]
         public void Context()
         {
-            DomainEvents.DisableDelayedDomainEventHandling();
+            var domainEventHandlerFactory = IoC.Resolve<IDomainEventHandlerFactory>();
+            DomainEvents.Initialize(domainEventHandlerFactory);
             TestDomainEventHandler.ResetDomainEventWasHandledFlag();
-            _entity = new TestEntityWithDomainEvent();
 
+            _entity = new TestEntityWithDomainEvent();
+            
 
             _entity.BehaviouralMethodWithRaisingDomainEvent();
         }

@@ -37,7 +37,7 @@ namespace CoreDdd.Nhibernate.Tests
             _container.Install(
                 FromAssembly.Containing<NhibernateInstaller>(),
                 FromAssembly.Containing<TestNhibernateInstaller>(),
-                FromAssembly.Containing<QueryAndCommandExecutorInstaller>()
+                FromAssembly.Containing<QueryExecutorInstaller>()
                 );
 
             _registerDelayedDomainEventHandlingItemsStoragePerThread();
