@@ -1,15 +1,15 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <AssemblyVersion>3.0.23.0</AssemblyVersion>
-    <FileVersion>3.0.23.0</FileVersion>
-    <Version>3.0.23</Version>
+    <Version>3.0.24</Version>
+    <AssemblyVersion>$(Version).0</AssemblyVersion>
+    <FileVersion>$(Version).0</FileVersion>
     <Authors>Martin Havlišta</Authors>
     <Company></Company>
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Unit of work support for async commit and rollback</PackageReleaseNotes>
+    <PackageReleaseNotes>Created CoreDdd.AspNetCore project containing ASP.NET Core unit of work middlewares for CoreDdd</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

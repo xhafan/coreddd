@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <Description>ASP.NET Core unit of work middlewares</Description>
+    <Description>ASP.NET Core unit of work middlewares for CoreDdd library</Description>
     <PackageTags>CoreDdd ASP.NET Core unit of work middleware</PackageTags>
   </PropertyGroup>
 
