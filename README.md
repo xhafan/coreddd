@@ -2,6 +2,7 @@ Set of open-source .NET libraries helping with DDD and CQRS
 
 Available on nuget:  
 https://www.nuget.org/packages/CoreDdd  
+https://www.nuget.org/packages/CoreDdd.AspNetCore
 https://www.nuget.org/packages/CoreDdd.Nhibernate  
 https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Castle  
 https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Ninject  
