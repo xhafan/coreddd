@@ -1,4 +1,5 @@
 using CoreDdd.Domain.Events;
+using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreIoC;
 using NUnit.Framework;
 using Shouldly;

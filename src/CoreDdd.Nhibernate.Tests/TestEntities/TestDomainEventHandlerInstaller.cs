@@ -3,7 +3,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CoreDdd.Domain.Events;
 
-namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
+namespace CoreDdd.Nhibernate.Tests.TestEntities
 {
     public class TestDomainEventHandlerInstaller : IWindsorInstaller
     {

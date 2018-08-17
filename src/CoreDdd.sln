@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIoC.Ninject", "CoreIoC.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Nhibernate.Register.Ninject", "CoreDdd.Nhibernate.Register.Ninject\CoreDdd.Nhibernate.Register.Ninject.csproj", "{D685BBBB-7BEA-4CA8-A013-5C9A2B49BC45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDdd.Register.Ninject", "CoreDdd.Register.Ninject\CoreDdd.Register.Ninject.csproj", "{E0171DF6-1935-4989-ACEF-06DCF9A60991}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Register.Ninject", "CoreDdd.Register.Ninject\CoreDdd.Register.Ninject.csproj", "{E0171DF6-1935-4989-ACEF-06DCF9A60991}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.AspNetCore", "CoreDdd.AspNetCore\CoreDdd.AspNetCore.csproj", "{3077323E-C983-4D0E-858B-0B930854A893}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +115,10 @@ Global
 		{E0171DF6-1935-4989-ACEF-06DCF9A60991}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0171DF6-1935-4989-ACEF-06DCF9A60991}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0171DF6-1935-4989-ACEF-06DCF9A60991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3077323E-C983-4D0E-858B-0B930854A893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3077323E-C983-4D0E-858B-0B930854A893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3077323E-C983-4D0E-858B-0B930854A893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3077323E-C983-4D0E-858B-0B930854A893}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

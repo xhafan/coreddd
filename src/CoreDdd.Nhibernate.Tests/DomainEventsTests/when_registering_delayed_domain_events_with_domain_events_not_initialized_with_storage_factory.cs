@@ -1,5 +1,6 @@
 using System;
 using CoreDdd.Domain.Events;
+using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreIoC;
 using CoreUtils.Storages;
 using NUnit.Framework;

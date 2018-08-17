@@ -5,6 +5,7 @@ using CoreUtils.Storages;
 
 namespace CoreDdd.Domain.Events
 {
+    // todo: make this work even when domain events are not initialized - handy for domain tests which don't care about domain event being raised
     public static class DomainEvents
     {
         private static IDomainEventHandlerFactory _domainEventHandlerFactory;
@@ -99,7 +100,7 @@ namespace CoreDdd.Domain.Events
             }
         }
 
-        public static void RaiseDelayedEvents(Action<Action> eventHandlingSurroundingAction) // todo: try to make this async? test in both asp.net and asp.net core
+        public static void RaiseDelayedEvents()
         {
             var delayedDomainEventHandlingItemsStorage = _storageFactory.Create<DelayedDomainEventHandlingItems>();
 
@@ -108,7 +109,7 @@ namespace CoreDdd.Domain.Events
                 var delayedDomainEventHandlingItems = delayedDomainEventHandlingItemsStorage.Get();
                 if (delayedDomainEventHandlingItems == null) return;
 
-                _ExecuteAllDomainEventHandlers(eventHandlingSurroundingAction, delayedDomainEventHandlingItems);
+                _ExecuteAllDomainEventHandlers(delayedDomainEventHandlingItems);
             }
             finally
             {
@@ -116,10 +117,7 @@ namespace CoreDdd.Domain.Events
             }
         }
 
-        private static void _ExecuteAllDomainEventHandlers(
-            Action<Action> eventHandlingSurroundingAction,
-            DelayedDomainEventHandlingItems delayedDomainEventHandlingItems
-            )
+        private static void _ExecuteAllDomainEventHandlers(DelayedDomainEventHandlingItems delayedDomainEventHandlingItems)
         {
             try
             {
@@ -139,7 +137,7 @@ namespace CoreDdd.Domain.Events
 
                 try
                 {
-                    eventHandlingSurroundingAction(delayedDomainEventHandlingItem.DomainEventHandlingAction);
+                    delayedDomainEventHandlingItem.DomainEventHandlingAction();
                 }
                 finally
                 {

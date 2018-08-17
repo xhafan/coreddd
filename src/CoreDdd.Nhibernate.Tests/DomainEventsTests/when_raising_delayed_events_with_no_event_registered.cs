@@ -26,7 +26,7 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         [Test]
         public void raising_domain_events_is_handled_gracefully()
         {
-            DomainEvents.RaiseDelayedEvents(eventHandlingSurroundingAction => eventHandlingSurroundingAction());
+            DomainEvents.RaiseDelayedEvents();
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Registration.Lifestyle;
 using Castle.MicroKernel.SubSystems.Configuration;
@@ -27,6 +28,8 @@ namespace CoreDdd.Nhibernate.Register.Castle
                                     "(e.g. NhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerWebRequest)");
             }
 
+            AddTypedFactoryFacilityHelper.TryAddTypedFactoryFacility(container);
+
             container.Register(
 
                 Component.For(typeof (IRepository<>))
@@ -36,6 +39,8 @@ namespace CoreDdd.Nhibernate.Register.Castle
                 Component.For(typeof (IRepository<,>))
                     .ImplementedBy(typeof (NhibernateRepository<,>))
                     .LifeStyle.Transient,
+
+                Component.For<IUnitOfWorkFactory>().AsFactory(),
 
                 _setUnitOfWorkLifeStyleFunc(
                     Component.For<IUnitOfWork>()

@@ -7,7 +7,7 @@ using CoreUtils.Storages;
 
 namespace CoreDdd.Register.Castle
 {
-    public class DomainEventsInstaller : IWindsorInstaller // todo: add ninject registration
+    public class DomainEventsInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {

@@ -1,7 +1,7 @@
 ﻿using CoreDdd.Domain;
 using CoreDdd.Domain.Events;
 
-namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
+namespace CoreDdd.Nhibernate.Tests.TestEntities
 {
     public class TestEntityWithDomainEvent : Entity, IAggregateRoot
     {
