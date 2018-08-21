@@ -42,5 +42,11 @@ namespace CoreIoC.Tests
         {
             _result.ShouldBeOfType<ServiceType>();
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _windsorContainer.Dispose();
+        }
     }
 }

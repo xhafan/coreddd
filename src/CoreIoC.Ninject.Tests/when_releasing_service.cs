@@ -43,5 +43,11 @@ namespace CoreIoC.Ninject.Tests
         {
             _result.IsDisposed.ShouldBeTrue();
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _kernel.Dispose();
+        }
     }
 }

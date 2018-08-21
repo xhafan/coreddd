@@ -49,5 +49,11 @@ namespace CoreIoC.Castle.Tests
         {
             _result.IsDisposed.ShouldBeTrue();
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _windsorContainer.Dispose();
+        }
     }
 }

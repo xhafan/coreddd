@@ -56,5 +56,12 @@ namespace CoreIoC.Tests
         {
             _result.IsDisposed.ShouldBeTrue();
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _windsorContainer.Dispose();
+        }
+
     }
 }

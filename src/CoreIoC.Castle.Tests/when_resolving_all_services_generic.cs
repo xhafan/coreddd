@@ -16,14 +16,14 @@ namespace CoreIoC.Castle.Tests
         protected class ServiceTypeTwo : IServiceType { }
 
         private IEnumerable<IServiceType> _result;
-
+        private WindsorContainer _windsorContainer;
 
         [SetUp]
         public void Context()
         {
-            var windsorContainer = new WindsorContainer();
+            _windsorContainer = new WindsorContainer();
 
-            windsorContainer.Register(
+            _windsorContainer.Register(
                 Component.For<IServiceType>()
                     .ImplementedBy<ServiceTypeOne>()
                     .LifeStyle.Transient,
@@ -32,7 +32,7 @@ namespace CoreIoC.Castle.Tests
                     .LifeStyle.Transient
             );
 
-            var castleContainer = new CastleContainer(windsorContainer);
+            var castleContainer = new CastleContainer(_windsorContainer);
 
             _result = castleContainer.ResolveAll<IServiceType>();
         }
@@ -43,6 +43,12 @@ namespace CoreIoC.Castle.Tests
             _result.Count().ShouldBe(2);
             _result.First().ShouldBeOfType<ServiceTypeOne>();
             _result.Second().ShouldBeOfType<ServiceTypeTwo>();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _windsorContainer.Dispose();
         }
     }
 }

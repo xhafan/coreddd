@@ -51,5 +51,11 @@ namespace CoreIoC.Tests
             _result.First().ShouldBeOfType<ServiceTypeOne>();
             _result.Second().ShouldBeOfType<ServiceTypeTwo>();
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _windsorContainer.Dispose();
+        }
     }
 }

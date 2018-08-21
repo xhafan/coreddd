@@ -15,15 +15,16 @@ namespace CoreIoC.Ninject.Tests
         protected class ServiceTypeTwo : IServiceType { }
 
         private IEnumerable<IServiceType> _result;
+        private StandardKernel _kernel;
 
 
         [SetUp]
         public void Context()
         {
-            var kernel = new StandardKernel();
-            kernel.Bind<IServiceType>().To<ServiceTypeOne>();
-            kernel.Bind<IServiceType>().To<ServiceTypeTwo>();
-            var ninjectContainer = new NinjectContainer(kernel);
+            _kernel = new StandardKernel();
+            _kernel.Bind<IServiceType>().To<ServiceTypeOne>();
+            _kernel.Bind<IServiceType>().To<ServiceTypeTwo>();
+            var ninjectContainer = new NinjectContainer(_kernel);
 
             _result = ninjectContainer.ResolveAll<IServiceType>();
         }
@@ -34,6 +35,12 @@ namespace CoreIoC.Ninject.Tests
             _result.Count().ShouldBe(2);
             _result.First().ShouldBeOfType<ServiceTypeOne>();
             _result.Second().ShouldBeOfType<ServiceTypeTwo>();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _kernel.Dispose();
         }
     }
 }

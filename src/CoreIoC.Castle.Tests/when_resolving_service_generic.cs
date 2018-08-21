@@ -12,19 +12,20 @@ namespace CoreIoC.Castle.Tests
         protected class ServiceType : IServiceType { }
 
         private IServiceType _result;
+        private WindsorContainer _windsorContainer;
 
         [SetUp]
         public void Context()
         {
-            var windsorContainer = new WindsorContainer();
+            _windsorContainer = new WindsorContainer();
 
-            windsorContainer.Register(
+            _windsorContainer.Register(
                 Component.For<IServiceType>()
                     .ImplementedBy<ServiceType>()
                     .LifeStyle.Transient
             );
 
-            var castleContainer = new CastleContainer(windsorContainer);
+            var castleContainer = new CastleContainer(_windsorContainer);
 
             _result = castleContainer.Resolve<IServiceType>();
         }
@@ -33,6 +34,12 @@ namespace CoreIoC.Castle.Tests
         public void service_is_resolved()
         {
             _result.ShouldBeOfType<ServiceType>();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _windsorContainer.Dispose();
         }
     }
 }
