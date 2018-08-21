@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>3.0.24</Version>
+    <Version>3.0.25</Version>
     <AssemblyVersion>$(Version).0</AssemblyVersion>
     <FileVersion>$(Version).0</FileVersion>
     <Authors>Martin Havlišta</Authors>
@@ -9,7 +9,7 @@
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Created CoreDdd.AspNetCore project containing ASP.NET Core unit of work middlewares for CoreDdd</PackageReleaseNotes>
+    <PackageReleaseNotes>Created a new CoreDdd.TestHelpers nuget package with test helper classes for CoreDdd unit testing - currently contains just test helpers for domain event unit testing. Removed CoreDdd.Nhibernate dependency on CoreIoC</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
