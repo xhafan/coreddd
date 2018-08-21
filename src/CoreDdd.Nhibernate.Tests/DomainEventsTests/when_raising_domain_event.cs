@@ -1,6 +1,6 @@
 using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.Tests.TestEntities;
-using CoreIoC;
+using CoreDdd.TestHelpers.DomainEvents;
 using NUnit.Framework;
 using Shouldly;
 
@@ -10,13 +10,13 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
     public class when_raising_domain_event
     {
         private TestEntityWithDomainEvent _entity;
+        private TestDomainEvent _raisedDomainEvent;
 
         [SetUp]
         public void Context()
         {
-            var domainEventHandlerFactory = IoC.Resolve<IDomainEventHandlerFactory>();
+            var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
             DomainEvents.Initialize(domainEventHandlerFactory);
-            TestDomainEventHandler.ResetDomainEventWasHandledFlag();
 
             _entity = new TestEntityWithDomainEvent();
             
@@ -27,7 +27,7 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         [Test]
         public void domain_event_is_handled()
         {
-            TestDomainEventHandler.DomainEventWasHandled.ShouldBeTrue();
+            _raisedDomainEvent.ShouldNotBeNull();
         }
    }
 }

@@ -2,7 +2,6 @@
 using System.Linq;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.Queries;
-using CoreIoC;
 using NHibernate;
 using IQuery = CoreDdd.Queries.IQuery;
 #if !NET40

@@ -6,6 +6,7 @@ using CoreDdd.Domain.Events;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
+using CoreDdd.TestHelpers.DomainEvents;
 using CoreDdd.UnitOfWorks;
 using CoreIoC;
 using CoreUtils.Storages;
@@ -20,15 +21,15 @@ namespace CoreDdd.Nhibernate.Tests.AspNetCoreTests.UnitOfWorkMiddlewares
     {
         private IRepository<TestEntityWithDomainEvent> _entityRepository;
         private TestEntityWithDomainEvent _entity;
+        private TestDomainEvent _raisedDomainEvent;
 
         [SetUp]
         public async Task Context()
         {
-            var domainEventHandlerFactory = IoC.Resolve<IDomainEventHandlerFactory>();
+            var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
             var storageFactory = IoC.Resolve<IStorageFactory>();
             DomainEvents.InitializeWithDelayedDomainEventHandling(domainEventHandlerFactory, storageFactory);
             _resetDelayedDomainEventHandlingItemsStorage();
-            TestDomainEventHandler.ResetDomainEventWasHandledFlag(); // todo: move this domain event initializion code into a helper class
 
             var unitOfWorkFactory = IoC.Resolve<IUnitOfWorkFactory>();
             var httpContext = new DefaultHttpContext();
@@ -72,7 +73,7 @@ namespace CoreDdd.Nhibernate.Tests.AspNetCoreTests.UnitOfWorkMiddlewares
         [Test]
         public void domain_event_is_not_handled()
         {
-            TestDomainEventHandler.DomainEventWasHandled.ShouldBeFalse();
+            _raisedDomainEvent.ShouldBeNull();
         }
     }
 }

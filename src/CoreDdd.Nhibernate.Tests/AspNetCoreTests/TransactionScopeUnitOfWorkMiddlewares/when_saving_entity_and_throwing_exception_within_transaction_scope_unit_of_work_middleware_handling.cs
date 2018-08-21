@@ -6,6 +6,7 @@ using CoreDdd.Domain.Events;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
+using CoreDdd.TestHelpers.DomainEvents;
 using CoreDdd.UnitOfWorks;
 using CoreIoC;
 using Microsoft.AspNetCore.Http;
@@ -20,13 +21,13 @@ namespace CoreDdd.Nhibernate.Tests.AspNetCoreTests.TransactionScopeUnitOfWorkMid
         private VolatileResourceManager _volatileResourceManager;
         private IRepository<TestEntityWithDomainEvent> _entityRepository;
         private TestEntityWithDomainEvent _entity;
+        private TestDomainEvent _raisedDomainEvent;
 
         [SetUp]
         public async Task Context()
         {
-            var domainEventHandlerFactory = IoC.Resolve<IDomainEventHandlerFactory>();
+            var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
             DomainEvents.Initialize(domainEventHandlerFactory);
-            TestDomainEventHandler.ResetDomainEventWasHandledFlag(); // todo: move this domain event initializion code into a helper class
 
             _volatileResourceManager = new VolatileResourceManager();
 
@@ -84,7 +85,7 @@ namespace CoreDdd.Nhibernate.Tests.AspNetCoreTests.TransactionScopeUnitOfWorkMid
             // the domain event handler is executed, but developer needs to make sure that domain event handler execution results 
             // are rolled back if the transaction scope is rolled back. For instance when sending a bus message from the domain event handler
             // the message should not be sent when the transaction scope rolls back.
-            TestDomainEventHandler.DomainEventWasHandled.ShouldBeTrue();
+            _raisedDomainEvent.ShouldNotBeNull();
         }
     }
 }

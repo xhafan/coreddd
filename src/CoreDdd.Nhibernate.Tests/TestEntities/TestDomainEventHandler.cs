@@ -1,19 +1,20 @@
+using System;
 using CoreDdd.Domain.Events;
 
 namespace CoreDdd.Nhibernate.Tests.TestEntities
 {
     public class TestDomainEventHandler : IDomainEventHandler<TestDomainEvent>
     {
-        public static bool DomainEventWasHandled { get; private set; }
+        private readonly Action<TestDomainEvent> _onDomainEventHandled;
+
+        public TestDomainEventHandler(Action<TestDomainEvent> onDomainEventHandled)
+        {
+            _onDomainEventHandled = onDomainEventHandled;
+        }
 
         public void Handle(TestDomainEvent domainEvent)
         {
-            DomainEventWasHandled = true;
-        }
-
-        public static void ResetDomainEventWasHandledFlag()
-        {
-            DomainEventWasHandled = false;
+            _onDomainEventHandled(domainEvent);
         }
     }
 }

@@ -72,6 +72,7 @@
     <ProjectReference Include="..\CoreDdd.Nhibernate.TestHelpers\CoreDdd.Nhibernate.TestHelpers.csproj" />
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
     <ProjectReference Include="..\CoreDdd.Register.Castle\CoreDdd.Register.Castle.csproj" />
+    <ProjectReference Include="..\CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj" />
     <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj" />
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />

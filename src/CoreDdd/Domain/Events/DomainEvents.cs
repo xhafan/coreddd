@@ -5,7 +5,6 @@ using CoreUtils.Storages;
 
 namespace CoreDdd.Domain.Events
 {
-    // todo: make this work even when domain events are not initialized - handy for domain tests which don't care about domain event being raised
     public static class DomainEvents
     {
         private static IDomainEventHandlerFactory _domainEventHandlerFactory;
@@ -33,7 +32,7 @@ namespace CoreDdd.Domain.Events
         {
             if (_isDelayedDomainEventHandlingEnabled)
             {
-                RegisterDelayedEvent(domainEvent);
+                _RegisterDelayedEvent(domainEvent);
             }
             else
             {
@@ -75,7 +74,7 @@ namespace CoreDdd.Domain.Events
             }
         }
 
-        private static void RegisterDelayedEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
+        private static void _RegisterDelayedEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
             _CheckWasInitializedWithDelayedDomainEventHandling();
 

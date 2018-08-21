@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
-    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
   </ItemGroup>
 

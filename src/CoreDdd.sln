@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.Register.Ninject", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.AspNetCore", "CoreDdd.AspNetCore\CoreDdd.AspNetCore.csproj", "{3077323E-C983-4D0E-858B-0B930854A893}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDdd.TestHelpers", "CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj", "{D0497BCD-7097-4159-989C-430F512B43F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +121,10 @@ Global
 		{3077323E-C983-4D0E-858B-0B930854A893}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3077323E-C983-4D0E-858B-0B930854A893}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3077323E-C983-4D0E-858B-0B930854A893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0497BCD-7097-4159-989C-430F512B43F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0497BCD-7097-4159-989C-430F512B43F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0497BCD-7097-4159-989C-430F512B43F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0497BCD-7097-4159-989C-430F512B43F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,6 +137,7 @@ Global
 		{F615908D-368C-4DC7-8A6D-7F99BE62BA19} = {0EB0DB15-4772-4365-B5BC-AD8A425CE284}
 		{64EEC5E4-7957-44F2-8D9E-BAECD1DC74A7} = {0EB0DB15-4772-4365-B5BC-AD8A425CE284}
 		{01588CCE-A1A6-4154-94A8-29BB38FB8A54} = {0EB0DB15-4772-4365-B5BC-AD8A425CE284}
+		{D0497BCD-7097-4159-989C-430F512B43F9} = {0EB0DB15-4772-4365-B5BC-AD8A425CE284}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8EFCD531-755C-4738-A710-61E0CB7030C6}

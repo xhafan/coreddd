@@ -1,5 +1,6 @@
 using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.Tests.TestEntities;
+using CoreDdd.TestHelpers.DomainEvents;
 using CoreIoC;
 using CoreUtils.Storages;
 using NUnit.Framework;
@@ -11,15 +12,17 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
     public class when_registering_delayed_domain_events_and_raising_them_later
     {
         private TestEntityWithDomainEvent _entity;
+        private TestDomainEvent _raisedDomainEvent;
 
         [SetUp]
         public void Context()
         {
-            var domainEventHandlerFactory = IoC.Resolve<IDomainEventHandlerFactory>();
+            _raisedDomainEvent = null;
+
+            var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
             var storageFactory = IoC.Resolve<IStorageFactory>();
             DomainEvents.InitializeWithDelayedDomainEventHandling(domainEventHandlerFactory, storageFactory);            
             _resetDelayedDomainEventHandlingItemsStorage();
-            TestDomainEventHandler.ResetDomainEventWasHandledFlag();
 
             _entity = new TestEntityWithDomainEvent();
 
@@ -36,7 +39,7 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         [Test]
         public void domain_event_is_not_handled()
         {
-            TestDomainEventHandler.DomainEventWasHandled.ShouldBeFalse();
+            _raisedDomainEvent.ShouldBeNull();
         }
 
         [Test]
@@ -44,7 +47,7 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         {
             DomainEvents.RaiseDelayedEvents();
 
-            TestDomainEventHandler.DomainEventWasHandled.ShouldBeTrue();
+            _raisedDomainEvent.ShouldNotBeNull();
         }
 
         [Test]
