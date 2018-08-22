@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Web;
 
-namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.TransactionScopeUnitOfWorkHttpModules
+namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests
 {
     public class FakeHttpApplication : HttpApplication
     {

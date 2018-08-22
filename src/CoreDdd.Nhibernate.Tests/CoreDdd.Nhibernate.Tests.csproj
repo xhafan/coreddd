@@ -13,6 +13,7 @@
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="FluentNHibernate" Version="2.0.3" />
     <PackageReference Include="Npgsql" Version="2.2.7" />
+    <ProjectReference Include="..\CoreDdd.AspNet\CoreDdd.AspNet.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
@@ -21,6 +22,7 @@
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="FluentNHibernate" Version="2.0.3" />
     <PackageReference Include="Npgsql" Version="4.0.0" />
+    <ProjectReference Include="..\CoreDdd.AspNet\CoreDdd.AspNet.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net451'">
@@ -29,6 +31,7 @@
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="FluentNHibernate" Version="2.0.3" />
     <PackageReference Include="Npgsql" Version="4.0.0" />
+    <ProjectReference Include="..\CoreDdd.AspNet\CoreDdd.AspNet.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
@@ -37,6 +40,7 @@
     <PackageReference Include="NHibernate" Version="5.1.1" />
     <PackageReference Include="FluentNHibernate" Version="2.1.2" />
     <PackageReference Include="Npgsql" Version="4.0.0" />
+    <ProjectReference Include="..\CoreDdd.AspNet\CoreDdd.AspNet.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
@@ -49,6 +53,7 @@
     <PackageReference Include="Npgsql" Version="4.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.1" />
+    <ProjectReference Include="..\CoreDdd.AspNetCore\CoreDdd.AspNetCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -76,7 +81,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreDdd.AspNet\CoreDdd.AspNet.csproj" />
     <ProjectReference Include="..\CoreDdd.Nhibernate.Register.Castle\CoreDdd.Nhibernate.Register.Castle.csproj" />
     <ProjectReference Include="..\CoreDdd.Nhibernate.TestHelpers\CoreDdd.Nhibernate.TestHelpers.csproj" />
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
@@ -85,10 +89,6 @@
     <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj" />
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
-    <ProjectReference Include="..\CoreDdd.AspNetCore\CoreDdd.AspNetCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

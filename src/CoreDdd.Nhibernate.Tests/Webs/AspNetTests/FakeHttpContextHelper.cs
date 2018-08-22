@@ -2,7 +2,7 @@
 using System.IO;
 using System.Web;
 
-namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.TransactionScopeUnitOfWorkHttpModules
+namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests
 {
     public static class FakeHttpContextHelper
     {
