@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Transactions;
 
-namespace CoreDdd.Nhibernate.Tests.AspNetCoreTests.TransactionScopeUnitOfWorkMiddlewares
+namespace CoreDdd.Nhibernate.Tests.Webs
 {
     // https://stackoverflow.com/questions/5265841/how-to-create-a-class-that-works-with-transactionscope
     // inspired by https://www.developer.com/net/net/article.php/3565196/SystemTransactions-Implement-Your-Own-Resource-Manager.htm

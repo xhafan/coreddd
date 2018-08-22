@@ -1,6 +1,6 @@
-﻿#if NETCOREAPP
-using System.Threading.Tasks;
-using CoreDdd.AspNetCore.Middleware;
+﻿#if !NETCOREAPP
+using System.Web;
+using CoreDdd.AspNet.HttpModules;
 using CoreDdd.Domain.Events;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.Tests.TestEntities;
@@ -8,14 +8,13 @@ using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.TestHelpers.DomainEvents;
 using CoreDdd.UnitOfWorks;
 using CoreIoC;
-using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.Tests.AspNetCoreTests.TransactionScopeUnitOfWorkMiddlewares
+namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.TransactionScopeUnitOfWorkHttpModules
 {
     [TestFixture]
-    public class when_saving_entity_within_transaction_scope_unit_of_work_middleware_handling
+    public class when_saving_entity_within_transaction_scope_unit_of_work_http_module_handling
     {
         private VolatileResourceManager _volatileResourceManager;
         private IRepository<TestEntityWithDomainEvent> _entityRepository;
@@ -23,36 +22,45 @@ namespace CoreDdd.Nhibernate.Tests.AspNetCoreTests.TransactionScopeUnitOfWorkMid
         private TestDomainEvent _raisedDomainEvent;
 
         [SetUp]
-        public async Task Context()
+        public void Context()
         {
+            HttpContext.Current = FakeHttpContextHelper.GetFakeHttpContext();
+
             var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
             DomainEvents.Initialize(domainEventHandlerFactory);
 
             _volatileResourceManager = new VolatileResourceManager();
 
             var unitOfWorkFactory = IoC.Resolve<IUnitOfWorkFactory>();
-            var transactionScopeUnitOfWorkMiddleware = new TransactionScopeUnitOfWorkMiddleware(
+            TransactionScopeUnitOfWorkHttpModule.Initialize(
                 unitOfWorkFactory: unitOfWorkFactory,
                 transactionScopeEnlistmentAction: transactionScope => _volatileResourceManager.EnlistIntoTransactionScope(transactionScope)
                 );
+            var transactionScopeUnitOfWorkHttpModule = new TransactionScopeUnitOfWorkHttpModule();
+            var httpApplication = new FakeHttpApplication();
+            transactionScopeUnitOfWorkHttpModule.Init(httpApplication);
 
-            var httpContext = new DefaultHttpContext();
+            httpApplication.FireBeginRequest();
 
-            await transactionScopeUnitOfWorkMiddleware.InvokeAsync(httpContext, async context =>
-            {
-                _entityRepository = IoC.Resolve<IRepository<TestEntityWithDomainEvent>>();
+            _simulateApplicationTransaction();
 
-                _entity = new TestEntityWithDomainEvent();
-                _entity.BehaviouralMethodWithRaisingDomainEvent();
+            httpApplication.FireEndRequest();
+        }
 
-                await _entityRepository.SaveAsync(_entity);
+        private void _simulateApplicationTransaction()
+        {
+            _entityRepository = IoC.Resolve<IRepository<TestEntityWithDomainEvent>>();
 
-                _volatileResourceManager.SetMemberValue(23);
-            });
+            _entity = new TestEntityWithDomainEvent();
+            _entity.BehaviouralMethodWithRaisingDomainEvent();
+
+            _entityRepository.Save(_entity);
+
+            _volatileResourceManager.SetMemberValue(23);
         }
 
         [Test]
-        public async Task entity_is_persisted_and_can_be_fetched_after_the_transaction_commit()
+        public void entity_is_persisted_and_can_be_fetched_after_the_transaction_commit()
         {
             _entity.ShouldNotBeNull();
 
@@ -60,7 +68,7 @@ namespace CoreDdd.Nhibernate.Tests.AspNetCoreTests.TransactionScopeUnitOfWorkMid
             unitOfWork.BeginTransaction();
 
             _entityRepository = IoC.Resolve<IRepository<TestEntityWithDomainEvent>>();
-            _entity = await _entityRepository.GetAsync(_entity.Id);
+            _entity = _entityRepository.Get(_entity.Id);
 
             _entity.ShouldNotBeNull();
 
@@ -77,6 +85,12 @@ namespace CoreDdd.Nhibernate.Tests.AspNetCoreTests.TransactionScopeUnitOfWorkMid
         public void domain_event_is_handled()
         {
             _raisedDomainEvent.ShouldNotBeNull();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            HttpContext.Current = null;
         }
     }
 }

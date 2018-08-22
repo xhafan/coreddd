@@ -8,8 +8,8 @@ namespace CoreDdd.AspNetCore.Middleware
 {
     public class UnitOfWorkMiddleware : IMiddleware
     {
-        private readonly IsolationLevel _isolationLevel;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        private readonly IsolationLevel _isolationLevel;
 
         public UnitOfWorkMiddleware(
             IUnitOfWorkFactory unitOfWorkFactory,

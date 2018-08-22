@@ -9,7 +9,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.Committing
 {
     [TestFixture(TypeArgs = new[] { typeof(CommittingUnitOfWorkSpecification) })]
     [TestFixture(TypeArgs = new[] { typeof(DisposingUnitOfWorkSpecification) })]
-#if !NET40 && !NET45
+#if !NET40 && !NET45 && !NET451
     [TestFixture(TypeArgs = new[] { typeof(CommittingAsyncUnitOfWorkSpecification) })]
 #endif
     public class when_committing_unit_of_work<TCommittingUnitOfWorkSpecification>
