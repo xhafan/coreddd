@@ -95,7 +95,7 @@ namespace CoreDdd.AspNet.HttpModules
             return new TransactionScope(
                 TransactionScopeOption.Required
                 , new TransactionOptions {IsolationLevel = _isolationLevel}
-#if !NET40 && !NET45
+#if !NET40
                 , TransactionScopeAsyncFlowOption.Enabled
 #endif
             );
