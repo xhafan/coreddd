@@ -1,8 +1,6 @@
 using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.TestHelpers.DomainEvents;
-using CoreIoC;
-using CoreUtils.Storages;
 using NUnit.Framework;
 using Shouldly;
 
@@ -20,20 +18,13 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
             _raisedDomainEvent = null;
 
             var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
-            var storageFactory = IoC.Resolve<IStorageFactory>();
-            DomainEvents.InitializeWithDelayedDomainEventHandling(domainEventHandlerFactory, storageFactory);            
-            _resetDelayedDomainEventHandlingItemsStorage();
+            DomainEvents.Initialize(domainEventHandlerFactory, isDelayedDomainEventHandlingEnabled: true);
+            DomainEvents.ResetDelayedEventsStorage();
 
             _entity = new TestEntityWithDomainEvent();
 
 
             _entity.BehaviouralMethodWithRaisingDomainEvent();
-
-
-            void _resetDelayedDomainEventHandlingItemsStorage()
-            {
-                _GetDelayedDomainEventHandlingItemsStorage().Set(null);
-            }
         }
 
         [Test]
@@ -48,19 +39,6 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
             DomainEvents.RaiseDelayedEvents();
 
             _raisedDomainEvent.ShouldNotBeNull();
-        }
-
-        [Test]
-        public void delayed_domain_events_are_cleared_after_raising_them()
-        {
-            DomainEvents.RaiseDelayedEvents();
-
-            _GetDelayedDomainEventHandlingItemsStorage().Get().ShouldBeEmpty();
-        }
-
-        private IStorage<DelayedDomainEventHandlingItems> _GetDelayedDomainEventHandlingItemsStorage()
-        {
-            return IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>();
         }
     }
 }

@@ -7,9 +7,9 @@ using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.TestHelpers.DomainEvents;
+using CoreDdd.TestHelpers.HttpContexts;
 using CoreDdd.UnitOfWorks;
 using CoreIoC;
-using CoreUtils.Storages;
 using NUnit.Framework;
 using Shouldly;
 
@@ -28,9 +28,8 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.UnitOfWorkHttpModules
             HttpContext.Current = FakeHttpContextHelper.GetFakeHttpContext();
 
             var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
-            var storageFactory = IoC.Resolve<IStorageFactory>();
-            DomainEvents.InitializeWithDelayedDomainEventHandling(domainEventHandlerFactory, storageFactory);
-            _resetDelayedDomainEventHandlingItemsStorage();
+            DomainEvents.Initialize(domainEventHandlerFactory, isDelayedDomainEventHandlingEnabled: true);
+            DomainEvents.ResetDelayedEventsStorage();
 
             var unitOfWorkFactory = IoC.Resolve<IUnitOfWorkFactory>();
             UnitOfWorkHttpModule.Initialize(unitOfWorkFactory);
@@ -47,11 +46,6 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.UnitOfWorkHttpModules
             catch
             {
                 httpApplication.FireError();
-            }
-
-            void _resetDelayedDomainEventHandlingItemsStorage()
-            {
-                IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>().Set(null);
             }
         }
 

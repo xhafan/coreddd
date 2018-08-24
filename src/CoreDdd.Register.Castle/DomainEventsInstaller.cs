@@ -3,7 +3,6 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using CoreDdd.Domain.Events;
-using CoreUtils.Storages;
 
 namespace CoreDdd.Register.Castle
 {
@@ -14,8 +13,7 @@ namespace CoreDdd.Register.Castle
             AddTypedFactoryFacilityHelper.TryAddTypedFactoryFacility(container);
            
             container.Register(
-                Component.For<IDomainEventHandlerFactory>().AsFactory(),
-                Component.For<IStorageFactory>().AsFactory()
+                Component.For<IDomainEventHandlerFactory>().AsFactory()
             );
         }
     }

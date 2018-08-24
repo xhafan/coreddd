@@ -34,7 +34,9 @@ namespace CoreDdd.AspNet.HttpModules
             _CheckWasInitialized();
 
             UnitOfWork = _unitOfWorkFactory.Create();
-            UnitOfWork.BeginTransaction(_isolationLevel);            
+            UnitOfWork.BeginTransaction(_isolationLevel);
+
+            DomainEvents.ResetDelayedEventsStorage();
         }
 
         private void _CheckWasInitialized()

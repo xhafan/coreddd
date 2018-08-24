@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net40;net46;netcoreapp2.0</TargetFrameworks>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
@@ -16,7 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CoreDdd.TestHelpers\CoreDdd.TestHelpers.csproj" />
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Web" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,6 @@ using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.TestHelpers.DomainEvents;
 using CoreDdd.UnitOfWorks;
 using CoreIoC;
-using CoreUtils.Storages;
 using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 using Shouldly;
@@ -27,9 +26,8 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.UnitOfWorkMiddlewares
         public async Task Context()
         {
             var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
-            var storageFactory = IoC.Resolve<IStorageFactory>();
-            DomainEvents.InitializeWithDelayedDomainEventHandling(domainEventHandlerFactory, storageFactory);
-            _resetDelayedDomainEventHandlingItemsStorage();
+            DomainEvents.Initialize(domainEventHandlerFactory, isDelayedDomainEventHandlingEnabled: true);
+            DomainEvents.ResetDelayedEventsStorage();
 
             var unitOfWorkFactory = IoC.Resolve<IUnitOfWorkFactory>();
             var httpContext = new DefaultHttpContext();
@@ -47,11 +45,6 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.UnitOfWorkMiddlewares
                 });
             }
             catch (NotSupportedException) {}
-
-            void _resetDelayedDomainEventHandlingItemsStorage()
-            {
-                IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>().Set(null);
-            }
         }
 
         [Test]

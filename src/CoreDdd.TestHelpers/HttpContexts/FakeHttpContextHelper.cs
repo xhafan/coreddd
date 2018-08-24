@@ -1,8 +1,8 @@
-﻿#if !NETCOREAPP
+﻿#if NETFRAMEWORK
 using System.IO;
 using System.Web;
 
-namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests
+namespace CoreDdd.TestHelpers.HttpContexts
 {
     public static class FakeHttpContextHelper
     {

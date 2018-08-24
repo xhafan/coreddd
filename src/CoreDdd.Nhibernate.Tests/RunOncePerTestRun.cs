@@ -3,16 +3,13 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Threading;
-using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
-using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Register.Castle;
 using CoreDdd.Register.Castle;
 using CoreIoC;
 using CoreIoC.Castle;
-using CoreUtils.Storages;
 using NHibernate.Tool.hbm2ddl;
 using Npgsql;
 using NUnit.Framework;
@@ -39,8 +36,6 @@ namespace CoreDdd.Nhibernate.Tests
                 FromAssembly.Containing<TestNhibernateInstaller>(),
                 FromAssembly.Containing<QueryExecutorInstaller>()
                 );
-
-            _registerDelayedDomainEventHandlingItemsStoragePerThread();
 
             IoC.Initialize(new CastleContainer(_container));
 
@@ -90,14 +85,6 @@ namespace CoreDdd.Nhibernate.Tests
                     }
                 }
 
-            }
-
-            void _registerDelayedDomainEventHandlingItemsStoragePerThread()
-            {
-                _container.Register(
-                    Component.For<IStorage<DelayedDomainEventHandlingItems>>()
-                        .ImplementedBy<Storage<DelayedDomainEventHandlingItems>>()
-                        .LifeStyle.PerThread);
             }
         }
 

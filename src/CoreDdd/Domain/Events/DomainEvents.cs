@@ -1,35 +1,36 @@
 ﻿using System;
 using System.Linq;
+using CoreUtils.AmbientStorages;
 using CoreUtils.Extensions;
-using CoreUtils.Storages;
 
 namespace CoreDdd.Domain.Events
 {
     public static class DomainEvents
     {
         private static IDomainEventHandlerFactory _domainEventHandlerFactory;
-        private static IStorageFactory _storageFactory;
+        private static readonly AmbientStorage<DelayedDomainEventHandlingItems> DelayedDomainEventHandlingItemsStorage =
+            new AmbientStorage<DelayedDomainEventHandlingItems>();
 
         private static bool _isDelayedDomainEventHandlingEnabled;
 
-        public static void Initialize(IDomainEventHandlerFactory domainEventHandlerFactory)
-        {
-            _domainEventHandlerFactory = domainEventHandlerFactory;
-            _isDelayedDomainEventHandlingEnabled = false;
-        }
-
-        public static void InitializeWithDelayedDomainEventHandling(
+        public static void Initialize(
             IDomainEventHandlerFactory domainEventHandlerFactory,
-            IStorageFactory storageFactory
-        )
+            bool isDelayedDomainEventHandlingEnabled = false
+            )
         {
             _domainEventHandlerFactory = domainEventHandlerFactory;
-            _storageFactory = storageFactory;
-            _isDelayedDomainEventHandlingEnabled = true;
+            _isDelayedDomainEventHandlingEnabled = isDelayedDomainEventHandlingEnabled;
         }
 
+        public static void ResetDelayedEventsStorage()
+        {
+            DelayedDomainEventHandlingItemsStorage.Value = new DelayedDomainEventHandlingItems();
+        }
+        
         public static void RaiseEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
+            _CheckWasInitialized();
+
             if (_isDelayedDomainEventHandlingEnabled)
             {
                 _RegisterDelayedEvent(domainEvent);
@@ -41,7 +42,6 @@ namespace CoreDdd.Domain.Events
 
             void _raiseEventNow()
             {
-                _CheckWasInitialized();
 
                 var domainEventHandlers = _domainEventHandlerFactory.Create<TDomainEvent>().ToList();
 
@@ -65,20 +65,9 @@ namespace CoreDdd.Domain.Events
             }
         }
 
-        private static void _CheckWasInitializedWithDelayedDomainEventHandling()
-        {
-            if (_domainEventHandlerFactory == null || _storageFactory == null)
-            {
-                throw new InvalidOperationException(
-                    "The domain events have not been initialized! Please call DomainEvents.InitializeWithDelayedDomainEventHandling(...) before using it.");
-            }
-        }
-
         private static void _RegisterDelayedEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
-            _CheckWasInitializedWithDelayedDomainEventHandling();
-
-            var delayedDomainEventHandlingItems = _getDelayedDomainEventHandlingItems();
+            var delayedDomainEventHandlingItems = DelayedDomainEventHandlingItemsStorage.Value;
 
             var domainEventHandlers = _domainEventHandlerFactory.Create<TDomainEvent>();
             domainEventHandlers.Each(domainEventHandler =>
@@ -86,34 +75,16 @@ namespace CoreDdd.Domain.Events
                 var delayedDomainEventHandlingItem = new DelayedDomainEventHandlingItem(domainEventHandler, () => domainEventHandler.Handle(domainEvent));
                 delayedDomainEventHandlingItems.Enqueue(delayedDomainEventHandlingItem);
             });
-
-            DelayedDomainEventHandlingItems _getDelayedDomainEventHandlingItems()
-            {
-                var delayedDomainEventHandlingItemsStorage = _storageFactory.Create<DelayedDomainEventHandlingItems>();
-                if (delayedDomainEventHandlingItemsStorage.Get() == null)
-                {
-                    delayedDomainEventHandlingItemsStorage.Set(new DelayedDomainEventHandlingItems());
-                }
-
-                return delayedDomainEventHandlingItemsStorage.Get();
-            }
         }
 
         public static void RaiseDelayedEvents()
         {
-            var delayedDomainEventHandlingItemsStorage = _storageFactory.Create<DelayedDomainEventHandlingItems>();
+            var delayedDomainEventHandlingItems = DelayedDomainEventHandlingItemsStorage.Value;
+            if (delayedDomainEventHandlingItems == null) throw new InvalidOperationException("DelayedDomainEventHandlingItems is not set.");
 
-            try
-            {
-                var delayedDomainEventHandlingItems = delayedDomainEventHandlingItemsStorage.Get();
-                if (delayedDomainEventHandlingItems == null) return;
+            if (delayedDomainEventHandlingItems.IsEmpty()) return;
 
-                _ExecuteAllDomainEventHandlers(delayedDomainEventHandlingItems);
-            }
-            finally
-            {
-                _storageFactory.Release(delayedDomainEventHandlingItemsStorage);
-            }
+            _ExecuteAllDomainEventHandlers(delayedDomainEventHandlingItems);
         }
 
         private static void _ExecuteAllDomainEventHandlers(DelayedDomainEventHandlingItems delayedDomainEventHandlingItems)

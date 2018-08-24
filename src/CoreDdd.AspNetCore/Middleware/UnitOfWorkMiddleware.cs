@@ -28,6 +28,8 @@ namespace CoreDdd.AspNetCore.Middleware
             {
                 unitOfWork.BeginTransaction(_isolationLevel);
 
+                DomainEvents.ResetDelayedEventsStorage();
+
                 try
                 {
                     await next.Invoke(context);

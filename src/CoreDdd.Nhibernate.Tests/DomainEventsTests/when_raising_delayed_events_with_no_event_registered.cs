@@ -1,6 +1,5 @@
 using CoreDdd.Domain.Events;
 using CoreIoC;
-using CoreUtils.Storages;
 using NUnit.Framework;
 
 namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
@@ -12,15 +11,9 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
         public void Context()
         {
             var domainEventHandlerFactory = IoC.Resolve<IDomainEventHandlerFactory>();
-            var storageFactory = IoC.Resolve<IStorageFactory>();
-            DomainEvents.InitializeWithDelayedDomainEventHandling(domainEventHandlerFactory, storageFactory);
+            DomainEvents.Initialize(domainEventHandlerFactory, isDelayedDomainEventHandlingEnabled: true);
 
-            _resetDelayedDomainEventHandlingItemsStorage();
-
-            void _resetDelayedDomainEventHandlingItemsStorage()
-            {
-                IoC.Resolve<IStorage<DelayedDomainEventHandlingItems>>().Set(null);
-            }
+            DomainEvents.ResetDelayedEventsStorage();
         }
 
         [Test]

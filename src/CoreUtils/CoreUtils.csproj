@@ -1,12 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;netstandard1.0</TargetFrameworks>
+    <TargetFrameworks>net40;net46;netstandard1.3</TargetFrameworks>
     <Description>Helpers for CoreDdd library</Description>
     <PackageTags>CoreDdd helper</PackageTags>
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
+
+  <ItemGroup>
+    <Reference Include="System.Web" />
+  </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DebugType>full</DebugType>

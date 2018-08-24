@@ -7,6 +7,7 @@ using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.TestHelpers.DomainEvents;
+using CoreDdd.TestHelpers.HttpContexts;
 using CoreDdd.UnitOfWorks;
 using CoreIoC;
 using NUnit.Framework;
