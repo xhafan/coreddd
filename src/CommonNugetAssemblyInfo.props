@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>3.0.26</Version>
+    <Version>3.0.27</Version>
     <AssemblyVersion>$(Version).0</AssemblyVersion>
     <FileVersion>$(Version).0</FileVersion>
     <Authors>Martin Havlišta</Authors>
@@ -9,7 +9,7 @@
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Created CoreDdd.AspNet nuget package containing CoreDdd unit of work http modules for ASP.NET</PackageReleaseNotes>
+    <PackageReleaseNotes>Domain events refactored - IStorage/IStorageFactory services replaced by AmbientStorage. This simplified the code and is more developer friendly when working with domain events.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
