@@ -5,6 +5,7 @@ using CoreUtils.Extensions;
 
 namespace CoreDdd.Domain.Events
 {
+    // todo: implement async support for event domain handling?
     public static class DomainEvents
     {
         private static IDomainEventHandlerFactory _domainEventHandlerFactory;
