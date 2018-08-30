@@ -68,6 +68,7 @@ namespace CoreDdd.Domain.Events
         private static void _RegisterDelayedEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
             var delayedDomainEventHandlingItems = DelayedDomainEventHandlingItemsStorage.Value;
+            if (delayedDomainEventHandlingItems == null) throw new InvalidOperationException("DelayedDomainEventHandlingItems is null. Did you forget to call DomainEvents.ResetDelayedEventsStorage() ?");
 
             var domainEventHandlers = _domainEventHandlerFactory.Create<TDomainEvent>();
             domainEventHandlers.Each(domainEventHandler =>
@@ -80,7 +81,7 @@ namespace CoreDdd.Domain.Events
         public static void RaiseDelayedEvents()
         {
             var delayedDomainEventHandlingItems = DelayedDomainEventHandlingItemsStorage.Value;
-            if (delayedDomainEventHandlingItems == null) throw new InvalidOperationException("DelayedDomainEventHandlingItems is not set.");
+            if (delayedDomainEventHandlingItems == null) throw new InvalidOperationException("DelayedDomainEventHandlingItems is null.");
 
             if (delayedDomainEventHandlingItems.IsEmpty()) return;
 
