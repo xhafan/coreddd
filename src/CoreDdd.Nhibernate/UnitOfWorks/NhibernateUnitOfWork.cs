@@ -95,7 +95,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 #if !NET40 && !NET45
         public async Task CommitAsync()
         {
-            await FlushAsync();
+            await FlushAsync().ConfigureAwait(false);
 
             if (_isInTransactionScope)
             {
@@ -107,11 +107,11 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             var tx = Session.Transaction;
             try
             {
-                await tx.CommitAsync();
+                await tx.CommitAsync().ConfigureAwait(false);
             }
             catch
             {
-                await tx.RollbackAsync();
+                await tx.RollbackAsync().ConfigureAwait(false);
                 throw;
             }
             finally
@@ -126,7 +126,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         {
             if (!_IsActive()) return;
 
-            await FlushAsync();
+            await FlushAsync().ConfigureAwait(false);
 
             if (_isInTransactionScope)
             {
@@ -138,7 +138,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             var tx = Session.Transaction;
             try
             {
-                await tx.RollbackAsync();
+                await tx.RollbackAsync().ConfigureAwait(false);
             }
             finally
             {

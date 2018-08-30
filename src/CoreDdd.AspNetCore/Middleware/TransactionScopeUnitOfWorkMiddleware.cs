@@ -34,14 +34,14 @@ namespace CoreDdd.AspNetCore.Middleware
 
                 try
                 {
-                    await next.Invoke(context);
+                    await next.Invoke(context).ConfigureAwait(false);
 
-                    await unitOfWork.CommitAsync();
+                    await unitOfWork.CommitAsync().ConfigureAwait(false);
                     transactionScope.Complete();
                 }
                 catch
                 {
-                    await unitOfWork.RollbackAsync();
+                    await unitOfWork.RollbackAsync().ConfigureAwait(false);
                     throw;
                 }
                 finally

@@ -37,7 +37,7 @@ namespace CoreDdd.Commands
             try
             {
                 commandHandler.CommandExecuted += CommandExecuted;
-                await commandHandler.ExecuteAsync(command);
+                await commandHandler.ExecuteAsync(command).ConfigureAwait(false);
             }
             finally
             {
