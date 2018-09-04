@@ -15,7 +15,7 @@ using Shouldly;
 namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.UnitOfWorkHttpModules
 {
     [TestFixture]
-    public class when_saving_entity_within_unit_of_work_middleware_handling
+    public class when_saving_entity_within_unit_of_work
     {
         private IRepository<TestEntityWithDomainEvent> _entityRepository;
         private TestEntityWithDomainEvent _entity;

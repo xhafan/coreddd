@@ -13,11 +13,12 @@ using CoreIoC;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.UnitOfWorkHttpModules
+namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.TransactionScopeUnitOfWorkHttpModules
 {
     [TestFixture]
-    public class when_saving_entity_and_throwing_exception_within_unit_of_work_middleware_handling
+    public class when_saving_entity_and_throwing_exception_within_transaction_scope_unit_of_work
     {
+        private VolatileResourceManager _volatileResourceManager;
         private IRepository<TestEntityWithDomainEvent> _entityRepository;
         private TestEntityWithDomainEvent _entity;
         private TestDomainEvent _raisedDomainEvent;
@@ -28,14 +29,18 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.UnitOfWorkHttpModules
             HttpContext.Current = FakeHttpContextHelper.GetFakeHttpContext();
 
             var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
-            DomainEvents.Initialize(domainEventHandlerFactory, isDelayedDomainEventHandlingEnabled: true);
-            DomainEvents.ResetDelayedEventsStorage();
+            DomainEvents.Initialize(domainEventHandlerFactory);
+
+            _volatileResourceManager = new VolatileResourceManager();
 
             var unitOfWorkFactory = IoC.Resolve<IUnitOfWorkFactory>();
-            UnitOfWorkHttpModule.Initialize(unitOfWorkFactory);
-            var unitOfWorkHttpModule = new UnitOfWorkHttpModule();
+            TransactionScopeUnitOfWorkHttpModule.Initialize(
+                unitOfWorkFactory: unitOfWorkFactory,
+                transactionScopeEnlistmentAction: transactionScope => _volatileResourceManager.EnlistIntoTransactionScope(transactionScope)
+            );
+            var transactionScopeUnitOfWorkHttpModule = new TransactionScopeUnitOfWorkHttpModule();
             var httpApplication = new FakeHttpApplication();
-            unitOfWorkHttpModule.Init(httpApplication);
+            transactionScopeUnitOfWorkHttpModule.Init(httpApplication);
 
             httpApplication.FireBeginRequest();
 
@@ -54,7 +59,11 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.UnitOfWorkHttpModules
             _entityRepository = IoC.Resolve<IRepository<TestEntityWithDomainEvent>>();
 
             _entity = new TestEntityWithDomainEvent();
+            _entity.BehaviouralMethodWithRaisingDomainEvent();
+
             _entityRepository.Save(_entity);
+
+            _volatileResourceManager.SetMemberValue(23);
 
             throw new NotSupportedException("test exception");
         }
@@ -76,9 +85,18 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.UnitOfWorkHttpModules
         }
 
         [Test]
-        public void domain_event_is_not_handled()
+        public void volatile_resource_manager_value_is_not_set_after_transaction_scope_rollback()
         {
-            _raisedDomainEvent.ShouldBeNull();
+            _volatileResourceManager.MemberValue.ShouldNotBe(23);
+        }
+
+        [Test]
+        public void domain_event_is_still_handled_even_though_the_transaction_is_rolled_back()
+        {
+            // the domain event handler is executed, but developer needs to make sure that domain event handler execution results 
+            // are rolled back if the transaction scope is rolled back. For instance when sending a bus message from the domain event handler
+            // the message should not be sent when the transaction scope rolls back.
+            _raisedDomainEvent.ShouldNotBeNull();
         }
     }
 }

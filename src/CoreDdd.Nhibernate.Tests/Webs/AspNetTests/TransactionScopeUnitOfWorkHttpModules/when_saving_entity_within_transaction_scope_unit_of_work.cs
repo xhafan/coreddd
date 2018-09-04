@@ -15,7 +15,7 @@ using Shouldly;
 namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.TransactionScopeUnitOfWorkHttpModules
 {
     [TestFixture]
-    public class when_saving_entity_within_transaction_scope_unit_of_work_http_module_handling
+    public class when_saving_entity_within_transaction_scope_unit_of_work
     {
         private VolatileResourceManager _volatileResourceManager;
         private IRepository<TestEntityWithDomainEvent> _entityRepository;

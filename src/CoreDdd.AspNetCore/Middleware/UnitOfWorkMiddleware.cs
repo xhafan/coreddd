@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace CoreDdd.AspNetCore.Middleware
 {
+    /// <summary>
+    /// Use this middleware with IoC containers like Castle.Windsor or similar, and when not using TransactionScope
+    /// </summary>
     public class UnitOfWorkMiddleware : IMiddleware
     {
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;

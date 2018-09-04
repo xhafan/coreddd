@@ -7,37 +7,36 @@ using Microsoft.AspNetCore.Http;
 namespace CoreDdd.AspNetCore.Middleware
 {
     /// <summary>
-    /// Use this middleware when using TransactionScope and IoC containers like Castle.Windsor or similar
+    /// Use this middleware when using Microsoft dependency injection and TransactionScope
     /// </summary>
-    public class TransactionScopeUnitOfWorkMiddleware : IMiddleware
+    public class TransactionScopeUnitOfWorkMicrosoftDependencyInjectionMiddleware
     {
-        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        private readonly RequestDelegate _next;
         private readonly IsolationLevel _isolationLevel;
         private readonly Action<TransactionScope> _transactionScopeEnlistmentAction;
 
-        public TransactionScopeUnitOfWorkMiddleware(
-            IUnitOfWorkFactory unitOfWorkFactory,
+        public TransactionScopeUnitOfWorkMicrosoftDependencyInjectionMiddleware(
+            RequestDelegate next,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
             Action<TransactionScope> transactionScopeEnlistmentAction = null
             )
         {
-            _unitOfWorkFactory = unitOfWorkFactory;
+            _next = next;
             _isolationLevel = isolationLevel;
             _transactionScopeEnlistmentAction = transactionScopeEnlistmentAction;
         }
 
-        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        public async Task InvokeAsync(HttpContext context, IUnitOfWork unitOfWork)
         {
             using (var transactionScope = _CreateTransactionScope())
             {
                 _transactionScopeEnlistmentAction?.Invoke(transactionScope);
 
-                var unitOfWork = _unitOfWorkFactory.Create();
                 unitOfWork.BeginTransaction();
 
                 try
                 {
-                    await next.Invoke(context).ConfigureAwait(false);
+                    await _next.Invoke(context).ConfigureAwait(false);
 
                     await unitOfWork.CommitAsync().ConfigureAwait(false);
                     transactionScope.Complete();
@@ -46,10 +45,6 @@ namespace CoreDdd.AspNetCore.Middleware
                 {
                     await unitOfWork.RollbackAsync().ConfigureAwait(false);
                     throw;
-                }
-                finally
-                {
-                    _unitOfWorkFactory.Release(unitOfWork);
                 }
             }
         }

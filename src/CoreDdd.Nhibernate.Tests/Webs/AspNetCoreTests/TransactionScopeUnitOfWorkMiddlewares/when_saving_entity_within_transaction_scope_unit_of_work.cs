@@ -1,12 +1,10 @@
 ﻿#if NETCOREAPP
 using System.Threading.Tasks;
-using CoreDdd.AspNetCore.Middleware;
 using CoreDdd.Domain.Events;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.TestHelpers.DomainEvents;
-using CoreDdd.UnitOfWorks;
 using CoreIoC;
 using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
@@ -14,8 +12,10 @@ using Shouldly;
 
 namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.TransactionScopeUnitOfWorkMiddlewares
 {
-    [TestFixture]
-    public class when_saving_entity_within_transaction_scope_unit_of_work_middleware_handling
+    [TestFixture(TypeArgs = new[] { typeof (TransactionScopeUnitOfWorkMiddlewareSpecification) })]
+    [TestFixture(TypeArgs = new[] { typeof (TransactionScopeUnitOfWorkMicrosoftDependencyInjectionMiddlewareSpecification) })]
+    public class when_saving_entity_within_transaction_scope_unit_of_work<TTransactionScopeUnitOfWorkMiddlewareSpecification>
+        where TTransactionScopeUnitOfWorkMiddlewareSpecification : ITransactionScopeUnitOfWorkMiddlewareSpecification, new()
     {
         private VolatileResourceManager _volatileResourceManager;
         private IRepository<TestEntityWithDomainEvent> _entityRepository;
@@ -25,20 +25,14 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.TransactionScopeUnitOfWo
         [SetUp]
         public async Task Context()
         {
+            var specification = new TTransactionScopeUnitOfWorkMiddlewareSpecification();
+
             var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
             DomainEvents.Initialize(domainEventHandlerFactory);
 
             _volatileResourceManager = new VolatileResourceManager();
 
-            var unitOfWorkFactory = IoC.Resolve<IUnitOfWorkFactory>();
-            var transactionScopeUnitOfWorkMiddleware = new TransactionScopeUnitOfWorkMiddleware(
-                unitOfWorkFactory: unitOfWorkFactory,
-                transactionScopeEnlistmentAction: transactionScope => _volatileResourceManager.EnlistIntoTransactionScope(transactionScope)
-                );
-
-            var httpContext = new DefaultHttpContext();
-
-            await transactionScopeUnitOfWorkMiddleware.InvokeAsync(httpContext, async context =>
+            async Task _requestDelegate(HttpContext context)
             {
                 _entityRepository = IoC.Resolve<IRepository<TestEntityWithDomainEvent>>();
 
@@ -48,7 +42,9 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.TransactionScopeUnitOfWo
                 await _entityRepository.SaveAsync(_entity);
 
                 _volatileResourceManager.SetMemberValue(23);
-            });
+            }
+
+            await specification.CreateMiddlewareAndInvokeHandling(_requestDelegate, _volatileResourceManager);
         }
 
         [Test]

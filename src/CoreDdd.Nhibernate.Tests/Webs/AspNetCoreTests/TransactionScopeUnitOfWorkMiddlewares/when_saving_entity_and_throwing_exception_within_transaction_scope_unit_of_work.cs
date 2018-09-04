@@ -1,22 +1,22 @@
-﻿#if !NETCOREAPP
+﻿#if NETCOREAPP
 using System;
-using System.Web;
-using CoreDdd.AspNet.HttpModules;
+using System.Threading.Tasks;
 using CoreDdd.Domain.Events;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.TestHelpers.DomainEvents;
-using CoreDdd.TestHelpers.HttpContexts;
-using CoreDdd.UnitOfWorks;
 using CoreIoC;
+using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.TransactionScopeUnitOfWorkHttpModules
+namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.TransactionScopeUnitOfWorkMiddlewares
 {
-    [TestFixture]
-    public class when_saving_entity_and_throwing_exception_within_transaction_scope_unit_of_work_http_module_handling
+    [TestFixture(TypeArgs = new[] { typeof(TransactionScopeUnitOfWorkMiddlewareSpecification) })]
+    [TestFixture(TypeArgs = new[] { typeof(TransactionScopeUnitOfWorkMicrosoftDependencyInjectionMiddlewareSpecification) })]
+    public class when_saving_entity_and_throwing_exception_within_transaction_scope_unit_of_work<TTransactionScopeUnitOfWorkMiddlewareSpecification>
+        where TTransactionScopeUnitOfWorkMiddlewareSpecification : ITransactionScopeUnitOfWorkMiddlewareSpecification, new()
     {
         private VolatileResourceManager _volatileResourceManager;
         private IRepository<TestEntityWithDomainEvent> _entityRepository;
@@ -24,52 +24,38 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.TransactionScopeUnitOfWorkHt
         private TestDomainEvent _raisedDomainEvent;
 
         [SetUp]
-        public void Context()
+        public async Task Context()
         {
-            HttpContext.Current = FakeHttpContextHelper.GetFakeHttpContext();
+            var specification = new TTransactionScopeUnitOfWorkMiddlewareSpecification();
 
             var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
             DomainEvents.Initialize(domainEventHandlerFactory);
 
             _volatileResourceManager = new VolatileResourceManager();
 
-            var unitOfWorkFactory = IoC.Resolve<IUnitOfWorkFactory>();
-            TransactionScopeUnitOfWorkHttpModule.Initialize(
-                unitOfWorkFactory: unitOfWorkFactory,
-                transactionScopeEnlistmentAction: transactionScope => _volatileResourceManager.EnlistIntoTransactionScope(transactionScope)
-            );
-            var transactionScopeUnitOfWorkHttpModule = new TransactionScopeUnitOfWorkHttpModule();
-            var httpApplication = new FakeHttpApplication();
-            transactionScopeUnitOfWorkHttpModule.Init(httpApplication);
+            async Task _requestDelegate(HttpContext context)
+            {
+                _entityRepository = IoC.Resolve<IRepository<TestEntityWithDomainEvent>>();
 
-            httpApplication.FireBeginRequest();
+                _entity = new TestEntityWithDomainEvent();
+                _entity.BehaviouralMethodWithRaisingDomainEvent();
+
+                await _entityRepository.SaveAsync(_entity);
+
+                _volatileResourceManager.SetMemberValue(23);
+
+                throw new NotSupportedException("test exception");
+            }
 
             try
             {
-                _simulateApplicationTransactionWhichThrowsAnException();
+                await specification.CreateMiddlewareAndInvokeHandling(_requestDelegate, _volatileResourceManager);
             }
-            catch
-            {
-                httpApplication.FireError();
-            }
-        }
-
-        private void _simulateApplicationTransactionWhichThrowsAnException()
-        {
-            _entityRepository = IoC.Resolve<IRepository<TestEntityWithDomainEvent>>();
-
-            _entity = new TestEntityWithDomainEvent();
-            _entity.BehaviouralMethodWithRaisingDomainEvent();
-
-            _entityRepository.Save(_entity);
-
-            _volatileResourceManager.SetMemberValue(23);
-
-            throw new NotSupportedException("test exception");
+            catch (NotSupportedException) {}
         }
 
         [Test]
-        public void entity_is_not_persisted_and_cannot_be_fetched_after_the_transaction_rollback()
+        public async Task entity_is_not_persisted_and_cannot_be_fetched_after_the_transaction_rollback()
         {
             _entity.ShouldNotBeNull();
 
@@ -77,7 +63,7 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetTests.TransactionScopeUnitOfWorkHt
             unitOfWork.BeginTransaction();
 
             _entityRepository = IoC.Resolve<IRepository<TestEntityWithDomainEvent>>();
-            _entity = _entityRepository.Get(_entity.Id);
+            _entity = await _entityRepository.GetAsync(_entity.Id);
 
             _entity.ShouldBeNull();
 
