@@ -11,6 +11,7 @@ using CoreDdd.UnitOfWorks;
 
 namespace CoreDdd.Nhibernate.Register.Castle
 {
+    // todo: rename this to CoreDddInstaller
     public class NhibernateInstaller : IWindsorInstaller
     {
         private static Func<LifestyleGroup<IUnitOfWork>, ComponentRegistration<IUnitOfWork>> _setUnitOfWorkLifeStyleFunc;
