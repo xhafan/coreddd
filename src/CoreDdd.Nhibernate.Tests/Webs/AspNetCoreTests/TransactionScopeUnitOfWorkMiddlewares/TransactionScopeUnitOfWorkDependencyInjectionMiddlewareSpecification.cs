@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.TransactionScopeUnitOfWorkMiddlewares
 {
-    public class TransactionScopeUnitOfWorkMicrosoftDependencyInjectionMiddlewareSpecification 
+    public class TransactionScopeUnitOfWorkDependencyInjectionMiddlewareSpecification 
         : ITransactionScopeUnitOfWorkMiddlewareSpecification
     {
         public async Task CreateMiddlewareAndInvokeHandling(
@@ -15,7 +15,7 @@ namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.TransactionScopeUnitOfWo
             VolatileResourceManager volatileResourceManager
         )
         {
-            var transactionScopeUnitOfWorkMiddleware = new TransactionScopeUnitOfWorkMicrosoftDependencyInjectionMiddleware(
+            var transactionScopeUnitOfWorkMiddleware = new TransactionScopeUnitOfWorkDependencyInjectionMiddleware(
                 requestDelegate,
                 transactionScopeEnlistmentAction: volatileResourceManager.EnlistIntoTransactionScope
             );

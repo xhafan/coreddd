@@ -13,7 +13,7 @@ using Shouldly;
 namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.UnitOfWorkMiddlewares
 {
     [TestFixture(TypeArgs = new[] { typeof(UnitOfWorkMiddlewareSpecification) })]
-    [TestFixture(TypeArgs = new[] { typeof(UnitOfWorkMicrosoftDependencyInjectionMiddlewareSpecification) })]
+    [TestFixture(TypeArgs = new[] { typeof(UnitOfWorkDependencyInjectionMiddlewareSpecification) })]
     public class when_saving_entity_within_unit_of_work<TUnitOfWorkMiddlewareSpecification>
         where TUnitOfWorkMiddlewareSpecification : IUnitOfWorkMiddlewareSpecification, new()
     {

@@ -14,7 +14,7 @@ using Shouldly;
 namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.TransactionScopeUnitOfWorkMiddlewares
 {
     [TestFixture(TypeArgs = new[] { typeof(TransactionScopeUnitOfWorkMiddlewareSpecification) })]
-    [TestFixture(TypeArgs = new[] { typeof(TransactionScopeUnitOfWorkMicrosoftDependencyInjectionMiddlewareSpecification) })]
+    [TestFixture(TypeArgs = new[] { typeof(TransactionScopeUnitOfWorkDependencyInjectionMiddlewareSpecification) })]
     public class when_saving_entity_and_throwing_exception_within_transaction_scope_unit_of_work<TTransactionScopeUnitOfWorkMiddlewareSpecification>
         where TTransactionScopeUnitOfWorkMiddlewareSpecification : ITransactionScopeUnitOfWorkMiddlewareSpecification, new()
     {

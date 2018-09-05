@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Http;
 namespace CoreDdd.AspNetCore.Middleware
 {
     /// <summary>
-    /// Use this middleware when using Microsoft dependency injection and TransactionScope
+    /// Use this middleware when using ASP.NET Core Dependency Injection and TransactionScope
     /// </summary>
-    public class TransactionScopeUnitOfWorkMicrosoftDependencyInjectionMiddleware : BaseTransactionScopeUnitOfWorkMiddleware
+    public class TransactionScopeUnitOfWorkDependencyInjectionMiddleware : BaseTransactionScopeUnitOfWorkMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public TransactionScopeUnitOfWorkMicrosoftDependencyInjectionMiddleware(
+        public TransactionScopeUnitOfWorkDependencyInjectionMiddleware(
             RequestDelegate next,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
             Action<TransactionScope> transactionScopeEnlistmentAction = null

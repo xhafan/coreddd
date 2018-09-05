@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Http;
 
 namespace CoreDdd.Nhibernate.Tests.Webs.AspNetCoreTests.UnitOfWorkMiddlewares
 {
-    public class UnitOfWorkMicrosoftDependencyInjectionMiddlewareSpecification 
+    public class UnitOfWorkDependencyInjectionMiddlewareSpecification 
         : IUnitOfWorkMiddlewareSpecification
     {
         public async Task CreateMiddlewareAndInvokeHandling(RequestDelegate requestDelegate)
         {
-            var unitOfWorkMiddleware = new UnitOfWorkMicrosoftDependencyInjectionMiddleware(requestDelegate);
+            var unitOfWorkMiddleware = new UnitOfWorkDependencyInjectionMiddleware(requestDelegate);
 
             var httpContext = new DefaultHttpContext();
             var unitOfWork = IoC.Resolve<IUnitOfWork>();
