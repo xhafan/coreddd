@@ -14,7 +14,7 @@ namespace CoreDdd.Nhibernate.Register.DependencyInjection
             services.AddTransient(typeof(IRepository<,>), typeof(NhibernateRepository<,>));
             services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
             services.AddScoped<IUnitOfWork, NhibernateUnitOfWork>();
-            // services.AddScoped<NhibernateUnitOfWork>(); // todo: replicate this line is needed
+            services.AddScoped(x => (NhibernateUnitOfWork)x.GetService<IUnitOfWork>());
         }
     }
 }
