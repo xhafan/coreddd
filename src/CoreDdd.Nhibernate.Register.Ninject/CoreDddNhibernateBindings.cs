@@ -8,7 +8,7 @@ using Ninject.Syntax;
 
 namespace CoreDdd.Nhibernate.Register.Ninject
 {
-    public class NhibernateBindings : NinjectModule
+    public class CoreDddNhibernateBindings : NinjectModule
     {
         private static Func<IBindingInSyntax<NhibernateUnitOfWork>,
             IBindingNamedWithOrOnSyntax<NhibernateUnitOfWork>> _setUnitOfWorkLifeStyleFunc;
@@ -25,8 +25,8 @@ namespace CoreDdd.Nhibernate.Register.Ninject
         {
             if (_setUnitOfWorkLifeStyleFunc == null)
             {
-                throw new Exception("First call NhibernateBindings.SetUnitOfWorkLifeStyle() to set unit of work lifestyle " +
-                                    "(e.g. NhibernateBindings.SetUnitOfWorkLifeStyle(x => x.InRequestScope())");
+                throw new Exception("First call CoreDddNhibernateBindings.SetUnitOfWorkLifeStyle() to set unit of work lifestyle " +
+                                    "(e.g. CoreDddNhibernateBindings.SetUnitOfWorkLifeStyle(x => x.InRequestScope())");
             }
 
             Bind(typeof(IRepository<>)).To(typeof(NhibernateRepository<>)).InTransientScope();

@@ -27,14 +27,14 @@ namespace CoreDdd.Nhibernate.Tests
         {
             _acquireSynchronizationMutex();
 
-            NhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerThread);
+            CoreDddNhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerThread);
 
             _container = new WindsorContainer();
 
             _container.Install(
-                FromAssembly.Containing<NhibernateInstaller>(),
-                FromAssembly.Containing<TestNhibernateInstaller>(),
-                FromAssembly.Containing<QueryExecutorInstaller>()
+                FromAssembly.Containing<CoreDddInstaller>(),
+                FromAssembly.Containing<CoreDddNhibernateInstaller>(),
+                FromAssembly.Containing<TestNhibernateInstaller>()
                 );
 
             IoC.Initialize(new CastleContainer(_container));
