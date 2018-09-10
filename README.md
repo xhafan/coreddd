@@ -6,9 +6,6 @@ https://www.nuget.org/packages/CoreDdd.Nhibernate
 https://www.nuget.org/packages/CoreDdd.AspNetCore  
 https://www.nuget.org/packages/CoreDdd.AspNet  
 https://www.nuget.org/packages/CoreUtils  
-https://www.nuget.org/packages/CoreIoC  
-https://www.nuget.org/packages/CoreIoC.Castle  
-https://www.nuget.org/packages/CoreIoC.Ninject  
 https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Castle  
 https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Ninject  
 https://www.nuget.org/packages/CoreDdd.Register.Castle  
