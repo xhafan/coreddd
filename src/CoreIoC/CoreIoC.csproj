@@ -8,9 +8,4 @@
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
 </Project>

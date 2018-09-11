@@ -16,9 +16,4 @@ ASP.NET MVC and ASP.NET Core MVC demo email marketing app demonstrating CoreDdd 
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
 </Project>
