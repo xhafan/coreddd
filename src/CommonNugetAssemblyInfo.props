@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>3.0.30</Version>
+    <Version>3.0.31</Version>
     <AssemblyVersion>$(Version).0</AssemblyVersion>
     <FileVersion>$(Version).0</FileVersion>
     <Authors>Martin Havlišta</Authors>
@@ -9,7 +9,7 @@
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Fixed Ninject IoC registrations - Ninject does not have a concept of releasing components from typed factories, so had to implement command handler, query handler and domain event handler factories manually instead of using out of the box typed factory.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed Iesi.Collections version for .net 4 and .net 4.5 target frameworks - could not install CoreDdd.Nhibernate nuget package from Visual Studio 2010 and 2012</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
