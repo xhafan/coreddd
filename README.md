@@ -5,10 +5,11 @@ https://www.nuget.org/packages/CoreDdd
 https://www.nuget.org/packages/CoreDdd.Nhibernate  
 https://www.nuget.org/packages/CoreDdd.AspNetCore  
 https://www.nuget.org/packages/CoreDdd.AspNet  
-https://www.nuget.org/packages/CoreUtils  
 https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Castle  
+https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.DependencyInjection  
 https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Ninject  
 https://www.nuget.org/packages/CoreDdd.Register.Castle  
+https://www.nuget.org/packages/CoreDdd.Register.DependencyInjection  
 https://www.nuget.org/packages/CoreDdd.Register.Ninject  
 
 CoreDdd documentation: https://github.com/xhafan/coreddd/wiki  
