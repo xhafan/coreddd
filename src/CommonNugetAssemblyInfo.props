@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>3.0.29</Version>
+    <Version>3.0.30</Version>
     <AssemblyVersion>$(Version).0</AssemblyVersion>
     <FileVersion>$(Version).0</FileVersion>
     <Authors>Martin Havlišta</Authors>
@@ -9,7 +9,7 @@
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Added projects for ASP.NET Core Dependency Injection registrations. Consolidated Castle.Windsor installers into one installer per assembly.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed Ninject IoC registrations - Ninject does not have a concept of releasing components from typed factories, so had to implement command handler, query handler and domain event handler factories manually instead of using out of the box typed factory.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
