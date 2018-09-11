@@ -20,7 +20,7 @@ namespace CoreDdd.Register.Ninject
 
         public void Release<TCommand>(ICommandHandler<TCommand> commandHandler) where TCommand : ICommand
         {
-            // do nothing - Ninject does not have a concept of releasing components like Castle Windsor
+            // do nothing - Ninject does not have a concept of releasing components from typed factories like Castle Windsor
         }
     }
 }
