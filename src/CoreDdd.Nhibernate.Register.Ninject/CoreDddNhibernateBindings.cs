@@ -4,7 +4,6 @@ using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.UnitOfWorks;
 using Ninject.Modules;
-using Ninject.Extensions.Factory;
 using Ninject.Syntax;
 
 namespace CoreDdd.Nhibernate.Register.Ninject
@@ -33,7 +32,7 @@ namespace CoreDdd.Nhibernate.Register.Ninject
             Bind(typeof(IRepository<>)).To(typeof(NhibernateRepository<>)).InTransientScope();
             Bind(typeof(IRepository<,>)).To(typeof(NhibernateRepository<,>)).InTransientScope();
 
-            Bind<IUnitOfWorkFactory>().ToFactory();
+            Bind<IUnitOfWorkFactory>().To<UnitOfWorkFactory>().InSingletonScope();
 
             _setUnitOfWorkLifeStyleFunc(Bind<IUnitOfWork, NhibernateUnitOfWork>().To<NhibernateUnitOfWork>());
         }

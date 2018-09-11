@@ -1,7 +1,6 @@
 using CoreDdd.Commands;
 using CoreDdd.Domain.Events;
 using CoreDdd.Queries;
-using Ninject.Extensions.Factory;
 using Ninject.Modules;
 
 namespace CoreDdd.Register.Ninject
@@ -10,13 +9,13 @@ namespace CoreDdd.Register.Ninject
     {
         public override void Load()
         {
-            Bind<ICommandHandlerFactory>().ToFactory();
+            Bind<ICommandHandlerFactory>().To<CommandHandlerFactory>().InSingletonScope();
             Bind<ICommandExecutor>().To<CommandExecutor>().InTransientScope();
 
-            Bind<IQueryHandlerFactory>().ToFactory();
+            Bind<IQueryHandlerFactory>().To<QueryHandlerFactory>().InSingletonScope();
             Bind<IQueryExecutor>().To<QueryExecutor>().InTransientScope();
 
-            Bind<IDomainEventHandlerFactory>().ToFactory();
+            Bind<IDomainEventHandlerFactory>().To<DomainEventHandlerFactory>().InSingletonScope();
         }
     }
 }

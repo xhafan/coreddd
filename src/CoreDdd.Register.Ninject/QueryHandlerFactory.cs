@@ -1,0 +1,26 @@
+using CoreDdd.Queries;
+using Ninject;
+using Ninject.Syntax;
+
+namespace CoreDdd.Register.Ninject
+{
+    public class QueryHandlerFactory : IQueryHandlerFactory
+    {
+        private readonly IResolutionRoot _ninjectIoCContainer;
+
+        public QueryHandlerFactory(IResolutionRoot ninjectIoCContainer)
+        {
+            _ninjectIoCContainer = ninjectIoCContainer;
+        }
+
+        public IQueryHandler<TQuery> Create<TQuery>() where TQuery : IQuery
+        {
+            return _ninjectIoCContainer.Get<IQueryHandler<TQuery>>();
+        }
+
+        public void Release<TQuery>(IQueryHandler<TQuery> queryHandler) where TQuery : IQuery
+        {
+            // do nothing - Ninject does not have a concept of releasing components like Castle Windsor
+        }
+    }
+}
