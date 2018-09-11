@@ -11,24 +11,24 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="FluentNHibernate" Version="2.0.3" />
+    <PackageReference Include="Iesi.Collections" Version="4.0.1.4000" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />
     <PackageReference Include="FluentNHibernate" Version="2.0.3" />
+    <PackageReference Include="Iesi.Collections" Version="4.0.1.4000" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
     <PackageReference Include="NHibernate" Version="5.1.1" />
     <PackageReference Include="FluentNHibernate" Version="2.1.2" />
+    <PackageReference Include="Iesi.Collections" Version="4.0.4" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="NHibernate" Version="5.1.1" />
     <PackageReference Include="FluentNHibernate" Version="2.1.2" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Iesi.Collections" Version="4.0.4" />
   </ItemGroup>
 
