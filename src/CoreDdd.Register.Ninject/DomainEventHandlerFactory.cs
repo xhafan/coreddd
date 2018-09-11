@@ -21,7 +21,7 @@ namespace CoreDdd.Register.Ninject
 
         public void Release(object domainEventHandler)
         {
-            // do nothing - Ninject does not have a concept of releasing components from typed factories like Castle Windsor
+            _ninjectIoCContainer.Release(domainEventHandler);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace CoreDdd.Register.Ninject
 
         public void Release<TQuery>(IQueryHandler<TQuery> queryHandler) where TQuery : IQuery
         {
-            // do nothing - Ninject does not have a concept of releasing components from typed factories like Castle Windsor
+            _ninjectIoCContainer.Release(queryHandler);
         }
     }
 }

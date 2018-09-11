@@ -20,7 +20,7 @@ namespace CoreDdd.Nhibernate.Register.Ninject
 
         public void Release(IUnitOfWork unitOfWork)
         {
-            // do nothing - Ninject does not have a concept of releasing components from typed factories like Castle Windsor
+            _ninjectIoCContainer.Release(unitOfWork);
         }
     }
 }
