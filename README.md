@@ -1,3 +1,6 @@
+
+[![Join the chat at https://gitter.im/coreddd/Lobby](https://badges.gitter.im/coreddd/Lobby.svg)](https://gitter.im/coreddd/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Set of open-source .NET libraries helping with DDD and CQRS
 
 Available on nuget:  
