@@ -4,7 +4,9 @@
     <TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
     <Description>Set of open-source libraries helping with DDD and CQRS.
 
-CoreDdd documentation: https://github.com/xhafan/coreddd/wiki
+CoreDdd documentation: https://github.com/xhafan/coreddd/wiki  
+
+CoreDdd samples: https://github.com/xhafan/coreddd-sample  
 
 ASP.NET MVC and ASP.NET Core MVC demo email marketing app demonstrating CoreDdd usage: https://github.com/xhafan/emailmaker</Description>
     <PackageTags>DDD CQRS</PackageTags>
