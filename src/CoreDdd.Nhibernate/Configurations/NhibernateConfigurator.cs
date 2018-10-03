@@ -73,7 +73,10 @@ namespace CoreDdd.Nhibernate.Configurations
             return isPostgreSql;
         }
 
-        protected NhibernateConfigurator(bool shouldMapDtos = true)
+        protected NhibernateConfigurator(
+            bool shouldMapDtos = true,
+            string configurationFileName = null
+            )
         {
             ShouldMapDtos = shouldMapDtos;
 
@@ -85,7 +88,14 @@ namespace CoreDdd.Nhibernate.Configurations
             var assemblyWithAdditionalConventions = GetAssembliesWithAdditionalConventions();
             
             _configuration = new Configuration();
-            _configuration.Configure();
+            if (string.IsNullOrWhiteSpace(configurationFileName))
+            {
+                _configuration.Configure();
+            }
+            else
+            {
+                _configuration.Configure(configurationFileName);
+            }
             var autoPersistenceModel = AutoMap.Assemblies(
                 new AutomappingConfiguration(discriminatedTypes.ToArray(), GetFuncToDetermineIfTypeIsDto(), ShouldMapDtos), 
                 assembliesToMap
