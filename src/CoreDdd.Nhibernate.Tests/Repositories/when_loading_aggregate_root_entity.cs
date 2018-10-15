@@ -12,11 +12,11 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
         [Test]
         public void entity_is_loaded_from_database()
         {
-            var entityRepository = new NhibernateRepository<EntityWithText>(UnitOfWork);
+            var entityRepository = new NhibernateRepository<EntityWithText>(PersistenceTestHelper.UnitOfWork);
             var entity = new EntityWithText("hello");
             entityRepository.Save(entity);
-            UnitOfWork.Flush();
-            UnitOfWork.Clear();
+            Flush();
+            Clear();
 
 
             entity = entityRepository.Load(entity.Id);

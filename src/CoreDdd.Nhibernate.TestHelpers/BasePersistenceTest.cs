@@ -1,5 +1,4 @@
 ﻿using CoreDdd.Domain;
-using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
 using NUnit.Framework;
@@ -8,61 +7,59 @@ namespace CoreDdd.Nhibernate.TestHelpers
 {
     public abstract class BasePersistenceTest
     {
-        protected NhibernateUnitOfWork UnitOfWork;
+        protected PersistenceTestHelper PersistenceTestHelper;
 
         [SetUp]
         public void TestFixtureSetUp()
         {
-            UnitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
-            UnitOfWork.BeginTransaction();
+            PersistenceTestHelper = new PersistenceTestHelper(IoC.Resolve<NhibernateUnitOfWork>());
+            PersistenceTestHelper.BeginTransaction();
         }
 
         [TearDown]
         public void TestFixtureTearDown()
         {
-            UnitOfWork.Rollback();
+            PersistenceTestHelper.Rollback();
         }
 
         protected void Save<TAggregateRoot>(TAggregateRoot entity) where TAggregateRoot : IAggregateRoot
         {
-            var repository = new NhibernateRepository<TAggregateRoot>(UnitOfWork);
-            repository.Save(entity);
-            Flush();
+            PersistenceTestHelper.Save(entity);
         }
 
         protected void SaveGeneric<TAggregateRoot, TId>(TAggregateRoot entity) where TAggregateRoot : IAggregateRoot
         {
-            var repository = new NhibernateRepository<TAggregateRoot, TId>(UnitOfWork);
-            repository.Save(entity);
-            Flush();
+            PersistenceTestHelper.SaveGeneric<TAggregateRoot, TId>(entity);
         }
 
         protected TAggregateRoot Get<TAggregateRoot>(int id) where TAggregateRoot : IAggregateRoot
         {
-            var repository = new NhibernateRepository<TAggregateRoot>(UnitOfWork);
-            return repository.Get(id);
+            return PersistenceTestHelper.Get<TAggregateRoot>(id);
         }
 
         protected TAggregateRoot GetGeneric<TAggregateRoot, TId>(TId id) where TAggregateRoot : IAggregateRoot
         {
-            var repository = new NhibernateRepository<TAggregateRoot, TId>(UnitOfWork);
-            return repository.Get(id);
+            return PersistenceTestHelper.GetGeneric<TAggregateRoot, TId>(id);
         }
 
         protected TAggregateRoot Load<TAggregateRoot>(int id) where TAggregateRoot : IAggregateRoot
         {
-            var repository = new NhibernateRepository<TAggregateRoot>(UnitOfWork);
-            return repository.Load(id);
+            return PersistenceTestHelper.Load<TAggregateRoot>(id);
+        }
+
+        protected TAggregateRoot LoadGeneric<TAggregateRoot, TId>(TId id) where TAggregateRoot : IAggregateRoot
+        {
+            return PersistenceTestHelper.LoadGeneric<TAggregateRoot, TId>(id);
         }
 
         protected void Flush()
         {
-            UnitOfWork.Flush();
+            PersistenceTestHelper.UnitOfWork.Flush();
         }
 
         protected void Clear()
         {
-            UnitOfWork.Clear();
+            PersistenceTestHelper.UnitOfWork.Clear();
         }
     }
 }

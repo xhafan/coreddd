@@ -14,15 +14,15 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
         [Test]
         public async Task entity_is_persisted_and_retrieved()
         {
-            var testEntityRepository = new NhibernateRepository<TestEntity>(UnitOfWork);
+            var testEntityRepository = new NhibernateRepository<TestEntity>(PersistenceTestHelper.UnitOfWork);
             var testEntity = new TestEntity();
 
 
             testEntityRepository.Save(testEntity);
 
 
-            UnitOfWork.Flush();
-            UnitOfWork.Clear();
+            Flush();
+            Clear();
             testEntity = await testEntityRepository.GetAsync(testEntity.Id);
 
             testEntity.ShouldNotBeNull();            

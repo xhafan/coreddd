@@ -5,6 +5,7 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace CoreDdd.Nhibernate.DatabaseSchemaGenerators
 {
+    // todo: reviw inheritance - pass schema file name and nhibernate configurator as parameters
     public abstract class DatabaseSchemaGenerator
     {
         protected abstract string GetDatabaseSchemaFileName();

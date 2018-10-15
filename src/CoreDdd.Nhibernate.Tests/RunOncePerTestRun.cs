@@ -6,11 +6,11 @@ using System.Threading;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
 using CoreDdd.Nhibernate.Configurations;
+using CoreDdd.Nhibernate.DatabaseSchemaGenerators;
 using CoreDdd.Nhibernate.Register.Castle;
 using CoreDdd.Register.Castle;
 using CoreIoC;
 using CoreIoC.Castle;
-using NHibernate.Tool.hbm2ddl;
 using Npgsql;
 using NUnit.Framework;
 
@@ -54,20 +54,15 @@ namespace CoreDdd.Nhibernate.Tests
 
             void _createDatabase()
             {
-                var configuration = IoC.Resolve<INhibernateConfigurator>().GetConfiguration();
-                using (var connection = _getDbConnection())
+                var nhibernateConfigurator = IoC.Resolve<INhibernateConfigurator>();
+                var configuration = nhibernateConfigurator.GetConfiguration();                   
+                using (var connection = _createDbConnection())
                 {
                     connection.Open();
-                    new SchemaExport(configuration).Execute(
-                            useStdOut: true,
-                            execute: true,
-                            justDrop: false,
-                            connection: connection,
-                            exportOutput: Console.Out)
-                        ;
+                    new DatabaseSchemaCreator().CreateDatabaseSchema(nhibernateConfigurator, connection);
                 }
 
-                DbConnection _getDbConnection()
+                DbConnection _createDbConnection()
                 {
                     var connectionString = configuration.Properties["connection.connection_string"];
                     var connectionDriverClass = configuration.Properties["connection.driver_class"];

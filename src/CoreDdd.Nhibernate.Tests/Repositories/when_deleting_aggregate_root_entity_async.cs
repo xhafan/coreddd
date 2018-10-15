@@ -14,16 +14,16 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
         [Test]
         public async Task entity_is_deleted()
         {
-            var testEntityRepository = new NhibernateRepository<TestEntity>(UnitOfWork);
+            var testEntityRepository = new NhibernateRepository<TestEntity>(PersistenceTestHelper.UnitOfWork);
             var testEntity = new TestEntity();
             await testEntityRepository.SaveAsync(testEntity);
-            UnitOfWork.Flush();
-            UnitOfWork.Clear();
+            Flush();
+            Clear();
 
 
             await testEntityRepository.DeleteAsync(testEntity);
-            UnitOfWork.Flush();
-            UnitOfWork.Clear();
+            Flush();
+            Clear();
 
 
             testEntity = await testEntityRepository.GetAsync(testEntity.Id);

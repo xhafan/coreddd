@@ -12,15 +12,15 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
         [Test]
         public void entity_is_persisted_and_retrieved()
         {
-            var testEntityRepository = new NhibernateRepository<TestEntity>(UnitOfWork);
+            var testEntityRepository = new NhibernateRepository<TestEntity>(PersistenceTestHelper.UnitOfWork);
             var testEntity = new TestEntity();
 
 
             testEntityRepository.Save(testEntity);
 
 
-            UnitOfWork.Flush();
-            UnitOfWork.Clear();
+            Flush();
+            Clear();
             testEntity = testEntityRepository.Get(testEntity.Id);
 
             testEntity.ShouldNotBeNull();            
