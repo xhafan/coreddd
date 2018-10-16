@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Version>3.0.32</Version>
-    <AssemblyVersion>$(Version).0</AssemblyVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>$(Version).0</FileVersion>
     <Authors>Martin Havlišta</Authors>
     <Company></Company>
