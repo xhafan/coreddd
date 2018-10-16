@@ -12,7 +12,7 @@
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
     <Reference Include="System.Web" />
   </ItemGroup>
 

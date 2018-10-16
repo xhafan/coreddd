@@ -8,7 +8,7 @@
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard1.3'">
     <Reference Include="System.Web" />
   </ItemGroup>
 
