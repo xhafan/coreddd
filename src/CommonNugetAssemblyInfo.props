@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>3.0.32</Version>
+    <Version>3.0.33</Version>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>$(Version).0</FileVersion>
     <Authors>Martin Havlišta</Authors>
@@ -9,7 +9,7 @@
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Made NHibernate configuration file location (path to hibernate.cfg.xml) configurable - needed when overriding the configuration for Docker</PackageReleaseNotes>
+    <PackageReleaseNotes>Created PersistenceTestHelper class (CoreDdd.Nhibernate.TestHelpers package) to allow persistence unit tests without a dependency on BasePersistenceTest class</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
