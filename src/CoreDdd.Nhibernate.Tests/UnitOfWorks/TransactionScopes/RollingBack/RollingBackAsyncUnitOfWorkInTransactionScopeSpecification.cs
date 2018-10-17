@@ -7,7 +7,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes.RollingBack
     {
         public void RollbackAct(IUnitOfWork unitOfWork)
         {
-            unitOfWork.RollbackAsync();
+            unitOfWork.RollbackAsync().Wait();
         }
     }
 }
