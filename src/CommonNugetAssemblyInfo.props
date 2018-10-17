@@ -10,6 +10,8 @@
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>Made NHibernate configuration file location (path to hibernate.cfg.xml) configurable - needed when overriding the configuration for Docker</PackageReleaseNotes>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\CoreDdd.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>

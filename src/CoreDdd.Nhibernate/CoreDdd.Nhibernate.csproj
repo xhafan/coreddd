@@ -33,6 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="StrongNamer" Version="0.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
   </ItemGroup>
