@@ -5,21 +5,27 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace CoreDdd.Nhibernate.DatabaseSchemaGenerators
 {
-    // todo: reviw inheritance - pass schema file name and nhibernate configurator as parameters
-    public abstract class DatabaseSchemaGenerator
+    public class DatabaseSchemaGenerator
     {
-        protected abstract string GetDatabaseSchemaFileName();
-        protected abstract INhibernateConfigurator GetNhibernateConfigurator();
+        private readonly string _databaseSchemaFileName;
+        private readonly INhibernateConfigurator _nhibernateConfigurator;
+
+        public DatabaseSchemaGenerator(
+            string databaseSchemaFileName,
+            INhibernateConfigurator nhibernateConfigurator
+            )
+        {
+            _nhibernateConfigurator = nhibernateConfigurator;
+            _databaseSchemaFileName = databaseSchemaFileName;
+        }
 
         public void Generate()
         {
-            var databaseSchemaFileName = GetDatabaseSchemaFileName();
-            File.Delete(databaseSchemaFileName);
-            var nHibernateConfigurator = GetNhibernateConfigurator();
-            var schemaExport = new SchemaExport(nHibernateConfigurator.GetConfiguration());
-            schemaExport.SetOutputFile(databaseSchemaFileName);
+            File.Delete(_databaseSchemaFileName);
+            var schemaExport = new SchemaExport(_nhibernateConfigurator.GetConfiguration());
+            schemaExport.SetOutputFile(_databaseSchemaFileName);
             schemaExport.Create(true, false);
-            if (!File.Exists(databaseSchemaFileName) || new FileInfo(databaseSchemaFileName).Length == 0)
+            if (!File.Exists(_databaseSchemaFileName) || new FileInfo(_databaseSchemaFileName).Length == 0)
             {
                 throw new Exception("Error generating database schema");
             }
