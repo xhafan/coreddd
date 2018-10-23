@@ -9,7 +9,7 @@
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Downgraded Ninject nuget reference to version 3.2.2 (from 3.3.4) for CoreDdd*Ninject* nuget packages to be able to reference Ninject.Web (which requires Ninject < 3.3.0) in ASP.NET WebForms projects.</PackageReleaseNotes>
+    <PackageReleaseNotes>Downgraded Ninject nuget reference to version 3.2.2 (from 3.3.4) for CoreDdd*Ninject* nuget packages to be able to reference Ninject.Web (which requires Ninject &lt; 3.3.0) in ASP.NET WebForms projects.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
