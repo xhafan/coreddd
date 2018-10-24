@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;net45;netstandard1.6</TargetFrameworks>
-    <Description>Castle IoC for CoreDdd library</Description>
-    <PackageTags>CoreDdd castle IoC DI</PackageTags>
+    <Description>Castle Windsor support for CoreIoC</Description>
+    <PackageTags>CoreIoC Castle Windsor IoC DI</PackageTags>
   </PropertyGroup>
   
   <Import Project="..\CommonNugetAssemblyInfo.props" />

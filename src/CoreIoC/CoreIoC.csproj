@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;netstandard1.0</TargetFrameworks>
-    <Description>Abtract IoC used by CoreDdd library</Description>
-    <PackageTags>CoreDdd IoC DI</PackageTags>
+    <Description>Abtract IoC service locator</Description>
+    <PackageTags>IoC DI</PackageTags>
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
