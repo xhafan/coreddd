@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;netstandard1.6</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
     <Description>Castle Windsor support for CoreIoC</Description>
     <PackageTags>CoreIoC Castle Windsor IoC DI</PackageTags>
   </PropertyGroup>
@@ -16,7 +16,11 @@
     <PackageReference Include="Castle.Windsor" Version="4.1.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.6'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="Castle.Windsor" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Castle.Windsor" Version="4.1.0" />
   </ItemGroup>
 

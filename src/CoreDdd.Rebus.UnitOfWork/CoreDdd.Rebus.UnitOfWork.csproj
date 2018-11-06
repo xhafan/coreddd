@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net451;net46;net461;netstandard2.0</TargetFrameworks>
+    <Description>CoreDdd unit of work support for Rebus.UnitOfWork package.</Description>
+    <PackageTags>CoreDdd Rebus unit of work</PackageTags>
+  </PropertyGroup>
+
+  <Import Project="..\CommonNugetAssemblyInfo.props" />
+
+  <ItemGroup>
+    <PackageReference Include="Rebus" Version="5.0.1" />
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+
+</Project>
