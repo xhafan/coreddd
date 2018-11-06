@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>3.0.35</Version>
+    <Version>3.0.36</Version>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <FileVersion>$(Version).0</FileVersion>
     <Authors>Martin Havlišta</Authors>
