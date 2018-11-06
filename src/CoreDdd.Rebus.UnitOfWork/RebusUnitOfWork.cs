@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using CoreDdd.UnitOfWorks;
 using Rebus.Pipeline;
 
@@ -20,6 +21,11 @@ namespace CoreDdd.Rebus.UnitOfWork
 
         public static IUnitOfWork Create(IMessageContext arg)
         {
+            if (_unitOfWorkFactory == null)
+            {
+                throw new InvalidOperationException(
+                    "RebusUnitOfWork has not been initialized! Please call RebusUnitOfWork.Initialize(...) before using it.");
+            }
             var unitOfWork = _unitOfWorkFactory.Create();
             unitOfWork.BeginTransaction(_isolationLevel);
             return unitOfWork;

@@ -24,6 +24,11 @@ namespace CoreDdd.Rebus.UnitOfWork
 
         public static (TransactionScope transactionScope, IUnitOfWork unitOfWork) Create(IMessageContext arg)
         {
+            if (_unitOfWorkFactory == null)
+            {
+                throw new InvalidOperationException(
+                    "RebusTransactionScopeUnitOfWork has not been initialized! Please call RebusTransactionScopeUnitOfWork.Initialize(...) before using it.");
+            }
             var unitOfWork = _unitOfWorkFactory.Create();
             var transactionScope = _CreateTransactionScope();
             _transactionScopeEnlistmentAction?.Invoke(transactionScope);
