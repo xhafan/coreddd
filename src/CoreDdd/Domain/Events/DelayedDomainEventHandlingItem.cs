@@ -2,7 +2,7 @@
 
 namespace CoreDdd.Domain.Events
 {
-    public class DelayedDomainEventHandlingItem
+    internal class DelayedDomainEventHandlingItem
     {
         public DelayedDomainEventHandlingItem(object domainEventHandler, Action domainEventHandlingAction)
         {

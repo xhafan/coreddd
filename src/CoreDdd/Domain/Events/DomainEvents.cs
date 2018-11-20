@@ -5,8 +5,10 @@ using CoreUtils.Extensions;
 
 namespace CoreDdd.Domain.Events
 {
-    // todo: implement async support for event domain handling?
-    public static class DomainEvents
+    /// <summary>
+    /// Allows to raise a domain event from domain entities. To raise a domain event, call RaiseEvent() method.
+    /// </summary>
+    public static class DomainEvents // todo: implement async support for event domain handling?
     {
         private static IDomainEventHandlerFactory _domainEventHandlerFactory;
         private static readonly AmbientStorage<DelayedDomainEventHandlingItems> DelayedDomainEventHandlingItemsStorage =
@@ -14,6 +16,12 @@ namespace CoreDdd.Domain.Events
 
         private static bool _isDelayedDomainEventHandlingEnabled;
 
+        /// <summary>
+        /// Initialize domain events with domain event handler factory and a flag whether to handle domain
+        /// events immediately when raised (the default) or later (see <see cref="RaiseDelayedEvents"/>).
+        /// </summary>
+        /// <param name="domainEventHandlerFactory">A factory to instantiate domain event handlers</param>
+        /// <param name="isDelayedDomainEventHandlingEnabled">false - immediate handling of domain events when raised, true - delayed handling of domain events</param>
         public static void Initialize(
             IDomainEventHandlerFactory domainEventHandlerFactory,
             bool isDelayedDomainEventHandlingEnabled = false
@@ -23,11 +31,21 @@ namespace CoreDdd.Domain.Events
             _isDelayedDomainEventHandlingEnabled = isDelayedDomainEventHandlingEnabled;
         }
 
+        /// <summary>
+        /// Resets the domain event storage used for delayed domain event handling to remove previous domain events.
+        /// Usually called at the beginning of a new request/transaction.
+        /// </summary>
         public static void ResetDelayedEventsStorage()
         {
-            DelayedDomainEventHandlingItemsStorage.Value = new DelayedDomainEventHandlingItems();
+            DelayedDomainEventHandlingItemsStorage.Value = new DelayedDomainEventHandlingItems(); // todo: clear instead of newing up
         }
         
+        /// <summary>
+        /// Raises a new domain event. Ideally call it within a domain entity code to express that a certain
+        /// domain behavior has happened.
+        /// </summary>
+        /// <typeparam name="TDomainEvent">A domain event type</typeparam>
+        /// <param name="domainEvent">A domain event instance</param>
         public static void RaiseEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
             _CheckWasInitialized();
@@ -69,7 +87,11 @@ namespace CoreDdd.Domain.Events
         private static void _RegisterDelayedEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
         {
             var delayedDomainEventHandlingItems = DelayedDomainEventHandlingItemsStorage.Value;
-            if (delayedDomainEventHandlingItems == null) throw new InvalidOperationException("DelayedDomainEventHandlingItems is null. Did you forget to call DomainEvents.ResetDelayedEventsStorage() ?");
+            if (delayedDomainEventHandlingItems == null)
+            {
+                throw new InvalidOperationException(
+                    "DelayedDomainEventHandlingItems is null. Did you forget to call DomainEvents.ResetDelayedEventsStorage() ?");
+            }
 
             var domainEventHandlers = _domainEventHandlerFactory.Create<TDomainEvent>();
             domainEventHandlers.Each(domainEventHandler =>
@@ -79,6 +101,11 @@ namespace CoreDdd.Domain.Events
             });
         }
 
+        /// <summary>
+        /// Raises delayed domain events. When delayed domain event handling is used (see <see cref="Initialize"/>), 
+        /// domain event handlers are not executed immediately when a domain event is raised, but are added into a queue,
+        /// and raised by calling this method. This method is usually called after the main request/transaction completes.
+        /// </summary>
         public static void RaiseDelayedEvents()
         {
             var delayedDomainEventHandlingItems = DelayedDomainEventHandlingItemsStorage.Value;
