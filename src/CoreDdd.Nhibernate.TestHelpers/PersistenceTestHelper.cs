@@ -24,42 +24,64 @@ namespace CoreDdd.Nhibernate.TestHelpers
             UnitOfWork.BeginTransaction();
         }
 
-        public void Save<TAggregateRoot>(TAggregateRoot entity) where TAggregateRoot : IAggregateRoot
+        public void Save<TAggregateRoot>(TAggregateRoot aggregateRoot) 
+            where TAggregateRoot : Entity, IAggregateRoot
         {
             var repository = new NhibernateRepository<TAggregateRoot>(UnitOfWork);
-            repository.Save(entity);
+            repository.Save(aggregateRoot);
             Flush();
         }
 
-        public void SaveGeneric<TAggregateRoot, TId>(TAggregateRoot entity) where TAggregateRoot : IAggregateRoot
+        public void SaveGeneric<TAggregateRoot, TId>(TAggregateRoot aggregateRoot) 
+            where TAggregateRoot : Entity<TId>, IAggregateRoot
         {
             var repository = new NhibernateRepository<TAggregateRoot, TId>(UnitOfWork);
-            repository.Save(entity);
+            repository.Save(aggregateRoot);
             Flush();
         }
 
-        public TAggregateRoot Get<TAggregateRoot>(int id) where TAggregateRoot : IAggregateRoot
+        public TAggregateRoot Get<TAggregateRoot>(int id) 
+            where TAggregateRoot : Entity, IAggregateRoot
         {
             var repository = new NhibernateRepository<TAggregateRoot>(UnitOfWork);
             return repository.Get(id);
         }
 
-        public TAggregateRoot GetGeneric<TAggregateRoot, TId>(TId id) where TAggregateRoot : IAggregateRoot
+        public TAggregateRoot GetGeneric<TAggregateRoot, TId>(TId id) 
+            where TAggregateRoot : Entity<TId>, IAggregateRoot
         {
             var repository = new NhibernateRepository<TAggregateRoot, TId>(UnitOfWork);
             return repository.Get(id);
         }
 
-        public TAggregateRoot Load<TAggregateRoot>(int id) where TAggregateRoot : IAggregateRoot
+        public TAggregateRoot Load<TAggregateRoot>(int id) 
+            where TAggregateRoot : Entity, IAggregateRoot
         {
             var repository = new NhibernateRepository<TAggregateRoot>(UnitOfWork);
             return repository.Load(id);
         }
 
-        public TAggregateRoot LoadGeneric<TAggregateRoot, TId>(TId id) where TAggregateRoot : IAggregateRoot
+        public TAggregateRoot LoadGeneric<TAggregateRoot, TId>(TId id) 
+            where TAggregateRoot : Entity<TId>, IAggregateRoot
         {
             var repository = new NhibernateRepository<TAggregateRoot, TId>(UnitOfWork);
             return repository.Load(id);
+        }
+
+        public void Delete<TAggregateRoot>(TAggregateRoot aggregateRoot)
+            where TAggregateRoot : Entity, IAggregateRoot
+        {
+            var repository = new NhibernateRepository<TAggregateRoot>(UnitOfWork);
+            repository.Delete(aggregateRoot);
+            Flush();
+        }
+
+        public void DeleteGeneric<TAggregateRoot, TId>(TAggregateRoot aggregateRoot)
+            where TAggregateRoot : Entity<TId>, IAggregateRoot
+        {
+            var repository = new NhibernateRepository<TAggregateRoot, TId>(UnitOfWork);
+            repository.Delete(aggregateRoot);
+            Flush();
         }
 
         public void Commit()

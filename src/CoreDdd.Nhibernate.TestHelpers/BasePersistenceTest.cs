@@ -22,34 +22,52 @@ namespace CoreDdd.Nhibernate.TestHelpers
             PersistenceTestHelper.Rollback();
         }
 
-        protected void Save<TAggregateRoot>(TAggregateRoot entity) where TAggregateRoot : IAggregateRoot
+        protected void Save<TAggregateRoot>(TAggregateRoot aggregateRoot) 
+            where TAggregateRoot : Entity, IAggregateRoot
         {
-            PersistenceTestHelper.Save(entity);
+            PersistenceTestHelper.Save(aggregateRoot);
         }
 
-        protected void SaveGeneric<TAggregateRoot, TId>(TAggregateRoot entity) where TAggregateRoot : IAggregateRoot
+        protected void SaveGeneric<TAggregateRoot, TId>(TAggregateRoot aggregateRoot) 
+            where TAggregateRoot : Entity<TId>, IAggregateRoot
         {
-            PersistenceTestHelper.SaveGeneric<TAggregateRoot, TId>(entity);
+            PersistenceTestHelper.SaveGeneric<TAggregateRoot, TId>(aggregateRoot);
         }
 
-        protected TAggregateRoot Get<TAggregateRoot>(int id) where TAggregateRoot : IAggregateRoot
+        protected TAggregateRoot Get<TAggregateRoot>(int id) 
+            where TAggregateRoot : Entity, IAggregateRoot
         {
             return PersistenceTestHelper.Get<TAggregateRoot>(id);
         }
 
-        protected TAggregateRoot GetGeneric<TAggregateRoot, TId>(TId id) where TAggregateRoot : IAggregateRoot
+        protected TAggregateRoot GetGeneric<TAggregateRoot, TId>(TId id) 
+            where TAggregateRoot : Entity<TId>, IAggregateRoot
         {
             return PersistenceTestHelper.GetGeneric<TAggregateRoot, TId>(id);
         }
 
-        protected TAggregateRoot Load<TAggregateRoot>(int id) where TAggregateRoot : IAggregateRoot
+        protected TAggregateRoot Load<TAggregateRoot>(int id) 
+            where TAggregateRoot : Entity, IAggregateRoot
         {
             return PersistenceTestHelper.Load<TAggregateRoot>(id);
         }
 
-        protected TAggregateRoot LoadGeneric<TAggregateRoot, TId>(TId id) where TAggregateRoot : IAggregateRoot
+        protected TAggregateRoot LoadGeneric<TAggregateRoot, TId>(TId id) 
+            where TAggregateRoot : Entity<TId>, IAggregateRoot
         {
             return PersistenceTestHelper.LoadGeneric<TAggregateRoot, TId>(id);
+        }
+
+        protected void Delete<TAggregateRoot>(TAggregateRoot aggregateRoot)
+            where TAggregateRoot : Entity, IAggregateRoot
+        {
+            PersistenceTestHelper.Delete(aggregateRoot);
+        }
+
+        protected void DeleteGeneric<TAggregateRoot, TId>(TAggregateRoot aggregateRoot)
+            where TAggregateRoot : Entity<TId>, IAggregateRoot
+        {
+            PersistenceTestHelper.DeleteGeneric<TAggregateRoot, TId>(aggregateRoot);
         }
 
         protected void Flush()
