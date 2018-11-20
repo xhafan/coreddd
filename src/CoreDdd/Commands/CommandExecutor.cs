@@ -5,15 +5,27 @@ using System.Threading.Tasks;
 
 namespace CoreDdd.Commands
 {
+    /// <summary>
+    /// Instantiates a command handler for a given command, and executes it.
+    /// </summary>
     public class CommandExecutor : ICommandExecutor
     {
         private readonly ICommandHandlerFactory _commandHandlerFactory;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="CommandExecutor"/> class.
+        /// </summary>
+        /// <param name="commandHandlerFactory"></param>
         public CommandExecutor(ICommandHandlerFactory commandHandlerFactory)
         {
             _commandHandlerFactory = commandHandlerFactory;
         }
 
+        /// <summary>
+        /// Executes a command handler based on the command type.
+        /// </summary>
+        /// <typeparam name="TCommand">A command type</typeparam>
+        /// <param name="command">An instance of command with data</param>
         public void Execute<TCommand>(TCommand command) where TCommand : ICommand
         {
             var commandHandler = _commandHandlerFactory.Create<TCommand>();
@@ -30,6 +42,11 @@ namespace CoreDdd.Commands
         }
 
 #if !NET40
+        /// <summary>
+        /// Executes a command handler asynchronously based on the command type.
+        /// </summary>
+        /// <typeparam name="TCommand">A command type</typeparam>
+        /// <param name="command">An instance of command with data</param>
         public async Task ExecuteAsync<TCommand>(TCommand command) where TCommand : ICommand
         {
             var commandHandler = _commandHandlerFactory.Create<TCommand>();
@@ -46,6 +63,9 @@ namespace CoreDdd.Commands
         }
 #endif
 
+        /// <summary>
+        /// Command executed event, passed down into a command handler, and optionally raised by a command handler.
+        /// </summary>
         public event Action<CommandExecutedArgs> CommandExecuted;
     }
 }
