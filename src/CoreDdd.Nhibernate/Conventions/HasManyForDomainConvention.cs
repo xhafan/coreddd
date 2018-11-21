@@ -46,7 +46,7 @@ namespace CoreDdd.Nhibernate.Conventions
 
             void _setInverseAndAsSet(Type collectionType)
             {
-                if (collectionType.IsSubclassOfRawGeneric(typeof(IList<>))) return; // todo: test removing this line
+                if (collectionType.IsSubclassOfRawGeneric(typeof(IList<>))) return;
                 if (_doesChildReferenceTheParent())
                 {
                     instance.Inverse();

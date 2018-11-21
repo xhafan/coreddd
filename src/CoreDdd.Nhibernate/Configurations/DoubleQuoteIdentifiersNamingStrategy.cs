@@ -3,9 +3,9 @@ using NHibernate.Cfg;
 
 namespace CoreDdd.Nhibernate.Configurations
 {
-    // Double quote identifiers to make sure reserved keywords would not cause sql errors.
+    // Double quote identifiers to make sure reserved sql keywords would not cause sql errors.
     // https://stackoverflow.com/a/2901499/379279
-    internal class QuoteTableNamesForDerivedClassesNamingStrategy : INamingStrategy // todo: rename to DoubleQuoteIdentifiersNamingStrategy
+    internal class DoubleQuoteIdentifiersNamingStrategy : INamingStrategy
     {
         public string ClassToTableName(string className)
         {
