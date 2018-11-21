@@ -6,6 +6,9 @@ using CoreDdd.UnitOfWorks;
 
 namespace CoreDdd.AspNet.HttpModules
 {
+    /// <summary>
+    /// Wraps a web request inside an unit of work transaction.
+    /// </summary>
     public class UnitOfWorkHttpModule : IHttpModule
     {
         private const string UnitOfWorkSessionKey = "CoreDdd_UnitOfWorkHttpModule_UnitOfWork";
@@ -20,6 +23,11 @@ namespace CoreDdd.AspNet.HttpModules
             application.Error += Application_Error;
         }
 
+        /// <summary>
+        /// Initializes the class. Needs to be called when starting the web application.
+        /// </summary>
+        /// <param name="unitOfWorkFactory">An unit of work factory to create a new unit of work for each web request</param>
+        /// <param name="isolationLevel">An isolation level for the unit of work transaction</param>
         public static void Initialize(
             IUnitOfWorkFactory unitOfWorkFactory,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted

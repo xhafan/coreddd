@@ -5,6 +5,9 @@ using CoreDdd.UnitOfWorks;
 
 namespace CoreDdd.AspNet.HttpModules
 {
+    /// <summary>
+    /// Wraps a web request inside a transaction scope.
+    /// </summary>
     public class TransactionScopeUnitOfWorkHttpModule : IHttpModule
     {
         private const string TransactionScopeSessionKey = "CoreDdd_TransactionScopeUnitOfWorkHttpModule_TransactionScope";
@@ -21,6 +24,13 @@ namespace CoreDdd.AspNet.HttpModules
             application.Error += Application_Error;
         }
 
+        /// <summary>
+        /// Initializes the class. Needs to be called when starting the web application.
+        /// </summary>
+        /// <param name="unitOfWorkFactory">An unit of work factory to create a new unit of work for each web request</param>
+        /// <param name="isolationLevel">An isolation level for the transaction scope</param>
+        /// <param name="transactionScopeEnlistmentAction">An enlistment action for the transaction scope. Use to enlist another resource manager
+        /// into the transaction scope</param>
         public static void Initialize(
             IUnitOfWorkFactory unitOfWorkFactory,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,

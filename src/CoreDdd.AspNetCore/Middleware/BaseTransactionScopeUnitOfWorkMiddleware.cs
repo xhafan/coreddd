@@ -6,7 +6,13 @@ using Microsoft.AspNetCore.Http;
 
 namespace CoreDdd.AspNetCore.Middleware
 {
-    public class BaseTransactionScopeUnitOfWorkMiddleware
+    /// <summary>
+    /// This class is a base class for transaction scope middlewares. There are two way to define a middleware:
+    /// 1) A middleware which does not implement a <see cref="IMiddleware"/> interface (used by ASP.NET Core Dependency injection IoC).
+    /// 2) A middleware which implements a <see cref="IMiddleware"/> interface (used by Castle Windsor IoC and potentially other IoC containers).
+    /// This class contains a code which is shared between those two middleware implementations.
+    /// </summary>
+    public abstract class BaseTransactionScopeUnitOfWorkMiddleware
     {
         private readonly IsolationLevel _isolationLevel;
         private readonly Action<TransactionScope> _transactionScopeEnlistmentAction;
