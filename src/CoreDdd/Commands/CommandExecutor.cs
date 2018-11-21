@@ -12,10 +12,6 @@ namespace CoreDdd.Commands
     {
         private readonly ICommandHandlerFactory _commandHandlerFactory;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="CommandExecutor"/> class.
-        /// </summary>
-        /// <param name="commandHandlerFactory"></param>
         public CommandExecutor(ICommandHandlerFactory commandHandlerFactory)
         {
             _commandHandlerFactory = commandHandlerFactory;
@@ -25,7 +21,7 @@ namespace CoreDdd.Commands
         /// Executes a command handler based on the command type.
         /// </summary>
         /// <typeparam name="TCommand">A command type</typeparam>
-        /// <param name="command">An instance of command with data</param>
+        /// <param name="command">An instance of a command with data</param>
         public void Execute<TCommand>(TCommand command) where TCommand : ICommand
         {
             var commandHandler = _commandHandlerFactory.Create<TCommand>();
@@ -46,7 +42,7 @@ namespace CoreDdd.Commands
         /// Executes a command handler asynchronously based on the command type.
         /// </summary>
         /// <typeparam name="TCommand">A command type</typeparam>
-        /// <param name="command">An instance of command with data</param>
+        /// <param name="command">An instance of a command with data</param>
         public async Task ExecuteAsync<TCommand>(TCommand command) where TCommand : ICommand
         {
             var commandHandler = _commandHandlerFactory.Create<TCommand>();

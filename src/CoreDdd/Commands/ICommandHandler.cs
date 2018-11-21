@@ -13,9 +13,9 @@ namespace CoreDdd.Commands
     public interface ICommandHandler<in TCommand> where TCommand: ICommand
     {
         /// <summary>
-        /// Implement this method to implement the command handling logic when handling a command in a non-async way.
+        /// Implements the command handling logic.
         /// </summary>
-        /// <param name="command">The command instance with data</param>
+        /// <param name="command">A command instance with a data</param>
         void Execute(TCommand command);
 
         /// <summary>
@@ -26,9 +26,9 @@ namespace CoreDdd.Commands
 
 #if !NET40
         /// <summary>
-        /// Implement this method to implement the command handling logic when handling a command in an async way.
+        /// Implement the command handling logic asynchronously.
         /// </summary>
-        /// <param name="command">The command instance with data</param>
+        /// <param name="command">A command instance with a data</param>
         Task ExecuteAsync(TCommand command);
 #endif
     }

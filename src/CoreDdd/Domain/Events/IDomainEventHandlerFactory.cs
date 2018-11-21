@@ -16,6 +16,11 @@ namespace CoreDdd.Domain.Events
         IEnumerable<IDomainEventHandler<TDomainEvent>> Create<TDomainEvent>() 
             where TDomainEvent : IDomainEvent;
 
+        /// <summary>
+        /// Releases a domain event handler instance previously created by <see cref="Create{TDomainEvent}"/> method.
+        /// This is needed by Castle Windsor IoC container, other IoC containers (e.g. Ninject, ServiceProvider) don't support it.
+        /// </summary>
+        /// <param name="domainEventHandler"></param>
         void Release(object domainEventHandler);
     }
 }
