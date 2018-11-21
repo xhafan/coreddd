@@ -1,4 +1,5 @@
-﻿using System.Transactions;
+﻿using System;
+using System.Transactions;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.UnitOfWorks;
 using NHibernate;
@@ -159,11 +160,20 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             Session.Clear();
         }
 
-        public void Dispose()
+        public void Dispose() // https://stackoverflow.com/a/898867/379279
         {
-            if (!_IsActive()) return;
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
 
-            Commit();
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (!_IsActive()) return;
+                
+                Commit();
+            }
         }
 
         private bool _IsActive()
