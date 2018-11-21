@@ -8,16 +8,16 @@ namespace CoreDdd.Nhibernate.Conventions
 {
     public class DisableLazyLoadForDtosConvention : IClassConvention, IClassConventionAcceptance
     {
-        private static Func<Type, bool> _isTypeDtoFunc;
+        private static Func<Type, bool> _isTypeDto;
 
-        public static void SetFuncToDetermineIfTypeIsDto(Func<Type, bool> isTypeDtoFunc)
+        public static void Initialize(Func<Type, bool> isTypeDto)
         {
-            _isTypeDtoFunc = isTypeDtoFunc;
+            _isTypeDto = isTypeDto;
         }
 
         public void Accept(IAcceptanceCriteria<IClassInspector> criteria)
         {
-            criteria.Expect(x => _isTypeDtoFunc?.Invoke(x.EntityType) ?? x.EntityType.Name.EndsWith("Dto"));
+            criteria.Expect(x => _isTypeDto(x.EntityType));
         }
 
         public void Apply(IClassInstance instance)

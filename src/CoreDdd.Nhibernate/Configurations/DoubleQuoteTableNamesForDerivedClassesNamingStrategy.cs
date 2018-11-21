@@ -3,14 +3,22 @@ using NHibernate.Cfg;
 
 namespace CoreDdd.Nhibernate.Configurations
 {
-    // table names for derived classes are not quoted for PostgreSQL so this naming strategy needs to be applied for PostgreSQL DB.
-    internal class QuoteTableNamesForDerivedClassesNamingStrategy : INamingStrategy
+    // Double quote identifiers to make sure reserved keywords would not cause sql errors.
+    // https://stackoverflow.com/a/2901499/379279
+    internal class QuoteTableNamesForDerivedClassesNamingStrategy : INamingStrategy // todo: rename to DoubleQuoteIdentifiersNamingStrategy
     {
         public string ClassToTableName(string className)
         {
-            var indexOfLastDot = className.LastIndexOf(".", StringComparison.Ordinal);
-            className = className.Substring(indexOfLastDot + 1);
-            return "\"" + className.Replace("`", "") + "\"";
+            // PostgreSQL generates a full class name as a table name for derived classes 
+            // which throws a SQL error: 42601: improper qualified name (too many dotted names)
+            return _ExtractClassNameFromFullClassName(className);
+        }
+
+        private string _ExtractClassNameFromFullClassName(string fullClassName)
+        {
+            var indexOfLastDot = fullClassName.LastIndexOf(".", StringComparison.Ordinal);
+            fullClassName = fullClassName.Substring(indexOfLastDot + 1);
+            return $"\"{fullClassName.Replace("`", "")}\"";
         }
 
         public string PropertyToColumnName(string propertyName)
@@ -25,7 +33,7 @@ namespace CoreDdd.Nhibernate.Configurations
 
         public string ColumnName(string propertyName)
         {
-            return propertyName;
+            return $"\"{propertyName}\"";
         }
 
         public string PropertyToTableName(string className, string propertyName)

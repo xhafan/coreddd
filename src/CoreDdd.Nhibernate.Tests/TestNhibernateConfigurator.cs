@@ -8,7 +8,7 @@ using HibernatingRhinos.Profiler.Appender.NHibernate;
 
 namespace CoreDdd.Nhibernate.Tests
 {
-    public class TestNhibernateConfigurator : NhibernateConfigurator
+    public class TestNhibernateConfigurator : BaseNhibernateConfigurator
     {
         public TestNhibernateConfigurator()
         {
@@ -20,6 +20,11 @@ namespace CoreDdd.Nhibernate.Tests
         protected override Assembly[] GetAssembliesToMap()
         {
             return new[] { typeof(EqualityEntity).Assembly };
+        }
+
+        protected override IEnumerable<Type> GetIncludeBaseTypes()
+        {
+            yield return typeof(AbstractEntity);
         }
 
         protected override IEnumerable<Type> GetDiscriminatedTypes()

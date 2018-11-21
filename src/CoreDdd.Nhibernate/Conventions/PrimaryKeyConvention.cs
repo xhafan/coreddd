@@ -11,7 +11,7 @@ namespace CoreDdd.Nhibernate.Conventions
     {
         private static string _maxLo;
 
-        public static void SetIdentityHiLoMaxLo(string maxLo)
+        public static void Initialize(string maxLo)
         {
             _maxLo = maxLo;
         }

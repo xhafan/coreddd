@@ -20,7 +20,7 @@ namespace CoreDdd.Nhibernate.Tests.Queries
         {
             using (var cmd = Connection.CreateCommand())
             {
-                cmd.CommandText = "select count(Id) from \"TestEntity\"";
+                cmd.CommandText = "select count(\"Id\") from \"TestEntity\"";
                 Session.Transaction.Enlist(cmd);
 
                 var result = cmd.ExecuteScalar();
@@ -33,7 +33,7 @@ namespace CoreDdd.Nhibernate.Tests.Queries
         {
             using (var cmd = Connection.CreateCommand())
             {
-                cmd.CommandText = "select count(Id) from \"TestEntity\"";
+                cmd.CommandText = "select count(\"Id\") from \"TestEntity\"";
                 Session.Transaction.Enlist(cmd);
                 var result = await ((DbCommand)cmd).ExecuteScalarAsync();
                 return new[] { (TResult)(object)Convert.ToInt32(result) };

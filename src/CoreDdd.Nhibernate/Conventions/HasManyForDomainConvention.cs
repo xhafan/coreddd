@@ -4,18 +4,22 @@ using System.Linq;
 using CoreUtils.Extensions;
 using FluentNHibernate;
 using FluentNHibernate.Conventions;
-using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
     public class HasManyForDomainConvention : IHasManyConvention
     {
-        private static Func<string, string> _propertyNameToBackingFieldNameFunc;
+        private static Func<string, string> _getBackingFieldNameFromPropertyName;
+        private static Action<IAccessInstance> _setCollectionInstanceAccess;
 
-        public static void SetPropertyNameToBackingFieldNameFunc(Func<string, string> propertyNameToBackingFieldNameFunc)
+        public static void Initialize(
+            Func<string, string> getBackingFieldNameFromPropertyName,
+            Action<IAccessInstance> setCollectionInstanceAccess
+            )
         {
-            _propertyNameToBackingFieldNameFunc = propertyNameToBackingFieldNameFunc;
+            _getBackingFieldNameFromPropertyName = getBackingFieldNameFromPropertyName;
+            _setCollectionInstanceAccess = setCollectionInstanceAccess;
         }
 
         public void Apply(IOneToManyCollectionInstance instance)
@@ -27,13 +31,12 @@ namespace CoreDdd.Nhibernate.Conventions
             var parentCollectionProperty = parentType.GetInstanceProperties().FirstOrDefault(x => x.Name == propertyName);
             if (parentCollectionProperty == null) return;
 
-            var parentCollectionPropertyBackingFieldName = _propertyNameToBackingFieldNameFunc?.Invoke(propertyName)
-                                   ?? "_" + Char.ToLower(propertyName[0]) + propertyName.Substring(1);
+            var parentCollectionPropertyBackingFieldName = _getBackingFieldNameFromPropertyName(propertyName);
 
             var parentCollectionPropertyBackingField = parentType.GetInstanceFields().FirstOrDefault(x => x.Name == parentCollectionPropertyBackingFieldName);
             if (parentCollectionPropertyBackingField != null)
             {
-                instance.Access.ReadOnlyPropertyThroughCamelCaseField(CamelCasePrefix.Underscore);
+                _setCollectionInstanceAccess(instance.Access);
                 _setInverseAndAsSet(parentCollectionPropertyBackingField.PropertyType);
             }
             else
@@ -43,7 +46,7 @@ namespace CoreDdd.Nhibernate.Conventions
 
             void _setInverseAndAsSet(Type collectionType)
             {
-                if (collectionType.IsSubclassOfRawGeneric(typeof(IList<>))) return;
+                if (collectionType.IsSubclassOfRawGeneric(typeof(IList<>))) return; // todo: test removing this line
                 if (_doesChildReferenceTheParent())
                 {
                     instance.Inverse();
