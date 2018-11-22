@@ -12,6 +12,10 @@ namespace CoreDdd.Queries
     {
         private readonly IQueryHandlerFactory _queryHandlerFactory;
 
+        /// <summary>
+        /// Initializes the instance.
+        /// </summary>
+        /// <param name="queryHandlerFactory">A query handler factory</param>
         public QueryExecutor(IQueryHandlerFactory queryHandlerFactory)
         {
             _queryHandlerFactory = queryHandlerFactory;

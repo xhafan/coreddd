@@ -12,6 +12,10 @@ namespace CoreDdd.Commands
     {
         private readonly ICommandHandlerFactory _commandHandlerFactory;
 
+        /// <summary>
+        /// Initializes the instance.
+        /// </summary>
+        /// <param name="commandHandlerFactory">A command handler factory</param>
         public CommandExecutor(ICommandHandlerFactory commandHandlerFactory)
         {
             _commandHandlerFactory = commandHandlerFactory;

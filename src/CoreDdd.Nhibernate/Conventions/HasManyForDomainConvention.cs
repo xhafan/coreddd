@@ -8,23 +8,26 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    public class HasManyForDomainConvention : IHasManyConvention
+    internal class HasManyForDomainConvention : IHasManyConvention
     {
+        private static Action<ICollectionCascadeInstance> _collectionCascadeInstanceAction;
         private static Func<string, string> _getBackingFieldNameFromPropertyName;
         private static Action<IAccessInstance> _setCollectionInstanceAccess;
 
         public static void Initialize(
+            Action<ICollectionCascadeInstance> collectionCascadeInstanceAction,
             Func<string, string> getBackingFieldNameFromPropertyName,
             Action<IAccessInstance> setCollectionInstanceAccess
             )
         {
+            _collectionCascadeInstanceAction = collectionCascadeInstanceAction;
             _getBackingFieldNameFromPropertyName = getBackingFieldNameFromPropertyName;
             _setCollectionInstanceAccess = setCollectionInstanceAccess;
         }
 
         public void Apply(IOneToManyCollectionInstance instance)
         {
-            instance.Cascade.AllDeleteOrphan();
+            _collectionCascadeInstanceAction?.Invoke(instance.Cascade);
 
             var propertyName = instance.Member.Name;
             var parentType = instance.Member.DeclaringType;

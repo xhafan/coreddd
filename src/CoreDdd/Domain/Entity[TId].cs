@@ -48,8 +48,11 @@ namespace CoreDdd.Domain
             }
         }
 
-        // Don't touch or override this method. Needs to stay as it is to be able to compare an entity with it's parent entity proxy.
-        // see test when_comparing_derived_entity_with_parent_entity_proxy testing this scenario
+        /// <summary>
+        /// Don't touch or override this method. Needs to stay as it is to be able to compare an entity with it's parent entity proxy.
+        /// see test when_comparing_derived_entity_with_parent_entity_proxy testing this scenario
+        /// </summary>
+        /// <returns>An unproxied type</returns>
         protected virtual Type GetUnproxiedType()
         {
             return GetType();

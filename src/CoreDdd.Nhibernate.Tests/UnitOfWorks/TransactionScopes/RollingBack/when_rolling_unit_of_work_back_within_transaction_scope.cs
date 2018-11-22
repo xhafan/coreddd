@@ -42,7 +42,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes.RollingBack
         [Test]
         public void entities_are_not_persisted()
         {
-            if (_shouldNotBeTestedDueToOldNhibernateVersionAndSqliteDriver()) return;
+            if (!_shouldBeTestedDueToOldNhibernateVersionAndSqliteDriver()) return;
 
             _unitOfWork.BeginTransaction();
             _testEntity = _testEntityRepository.Get(_testEntity.Id);
@@ -51,11 +51,11 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes.RollingBack
 
             _unitOfWork.Rollback();
 
-            bool _shouldNotBeTestedDueToOldNhibernateVersionAndSqliteDriver()
+            bool _shouldBeTestedDueToOldNhibernateVersionAndSqliteDriver()
             {
-                // Nhibernate 4.1.1 does not rollback properly within a transaction scope for sqllite (latest stable 1.0.108). This is working fine for Nhibernate 5.0.3
+                // NHibernate 4.1.1 does not rollback properly within a transaction scope for sqllite (latest stable 1.0.108). This is working fine for NHibernate 5.0.3
                 // strangely, if there is a TestEntity sql select just before the TestEntity sql insert, it all works fine. Anyway, marking it as not working for 
-                // Nhibernate 4.1.1 so it's visible that there might be some issues with transaction scope, nhibernate 4.1.1 and sqlite combination.
+                // NHibernate 4.1.1 so it's visible that there might be some issues with transaction scope, NHibernate 4.1.1 and sqllite combination.
 
                 var configuration = IoC.Resolve<INhibernateConfigurator>().GetConfiguration();
                 var connectionDriverClass = configuration.Properties["connection.driver_class"];
@@ -63,18 +63,18 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes.RollingBack
 
                 if (isSqlite)
                 {
-#if NET40 //Nhibernate 4.1.1
-                    return true;
+#if NET40 // NHibernate 4.1.1
+                    return false;
 #endif
-#if NET45 //Nhibernate 4.1.1
-                    return true;
+#if NET45 // NHibernate 4.1.1
+                    return false;
 #endif
 #if NET461
-                    return false;
+                    return true;
 #endif                    
                 }
 
-                return false;
+                return true;
             }
         }
 

@@ -10,6 +10,7 @@
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>Added a new nuget package CoreDdd.Rebus.UnitOfWork; it contains Rebus unit of work implementation for Rebus.UnitOfWork package (to be used in a CoreDdd service applications handling Rebus messages); following the recommendation on https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting: 1) AVOID including a netstandard1.x target (updated all CoreDdd projects framework targets from .NET Standard 1.x to .NET Standard 2.0); 2) CONSIDER adding a target for net461 when you're offering a netstandard2.0 target (added .NET 4.6.1 target where .NET Standard 2.0 was targeted)</PackageReleaseNotes>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

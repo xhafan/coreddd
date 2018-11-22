@@ -7,7 +7,7 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    public class PrimaryKeyConvention : IIdConvention, IIdConventionAcceptance
+    internal class PrimaryKeyConvention : IIdConvention, IIdConventionAcceptance
     {
         private static string _maxLo;
 
@@ -27,7 +27,7 @@ namespace CoreDdd.Nhibernate.Conventions
                 || instance.Type == typeof(long))
             {
                 instance.Column("Id");
-                instance.GeneratedBy.HiLo(_maxLo ?? "100");
+                instance.GeneratedBy.HiLo(_maxLo);
             }
         }
     }

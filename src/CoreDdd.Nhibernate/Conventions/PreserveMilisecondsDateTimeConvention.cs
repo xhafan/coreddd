@@ -3,7 +3,9 @@ using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
+#if NET40 || NET45
 using NHibernate.Type;
+#endif
 
 namespace CoreDdd.Nhibernate.Conventions
 {
