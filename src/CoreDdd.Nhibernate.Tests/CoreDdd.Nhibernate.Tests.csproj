@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;net451;net461;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net451;net461;netcoreapp2.1</TargetFrameworks>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
@@ -25,7 +25,7 @@
     <PackageReference Include="Rebus" Version="5.0.1" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
     <PackageReference Include="Npgsql" Version="4.0.0" />
@@ -33,11 +33,11 @@
     <PackageReference Include="Rebus" Version="5.0.1" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp2.0'">
+  <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp2.1'">
     <ProjectReference Include="..\CoreDdd.AspNet\CoreDdd.AspNet.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
     <ProjectReference Include="..\CoreDdd.AspNetCore\CoreDdd.AspNetCore.csproj" />
   </ItemGroup>
 
@@ -82,7 +82,7 @@
     <ProjectReference Include="..\CoreDdd.Rebus.UnitOfWork\CoreDdd.Rebus.UnitOfWork.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
     <ProjectReference Include="..\CoreDdd.Rebus.UnitOfWork\CoreDdd.Rebus.UnitOfWork.csproj" />
   </ItemGroup>
 
