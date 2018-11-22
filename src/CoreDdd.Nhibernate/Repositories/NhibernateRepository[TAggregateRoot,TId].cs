@@ -9,22 +9,41 @@ using System.Threading.Tasks;
 
 namespace CoreDdd.Nhibernate.Repositories
 {
+    /// <summary>
+    /// NHibernate repository to load, save and delete aggregate root domain entity.
+    /// </summary>
+    /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
+    /// <typeparam name="TId">An aggregate root domain entity Id type</typeparam>
     public class NhibernateRepository<TAggregateRoot, TId> : IRepository<TAggregateRoot, TId> 
         where TAggregateRoot : Entity<TId>, IAggregateRoot
     {
         private readonly NhibernateUnitOfWork _unitOfWork;
 
+        /// <summary>
+        /// Initializes the instance.
+        /// </summary>
+        /// <param name="unitOfWork">An instance of NHibernate unit of work</param>
         public NhibernateRepository(NhibernateUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
+        /// <summary>
+        /// Fetches an aggregate root domain entity from the database. Does a database hit.
+        /// </summary>
+        /// <param name="id">An aggregate root entity id</param>
+        /// <returns>An aggregate root entity, or null when not found</returns>
         public TAggregateRoot Get(TId id)
         {
             return _unitOfWork.Session.Get<TAggregateRoot>(id);
         }
 
 #if !NET40
+        /// <summary>
+        /// Fetches an aggregate root domain entity asynchronously from the database. Does a database hit.
+        /// </summary>
+        /// <param name="id">An aggregate root entity id</param>
+        /// <returns>An aggregate root entity, or null when not found</returns>
         public Task<TAggregateRoot> GetAsync(TId id)
         {
 #endif
@@ -38,12 +57,28 @@ namespace CoreDdd.Nhibernate.Repositories
         }
 #endif
 
+        /// <summary>
+        /// Returns an aggregate root entity proxy without the database hit. The aggregate root proxy 
+        /// does a database hit to fetch the real data when the aggregate root is accessed.
+        /// See https://stackoverflow.com/a/2125711/379279.
+        /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
+        /// </summary>
+        /// <param name="id">An aggregate root entity id</param>
+        /// <returns>An aggregate root domain entity proxy</returns>
         public TAggregateRoot Load(TId id)
         {
             return _unitOfWork.Session.Load<TAggregateRoot>(id);
         }
 
 #if !NET40
+        /// <summary>
+        /// Returns asynchronously an aggregate root entity proxy without the database hit. The aggregate root proxy 
+        /// does a database hit to fetch the real data when the aggregate root is accessed.
+        /// See https://stackoverflow.com/a/2125711/379279.
+        /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
+        /// </summary>
+        /// <param name="id">An aggregate root entity id</param>
+        /// <returns>An aggregate root domain entity proxy</returns>
         public Task<TAggregateRoot> LoadAsync(TId id)
         {
 #endif
@@ -57,12 +92,25 @@ namespace CoreDdd.Nhibernate.Repositories
         }
 #endif
 
+        /// <summary>
+        /// Saves an aggregate root domain entity into the NHibernate session, and generates the entity Id.
+        /// When the session is flushed (commit flushes the session automatically), the entity is inserted or updated in the database.
+        /// When the entity is transient (=newed up, not previously saved into the database), and it's Id is generated
+        /// by the database (e.g SQL server identity), the entity is inserted into the DB immediately, and not during the flush.
+        /// </summary>
+        /// <param name="aggregateRoot">An aggregate root entity</param>
         public void Save(TAggregateRoot aggregateRoot)
         {
             _unitOfWork.Session.Save(aggregateRoot);
         }
 
 #if !NET40
+        /// <summary>
+        /// Saves an aggregate root domain entity asynchronously into the NHibernate session, and generates the entity Id.
+        /// When the session is flushed (commit flushes the session automatically), the entity is inserted or updated in the database.
+        /// When the entity is transient (=newed up, not previously saved into the database), and it's Id is generated
+        /// by the database (e.g SQL server identity), the entity is inserted into the DB immediately, and not during the flush.
+        /// </summary>
         public Task SaveAsync(TAggregateRoot aggregateRoot)
         {
 #endif
@@ -76,12 +124,20 @@ namespace CoreDdd.Nhibernate.Repositories
         }
 #endif
 
+        /// <summary>
+        /// Deletes an aggregate root domain entity from the NHibernate session.
+        /// When the session is flushed (commit flushes the session automatically), the entity is deleted from the database.
+        /// </summary>
         public void Delete(TAggregateRoot aggregateRoot)
         {
             _unitOfWork.Session.Delete(aggregateRoot);
         }
 
 #if !NET40
+        /// <summary>
+        /// Deletes an aggregate root domain entity asynchronously from the NHibernate session.
+        /// When the session is flushed (commit flushes the session automatically), the entity is deleted from the database.
+        /// </summary>
         public Task DeleteAsync(TAggregateRoot aggregateRoot)
         {
 #endif

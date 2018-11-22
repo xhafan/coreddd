@@ -5,7 +5,7 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    public class StringColumnLengthConvention : IPropertyConvention, IPropertyConventionAcceptance
+    internal class StringColumnLengthConvention : IPropertyConvention, IPropertyConventionAcceptance
     {
         public void Accept(IAcceptanceCriteria<IPropertyInspector> criteria)
         {

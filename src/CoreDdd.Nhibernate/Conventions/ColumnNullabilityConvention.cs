@@ -7,7 +7,7 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    public class ColumnNullabilityConvention :
+    internal class ColumnNullabilityConvention :
         IPropertyConvention, IPropertyConventionAcceptance,
         IReferenceConvention, IReferenceConventionAcceptance
     {

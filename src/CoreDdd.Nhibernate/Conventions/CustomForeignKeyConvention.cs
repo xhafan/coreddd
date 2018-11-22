@@ -4,7 +4,7 @@ using FluentNHibernate.Conventions;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    public class CustomForeignKeyConvention : ForeignKeyConvention
+    internal class CustomForeignKeyConvention : ForeignKeyConvention
     {
         protected override string GetKeyName(Member property, Type type)
         {

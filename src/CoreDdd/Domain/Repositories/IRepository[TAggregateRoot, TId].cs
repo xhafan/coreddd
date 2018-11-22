@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 namespace CoreDdd.Domain.Repositories
 {
     /// <summary>
-    /// Represents a repository to load/save/delete aggregate root entities.
+    /// Represents a repository to load/save/delete aggregate root domain entity.
     /// </summary>
-    /// <typeparam name="TAggregateRoot">An aggregate root entity type</typeparam>
-    /// <typeparam name="TId">An aggregate root entity id type</typeparam>
+    /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
+    /// <typeparam name="TId">An aggregate root domain entity id type</typeparam>
     public interface IRepository<TAggregateRoot, in TId>
         where TAggregateRoot : Entity<TId>, IAggregateRoot
     {
         /// <summary>
-        /// Fetches an aggregate root entity from a repository.
+        /// Fetches an aggregate root domain entity from a repository.
         /// </summary>
         /// <param name="id">An aggregate root entity id</param>
         /// <returns>An aggregate root entity, or null when not found</returns>
@@ -26,7 +26,7 @@ namespace CoreDdd.Domain.Repositories
         /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
         /// </summary>
         /// <param name="id">An aggregate root entity id</param>
-        /// <returns>An aggregate root proxy</returns>
+        /// <returns>An aggregate root domain entity proxy</returns>
         TAggregateRoot Load(TId id);
 
         /// <summary>

@@ -3,7 +3,7 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    public class ForeignKeyConstraintNameConvention : IReferenceConvention
+    internal class ForeignKeyConstraintNameConvention : IReferenceConvention
     {
         public void Apply(IManyToOneInstance instance)
         {

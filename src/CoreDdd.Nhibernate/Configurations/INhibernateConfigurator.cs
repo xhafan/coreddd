@@ -9,7 +9,16 @@ namespace CoreDdd.Nhibernate.Configurations
     /// </summary>
     public interface INhibernateConfigurator
     {
+        /// <summary>
+        /// Gets NHibernate session factory.
+        /// </summary>
+        /// <returns>NHibernate session factory</returns>
         ISessionFactory GetSessionFactory();
+
+        /// <summary>
+        /// Gets NHibernate configuration.
+        /// </summary>
+        /// <returns>NHibernate configuration</returns>
         Configuration GetConfiguration();
     }    
 }

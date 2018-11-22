@@ -9,7 +9,7 @@ using NHibernate.Type;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    public class PreserveMilisecondsDateTimeConvention : IPropertyConvention, IPropertyConventionAcceptance
+    internal class PreserveMilisecondsDateTimeConvention : IPropertyConvention, IPropertyConventionAcceptance
     {
         public void Accept(IAcceptanceCriteria<IPropertyInspector> criteria)
         {

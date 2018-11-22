@@ -6,7 +6,7 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    public class DisableLazyLoadForDtosConvention : IClassConvention, IClassConventionAcceptance
+    internal class DisableLazyLoadForDtosConvention : IClassConvention, IClassConventionAcceptance
     {
         private static Func<Type, bool> _isTypeDto;
 

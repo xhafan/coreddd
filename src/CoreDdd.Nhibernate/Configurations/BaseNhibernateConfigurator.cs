@@ -22,7 +22,7 @@ namespace CoreDdd.Nhibernate.Configurations
     /// Override other virtual methods to configure various NHibernate settings.
     /// Override method <see cref="ConfigureNhibernate"/> to completely customize NHibernate configuration.
     /// </summary>
-    public abstract class BaseNhibernateConfigurator : INhibernateConfigurator, IDisposable
+    public abstract class BaseNhibernateConfigurator : INhibernateConfigurator, IDisposable // todo: allow to load a particular conventions - this fixes a scenario that somebody might not want some of the default conventions
     {
         private readonly ISessionFactory _sessionFactory;
         private readonly Configuration _configuration;
