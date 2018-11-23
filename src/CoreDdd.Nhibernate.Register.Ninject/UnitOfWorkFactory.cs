@@ -4,7 +4,7 @@ using Ninject.Syntax;
 
 namespace CoreDdd.Nhibernate.Register.Ninject
 {
-    public class UnitOfWorkFactory : IUnitOfWorkFactory
+    internal class UnitOfWorkFactory : IUnitOfWorkFactory
     {
         private readonly IResolutionRoot _ninjectIoCContainer;
 

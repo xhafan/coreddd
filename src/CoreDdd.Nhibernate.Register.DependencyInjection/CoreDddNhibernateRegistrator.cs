@@ -7,8 +7,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreDdd.Nhibernate.Register.DependencyInjection
 {
+    /// <summary>
+    /// Registers CoreDdd NHibernate services into Dependency Injection service collection.
+    /// </summary>
     public static class CoreDddNhibernateRegistrator
     {
+        /// <summary>
+        /// Registers the services.
+        /// </summary>
+        /// <typeparam name="TNhibernateConfigurator">A NHibernate configurator type</typeparam>
+        /// <param name="services">A service collection</param>
         public static void AddCoreDddNhibernate<TNhibernateConfigurator>(this IServiceCollection services)
             where TNhibernateConfigurator : class, INhibernateConfigurator
         {

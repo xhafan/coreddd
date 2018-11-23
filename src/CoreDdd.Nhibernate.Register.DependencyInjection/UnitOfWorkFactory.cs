@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreDdd.Nhibernate.Register.DependencyInjection
 {
-    public class UnitOfWorkFactory : IUnitOfWorkFactory
+    internal class UnitOfWorkFactory : IUnitOfWorkFactory
     {
         private readonly IServiceProvider _serviceProvider;
 

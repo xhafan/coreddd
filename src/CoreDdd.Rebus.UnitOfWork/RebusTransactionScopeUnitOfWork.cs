@@ -5,12 +5,27 @@ using Rebus.Pipeline;
 
 namespace CoreDdd.Rebus.UnitOfWork
 {
+    /// <summary>
+    /// Support for CoreDdd's unit of work within a transaction scope for Rebus.UnitOfWork package.
+    /// For a unit of work without a transaction scope, please see <see cref="RebusUnitOfWork"/>.
+    /// Please note that a transaction scope is not needed to ensure messages published or sent from a message handler 
+    /// are not published or sent when there is an error during the message handling, and 
+    /// using <see cref="RebusUnitOfWork"/> is sufficient for this scenario.
+    /// This class allows to enlist another resource manager into the transaction scope.
+    /// </summary>
     public static class RebusTransactionScopeUnitOfWork
     {
         private static IUnitOfWorkFactory _unitOfWorkFactory;
         private static IsolationLevel _isolationLevel;
         private static Action<TransactionScope> _transactionScopeEnlistmentAction;
 
+        /// <summary>
+        /// Initializes the class. Needs to be called at the application start.
+        /// </summary>
+        /// <param name="unitOfWorkFactory">A unit of work factory</param>
+        /// <param name="isolationLevel">Isolation level for the transaction scope</param>
+        /// <param name="transactionScopeEnlistmentAction">An enlistment action for the transaction scope. Use to enlist another resource manager
+        /// into the transaction scope</param>
         public static void Initialize(
             IUnitOfWorkFactory unitOfWorkFactory,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
@@ -22,7 +37,12 @@ namespace CoreDdd.Rebus.UnitOfWork
             _isolationLevel = isolationLevel;
         }
 
-        public static (TransactionScope transactionScope, IUnitOfWork unitOfWork) Create(IMessageContext arg)
+        /// <summary>
+        /// Creates a new transaction scope and a new unit of work.
+        /// </summary>
+        /// <param name="messageContext">Rebus message context</param>
+        /// <returns>A value tuple of the transaction scope and the unit of work</returns>
+        public static (TransactionScope TransactionScope, IUnitOfWork UnitOfWork) Create(IMessageContext messageContext)
         {
             if (_unitOfWorkFactory == null)
             {
@@ -36,30 +56,45 @@ namespace CoreDdd.Rebus.UnitOfWork
             return (transactionScope, unitOfWork);
         }
 
+        /// <summary>
+        /// Commits the unit of work and the transaction scope.
+        /// </summary>
+        /// <param name="messageContext">Rebus message context</param>
+        /// <param name="transactionScopeUnitOfWork">A value tuple of the transaction scope and the unit of work</param>
         public static void Commit(
             IMessageContext messageContext, 
-            (TransactionScope transactionScope, IUnitOfWork unitOfWork) transactionScopeUnitOfWork
+            (TransactionScope TransactionScope, IUnitOfWork UnitOfWork) transactionScopeUnitOfWork
             )
         {
-            transactionScopeUnitOfWork.unitOfWork.Commit();
-            transactionScopeUnitOfWork.transactionScope.Complete();
+            transactionScopeUnitOfWork.UnitOfWork.Commit();
+            transactionScopeUnitOfWork.TransactionScope.Complete();
         }
 
+        /// <summary>
+        /// Rolls back the unit of work and the transaction scope.
+        /// </summary>
+        /// <param name="messageContext">Rebus message context</param>
+        /// <param name="transactionScopeUnitOfWork">A value tuple of the transaction scope and the unit of work</param>
         public static void Rollback(
             IMessageContext messageContext, 
-            (TransactionScope transactionScope, IUnitOfWork unitOfWork) transactionScopeUnitOfWork
+            (TransactionScope TransactionScope, IUnitOfWork UnitOfWork) transactionScopeUnitOfWork
             )
         {
-            transactionScopeUnitOfWork.unitOfWork.Rollback();
+            transactionScopeUnitOfWork.UnitOfWork.Rollback();
         }
 
+        /// <summary>
+        /// Cleans the unit of work and the transaction scope.
+        /// </summary>
+        /// <param name="messageContext">Rebus message context</param>
+        /// <param name="transactionScopeUnitOfWork">A value tuple of the transaction scope and the unit of work</param>
         public static void Cleanup(
             IMessageContext messageContext, 
-            (TransactionScope transactionScope, IUnitOfWork unitOfWork) transactionScopeUnitOfWork
+            (TransactionScope TransactionScope, IUnitOfWork UnitOfWork) transactionScopeUnitOfWork
             )
         {
-            _unitOfWorkFactory.Release(transactionScopeUnitOfWork.unitOfWork);
-            transactionScopeUnitOfWork.transactionScope.Dispose();
+            _unitOfWorkFactory.Release(transactionScopeUnitOfWork.UnitOfWork);
+            transactionScopeUnitOfWork.TransactionScope.Dispose();
         }
 
         private static TransactionScope _CreateTransactionScope()
