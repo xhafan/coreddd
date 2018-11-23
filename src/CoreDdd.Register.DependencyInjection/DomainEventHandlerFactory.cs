@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreDdd.Register.DependencyInjection
 {
-    public class DomainEventHandlerFactory : IDomainEventHandlerFactory
+    internal class DomainEventHandlerFactory : IDomainEventHandlerFactory
     {
         private readonly IServiceProvider _serviceProvider;
 

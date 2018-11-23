@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreDdd.Register.DependencyInjection
 {
-    public class CommandHandlerFactory : ICommandHandlerFactory
+    internal class CommandHandlerFactory : ICommandHandlerFactory
     {
         private readonly IServiceProvider _serviceProvider;
 

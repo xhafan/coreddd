@@ -5,7 +5,7 @@ using Ninject.Syntax;
 
 namespace CoreDdd.Register.Ninject
 {
-    public class DomainEventHandlerFactory : IDomainEventHandlerFactory
+    internal class DomainEventHandlerFactory : IDomainEventHandlerFactory
     {
         private readonly IResolutionRoot _ninjectIoCContainer;
 

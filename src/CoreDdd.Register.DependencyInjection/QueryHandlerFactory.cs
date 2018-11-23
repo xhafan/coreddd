@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreDdd.Register.DependencyInjection
 {
-    public class QueryHandlerFactory : IQueryHandlerFactory
+    internal class QueryHandlerFactory : IQueryHandlerFactory
     {
         private readonly IServiceProvider _serviceProvider;
 

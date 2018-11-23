@@ -4,7 +4,7 @@ using Ninject.Syntax;
 
 namespace CoreDdd.Register.Ninject
 {
-    public class CommandHandlerFactory : ICommandHandlerFactory
+    internal class CommandHandlerFactory : ICommandHandlerFactory
     {
         private readonly IResolutionRoot _ninjectIoCContainer;
 

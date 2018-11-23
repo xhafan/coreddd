@@ -4,7 +4,7 @@ using Ninject.Syntax;
 
 namespace CoreDdd.Register.Ninject
 {
-    public class QueryHandlerFactory : IQueryHandlerFactory
+    internal class QueryHandlerFactory : IQueryHandlerFactory
     {
         private readonly IResolutionRoot _ninjectIoCContainer;
 

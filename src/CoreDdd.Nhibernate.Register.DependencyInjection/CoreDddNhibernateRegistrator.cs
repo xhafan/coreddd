@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace CoreDdd.Nhibernate.Register.DependencyInjection
 {
     /// <summary>
-    /// Registers CoreDdd NHibernate services into Dependency Injection service collection.
+    /// Registers CoreDdd NHibernate services into Dependency Injection Service Provider IoC container.
     /// </summary>
     public static class CoreDddNhibernateRegistrator
     {

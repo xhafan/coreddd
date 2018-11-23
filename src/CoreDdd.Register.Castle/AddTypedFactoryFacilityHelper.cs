@@ -4,7 +4,7 @@ using Castle.Windsor;
 
 namespace CoreDdd.Register.Castle
 {
-    public static class AddTypedFactoryFacilityHelper
+    internal static class AddTypedFactoryFacilityHelper
     {
         public static void TryAddTypedFactoryFacility(IWindsorContainer container)
         {
