@@ -16,11 +16,22 @@ namespace CoreDdd.AspNetCore.Middleware
     {
         private readonly IsolationLevel _isolationLevel;
 
+        /// <summary>
+        /// Initializes the instance.
+        /// </summary>
+        /// <param name="isolationLevel">An isolation level for the transaction</param>
         protected BaseUnitOfWorkMiddleware(IsolationLevel isolationLevel)
         {
             _isolationLevel = isolationLevel;
         }
 
+        /// <summary>
+        /// Invokes the middleware operation.
+        /// </summary>
+        /// <param name="context">HTTP context</param>
+        /// <param name="next">Request delegate</param>
+        /// <param name="unitOfWork">An instance of unit of work</param>
+        /// <returns></returns>
         protected async Task InvokeAsync(HttpContext context, RequestDelegate next, IUnitOfWork unitOfWork)
         {
             unitOfWork.BeginTransaction(_isolationLevel);

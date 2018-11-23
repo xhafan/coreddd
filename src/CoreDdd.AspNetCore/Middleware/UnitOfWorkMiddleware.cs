@@ -26,6 +26,12 @@ namespace CoreDdd.AspNetCore.Middleware
             _unitOfWorkFactory = unitOfWorkFactory;
         }
 
+        /// <summary>
+        /// Creates a new unit of work and invokes the middleware operation.
+        /// </summary>
+        /// <param name="context">HTTP context</param>
+        /// <param name="next">Request delegate</param>
+        /// <returns></returns>
         public Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             var unitOfWork = _unitOfWorkFactory.Create();

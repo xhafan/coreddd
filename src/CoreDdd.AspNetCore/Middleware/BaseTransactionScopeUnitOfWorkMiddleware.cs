@@ -17,6 +17,12 @@ namespace CoreDdd.AspNetCore.Middleware
         private readonly IsolationLevel _isolationLevel;
         private readonly Action<TransactionScope> _transactionScopeEnlistmentAction;
 
+        /// <summary>
+        /// Initializes the instance.
+        /// </summary>
+        /// <param name="isolationLevel">An isolation level for the transaction scope</param>
+        /// <param name="transactionScopeEnlistmentAction">An enlistment action for the transaction scope. Use to enlist another resource manager
+        /// into the transaction scope</param>
         protected BaseTransactionScopeUnitOfWorkMiddleware(
             IsolationLevel isolationLevel,
             Action<TransactionScope> transactionScopeEnlistmentAction
@@ -26,6 +32,13 @@ namespace CoreDdd.AspNetCore.Middleware
             _transactionScopeEnlistmentAction = transactionScopeEnlistmentAction;
         }
 
+        /// <summary>
+        /// Invokes the middleware operation.
+        /// </summary>
+        /// <param name="context">HTTP context</param>
+        /// <param name="next">Request delegate</param>
+        /// <param name="unitOfWork">An instance of unit of work</param>
+        /// <returns></returns>
         protected async Task InvokeAsync(HttpContext context, RequestDelegate next, IUnitOfWork unitOfWork)
         {
             using (var transactionScope = _CreateTransactionScope())
