@@ -16,6 +16,10 @@ namespace CoreDdd.AspNet.HttpModules
         private static IUnitOfWorkFactory _unitOfWorkFactory;
         private static IsolationLevel _isolationLevel;
 
+        /// <summary>
+        /// Initializes the instance.
+        /// </summary>
+        /// <param name="application">An HTTP application instance</param>
         public void Init(HttpApplication application)
         {
             application.BeginRequest += Application_BeginRequest;
@@ -99,6 +103,9 @@ namespace CoreDdd.AspNet.HttpModules
             set => HttpContext.Current.Items[UnitOfWorkSessionKey] = value;
         }
 
+        /// <summary>
+        /// Cleans up the resources.
+        /// </summary>
         public void Dispose()
         {
         }

@@ -17,6 +17,10 @@ namespace CoreDdd.AspNet.HttpModules
         private static IsolationLevel _isolationLevel;
         private static Action<TransactionScope> _transactionScopeEnlistmentAction;
 
+        /// <summary>
+        /// Initializes the instance.
+        /// </summary>
+        /// <param name="application">An HTTP application instance</param>
         public void Init(HttpApplication application)
         {
             application.BeginRequest += Application_BeginRequest;
@@ -123,6 +127,9 @@ namespace CoreDdd.AspNet.HttpModules
             set => HttpContext.Current.Items[UnitOfWorkSessionKey] = value;
         }
 
+        /// <summary>
+        /// Cleans up the resources.
+        /// </summary>
         public void Dispose()
         {
         }
