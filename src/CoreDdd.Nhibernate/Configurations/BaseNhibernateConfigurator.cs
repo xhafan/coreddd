@@ -22,7 +22,7 @@ namespace CoreDdd.Nhibernate.Configurations
     /// Override other virtual methods to configure various NHibernate settings.
     /// Override method <see cref="ConfigureNhibernate"/> to completely customize NHibernate configuration.
     /// </summary>
-    public abstract class BaseNhibernateConfigurator : INhibernateConfigurator, IDisposable // todo: allow to load a particular conventions - this fixes a scenario that somebody might not want some of the default conventions
+    public abstract class BaseNhibernateConfigurator : INhibernateConfigurator, IDisposable
     {
         private readonly ISessionFactory _sessionFactory;
         private readonly Configuration _configuration;
@@ -111,7 +111,8 @@ namespace CoreDdd.Nhibernate.Configurations
                     autoPersistenceModel.Conventions.AddFromAssemblyOf<PrimaryKeyConvention>();
                 }
 
-                GetAssembliesWithAdditionalConventions().Each(x => autoPersistenceModel.Conventions.AddAssembly(x));
+                GetAssembliesWithAdditionalConventions().Each(assembly => autoPersistenceModel.Conventions.AddAssembly(assembly));
+                GetAdditionalConventions().Each(conventionType => autoPersistenceModel.Conventions.Add(conventionType));
             }
         }
 
@@ -176,14 +177,23 @@ namespace CoreDdd.Nhibernate.Configurations
         }
 
         /// <summary>
-        /// Gets a list of assemblies with additional NHibernate conventions.
+        /// Override this method to register additional NHibernate conventions from assemblies.
         /// </summary>
         /// <returns></returns>
         protected virtual IEnumerable<Assembly> GetAssembliesWithAdditionalConventions()
         {
             yield break;
         }
-        
+
+        /// <summary>
+        /// Override this method to register additional NHibernate conventions.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual IEnumerable<Type> GetAdditionalConventions()
+        {
+            yield break;
+        }
+
         /// <summary>
         /// Override this method to change the default way how to determine if a type is a DTO.
         /// </summary>
