@@ -7,7 +7,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
     /// <summary>
     /// <see cref="NhibernateUnitOfWork"/> extension methods.
     /// </summary>
-    public static class NhibernateUnitOfWorkExtensions // todo: rename the file to NhibernateUnitOfWorkExtensions
+    public static class NhibernateUnitOfWorkExtensions
     {
         /// <summary>
         /// Saves an aggregate root domain entity using NhibernateRepository.
