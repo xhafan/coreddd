@@ -14,10 +14,10 @@ namespace CoreDdd.Nhibernate.Tests.Conventions
         {
             var entity = new EntityWithDateTime(DateTime.Today.AddMilliseconds(123));
 
-            Save(entity);
-            Clear();
+            UnitOfWork.Save(entity);
+            UnitOfWork.Clear();
 
-            entity = Get<EntityWithDateTime>(entity.Id);
+            entity = UnitOfWork.Get<EntityWithDateTime>(entity.Id);
 
             entity.DateTime.Millisecond.ShouldBe(123);
         }

@@ -9,12 +9,7 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.10.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
-    <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
   </ItemGroup>
 
 </Project>

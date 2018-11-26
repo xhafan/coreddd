@@ -1,5 +1,4 @@
 ﻿using CoreDdd.Nhibernate.Repositories;
-using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using NUnit.Framework;
 using Shouldly;
@@ -12,11 +11,11 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
         [Test]
         public void entity_is_loaded_from_database()
         {
-            var entityRepository = new NhibernateRepository<EntityWithText>(PersistenceTestHelper.UnitOfWork);
+            var entityRepository = new NhibernateRepository<EntityWithText>(UnitOfWork);
             var entity = new EntityWithText("hello");
             entityRepository.Save(entity);
-            Flush();
-            Clear();
+            UnitOfWork.Flush();
+            UnitOfWork.Clear();
 
 
             entity = entityRepository.Load(entity.Id);

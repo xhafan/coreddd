@@ -12,7 +12,7 @@ using Shouldly;
 namespace CoreDdd.Nhibernate.Tests.Queries
 {
     [TestFixture]
-    public class when_executing_ado_net_query_in_query_executor_async : BasePersistenceTest
+    public class when_executing_ado_net_query_in_query_executor_async : BaseIoCPersistenceTest
     {
         private IEnumerable<int> _result;
         private GetTestEntityCountTestAdoNetQuery _query;
@@ -29,9 +29,9 @@ namespace CoreDdd.Nhibernate.Tests.Queries
             void _persistTestEntity()
             {
                 var testEntityOne = new TestEntity();
-                Save(testEntityOne);
+                UnitOfWork.Save(testEntityOne);
                 var testEntityTwo = new TestEntity();
-                Save(testEntityTwo);
+                UnitOfWork.Save(testEntityTwo);
             }
         }
 

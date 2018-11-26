@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Tests.TestEntities;
-using FluentNHibernate.Conventions.Instances;
 using HibernatingRhinos.Profiler.Appender.NHibernate;
 
 namespace CoreDdd.Nhibernate.Tests

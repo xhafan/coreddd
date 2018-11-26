@@ -13,10 +13,10 @@ namespace CoreDdd.Nhibernate.Tests.Conventions
         {
             var entity = new ConcreteEntity();
 
-            Save(entity);
-            Clear();
+            UnitOfWork.Save(entity);
+            UnitOfWork.Clear();
 
-            entity = Get<ConcreteEntity>(entity.Id);
+            entity = UnitOfWork.Get<ConcreteEntity>(entity.Id);
 
             entity.ShouldNotBeNull();
         }

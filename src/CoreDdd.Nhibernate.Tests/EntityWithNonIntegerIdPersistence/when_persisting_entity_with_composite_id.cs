@@ -12,10 +12,10 @@ namespace CoreDdd.Nhibernate.Tests.EntityWithNonIntegerIdPersistence
         {
             var entityWithCompositeId = new EntityWithCompositeId(new CompositeId(23, "string id"));
 
-            SaveGeneric<EntityWithCompositeId, CompositeId>(entityWithCompositeId);
-            Clear();
+            UnitOfWork.Save<EntityWithCompositeId, CompositeId>(entityWithCompositeId);
+            UnitOfWork.Clear();
 
-            var fetchedEntityWithCompositeId = GetGeneric<EntityWithCompositeId, CompositeId>(entityWithCompositeId.Id);
+            var fetchedEntityWithCompositeId = UnitOfWork.Get<EntityWithCompositeId, CompositeId>(entityWithCompositeId.Id);
 
             (fetchedEntityWithCompositeId == entityWithCompositeId).ShouldBeTrue();
             (fetchedEntityWithCompositeId.Id.IdOne == entityWithCompositeId.Id.IdOne).ShouldBeTrue();

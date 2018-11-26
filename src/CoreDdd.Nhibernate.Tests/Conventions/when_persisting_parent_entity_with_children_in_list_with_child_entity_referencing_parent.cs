@@ -19,10 +19,10 @@ namespace CoreDdd.Nhibernate.Tests.Conventions
             _parent.AddChildEntityReferencingParentEntity();
             _parent.AddChildEntityReferencingParentEntity();
 
-            Save(_parent);
-            Clear();
+            UnitOfWork.Save(_parent);
+            UnitOfWork.Clear();
 
-            _parent = Get<ParentEntityWithChildrenInList>(_parent.Id);
+            _parent = UnitOfWork.Get<ParentEntityWithChildrenInList>(_parent.Id);
         }
 
         [Test]

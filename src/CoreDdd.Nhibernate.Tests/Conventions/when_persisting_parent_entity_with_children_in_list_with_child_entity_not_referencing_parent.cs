@@ -8,7 +8,8 @@ using Shouldly;
 namespace CoreDdd.Nhibernate.Tests.Conventions
 {
     [TestFixture]
-    public class when_persisting_parent_entity_with_children_in_list_with_child_entity_not_referencing_parent : BasePersistenceTest
+    public class when_persisting_parent_entity_with_children_in_list_with_child_entity_not_referencing_parent 
+        : BasePersistenceTest
     {
         private ParentEntityWithChildrenInList _parent;
 
@@ -19,10 +20,10 @@ namespace CoreDdd.Nhibernate.Tests.Conventions
             _parent.AddChildEntityNotReferencingParentEntity();
             _parent.AddChildEntityNotReferencingParentEntity();
 
-            Save(_parent);
-            Clear();
+            UnitOfWork.Save(_parent);
+            UnitOfWork.Clear();
 
-            _parent = Get<ParentEntityWithChildrenInList>(_parent.Id);
+            _parent = UnitOfWork.Get<ParentEntityWithChildrenInList>(_parent.Id);
         }
 
         [Test]

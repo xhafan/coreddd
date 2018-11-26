@@ -13,10 +13,10 @@ namespace CoreDdd.Nhibernate.Tests.EntityProxyEquality
         {
             var derivedEntity = new DerivedEqualityEntity();
 
-            Save(derivedEntity);
-            Clear();
+            UnitOfWork.Save(derivedEntity);
+            UnitOfWork.Clear();
 
-            var parentEntityProxy = Load<EqualityEntity>(derivedEntity.Id);
+            var parentEntityProxy = UnitOfWork.Load<EqualityEntity>(derivedEntity.Id);
 
             (derivedEntity == parentEntityProxy).ShouldBeTrue();
         }

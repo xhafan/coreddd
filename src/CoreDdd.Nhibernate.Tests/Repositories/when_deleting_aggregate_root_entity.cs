@@ -1,5 +1,4 @@
 ﻿using CoreDdd.Nhibernate.Repositories;
-using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.Nhibernate.Tests.TestEntities;
 using NUnit.Framework;
 using Shouldly;
@@ -12,16 +11,16 @@ namespace CoreDdd.Nhibernate.Tests.Repositories
         [Test]
         public void entity_is_deleted()
         {
-            var testEntityRepository = new NhibernateRepository<TestEntity>(PersistenceTestHelper.UnitOfWork);
+            var testEntityRepository = new NhibernateRepository<TestEntity>(UnitOfWork);
             var testEntity = new TestEntity();
             testEntityRepository.Save(testEntity);
-            Flush();
-            Clear();
+            UnitOfWork.Flush();
+            UnitOfWork.Clear();
 
 
             testEntityRepository.Delete(testEntity);
-            Flush();
-            Clear();
+            UnitOfWork.Flush();
+            UnitOfWork.Clear();
 
 
             testEntity = testEntityRepository.Get(testEntity.Id);

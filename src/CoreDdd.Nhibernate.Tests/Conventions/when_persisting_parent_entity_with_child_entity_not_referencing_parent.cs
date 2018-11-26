@@ -15,10 +15,10 @@ namespace CoreDdd.Nhibernate.Tests.Conventions
             var parentEntity = new ParentEntity();
             parentEntity.AddChildEntityNotReferencingParentEntity();
 
-            Save(parentEntity);
-            Clear();
+            UnitOfWork.Save(parentEntity);
+            UnitOfWork.Clear();
 
-            parentEntity = Get<ParentEntity>(parentEntity.Id);
+            parentEntity = UnitOfWork.Get<ParentEntity>(parentEntity.Id);
 
             parentEntity.ChildrenNotReferencingParent.Count().ShouldBe(1);
         }

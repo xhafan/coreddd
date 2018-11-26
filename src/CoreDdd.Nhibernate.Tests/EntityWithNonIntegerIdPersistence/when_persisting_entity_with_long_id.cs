@@ -12,10 +12,10 @@ namespace CoreDdd.Nhibernate.Tests.EntityWithNonIntegerIdPersistence
         {
             var entityWithLongId = new EntityWithLongId();
 
-            SaveGeneric<EntityWithLongId, long>(entityWithLongId);
-            Clear();
+            UnitOfWork.Save<EntityWithLongId, long>(entityWithLongId);
+            UnitOfWork.Clear();
 
-            var fetchedEntityWithLongId = GetGeneric<EntityWithLongId, long>(entityWithLongId.Id);
+            var fetchedEntityWithLongId = UnitOfWork.Get<EntityWithLongId, long>(entityWithLongId.Id);
 
             (fetchedEntityWithLongId == entityWithLongId).ShouldBeTrue();
             (fetchedEntityWithLongId.Id == entityWithLongId.Id).ShouldBeTrue();

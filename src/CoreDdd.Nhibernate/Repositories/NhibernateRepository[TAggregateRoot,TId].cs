@@ -61,8 +61,8 @@ namespace CoreDdd.Nhibernate.Repositories
         /// Returns an aggregate root entity proxy without the database hit. The aggregate root proxy 
         /// does a database hit to fetch the real data when the aggregate root is accessed.
         /// See https://stackoverflow.com/a/2125711/379279.
-        /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
         /// </summary>
+        /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
         /// <param name="id">An aggregate root entity id</param>
         /// <returns>An aggregate root domain entity proxy</returns>
         public TAggregateRoot Load(TId id)
@@ -75,8 +75,8 @@ namespace CoreDdd.Nhibernate.Repositories
         /// Returns asynchronously an aggregate root entity proxy without the database hit. The aggregate root proxy 
         /// does a database hit to fetch the real data when the aggregate root is accessed.
         /// See https://stackoverflow.com/a/2125711/379279.
-        /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
         /// </summary>
+        /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
         /// <param name="id">An aggregate root entity id</param>
         /// <returns>An aggregate root domain entity proxy</returns>
         public Task<TAggregateRoot> LoadAsync(TId id)

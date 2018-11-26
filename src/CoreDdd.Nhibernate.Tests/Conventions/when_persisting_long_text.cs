@@ -15,10 +15,10 @@ namespace CoreDdd.Nhibernate.Tests.Conventions
             var longText = new string(Enumerable.Repeat('X', 20000).ToArray());
             var entity = new EntityWithText(longText);
 
-            Save(entity);
-            Clear();
+            UnitOfWork.Save(entity);
+            UnitOfWork.Clear();
 
-            entity = Get<EntityWithText>(entity.Id);
+            entity = UnitOfWork.Get<EntityWithText>(entity.Id);
 
             entity.Text.ShouldBe(longText);
         }
