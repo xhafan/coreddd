@@ -37,7 +37,10 @@ namespace CoreDdd.Domain.Events
         /// </summary>
         public static void ResetDelayedEventsStorage()
         {
-            DelayedDomainEventHandlingItemsStorage.Value = new DelayedDomainEventHandlingItems(); // todo: clear instead of newing up
+            if (DelayedDomainEventHandlingItemsStorage.Value == null)
+            {
+                DelayedDomainEventHandlingItemsStorage.Value = new DelayedDomainEventHandlingItems();
+            }
         }
         
         /// <summary>
