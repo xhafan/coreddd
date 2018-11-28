@@ -55,10 +55,6 @@
     <Reference Include="System.Web" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="App.config" />
-  </ItemGroup>
-
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
