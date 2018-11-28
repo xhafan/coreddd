@@ -1,6 +1,7 @@
 ﻿using System;
 using CoreDdd.Nhibernate.TestHelpers;
-using CoreDdd.Nhibernate.Tests.TestEntities;
+using IntegrationTestsShared;
+using IntegrationTestsShared.TestEntities;
 using NUnit.Framework;
 using Shouldly;
 

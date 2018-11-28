@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CoreDdd.Nhibernate.TestHelpers;
-using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Queries;
 using CoreIoC;
+using IntegrationTestsShared.TestEntities;
 using NUnit.Framework;
 using Shouldly;
 

@@ -1,16 +1,16 @@
 ﻿using System.Transactions;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Repositories;
-using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
+using IntegrationTestsShared.TestEntities;
 using NUnit.Framework;
 using Shouldly;
 
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes.RollingBack
 {
     [TestFixture(TypeArgs = new[] { typeof(RollingBackUnitOfWorkInTransactionScopeSpecification) })]
-#if !NET40 && !NET45 && !NET451
+#if !NET40 && !NET45
     [TestFixture(TypeArgs = new[] { typeof(RollingBackAsyncUnitOfWorkInTransactionScopeSpecification) })]
 #endif
     public class when_rolling_unit_of_work_back_within_transaction_scope<TRollingBackUnitOfWorkInTransactionScopeSpecification>

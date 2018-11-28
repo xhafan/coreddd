@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;net451;net461;netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net461;netcoreapp2.1</TargetFrameworks>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
@@ -15,14 +15,8 @@
     <PackageReference Include="Npgsql" Version="4.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net451'">
-    <PackageReference Include="Npgsql" Version="4.0.0" />
-    <PackageReference Include="Rebus" Version="5.0.1" />
-  </ItemGroup>
-
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
     <PackageReference Include="Npgsql" Version="4.0.0" />
-    <PackageReference Include="Rebus" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
@@ -30,22 +24,12 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
     <PackageReference Include="Npgsql" Version="4.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
-    <PackageReference Include="Rebus" Version="5.0.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp2.1'">
-    <ProjectReference Include="..\CoreDdd.AspNet\CoreDdd.AspNet.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
-    <ProjectReference Include="..\CoreDdd.AspNetCore\CoreDdd.AspNetCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="Shouldly" Version="3.0.0" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.108" />
-    <PackageReference Include="NHibernateProfiler" Version="5.0.5022" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,31 +56,16 @@
     <ProjectReference Include="..\CoreIoC.Castle\CoreIoC.Castle.csproj" />
     <ProjectReference Include="..\CoreIoC\CoreIoC.csproj" />
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net451'">
-    <ProjectReference Include="..\CoreDdd.Rebus.UnitOfWork\CoreDdd.Rebus.UnitOfWork.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-    <ProjectReference Include="..\CoreDdd.Rebus.UnitOfWork\CoreDdd.Rebus.UnitOfWork.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
-    <ProjectReference Include="..\CoreDdd.Rebus.UnitOfWork\CoreDdd.Rebus.UnitOfWork.csproj" />
+    <ProjectReference Include="..\IntegrationTestsShared\IntegrationTestsShared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Transactions" />
-    <Reference Include="System.Web" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="App.config" />
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

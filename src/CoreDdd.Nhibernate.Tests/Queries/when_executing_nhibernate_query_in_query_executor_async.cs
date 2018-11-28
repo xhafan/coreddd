@@ -1,11 +1,11 @@
-﻿#if !NET40 && !NET45 && !NET451
+﻿#if !NET40 && !NET45
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreDdd.Nhibernate.TestHelpers;
-using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Queries;
 using CoreIoC;
+using IntegrationTestsShared.TestEntities;
 using NUnit.Framework;
 using Shouldly;
 

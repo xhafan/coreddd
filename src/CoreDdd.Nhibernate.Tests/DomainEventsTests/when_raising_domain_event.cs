@@ -1,6 +1,6 @@
 using CoreDdd.Domain.Events;
-using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.TestHelpers.DomainEvents;
+using IntegrationTestsShared.TestEntities;
 using NUnit.Framework;
 using Shouldly;
 

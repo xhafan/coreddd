@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net451;net46;net461;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net451;net461;netstandard2.0</TargetFrameworks>
     <Description>CoreDdd unit of work support for Rebus.UnitOfWork package.</Description>
     <PackageTags>CoreDdd Rebus unit of work</PackageTags>
   </PropertyGroup>

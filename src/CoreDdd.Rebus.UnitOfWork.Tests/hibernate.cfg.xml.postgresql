@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
+  <session-factory>
+
+    <property name="connection.connection_string">Server=127.0.0.1;Port=5432;Database=CoreDddRebusUnitOfWorkTests;User Id=coredddrebusunitofworktests;Password=password01;Enlist=true</property>
+    <property name="dialect">NHibernate.Dialect.PostgreSQL82Dialect</property>
+    <property name="connection.driver_class">NHibernate.Driver.NpgsqlDriver</property>
+
+    <property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
+    <property name="show_sql">false</property>
+    <property name="proxyfactory.factory_class">NHibernate.Bytecode.DefaultProxyFactoryFactory, NHibernate</property>
+
+  </session-factory>
+</hibernate-configuration>
+

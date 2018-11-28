@@ -2,7 +2,7 @@
 <hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
   <session-factory>
 
-    <property name="connection.connection_string">Server=localhost; User=coredddnhibernatetests;Password=password01;Initial Catalog=CoreDddNhibernateTests;</property>
+    <property name="connection.connection_string">Server=localhost;User=coredddnhibernatetests;Password=password01;Initial Catalog=CoreDddNhibernateTests;</property>
     <property name="dialect">NHibernate.Dialect.MsSql2008Dialect</property>
     <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
 

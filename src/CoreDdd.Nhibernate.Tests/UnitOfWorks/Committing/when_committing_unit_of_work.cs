@@ -1,7 +1,7 @@
 ﻿using CoreDdd.Nhibernate.Repositories;
-using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
+using IntegrationTestsShared.TestEntities;
 using NUnit.Framework;
 using Shouldly;
 
@@ -9,7 +9,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.Committing
 {
     [TestFixture(TypeArgs = new[] { typeof(CommittingUnitOfWorkSpecification) })]
     [TestFixture(TypeArgs = new[] { typeof(DisposingUnitOfWorkSpecification) })]
-#if !NET40 && !NET45 && !NET451
+#if !NET40 && !NET45
     [TestFixture(TypeArgs = new[] { typeof(CommittingAsyncUnitOfWorkSpecification) })]
 #endif
     public class when_committing_unit_of_work<TCommittingUnitOfWorkSpecification>

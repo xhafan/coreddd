@@ -1,4 +1,4 @@
-﻿#if !NET40 && !NET45 && !NET451
+﻿#if !NET40 && !NET45
 using CoreDdd.UnitOfWorks;
 
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.TransactionScopes.RollingBack

@@ -1,6 +1,6 @@
 ﻿using CoreDdd.Nhibernate.Queries;
-using CoreDdd.Nhibernate.Tests.TestEntities;
 using CoreDdd.Nhibernate.UnitOfWorks;
+using IntegrationTestsShared.TestEntities;
 using NHibernate;
 using NHibernate.Criterion;
 
