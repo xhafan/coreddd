@@ -1,0 +1,13 @@
+@echo off
+
+cd CoreDdd.AspNet.Tests
+call set_sql_server_db.bat
+
+cd ..\CoreDdd.AspNetCore.Tests
+call set_sql_server_db.bat
+
+cd ..\CoreDdd.Nhibernate.Tests
+call set_sql_server_db.bat
+
+cd ..\CoreDdd.Rebus.UnitOfWork.Tests
+call set_sql_server_db.bat

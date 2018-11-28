@@ -3,3 +3,6 @@
 .vs
 /*/*.user
 /*.user
+set_postgresql_db_for_integration_tests.bat
+set_sql_server_db_for_integration_tests.bat
+set_sqlite_db_for_integration_tests.bat
