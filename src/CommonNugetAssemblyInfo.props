@@ -1,15 +1,15 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>3.1.0</Version>
-    <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <Version>3.2.0</Version>
+    <AssemblyVersion>3.2.0.0</AssemblyVersion>
     <FileVersion>$(Version).0</FileVersion>
     <Authors>Martin Havlišta</Authors>
     <Company></Company>
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
-    <PackageReleaseNotes>Added XML documentation.</PackageReleaseNotes>
+    <PackageReleaseNotes>Enabled TransactionScopeUnitOfWorkHttpModule only for .NET 4.5.1 and higher</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
