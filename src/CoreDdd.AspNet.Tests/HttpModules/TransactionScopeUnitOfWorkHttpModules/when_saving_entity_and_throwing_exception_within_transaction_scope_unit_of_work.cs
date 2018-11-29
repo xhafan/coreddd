@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NET40
+using System;
 using System.Web;
 using CoreDdd.AspNet.HttpModules;
 using CoreDdd.Domain.Events;
@@ -100,3 +101,4 @@ namespace CoreDdd.AspNet.Tests.HttpModules.TransactionScopeUnitOfWorkHttpModules
         }
     }
 }
+#endif

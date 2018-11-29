@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !NET40
+using System;
 using System.Transactions;
 using System.Web;
 using CoreDdd.UnitOfWorks;
@@ -109,9 +110,7 @@ namespace CoreDdd.AspNet.HttpModules
             return new TransactionScope(
                 TransactionScopeOption.Required
                 , new TransactionOptions {IsolationLevel = _isolationLevel}
-#if !NET40
                 , TransactionScopeAsyncFlowOption.Enabled
-#endif
             );
         }
 
@@ -135,3 +134,4 @@ namespace CoreDdd.AspNet.HttpModules
         }
     }
 }
+#endif
