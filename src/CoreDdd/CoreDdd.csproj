@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
-    <Description>Set of open-source libraries helping with DDD and CQRS.
+    <Description>Set of open-source libraries helping with domain-driven design (DDD) and CQRS.
 
 CoreDdd documentation: https://github.com/xhafan/coreddd/wiki  
 
