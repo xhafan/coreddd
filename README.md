@@ -16,6 +16,6 @@ CoreDdd documentation: https://github.com/xhafan/coreddd/wiki
 
 CoreDdd samples: https://github.com/xhafan/coreddd-sample  
 
-ASP.NET MVC and ASP.NET Core MVC demo email marketing app demonstrating CoreDdd usage: https://github.com/xhafan/emailmaker
+ASP.NET Core MVC and ASP.NET MVC demo email marketing app demonstrating CoreDdd usage: https://github.com/xhafan/emailmaker
 
 Join the chat about CoreDdd on gitter [![Join the chat at https://gitter.im/coreddd/Lobby](https://badges.gitter.im/coreddd/Lobby.svg)](https://gitter.im/coreddd/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
