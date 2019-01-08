@@ -1,4 +1,4 @@
-Set of open-source .NET libraries helping with [domain-driven design](https://stackoverflow.com/questions/1222392/can-someone-explain-domain-driven-design-ddd-in-plain-english-please) (DDD) and [CQRS](https://martinfowler.com/bliki/CQRS.html).
+A set of open-source .NET libraries helping with [domain-driven design](https://stackoverflow.com/questions/1222392/can-someone-explain-domain-driven-design-ddd-in-plain-english-please) (DDD) and [CQRS](https://martinfowler.com/bliki/CQRS.html).
 
 Available on nuget:  
 https://www.nuget.org/packages/CoreDdd  
