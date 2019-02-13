@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <Description>ASP.NET Core Dependency Injection IoC registration for CoreDdd.Nhibernate library</Description>
-    <PackageTags>CoreDdd nhibernate ASP.NET Core Dependency Injection IoC</PackageTags>
+    <PackageTags>CoreDdd nhibernate aspnetcore Dependency Injection IoC</PackageTags>
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
     <Description>Castle Windsor IoC registration for CoreDdd.Nhibernate library</Description>
-    <PackageTags>CoreDdd nhibernate castle IoC DI</PackageTags>
+    <PackageTags>CoreDdd nhibernate castle windsor IoC DI</PackageTags>
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />

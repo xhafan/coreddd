@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net40;net451;net461</TargetFrameworks>
     <Description>ASP.NET unit of work modules for CoreDdd library</Description>
-    <PackageTags>CoreDdd ASP.NET unit of work modules</PackageTags>
+    <PackageTags>CoreDdd aspnet unitofwork module modules</PackageTags>
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />

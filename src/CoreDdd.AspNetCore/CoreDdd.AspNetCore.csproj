@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <Description>ASP.NET Core unit of work middlewares for CoreDdd library</Description>
-    <PackageTags>CoreDdd ASP.NET Core unit of work middleware</PackageTags>
+    <PackageTags>CoreDdd aspnetcore unitofwork middleware</PackageTags>
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
