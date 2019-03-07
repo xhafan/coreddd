@@ -12,6 +12,7 @@ using FluentNHibernate.Utils;
 using NHibernate;
 using NHibernate.Cfg;
 using Configuration = NHibernate.Cfg.Configuration;
+using Environment = NHibernate.Cfg.Environment;
 
 namespace CoreDdd.Nhibernate.Configurations
 {
@@ -34,12 +35,20 @@ namespace CoreDdd.Nhibernate.Configurations
         /// It's handy to set it to false when generating a database script using <see cref="DatabaseSchemaGenerator"/>
         /// so it would not create database views for DTOs as tables.</param>
         /// <param name="configurationFileName">The location of the XML file to use to configure NHibernate</param>
+        /// <param name="connectionString">Connecting string if not present in the XML file</param>
         protected BaseNhibernateConfigurator(
             bool shouldMapDtos = true,
-            string configurationFileName = null
+            string configurationFileName = null,
+            string connectionString = null
             )
         {
-            ConfigureNhibernate(shouldMapDtos, configurationFileName, out _sessionFactory, out _configuration);
+            ConfigureNhibernate(
+                shouldMapDtos, 
+                configurationFileName, 
+                connectionString, 
+                out _sessionFactory, 
+                out _configuration
+                );
         }
 
         /// <summary>
@@ -50,11 +59,13 @@ namespace CoreDdd.Nhibernate.Configurations
         /// </summary>
         /// <param name="shouldMapDtos">See the constructor</param>
         /// <param name="configurationFileName">See the constructor</param>
+        /// <param name="connectionString">See the constructor</param>
         /// <param name="sessionFactory">NHibernate session factory</param>
         /// <param name="configuration">NHibernate configuration</param>
         protected virtual void ConfigureNhibernate(
             bool shouldMapDtos, 
             string configurationFileName,
+            string connectionString,
             out ISessionFactory sessionFactory,
             out Configuration configuration
             )
@@ -94,6 +105,12 @@ namespace CoreDdd.Nhibernate.Configurations
                         mappingsContainer.ExportTo(exportNhibernateMappingsPath);
                     }
                 });
+
+            if (!string.IsNullOrWhiteSpace(connectionString))
+            {
+                configuration.SetProperty(Environment.ConnectionString, connectionString);
+            }
+
             sessionFactory = fluentConfiguration.BuildSessionFactory();
 
             void _configureConventions()
