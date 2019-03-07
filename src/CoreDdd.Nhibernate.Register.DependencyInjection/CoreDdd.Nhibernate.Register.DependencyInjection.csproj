@@ -7,10 +7,7 @@
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
-
-  <PropertyGroup>
-    <Version>3.2.1</Version>
-  </PropertyGroup>
+  <Import Project="..\CommonNugetAssemblyInfoIncrementalOverride.props" />
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />

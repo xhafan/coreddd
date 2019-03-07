@@ -1,0 +1,10 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <Version>3.2.2</Version>
+    <PackageReleaseNotes>Added connection string parameter into BaseNhibernateConfigurator class - allowing to have a connection string in the appsettings.json file instead of hibernate.cfg.xml
+
+.NET Core dependency injection example: services.AddCoreDddNhibernate(new NhibernateConfigurator(connectionString: "a connection string"));</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
