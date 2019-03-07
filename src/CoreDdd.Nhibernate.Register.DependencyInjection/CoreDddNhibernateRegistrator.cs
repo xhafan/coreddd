@@ -20,7 +20,7 @@ namespace CoreDdd.Nhibernate.Register.DependencyInjection
         public static void AddCoreDddNhibernate<TNhibernateConfigurator>(this IServiceCollection services)
             where TNhibernateConfigurator : class, INhibernateConfigurator
         {
-            services.AddSingleton<INhibernateConfigurator, TNhibernateConfigurator>();
+            services.AddSingleton<INhibernateConfigurator, TNhibernateConfigurator>(); // todo: support configurationFileName parameter
             services.AddTransient(typeof(IRepository<>), typeof(NhibernateRepository<>));
             services.AddTransient(typeof(IRepository<,>), typeof(NhibernateRepository<,>));
             services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
