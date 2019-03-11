@@ -1,3 +1,4 @@
+using System;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Repositories;
@@ -33,14 +34,14 @@ namespace CoreDdd.Nhibernate.Register.DependencyInjection
         /// </summary>
         /// <typeparam name="TNhibernateConfigurator">A NHibernate configurator type</typeparam>
         /// <param name="services">A service collection</param>
-        /// <param name="nhibernateConfigurator">NHibernate configurator instance</param>
+        /// <param name="implementationFactory">A factory which creates NHibernate configurator instance</param>
         public static void AddCoreDddNhibernate<TNhibernateConfigurator>(
             this IServiceCollection services,
-            TNhibernateConfigurator nhibernateConfigurator
+            Func<IServiceProvider, TNhibernateConfigurator> implementationFactory
         )
             where TNhibernateConfigurator : class, INhibernateConfigurator
         {
-            services.AddSingleton<INhibernateConfigurator>(nhibernateConfigurator);
+            services.AddSingleton<INhibernateConfigurator>(implementationFactory);
             services.AddTransient(typeof(IRepository<>), typeof(NhibernateRepository<>));
             services.AddTransient(typeof(IRepository<,>), typeof(NhibernateRepository<,>));
             services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
