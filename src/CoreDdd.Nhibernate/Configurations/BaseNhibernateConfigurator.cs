@@ -84,7 +84,7 @@ namespace CoreDdd.Nhibernate.Configurations
             var isTypeDto = GetIsTypeDtoFunc();
 
             var autoPersistenceModel = AutoMap.Assemblies(
-                new AutomappingConfiguration(GetDiscriminatedTypes().ToArray(), isTypeDto, shouldMapDtos),
+                GetAutomappingConfiguration(shouldMapDtos, isTypeDto),
                 assembliesToMap
             );
             GetIncludeBaseTypes().Each(x => autoPersistenceModel.IncludeBase(x));
@@ -152,6 +152,21 @@ namespace CoreDdd.Nhibernate.Configurations
         }
 
         /// <summary>
+        /// Gets an automapping configuration. 
+        /// Override this methods to return customized automapping configuration.
+        /// </summary>
+        /// <param name="shouldMapDtos">A flag indicating whether dtos should be mapped into a database</param>
+        /// <param name="isTypeDto">A function determining if a type is a dto (data transfer object)</param>
+        /// <returns>An instance implementing <see cref="IAutomappingConfiguration"/></returns>
+        public virtual IAutomappingConfiguration GetAutomappingConfiguration(
+            bool shouldMapDtos, 
+            Func<Type, bool> isTypeDto
+            )
+        {
+            return new AutomappingConfiguration(GetDiscriminatedTypes(), isTypeDto, shouldMapDtos, GetComponentTypes());
+        }
+
+        /// <summary>
         /// Gets a list of assemblies with entities and DTOs which should be mapped into a database.
         /// </summary>
         /// <returns>A collection of assemblies</returns>
@@ -176,7 +191,7 @@ namespace CoreDdd.Nhibernate.Configurations
         }
 
         /// <summary>
-        /// Gets types where to whole inheritance hierarchy is mapped into one table with a type discriminating column.
+        /// Gets types where to whole inheritance hierarchy is mapped into one table with a discriminating column.
         /// </summary>
         /// <returns>A collection of entity types</returns>
         protected virtual IEnumerable<Type> GetDiscriminatedTypes()
@@ -288,6 +303,15 @@ namespace CoreDdd.Nhibernate.Configurations
         protected virtual string GetExportNhibernateMappingsPath()
         {
             return null;
+        }
+
+        /// <summary>
+        /// Get types representing NHibernate components.
+        /// </summary>
+        /// <returns>A collection of types</returns>
+        protected virtual IEnumerable<Type> GetComponentTypes()
+        {
+            yield break;
         }
 
         /// <summary>

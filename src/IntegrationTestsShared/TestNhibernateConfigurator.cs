@@ -31,6 +31,12 @@ namespace IntegrationTestsShared
             yield return typeof(EqualityEntity); // maps EqualityEntity and DerivedEqualityEntity into one table with a discriminator column
         }
 
+        protected override IEnumerable<Type> GetComponentTypes()
+        {
+            yield return typeof(Component);
+            yield return typeof(AnotherComponent);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
