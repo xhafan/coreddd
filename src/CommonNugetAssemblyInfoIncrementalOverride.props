@@ -2,10 +2,8 @@
 
   <PropertyGroup>
     <Version>3.2.3</Version>
-    <PackageReleaseNotes>Fixed an issue:  
-#3 Dependency injection does not release NhibernateConfigurator  
-
-Fixed .NET Core dependency injection registration example: services.AddCoreDddNhibernate(serviceProvider => new NhibernateConfigurator(connectionString: "a connection string"));</PackageReleaseNotes>
+    <PackageReleaseNotes>New feature:  
+#4 Support NHibernate component automapping - added support for NHibernate component automapping ( override BaseNhibernateConfigurator.GetComponentTypes() ); made AutomappingConfiguration public so it can be derived from and further customized ( override BaseNhibernateConfigurator.GetAutomappingConfiguration() )</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
