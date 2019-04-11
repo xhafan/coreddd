@@ -85,14 +85,12 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         }
 
         /// <summary>
-        /// Flushes the NHibernate session and rolls back the transaction if there is no ambient transaction scope.
+        /// Rolls back the transaction if there is no ambient transaction scope.
         /// If there is an ambient transaction scope, the rollback is done by the transaction scope.
         /// </summary>
         public void Rollback()
         {
             if (!_IsActive()) return;
-
-            Flush();
 
             if (_isInTransactionScope)
             {
@@ -157,14 +155,12 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         }
 
         /// <summary>
-        /// Asynchronously flushes the NHibernate session and rolls back the transaction if there is no ambient transaction scope.
+        /// Rolls back the transaction if there is no ambient transaction scope.
         /// If there is an ambient transaction scope, the rollback is done by the transaction scope.
         /// </summary>
         public async Task RollbackAsync()
         {
             if (!_IsActive()) return;
-
-            await FlushAsync().ConfigureAwait(false);
 
             if (_isInTransactionScope)
             {
