@@ -1,9 +1,9 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>3.2.3</Version>
-    <PackageReleaseNotes>New feature:  
-#4 Support NHibernate component automapping - added support for NHibernate component automapping ( override BaseNhibernateConfigurator.GetComponentTypes() ); made AutomappingConfiguration public so it can be derived from and further customized ( override BaseNhibernateConfigurator.GetAutomappingConfiguration() )</PackageReleaseNotes>
+    <Version>3.2.4</Version>
+    <PackageReleaseNotes>Bug fix:  
+#7 NhibernateUnitOfWork rollback throwing an exception when flushing the session</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
