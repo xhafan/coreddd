@@ -1,9 +1,9 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>3.2.4</Version>
-    <PackageReleaseNotes>Bug fix:  
-#7 NhibernateUnitOfWork rollback throwing an exception when flushing the session</PackageReleaseNotes>
+    <Version>3.2.5</Version>
+    <PackageReleaseNotes>New feature:  
+#8 Cannot load an aggregate root entity with locking using NhibernateRepository</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
