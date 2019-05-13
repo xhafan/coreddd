@@ -40,8 +40,8 @@ namespace CoreDdd.Nhibernate.Register.Ninject
                                     "(e.g. CoreDddNhibernateBindings.SetUnitOfWorkLifeStyle(x => x.InRequestScope())");
             }
 
-            Bind(typeof(IRepository<>)).To(typeof(NhibernateRepository<>)).InTransientScope();
-            Bind(typeof(IRepository<,>)).To(typeof(NhibernateRepository<,>)).InTransientScope();
+            Bind(typeof(IRepository<>), typeof(NhibernateRepository<>)).To(typeof(NhibernateRepository<>)).InTransientScope();
+            Bind(typeof(IRepository<,>), typeof(NhibernateRepository<,>)).To(typeof(NhibernateRepository<,>)).InTransientScope();
 
             Bind<IUnitOfWorkFactory>().To<UnitOfWorkFactory>().InSingletonScope();
 

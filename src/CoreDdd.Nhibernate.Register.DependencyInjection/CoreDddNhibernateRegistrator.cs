@@ -24,6 +24,8 @@ namespace CoreDdd.Nhibernate.Register.DependencyInjection
             services.AddSingleton<INhibernateConfigurator, TNhibernateConfigurator>();
             services.AddTransient(typeof(IRepository<>), typeof(NhibernateRepository<>));
             services.AddTransient(typeof(IRepository<,>), typeof(NhibernateRepository<,>));
+            services.AddTransient(typeof(NhibernateRepository<>));
+            services.AddTransient(typeof(NhibernateRepository<,>));
             services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
             services.AddScoped<IUnitOfWork, NhibernateUnitOfWork>();
             services.AddScoped(x => (NhibernateUnitOfWork)x.GetService<IUnitOfWork>());
@@ -44,6 +46,8 @@ namespace CoreDdd.Nhibernate.Register.DependencyInjection
             services.AddSingleton<INhibernateConfigurator>(implementationFactory);
             services.AddTransient(typeof(IRepository<>), typeof(NhibernateRepository<>));
             services.AddTransient(typeof(IRepository<,>), typeof(NhibernateRepository<,>));
+            services.AddTransient(typeof(NhibernateRepository<>));
+            services.AddTransient(typeof(NhibernateRepository<,>));
             services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
             services.AddScoped<IUnitOfWork, NhibernateUnitOfWork>();
             services.AddScoped(x => (NhibernateUnitOfWork)x.GetService<IUnitOfWork>());

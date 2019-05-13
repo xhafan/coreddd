@@ -49,10 +49,12 @@ namespace CoreDdd.Nhibernate.Register.Castle
 
                 Component.For(typeof (IRepository<>))
                     .ImplementedBy(typeof (NhibernateRepository<>))
+                    .Forward(typeof(NhibernateRepository<>))
                     .LifeStyle.Transient,
 
                 Component.For(typeof (IRepository<,>))
                     .ImplementedBy(typeof (NhibernateRepository<,>))
+                    .Forward(typeof(NhibernateRepository<,>))
                     .LifeStyle.Transient,
 
                 Component.For<IUnitOfWorkFactory>().AsFactory(),
