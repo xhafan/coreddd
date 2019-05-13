@@ -1,7 +1,7 @@
 using CoreDdd.Domain;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
-
+using NHibernate;
 #if !NET40
 using System;
 using System.Threading.Tasks;
@@ -38,6 +38,17 @@ namespace CoreDdd.Nhibernate.Repositories
             return _unitOfWork.Session.Get<TAggregateRoot>(id);
         }
 
+        /// <summary>
+        /// Fetches an aggregate root domain entity from the database using a lock. Does a database hit.
+        /// </summary>
+        /// <param name="id">An aggregate root entity id</param>
+        /// <param name="lockMode">Required lock mode</param>
+        /// <returns>An aggregate root entity, or null when not found</returns>
+        public TAggregateRoot Get(TId id, LockMode lockMode)
+        {
+            return _unitOfWork.Session.Get<TAggregateRoot>(id, lockMode);
+        }
+
 #if !NET40
         /// <summary>
         /// Fetches an aggregate root domain entity asynchronously from the database. Does a database hit.
@@ -57,6 +68,26 @@ namespace CoreDdd.Nhibernate.Repositories
         }
 #endif
 
+#if !NET40
+        /// <summary>
+        /// Fetches an aggregate root domain entity asynchronously from the database using a lock. Does a database hit.
+        /// </summary>
+        /// <param name="id">An aggregate root entity id</param>
+        /// <param name="lockMode">Required lock mode</param>
+        /// <returns>An aggregate root entity, or null when not found</returns>
+        public Task<TAggregateRoot> GetAsync(TId id, LockMode lockMode)
+        {
+#endif
+#if NET40
+#elif NET45
+            throw _GetAsyncNotSupportedException();
+#else
+            return _unitOfWork.Session.GetAsync<TAggregateRoot>(id, lockMode);
+#endif
+#if !NET40
+        }
+#endif
+
         /// <summary>
         /// Returns an aggregate root entity proxy without the database hit. The aggregate root proxy 
         /// does a database hit to fetch the real data when the aggregate root is accessed.
@@ -68,6 +99,20 @@ namespace CoreDdd.Nhibernate.Repositories
         public TAggregateRoot Load(TId id)
         {
             return _unitOfWork.Session.Load<TAggregateRoot>(id);
+        }
+
+        /// <summary>
+        /// Returns an aggregate root entity proxy without the database hit. The aggregate root proxy 
+        /// does a database hit using a lock to fetch the real data when the aggregate root is accessed.
+        /// See https://stackoverflow.com/a/2125711/379279.
+        /// </summary>
+        /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
+        /// <param name="id">An aggregate root entity id</param>
+        /// <param name="lockMode">Required lock mode</param>
+        /// <returns>An aggregate root domain entity proxy</returns>
+        public TAggregateRoot Load(TId id, LockMode lockMode)
+        {
+            return _unitOfWork.Session.Load<TAggregateRoot>(id, lockMode);
         }
 
 #if !NET40
@@ -87,6 +132,29 @@ namespace CoreDdd.Nhibernate.Repositories
             throw _GetAsyncNotSupportedException();
 #else
             return _unitOfWork.Session.LoadAsync<TAggregateRoot>(id);
+#endif
+#if !NET40
+        }
+#endif
+
+#if !NET40
+        /// <summary>
+        /// Returns asynchronously an aggregate root entity proxy without the database hit. The aggregate root proxy 
+        /// does a database hit with a lock to fetch the real data when the aggregate root is accessed.
+        /// See https://stackoverflow.com/a/2125711/379279.
+        /// </summary>
+        /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
+        /// <param name="id">An aggregate root entity id</param>
+        /// <param name="lockMode">Required lock mode</param>
+        /// <returns>An aggregate root domain entity proxy</returns>
+        public Task<TAggregateRoot> LoadAsync(TId id, LockMode lockMode)
+        {
+#endif
+#if NET40
+#elif NET45
+            throw _GetAsyncNotSupportedException();
+#else
+            return _unitOfWork.Session.LoadAsync<TAggregateRoot>(id, lockMode);
 #endif
 #if !NET40
         }
