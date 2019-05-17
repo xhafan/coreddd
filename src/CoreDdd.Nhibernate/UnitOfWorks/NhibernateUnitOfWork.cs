@@ -104,6 +104,10 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             {
                 tx.Rollback();
             }
+            catch
+            {
+                // ignored
+            }
             finally
             {
                 tx.Dispose();
@@ -173,6 +177,10 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             try
             {
                 await tx.RollbackAsync().ConfigureAwait(false);
+            }
+            catch
+            {
+                // ignored
             }
             finally
             {
