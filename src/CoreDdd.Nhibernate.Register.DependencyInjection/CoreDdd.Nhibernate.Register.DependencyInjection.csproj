@@ -4,10 +4,12 @@
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <Description>ASP.NET Core Dependency Injection IoC registration for CoreDdd.Nhibernate library</Description>
     <PackageTags>CoreDdd nhibernate aspnetcore Dependency Injection IoC</PackageTags>
+    <Version>3.2.5</Version>
+    <PackageReleaseNotes>New feature:  
+#8 Cannot load an aggregate root entity with locking using NhibernateRepository -  adding IoC registrations for NhibernateRepository service for Castle, Ninject and DependencyInjection (ServiceProvider)</PackageReleaseNotes>
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
-  <Import Project="..\CommonNugetAssemblyInfoIncrementalOverride.props" />
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
