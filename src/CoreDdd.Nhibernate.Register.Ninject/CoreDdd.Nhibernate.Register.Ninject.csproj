@@ -4,12 +4,15 @@
     <TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
     <Description>Ninject IoC registration for CoreDdd.Nhibernate library</Description>
     <PackageTags>CoreDdd nhibernate ninject IoC DI</PackageTags>
+  </PropertyGroup>
+
+  <Import Project="..\CommonNugetAssemblyInfo.props" />
+
+  <PropertyGroup>
     <Version>3.2.5</Version>
     <PackageReleaseNotes>New feature:  
 #8 Cannot load an aggregate root entity with locking using NhibernateRepository -  adding IoC registrations for NhibernateRepository service for Castle, Ninject and DependencyInjection (ServiceProvider)</PackageReleaseNotes>
   </PropertyGroup>
-
-  <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="Ninject" Version="3.2.2" />
