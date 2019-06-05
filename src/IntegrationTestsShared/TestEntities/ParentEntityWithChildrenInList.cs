@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using CoreDdd.Domain;
-using FluentNHibernate.Automapping;
-using FluentNHibernate.Automapping.Alterations;
 
 namespace IntegrationTestsShared.TestEntities
 {
@@ -23,15 +21,6 @@ namespace IntegrationTestsShared.TestEntities
         public virtual void AddChildEntityNotReferencingParentEntity()
         {
             _childrenNotReferencingParent.Add(new ChildEntityInListNotReferencingParentEntity());
-        }
-    }
-
-    public class ParentEntityWithChildrenInListMappingOverrides : IAutoMappingOverride<ParentEntityWithChildrenInList>
-    {
-        public void Override(AutoMapping<ParentEntityWithChildrenInList> mapping)
-        {
-            mapping.HasMany(x => x.ChildrenReferencingParent).AsList(x => x.Column("Index"));
-            mapping.HasMany(x => x.ChildrenNotReferencingParent).AsList(x => x.Column("Index"));
         }
     }
 

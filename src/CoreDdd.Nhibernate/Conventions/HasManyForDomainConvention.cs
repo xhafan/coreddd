@@ -40,16 +40,20 @@ namespace CoreDdd.Nhibernate.Conventions
             if (parentCollectionPropertyBackingField != null)
             {
                 _setCollectionInstanceAccess(instance.Access);
-                _setInverseAndAsSet(parentCollectionPropertyBackingField.PropertyType);
+                _markAsInverseIfPossibleAndSetAsSetOrAsList(parentCollectionPropertyBackingField.PropertyType);
             }
             else
             {
-                _setInverseAndAsSet(parentCollectionProperty.PropertyType);
+                _markAsInverseIfPossibleAndSetAsSetOrAsList(parentCollectionProperty.PropertyType);
             }
 
-            void _setInverseAndAsSet(Type collectionType)
+            void _markAsInverseIfPossibleAndSetAsSetOrAsList(Type collectionType)
             {
-                if (collectionType.IsSubclassOfRawGeneric(typeof(IList<>))) return;
+                if (collectionType.IsSubclassOfRawGeneric(typeof(IList<>)))
+                {
+                    instance.AsList();
+                    return;
+                }
                 if (_doesChildReferenceTheParent())
                 {
                     instance.Inverse();
