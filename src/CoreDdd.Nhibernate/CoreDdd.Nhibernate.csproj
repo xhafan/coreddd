@@ -9,9 +9,9 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.6</Version>
-    <PackageReleaseNotes>Bug fix:  
-#9 NhibernateUnitOfWork rollback throws "Transaction not connected, or was disconnected" on disconnected transaction - swallowing an exception thrown by transaction Rollback call</PackageReleaseNotes>
+    <Version>3.2.7</Version>
+    <PackageReleaseNotes>New feature:  
+#10 Child entity collection of type IList is not mapped AsList by default - child entity collections of type IList are now auto-mapped AsList()</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
