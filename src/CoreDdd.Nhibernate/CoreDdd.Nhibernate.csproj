@@ -9,9 +9,9 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.7</Version>
+    <Version>3.2.8</Version>
     <PackageReleaseNotes>New feature:  
-#10 Child entity collection of type IList is not mapped AsList by default - child entity collections of type IList are now auto-mapped AsList()</PackageReleaseNotes>
+#12 Support NHibernate interceptors in BaseNhibernateConfigurator - added a new AdditionalConfiguration method to BaseNhibernateConfigurator to allow additional NHibernate configuration; this method can be overridden in application's NhibernateConfigurator to set interceptors, etc</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
