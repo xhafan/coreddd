@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using CoreDdd.Nhibernate.Conventions;
 using CoreDdd.Nhibernate.DatabaseSchemaGenerators;
@@ -73,11 +72,11 @@ namespace CoreDdd.Nhibernate.Configurations
             configuration = new Configuration();
             if (string.IsNullOrWhiteSpace(configurationFileName))
             {
-                _configuration.Configure();
+                configuration.Configure();
             }
             else
             {
-                _configuration.Configure(configurationFileName);
+                configuration.Configure(configurationFileName);
             }
 
             var assembliesToMap = GetAssembliesToMap();
@@ -93,9 +92,9 @@ namespace CoreDdd.Nhibernate.Configurations
 
             _configureConventions();
 
-            _configuration.SetNamingStrategy(GetNamingStrategy());
+            configuration.SetNamingStrategy(GetNamingStrategy());
 
-            var fluentConfiguration = Fluently.Configure(_configuration)
+            var fluentConfiguration = Fluently.Configure(configuration)
                 .Mappings(x =>
                 {
                     var mappingsContainer = x.AutoMappings.Add(autoPersistenceModel);
@@ -110,6 +109,8 @@ namespace CoreDdd.Nhibernate.Configurations
             {
                 configuration.SetProperty(Environment.ConnectionString, connectionString);
             }
+
+            AdditionalConfiguration(configuration);
 
             sessionFactory = fluentConfiguration.BuildSessionFactory();
 
@@ -312,6 +313,14 @@ namespace CoreDdd.Nhibernate.Configurations
         protected virtual IEnumerable<Type> GetComponentTypes()
         {
             yield break;
+        }
+
+        /// <summary>
+        /// Override this method to add additional configuration. Can be used to set interceptors, etc.
+        /// </summary>
+        /// <param name="configuration">Configuration instance</param>
+        protected virtual void AdditionalConfiguration(Configuration configuration)
+        {
         }
 
         /// <summary>
