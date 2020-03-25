@@ -8,6 +8,12 @@
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
+  <PropertyGroup>
+    <Version>3.2.1</Version>
+    <PackageReleaseNotes>Bug fix:  
+#16 ASP.NET: Raising delayed domain events on application_endrequest where domain event handler throws an exception - raising delayed domain events after the commit try/catch block</PackageReleaseNotes>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
   </ItemGroup>
