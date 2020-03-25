@@ -73,7 +73,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             }
             catch
             {
-                tx.Rollback();
+                try { tx.Rollback(); } catch { /* ignored */ }
                 throw;
             }
             finally
@@ -147,7 +147,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             }
             catch
             {
-                await tx.RollbackAsync().ConfigureAwait(false);
+                try { await tx.RollbackAsync().ConfigureAwait(false); } catch { /* ignored */ }
                 throw;
             }
             finally
