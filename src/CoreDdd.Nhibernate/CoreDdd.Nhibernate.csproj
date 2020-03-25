@@ -9,9 +9,9 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.8</Version>
-    <PackageReleaseNotes>New feature:  
-#12 Support NHibernate interceptors in BaseNhibernateConfigurator - added a new AdditionalConfiguration method to BaseNhibernateConfigurator to allow additional NHibernate configuration; this method can be overridden in application's NhibernateConfigurator to set interceptors, etc</PackageReleaseNotes>
+    <Version>3.2.9</Version>
+    <PackageReleaseNotes>Bug fix:  
+#15 "Transaction not connected, or was disconnected" thrown by rollback within a commit - rollback call within the commit call is now wrapped inside try catch block and its potential exception is swallowed</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
