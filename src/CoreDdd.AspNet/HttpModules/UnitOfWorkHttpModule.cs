@@ -67,8 +67,6 @@ namespace CoreDdd.AspNet.HttpModules
             try
             {
                 UnitOfWork.Commit();
-
-                DomainEvents.RaiseDelayedEvents();
             }
             catch
             {
@@ -80,6 +78,8 @@ namespace CoreDdd.AspNet.HttpModules
                 _unitOfWorkFactory.Release(UnitOfWork);
                 UnitOfWork = null;
             }
+
+            DomainEvents.RaiseDelayedEvents();
         }
 
         private void Application_Error(Object source, EventArgs e)
