@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace CoreUtils
 {
@@ -12,6 +13,7 @@ namespace CoreUtils
         /// </summary>
         /// <param name="condition">A condition</param>
         /// <param name="message">An exception message</param>
+        [ContractAnnotation("condition: false => halt")]
         public static void Hope(bool condition, string message)
         {
             Hope<Exception>(condition, message);
@@ -23,6 +25,7 @@ namespace CoreUtils
         /// <typeparam name="TException">An exception type</typeparam>
         /// <param name="condition">A condition</param>
         /// <param name="message">An exception message</param>
+        [ContractAnnotation("condition: false => halt")]
         public static void Hope<TException>(bool condition, string message)
             where TException : Exception
         {

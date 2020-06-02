@@ -8,6 +8,12 @@
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
+  <PropertyGroup>
+    <Version>3.2.1</Version>
+    <PackageReleaseNotes>Improvement:  
+#17 Guard.Hope() checking for object being null results in Resharper's "Possible System.NullReferenceException" warning</PackageReleaseNotes>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
     <Reference Include="System.Web" />
   </ItemGroup>
