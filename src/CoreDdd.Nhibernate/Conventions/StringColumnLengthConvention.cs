@@ -5,8 +5,12 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    internal class StringColumnLengthConvention : IPropertyConvention, IPropertyConventionAcceptance
+    /// <summary>
+    /// Allow to store unlimited string length into string database fields.
+    /// </summary>
+    public class StringColumnLengthConvention : IPropertyConvention, IPropertyConventionAcceptance
     {
+#pragma warning disable 1591
         public void Accept(IAcceptanceCriteria<IPropertyInspector> criteria)
         {
             criteria.Expect(x => x.Type == typeof (string));
@@ -16,5 +20,6 @@ namespace CoreDdd.Nhibernate.Conventions
         {
             instance.Length(10000); // needed for sql server (tested with versions 2005, 2008, 2014)
         }
+#pragma warning restore 1591
     }
 }

@@ -7,10 +7,16 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    internal class ColumnNullabilityConvention :
+    /// <summary>
+    /// Default DB column nullability convention.
+    /// Not nullable property is mapped into a not nullable column.
+    /// Nullable property is mapped into a nullable column.
+    /// </summary>
+    public class ColumnNullabilityConvention :
         IPropertyConvention, IPropertyConventionAcceptance,
         IReferenceConvention, IReferenceConventionAcceptance
     {
+#pragma warning disable 1591
         public void Accept(IAcceptanceCriteria<IPropertyInspector> criteria)
         {
             criteria.Expect(x => x.Nullable, Is.Not.Set);
@@ -31,5 +37,6 @@ namespace CoreDdd.Nhibernate.Conventions
         {
             instance.Not.Nullable();
         }
+#pragma warning restore 1591
     }
 }

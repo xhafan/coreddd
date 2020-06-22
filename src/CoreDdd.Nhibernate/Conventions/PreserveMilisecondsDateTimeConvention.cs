@@ -1,16 +1,19 @@
+#if NET40 || NET45
 using System;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
-#if NET40 || NET45
 using NHibernate.Type;
-#endif
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    internal class PreserveMilisecondsDateTimeConvention : IPropertyConvention, IPropertyConventionAcceptance
+    /// <summary>
+    /// Preserve miliseconds in the database datetime fields.
+    /// </summary>
+    public class PreserveMilisecondsDateTimeConvention : IPropertyConvention, IPropertyConventionAcceptance
     {
+#pragma warning disable 1591
         public void Accept(IAcceptanceCriteria<IPropertyInspector> criteria)
         {
             criteria.Expect(x => x.Type == typeof(DateTime) || x.Type == typeof(DateTime?));
@@ -18,9 +21,9 @@ namespace CoreDdd.Nhibernate.Conventions
 
         public void Apply(IPropertyInstance instance)
         {
-#if NET40 || NET45
             instance.CustomType<TimestampType>();
-#endif
         }
+#pragma warning restore 1591
     }
 }
+#endif

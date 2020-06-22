@@ -7,10 +7,14 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    internal class PrimaryKeyConvention : IIdConvention, IIdConventionAcceptance
+    /// <summary>
+    /// Primary key default HiLo convention.
+    /// </summary>
+    public class PrimaryKeyConvention : IIdConvention, IIdConventionAcceptance
     {
         private static string _maxLo;
 
+#pragma warning disable 1591
         public static void Initialize(string maxLo)
         {
             _maxLo = maxLo;
@@ -30,5 +34,6 @@ namespace CoreDdd.Nhibernate.Conventions
                 instance.GeneratedBy.HiLo(_maxLo);
             }
         }
+#pragma warning restore 1591
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using CoreDdd.Nhibernate.Conventions;
 using CoreDdd.Nhibernate.DatabaseSchemaGenerators;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
+using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
 using FluentNHibernate.Utils;
@@ -119,14 +121,21 @@ namespace CoreDdd.Nhibernate.Configurations
                 if (ShouldUseDefaultConventions())
                 {
                     DisableLazyLoadForDtosConvention.Initialize(isTypeDto);
-                    HasManyForDomainConvention.Initialize(
+                    HasManyConvention.Initialize(
                         GetCollectionCascadeInstanceAction(),
                         GetBackingFieldNameFromPropertyNameFunc(),
                         GetCollectionInstanceAccessAction()
                     );
                     PrimaryKeyConvention.Initialize(GetIdentityHiLoMaxLo());
 
-                    autoPersistenceModel.Conventions.AddFromAssemblyOf<PrimaryKeyConvention>();
+                    var disabledConventions = GetDisabledConventions();
+                    var conventionTypes = Assembly.GetExecutingAssembly().GetTypes()
+                        .Where(type => typeof(IConvention).IsAssignableFrom(type)
+                                       && !type.IsInterface
+                                       && !disabledConventions.Contains(type))
+                        .ToList();
+
+                    conventionTypes.Each(conventionType => autoPersistenceModel.Conventions.Add(conventionType));
                 }
 
                 GetAssembliesWithAdditionalConventions().Each(assembly => autoPersistenceModel.Conventions.AddAssembly(assembly));
@@ -223,6 +232,17 @@ namespace CoreDdd.Nhibernate.Configurations
         /// </summary>
         /// <returns></returns>
         protected virtual IEnumerable<Type> GetAdditionalConventions()
+        {
+            yield break;
+        }
+
+        /// <summary>
+        /// Override this method to disable some of the default conventions.
+        /// Use it when you need to implement some convention differently, and the default implementation
+        /// is clashing with it.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual IEnumerable<Type> GetDisabledConventions()
         {
             yield break;
         }

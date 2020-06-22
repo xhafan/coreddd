@@ -8,12 +8,18 @@ using FluentNHibernate.Conventions.Instances;
 
 namespace CoreDdd.Nhibernate.Conventions
 {
-    internal class HasManyForDomainConvention : IHasManyConvention
+    /// <summary>
+    /// Default 'has many' relationship convention.
+    /// Allows to specify cascade strategy and backing field access strategy.
+    /// A collection is treated as set by default with one exception - IList collection is treated as list.
+    /// </summary>
+    public class HasManyConvention : IHasManyConvention
     {
         private static Action<ICollectionCascadeInstance> _collectionCascadeInstanceAction;
         private static Func<string, string> _getBackingFieldNameFromPropertyName;
         private static Action<IAccessInstance> _setCollectionInstanceAccess;
 
+#pragma warning disable 1591
         public static void Initialize(
             Action<ICollectionCascadeInstance> collectionCascadeInstanceAction,
             Func<string, string> getBackingFieldNameFromPropertyName,
@@ -72,5 +78,6 @@ namespace CoreDdd.Nhibernate.Conventions
                 return parentPropertyInChildType != null;
             }
         }
+#pragma warning restore 1591
     }
 }
