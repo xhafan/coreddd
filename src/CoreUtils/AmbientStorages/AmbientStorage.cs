@@ -17,7 +17,7 @@ namespace CoreUtils.AmbientStorages
     /// An ambient storage for various different execution contexts:
     /// 1) For full .NET framework and ASP.NET, the data are stored in HttpContext.Current.Items.
     /// 2) For .NET 4, .NET 4.5.x and non-ASP.NET, the data are stored in the execution context via CallContext.LogicalGet/SetData.
-    /// 4) For .NET 4.6 and higher and for .NET Standard, the data are stored in the execution context via async local storage.
+    /// 3) For .NET 4.6 and higher and for .NET Standard, the data are stored in the execution context via async local storage.
     /// More info: https://stackoverflow.com/questions/31707362/how-do-the-semantics-of-asynclocal-differ-from-the-logical-call-context
     /// </summary>
     /// <typeparam name="TData">A data type</typeparam>
