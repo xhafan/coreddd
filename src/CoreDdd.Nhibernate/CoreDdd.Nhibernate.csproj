@@ -9,9 +9,9 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.10</Version>
+    <Version>3.2.11</Version>
     <PackageReleaseNotes>Bug fix:  
-#18 Custom convention clashing with default CoreDdd.Nhibernate convention - BaseNhibernateConfigurator got new overridable GetDisabledConventions() method to allow to specify which default conventions to disable; made default conventions public to allow to disable them</PackageReleaseNotes>
+#21 add convention for DTO persistence to make them load read-only without NHibernate change tracking to disable unwanted DB updates via DTO changes</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
