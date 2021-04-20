@@ -120,6 +120,7 @@ namespace CoreDdd.Nhibernate.Configurations
             {
                 if (ShouldUseDefaultConventions())
                 {
+                    LoadDtosAsReadonlyConvention.Initialize(isTypeDto);
                     DisableLazyLoadForDtosConvention.Initialize(isTypeDto);
                     HasManyConvention.Initialize(
                         GetCollectionCascadeInstanceAction(),
