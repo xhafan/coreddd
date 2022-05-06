@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CoreDdd.UnitOfWorks;
 using Microsoft.AspNetCore.Http;
@@ -18,10 +20,12 @@ namespace CoreDdd.AspNetCore.Middlewares
         /// </summary>
         /// <param name="unitOfWorkFactory">An unit of work factory which creates an unit of work per web request</param>
         /// <param name="isolationLevel">An isolation level for the unit of work transaction</param>
+        /// <param name="getOrHeadRequestPathsWithoutTransaction">List of GET or HEAD request path regexes for which the transaction will not be created</param>
         public UnitOfWorkMiddleware(
             IUnitOfWorkFactory unitOfWorkFactory,
-            IsolationLevel isolationLevel = IsolationLevel.ReadCommitted
-            ) : base(isolationLevel)
+            IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
+            IEnumerable<Regex> getOrHeadRequestPathsWithoutTransaction = null
+        ) : base(isolationLevel, getOrHeadRequestPathsWithoutTransaction)
         {
             _unitOfWorkFactory = unitOfWorkFactory;
         }

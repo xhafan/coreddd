@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Transactions;
 using CoreDdd.UnitOfWorks;
@@ -19,13 +21,15 @@ namespace CoreDdd.AspNetCore.Middlewares
         /// </summary>
         /// <param name="next">Request delegate</param>
         /// <param name="isolationLevel">An isolation level for the transaction scope</param>
+        /// <param name="getOrHeadRequestPathsWithoutTransaction">List of GET or HEAD request path regexes for which the transaction will not be created</param>
         /// <param name="transactionScopeEnlistmentAction">An enlistment action for the transaction scope. Use to enlist another resource manager
         /// into the transaction scope</param>
         public TransactionScopeUnitOfWorkDependencyInjectionMiddleware(
             RequestDelegate next,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
+            IEnumerable<Regex> getOrHeadRequestPathsWithoutTransaction = null,
             Action<TransactionScope> transactionScopeEnlistmentAction = null
-            ) : base(isolationLevel, transactionScopeEnlistmentAction)
+            ) : base(isolationLevel, getOrHeadRequestPathsWithoutTransaction, transactionScopeEnlistmentAction)
         {
             _next = next;
         }

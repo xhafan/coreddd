@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Transactions;
 using CoreDdd.UnitOfWorks;
@@ -15,20 +19,24 @@ namespace CoreDdd.AspNetCore.Middlewares
     public abstract class BaseTransactionScopeUnitOfWorkMiddleware
     {
         private readonly IsolationLevel _isolationLevel;
+        private readonly IEnumerable<Regex> _getOrHeadRequestPathsWithoutTransaction;
         private readonly Action<TransactionScope> _transactionScopeEnlistmentAction;
 
         /// <summary>
         /// Initializes the instance.
         /// </summary>
         /// <param name="isolationLevel">An isolation level for the transaction scope</param>
+        /// <param name="getOrHeadRequestPathsWithoutTransaction">List of GET or HEAD request path regexes for which the transaction will not be created</param>
         /// <param name="transactionScopeEnlistmentAction">An enlistment action for the transaction scope. Use to enlist another resource manager
         /// into the transaction scope</param>
         protected BaseTransactionScopeUnitOfWorkMiddleware(
             IsolationLevel isolationLevel,
+            IEnumerable<Regex> getOrHeadRequestPathsWithoutTransaction,
             Action<TransactionScope> transactionScopeEnlistmentAction
         )
         {
             _isolationLevel = isolationLevel;
+            _getOrHeadRequestPathsWithoutTransaction = getOrHeadRequestPathsWithoutTransaction;
             _transactionScopeEnlistmentAction = transactionScopeEnlistmentAction;
         }
 
@@ -41,6 +49,14 @@ namespace CoreDdd.AspNetCore.Middlewares
         /// <returns></returns>
         protected async Task InvokeAsync(HttpContext context, RequestDelegate next, IUnitOfWork unitOfWork)
         {
+            if (_getOrHeadRequestPathsWithoutTransaction != null
+                && (context.Request.Method == WebRequestMethods.Http.Get || context.Request.Method == WebRequestMethods.Http.Head)
+                && _getOrHeadRequestPathsWithoutTransaction.Any(x => x.IsMatch(context.Request.Path.Value)))
+            {
+                await next.Invoke(context).ConfigureAwait(false);
+                return;
+            }
+
             using (var transactionScope = _CreateTransactionScope())
             {
                 _transactionScopeEnlistmentAction?.Invoke(transactionScope);

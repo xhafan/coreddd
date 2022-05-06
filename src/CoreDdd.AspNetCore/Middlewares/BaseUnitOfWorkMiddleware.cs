@@ -1,4 +1,8 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CoreDdd.Domain.Events;
 using CoreDdd.UnitOfWorks;
@@ -15,14 +19,20 @@ namespace CoreDdd.AspNetCore.Middlewares
     public abstract class BaseUnitOfWorkMiddleware
     {
         private readonly IsolationLevel _isolationLevel;
+        private readonly IEnumerable<Regex> _getOrHeadRequestPathsWithoutTransaction;
 
         /// <summary>
         /// Initializes the instance.
         /// </summary>
         /// <param name="isolationLevel">An isolation level for the transaction</param>
-        protected BaseUnitOfWorkMiddleware(IsolationLevel isolationLevel)
+        /// <param name="getOrHeadRequestPathsWithoutTransaction">List of GET or HEAD request path regexes for which the transaction will not be created</param>
+        protected BaseUnitOfWorkMiddleware(
+            IsolationLevel isolationLevel,
+            IEnumerable<Regex> getOrHeadRequestPathsWithoutTransaction
+            )
         {
             _isolationLevel = isolationLevel;
+            _getOrHeadRequestPathsWithoutTransaction = getOrHeadRequestPathsWithoutTransaction;
         }
 
         /// <summary>
@@ -34,6 +44,14 @@ namespace CoreDdd.AspNetCore.Middlewares
         /// <returns></returns>
         protected async Task InvokeAsync(HttpContext context, RequestDelegate next, IUnitOfWork unitOfWork)
         {
+            if (_getOrHeadRequestPathsWithoutTransaction != null 
+                && (context.Request.Method == WebRequestMethods.Http.Get || context.Request.Method == WebRequestMethods.Http.Head) 
+                && _getOrHeadRequestPathsWithoutTransaction.Any(x => x.IsMatch(context.Request.Path.Value)))
+            {
+                await next.Invoke(context).ConfigureAwait(false);
+                return;
+            }
+
             unitOfWork.BeginTransaction(_isolationLevel);
 
             DomainEvents.ResetDelayedEventsStorage();
