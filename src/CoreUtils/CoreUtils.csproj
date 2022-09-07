@@ -9,9 +9,10 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.1</Version>
-    <PackageReleaseNotes>Improvement:  
-#17 Guard.Hope() checking for object being null results in Resharper's "Possible System.NullReferenceException" warning</PackageReleaseNotes>
+    <Version>3.2.2</Version>
+    <PackageReleaseNotes>.NET Standard 2.1 or greater enhancement:  
+#19 Add support for nullable reference types - when the nullable reference types are enabled, when using Guard.Hope() method one does not get "Dereference of possibly null reference" warning (idea taken from Debug.Assert method source code)
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
