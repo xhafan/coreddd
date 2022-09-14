@@ -9,9 +9,9 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.12</Version>
+    <Version>3.2.13</Version>
     <PackageReleaseNotes>Improvement:  
-#19 Add support for nullable reference types - an entity property of a nullable reference type is automapped as nullable in the database
+#19 Add support for nullable reference types - an entity reference of a nullable reference type is automapped as nullable in the database
     </PackageReleaseNotes>
   </PropertyGroup>
 
