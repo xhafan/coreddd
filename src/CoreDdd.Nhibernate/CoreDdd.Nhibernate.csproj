@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net461;netstandard2.0;net6.0</TargetFrameworks>
     <Description>NHibernate persistence for CoreDdd library</Description>
     <PackageTags>CoreDdd Nhibernate</PackageTags>
   </PropertyGroup>
@@ -35,8 +35,12 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="NHibernate" Version="5.1.1" />
     <PackageReference Include="FluentNHibernate" Version="2.1.2" />
-    <PackageReference Include="Iesi.Collections" Version="4.0.4" />
   </ItemGroup>
+
+<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+	<PackageReference Include="NHibernate" Version="5.1.1" />
+	<PackageReference Include="FluentNHibernate" Version="2.1.2" />
+</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
