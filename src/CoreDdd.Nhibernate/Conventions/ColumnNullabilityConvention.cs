@@ -30,15 +30,7 @@ namespace CoreDdd.Nhibernate.Conventions
             criteria.Expect(x =>
             {
 #if NET6_0_OR_GREATER
-                var isNullableReferenceType = _determineIsNullableReferenceType();
-
-                bool _determineIsNullableReferenceType() // inspired by https://stackoverflow.com/a/68757807/379279
-                {
-                    var propertyInfo = x.EntityType.GetProperty(x.Name);
-                    Guard.Hope(propertyInfo != null, $"Cannot get property info for {x.EntityType.Name}.{x.Name}");
-                    var propertyNullabilityInfo = new NullabilityInfoContext().Create(propertyInfo);
-                    return propertyNullabilityInfo.WriteState is NullabilityState.Nullable;
-                }
+                var isNullableReferenceType = _DetermineIsNullableReferenceType(x.EntityType, x.Name);
 #endif
 
                 return !x.Type.GetUnderlyingSystemType().IsSubclassOfRawGeneric(typeof(Nullable<>))
@@ -49,9 +41,26 @@ namespace CoreDdd.Nhibernate.Conventions
             });
         }
 
+#if NET6_0_OR_GREATER
+        private bool _DetermineIsNullableReferenceType(Type entityType, string propertyName) // inspired by https://stackoverflow.com/a/68757807/379279
+        {
+            var propertyInfo = entityType.GetProperty(propertyName);
+            Guard.Hope(propertyInfo != null, $"Cannot get property info for {entityType.Name}.{propertyName}");
+            var propertyNullabilityInfo = new NullabilityInfoContext().Create(propertyInfo);
+            return propertyNullabilityInfo.WriteState is NullabilityState.Nullable;
+        }
+#endif
+
         public void Accept(IAcceptanceCriteria<IManyToOneInspector> criteria)
         {
             criteria.Expect(x => x.Nullable, Is.Not.Set);
+#if NET6_0_OR_GREATER
+            criteria.Expect(x =>
+            {
+                var isNullableReferenceType = _DetermineIsNullableReferenceType(x.EntityType, x.Name);
+                return !isNullableReferenceType;
+            });
+#endif
         }
 
         public void Apply(IPropertyInstance instance)
