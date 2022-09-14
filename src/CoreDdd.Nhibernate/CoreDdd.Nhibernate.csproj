@@ -9,9 +9,10 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.11</Version>
-    <PackageReleaseNotes>Bug fix:  
-#21 add convention for DTO persistence to make them load read-only without NHibernate change tracking to disable unwanted DB updates via DTO changes</PackageReleaseNotes>
+    <Version>3.2.12</Version>
+    <PackageReleaseNotes>Improvement:  
+#19 Add support for nullable reference types - an entity property of a nullable reference type is automapped as nullable in the database
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
