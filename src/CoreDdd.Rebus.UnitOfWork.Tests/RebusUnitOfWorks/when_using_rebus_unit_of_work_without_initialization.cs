@@ -10,12 +10,12 @@ namespace CoreDdd.Rebus.UnitOfWork.Tests.RebusUnitOfWorks
         [Test]
         public void exception_is_thrown()
         {
-            RebusUnitOfWork.Initialize(unitOfWorkFactory: null);
+            var rebusUnitOfWork = new RebusUnitOfWork(unitOfWorkFactory: null);
             var fakeMessageContext = new FakeMessageContext();
 
-            var ex = Should.Throw<InvalidOperationException>(() => RebusUnitOfWork.Create(fakeMessageContext));
+            var ex = Should.Throw<InvalidOperationException>(() => rebusUnitOfWork.Create(fakeMessageContext));
 
-            ex.Message.ShouldBe("RebusUnitOfWork has not been initialized! Please call RebusUnitOfWork.Initialize(...) before using it.");
+            ex.Message.ShouldBe("UnitOfWork factory is not set.");
         }
     }
 }

@@ -28,17 +28,17 @@ namespace CoreDdd.Rebus.UnitOfWork.Tests.RebusUnitOfWorks
             DomainEvents.ResetDelayedEventsStorage();
 
             var unitOfWorkFactory = IoC.Resolve<IUnitOfWorkFactory>();
-            RebusUnitOfWork.Initialize(
+            var rebusUnitOfWork = new RebusUnitOfWork(
                 unitOfWorkFactory: unitOfWorkFactory,
                 isolationLevel: IsolationLevel.ReadCommitted
             );
             _fakeMessageContext = new FakeMessageContext();
-            _unitOfWork = RebusUnitOfWork.Create(_fakeMessageContext);
+            _unitOfWork = rebusUnitOfWork.Create(_fakeMessageContext);
 
             _simulateApplicationTransaction();
 
-            RebusUnitOfWork.Commit(_fakeMessageContext, _unitOfWork);
-            RebusUnitOfWork.Cleanup(_fakeMessageContext, _unitOfWork);
+            rebusUnitOfWork.Commit(_fakeMessageContext, _unitOfWork);
+            rebusUnitOfWork.Cleanup(_fakeMessageContext, _unitOfWork);
         }
 
         private void _simulateApplicationTransaction()

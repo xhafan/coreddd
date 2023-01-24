@@ -31,18 +31,18 @@ namespace CoreDdd.Rebus.UnitOfWork.Tests.RebusTransactionScopeUnitOfWorks
             _volatileResourceManager = new VolatileResourceManager();
 
             var unitOfWorkFactory = IoC.Resolve<IUnitOfWorkFactory>();
-            RebusTransactionScopeUnitOfWork.Initialize(
+            var rebusTransactionScopeUnitOfWork = new RebusTransactionScopeUnitOfWork(
                 unitOfWorkFactory: unitOfWorkFactory,
                 isolationLevel: IsolationLevel.ReadCommitted,
                 transactionScopeEnlistmentAction: transactionScope => _volatileResourceManager.EnlistIntoTransactionScope(transactionScope)
                 );
             _fakeMessageContext = new FakeMessageContext();
-            _transactionScopeUnitOfWork = RebusTransactionScopeUnitOfWork.Create(_fakeMessageContext);
+            _transactionScopeUnitOfWork = rebusTransactionScopeUnitOfWork.Create(_fakeMessageContext);
 
             _simulateApplicationTransaction();
 
-            RebusTransactionScopeUnitOfWork.Commit(_fakeMessageContext, _transactionScopeUnitOfWork);
-            RebusTransactionScopeUnitOfWork.Cleanup(_fakeMessageContext, _transactionScopeUnitOfWork);
+            rebusTransactionScopeUnitOfWork.Commit(_fakeMessageContext, _transactionScopeUnitOfWork);
+            rebusTransactionScopeUnitOfWork.Cleanup(_fakeMessageContext, _transactionScopeUnitOfWork);
         }
 
         private void _simulateApplicationTransaction()

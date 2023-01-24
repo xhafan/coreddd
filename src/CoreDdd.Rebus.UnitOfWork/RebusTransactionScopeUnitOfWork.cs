@@ -13,11 +13,11 @@ namespace CoreDdd.Rebus.UnitOfWork
     /// using <see cref="RebusUnitOfWork"/> is sufficient for this scenario.
     /// This class allows to enlist another resource manager into the transaction scope.
     /// </summary>
-    public static class RebusTransactionScopeUnitOfWork
+    public class RebusTransactionScopeUnitOfWork
     {
-        private static IUnitOfWorkFactory _unitOfWorkFactory;
-        private static IsolationLevel _isolationLevel;
-        private static Action<TransactionScope> _transactionScopeEnlistmentAction;
+        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        private readonly IsolationLevel _isolationLevel;
+        private readonly Action<TransactionScope> _transactionScopeEnlistmentAction;
 
         /// <summary>
         /// Initializes the class. Needs to be called at the application start.
@@ -26,7 +26,7 @@ namespace CoreDdd.Rebus.UnitOfWork
         /// <param name="isolationLevel">Isolation level for the transaction scope</param>
         /// <param name="transactionScopeEnlistmentAction">An enlistment action for the transaction scope. Use to enlist another resource manager
         /// into the transaction scope</param>
-        public static void Initialize(
+        public RebusTransactionScopeUnitOfWork(
             IUnitOfWorkFactory unitOfWorkFactory,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
             Action<TransactionScope> transactionScopeEnlistmentAction = null
@@ -42,12 +42,11 @@ namespace CoreDdd.Rebus.UnitOfWork
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <returns>A value tuple of the transaction scope and the unit of work</returns>
-        public static (TransactionScope TransactionScope, IUnitOfWork UnitOfWork) Create(IMessageContext messageContext)
+        public (TransactionScope TransactionScope, IUnitOfWork UnitOfWork) Create(IMessageContext messageContext)
         {
             if (_unitOfWorkFactory == null)
             {
-                throw new InvalidOperationException(
-                    "RebusTransactionScopeUnitOfWork has not been initialized! Please call RebusTransactionScopeUnitOfWork.Initialize(...) before using it.");
+                throw new InvalidOperationException("UnitOfWork factory is not set.");
             }
             var unitOfWork = _unitOfWorkFactory.Create();
             var transactionScope = _CreateTransactionScope();
@@ -61,7 +60,7 @@ namespace CoreDdd.Rebus.UnitOfWork
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <param name="transactionScopeUnitOfWork">A value tuple of the transaction scope and the unit of work</param>
-        public static void Commit(
+        public void Commit(
             IMessageContext messageContext, 
             (TransactionScope TransactionScope, IUnitOfWork UnitOfWork) transactionScopeUnitOfWork
             )
@@ -75,7 +74,7 @@ namespace CoreDdd.Rebus.UnitOfWork
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <param name="transactionScopeUnitOfWork">A value tuple of the transaction scope and the unit of work</param>
-        public static void Rollback(
+        public void Rollback(
             IMessageContext messageContext, 
             (TransactionScope TransactionScope, IUnitOfWork UnitOfWork) transactionScopeUnitOfWork
             )
@@ -88,7 +87,7 @@ namespace CoreDdd.Rebus.UnitOfWork
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <param name="transactionScopeUnitOfWork">A value tuple of the transaction scope and the unit of work</param>
-        public static void Cleanup(
+        public void Cleanup(
             IMessageContext messageContext, 
             (TransactionScope TransactionScope, IUnitOfWork UnitOfWork) transactionScopeUnitOfWork
             )
@@ -97,7 +96,7 @@ namespace CoreDdd.Rebus.UnitOfWork
             transactionScopeUnitOfWork.TransactionScope.Dispose();
         }
 
-        private static TransactionScope _CreateTransactionScope()
+        private TransactionScope _CreateTransactionScope()
         {
             return new TransactionScope(
                 TransactionScopeOption.Required,

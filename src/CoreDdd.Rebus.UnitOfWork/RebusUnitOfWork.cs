@@ -11,17 +11,17 @@ namespace CoreDdd.Rebus.UnitOfWork
     /// Please note that messages published or sent from a message handler 
     /// are not published or sent when there is an error during the message handling.
     /// </summary>
-    public static class RebusUnitOfWork
+    public class RebusUnitOfWork
     {
-        private static IUnitOfWorkFactory _unitOfWorkFactory;
-        private static IsolationLevel _isolationLevel;
+        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        private readonly IsolationLevel _isolationLevel;
 
         /// <summary>
         /// Initializes the class. Needs to be called at the application start.
         /// </summary>
         /// <param name="unitOfWorkFactory">A unit of work factory</param>
         /// <param name="isolationLevel">Isolation level for the transaction</param>
-        public static void Initialize(
+        public RebusUnitOfWork(
             IUnitOfWorkFactory unitOfWorkFactory,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted
         )
@@ -35,12 +35,11 @@ namespace CoreDdd.Rebus.UnitOfWork
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <returns>The unit of work</returns>
-        public static IUnitOfWork Create(IMessageContext messageContext)
+        public IUnitOfWork Create(IMessageContext messageContext)
         {
             if (_unitOfWorkFactory == null)
             {
-                throw new InvalidOperationException(
-                    "RebusUnitOfWork has not been initialized! Please call RebusUnitOfWork.Initialize(...) before using it.");
+                throw new InvalidOperationException("UnitOfWork factory is not set.");
             }
             var unitOfWork = _unitOfWorkFactory.Create();
             unitOfWork.BeginTransaction(_isolationLevel);
@@ -52,7 +51,7 @@ namespace CoreDdd.Rebus.UnitOfWork
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <param name="unitOfWork">The unit of work</param>
-        public static void Commit(IMessageContext messageContext, IUnitOfWork unitOfWork)
+        public void Commit(IMessageContext messageContext, IUnitOfWork unitOfWork)
         {
             unitOfWork.Commit();
         }
@@ -62,7 +61,7 @@ namespace CoreDdd.Rebus.UnitOfWork
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <param name="unitOfWork">The unit of work</param>
-        public static void Rollback(IMessageContext messageContext, IUnitOfWork unitOfWork)
+        public void Rollback(IMessageContext messageContext, IUnitOfWork unitOfWork)
         {
             unitOfWork.Rollback();
         }
@@ -72,7 +71,7 @@ namespace CoreDdd.Rebus.UnitOfWork
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <param name="unitOfWork">The unit of work</param>
-        public static void Cleanup(IMessageContext messageContext, IUnitOfWork unitOfWork)
+        public void Cleanup(IMessageContext messageContext, IUnitOfWork unitOfWork)
         {
             _unitOfWorkFactory.Release(unitOfWork);
         }
