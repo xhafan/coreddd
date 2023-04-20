@@ -9,9 +9,9 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.13</Version>
-    <PackageReleaseNotes>Improvement:  
-#19 Add support for nullable reference types - an entity reference of a nullable reference type is automapped as nullable in the database
+    <Version>3.2.14</Version>
+    <PackageReleaseNotes>Bug fix:  
+#37 Cannot map IDictionary AsMap - adding support for "AsMap" for IDictionary collections in HasManyConvention
     </PackageReleaseNotes>
   </PropertyGroup>
 
