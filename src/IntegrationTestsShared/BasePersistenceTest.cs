@@ -21,7 +21,14 @@ namespace IntegrationTestsShared
         [TearDown]
         public void TestFixtureTearDown()
         {
-            UnitOfWork.Rollback();
+            try
+            {
+                UnitOfWork.Flush();
+            }
+            finally
+            {
+                UnitOfWork.Rollback();
+            }
         }
     }
 }
