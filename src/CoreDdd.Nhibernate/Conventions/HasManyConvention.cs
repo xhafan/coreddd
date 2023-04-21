@@ -55,11 +55,6 @@ namespace CoreDdd.Nhibernate.Conventions
 
             void _markAsInverseIfPossibleAndSetAsSetOrAsListOrMap(Type collectionType)
             {
-                if (collectionType.IsSubclassOfRawGeneric(typeof(IDictionary<,>)))
-                {
-                    instance.AsMap();
-                    return;
-                }
                 if (collectionType.IsSubclassOfRawGeneric(typeof(IList<>)))
                 {
                     instance.AsList();
@@ -69,17 +64,22 @@ namespace CoreDdd.Nhibernate.Conventions
                 {
                     instance.Inverse();
                 }
+                if (collectionType.IsSubclassOfRawGeneric(typeof(IDictionary<,>)))
+                {
+                    instance.AsMap();
+                    return;
+                }
                 instance.AsSet();
             }
 
             bool _doesChildReferenceTheParent()
             {
 #if NET40
-                var childType = parentCollectionProperty.PropertyType.GetGenericArguments()[0];
+                var childTypes = parentCollectionProperty.PropertyType.GetGenericArguments();
 #else
-                var childType = parentCollectionProperty.PropertyType.GenericTypeArguments[0];
+                var childTypes = parentCollectionProperty.PropertyType.GenericTypeArguments;
 #endif
-                var parentPropertyInChildType = childType.GetInstanceProperties().FirstOrDefault(x => x.PropertyType == parentType);
+                var parentPropertyInChildType = childTypes.SelectMany(x => x.GetInstanceProperties()).FirstOrDefault(x => x.PropertyType == parentType);
                 return parentPropertyInChildType != null;
             }
         }
