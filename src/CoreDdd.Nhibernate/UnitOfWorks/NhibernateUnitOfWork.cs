@@ -50,7 +50,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
             Session.BeginTransaction(isolationLevel);
         }
-        
+
         /// <summary>
         /// Flushes the NHibernate session and commits the transaction if there is no ambient transaction scope.
         /// If there is an ambient transaction scope, the commit is done by the transaction scope.
@@ -217,7 +217,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         }
 
         /// <summary>
-        /// Over-ridable dispose method. 
+        /// Overridable dispose method. 
         /// </summary>
         /// <param name="disposing">true - the method call comes from a Dispose method; false - the method call comes from a finalizer</param>
         protected virtual void Dispose(bool disposing)
@@ -232,7 +232,13 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
         private bool _IsActive()
         {
-            return Session != null;
+            if (_isInTransactionScope)
+            {
+                return Session != null;
+            }
+            
+            return Session?.Transaction != null
+                   && Session.Transaction.IsActive;
         }
     }
 }
