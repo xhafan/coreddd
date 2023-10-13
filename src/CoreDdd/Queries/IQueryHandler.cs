@@ -12,6 +12,7 @@ namespace CoreDdd.Queries
     public interface IQueryHandler<in TQuery> 
         where TQuery : IQuery
     {
+#if NET40
         /// <summary>
         /// Executes a query handling logic for a given query.
         /// </summary>
@@ -19,6 +20,7 @@ namespace CoreDdd.Queries
         /// <param name="query">An instance of a query with a data</param>
         /// <returns>A collection of query results</returns>
         IEnumerable<TResult> Execute<TResult>(TQuery query);
+#endif
 
 #if !NET40
         /// <summary>
