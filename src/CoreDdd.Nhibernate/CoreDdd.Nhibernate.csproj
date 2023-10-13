@@ -9,9 +9,9 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.15</Version>
-    <PackageReleaseNotes>Performance fix:  
-#37 Cannot map IDictionary AsMap - setting dictionary collection as inverse when the child entity references the parent -> the SQL update to update the child entity parent id is not issued for dictionary collections
+    <Version>3.2.16</Version>
+    <PackageReleaseNotes>Bug fix:
+#38 NhibernateUnitOfWork is not gracefully disposed when begin transaction throws - when disposing NhibernateUnitOfWork, improving the detection that the transaction has not been started to prevent another exception when trying to incorrectly commit
     </PackageReleaseNotes>
   </PropertyGroup>
 
