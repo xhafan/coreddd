@@ -11,7 +11,7 @@ namespace CoreIoC
         private static IContainer _container;
 
         /// <summary>
-        /// Initializes the class. Must be called at an application start.
+        /// Initializes the service locator. Must be called at an application start.
         /// </summary>
         /// <param name="container">An IoC container</param>
         public static void Initialize(IContainer container)
@@ -77,5 +77,13 @@ namespace CoreIoC
         {
             _getContainer().Release(service);
         }
+        
+        /// <summary>
+        /// Uninitialize the service locator. Should be called at an application end.
+        /// </summary>
+        public static void Uninitialize()
+        {
+            _container = null;
+        }        
     }
 }
