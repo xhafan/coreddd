@@ -29,6 +29,15 @@ namespace CoreIoC
 
             return _container;
         }
+        
+        /// <summary>
+        /// Checks if service locator is initialized.
+        /// </summary>
+        /// <returns>True - service locator is initialized by an IoC container; False - otherwise</returns>
+        public static bool IsInitialized()
+        {
+            return _container != null;
+        }        
 
         /// <summary>
         /// Resolve a service.
