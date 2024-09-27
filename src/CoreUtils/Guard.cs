@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+
 #if NETSTANDARD2_1_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 #endif
@@ -16,16 +18,18 @@ namespace CoreUtils
         /// </summary>
         /// <param name="condition">A condition</param>
         /// <param name="message">An exception message</param>
+        /// <param name="data">An exception data (optional)</param>
         [ContractAnnotation("condition: false => halt")]
         public static void Hope(
 #if NETSTANDARD2_1_OR_GREATER
             [DoesNotReturnIf(false)] // this ensures that when the nullable reference types are enabled, one does not get "Dereference of possibly null reference" warning (idea taken from Debug.Assert method)
 #endif
             bool condition, 
-            string message
+            string message,
+            IDictionary data = null
             )
         {
-            Hope<Exception>(condition, message);
+            Hope<Exception>(condition, message, data);
         }
 
         /// <summary>
@@ -34,19 +38,28 @@ namespace CoreUtils
         /// <typeparam name="TException">An exception type</typeparam>
         /// <param name="condition">A condition</param>
         /// <param name="message">An exception message</param>
+        /// <param name="data">An exception data (optional)</param>
         [ContractAnnotation("condition: false => halt")]
         public static void Hope<TException>(
 #if NETSTANDARD2_1_OR_GREATER
             [DoesNotReturnIf(false)] // this ensures that when the nullable reference types are enabled, one does not get "Dereference of possibly null reference" warning (idea taken from Debug.Assert method)
 #endif
             bool condition, 
-            string message
+            string message,
+            IDictionary data = null
             )
             where TException : Exception
         {
             if (condition) return;
 
             var exception = (TException)Activator.CreateInstance(typeof(TException), message);
+            if (data != null)
+            {
+                foreach (DictionaryEntry entry in data)
+                {
+                    exception.Data.Add(entry.Key, entry.Value);
+                }
+            }
             throw exception;
         }
     }
