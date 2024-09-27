@@ -9,9 +9,9 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.2</Version>
-    <PackageReleaseNotes>.NET Standard 2.1 or greater enhancement:  
-#19 Add support for nullable reference types - when the nullable reference types are enabled, when using Guard.Hope() method one does not get "Dereference of possibly null reference" warning (idea taken from Debug.Assert method source code)
+    <Version>3.2.3</Version>
+    <PackageReleaseNotes>Enhancement:  
+#45 Add support for exception data in Guard.Hope - adding data parameter to Guard.Hope
     </PackageReleaseNotes>
   </PropertyGroup>
 
