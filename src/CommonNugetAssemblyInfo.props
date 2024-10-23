@@ -8,13 +8,17 @@
     <Company></Company>
     <Product />
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xhafan/coreddd/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>Enabled TransactionScopeUnitOfWorkHttpModule only for .NET 4.5.1 and higher</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.1" PrivateAssets="All" /> 
+    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.1" PrivateAssets="All" />
+    <None Include="../../LICENSE" Pack="true" PackagePath="" />
+    <None Include="../../README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
