@@ -18,7 +18,7 @@ CoreDdd samples: https://github.com/xhafan/coreddd-sample
 
 ASP.NET Core MVC and ASP.NET MVC demo email marketing app demonstrating CoreDdd usage: https://github.com/xhafan/emailmaker
 
-CoreDdd powers [SmartGuide <img src="https://cms.smart-guide.org/favicon.ico">](https://smart-guide.org/) app backend and [SmartGuide CMS](https://cms.smart-guide.org/) since 2019
+CoreDdd powers [SmartGuide](https://smart-guide.org/) app backend and [SmartGuide CMS](https://cms.smart-guide.org/) since 2019
 
 Join the chat about CoreDdd on gitter [![Join the chat at https://gitter.im/coreddd/Lobby](https://badges.gitter.im/coreddd/Lobby.svg)](https://gitter.im/coreddd/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
