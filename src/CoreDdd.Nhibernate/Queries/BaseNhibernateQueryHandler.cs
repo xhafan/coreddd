@@ -33,6 +33,7 @@ namespace CoreDdd.Nhibernate.Queries
             Session = unitOfWork.Session;
         }
 
+#if NET40
         /// <summary>
         /// Executes the query.
         /// </summary>
@@ -43,6 +44,7 @@ namespace CoreDdd.Nhibernate.Queries
         {
             return Enumerable.Empty<TResult>();
         }
+#endif
 
 #if !NET40
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
