@@ -56,7 +56,11 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 
         private class TestSession : ISession
         {
-            private DbConnection _connection;
+#pragma warning disable CS0169 // The field is never used
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
+            private DbConnection _;
+#pragma warning restore CS0649 // Field is never assigned to, and will always have its default value
+#pragma warning restore CS0169 // The field is never used
 
             public void Dispose()
             {
@@ -735,7 +739,7 @@ Begin failed with SQL exception
             public CacheMode CacheMode { get; set; }
             public ISessionFactory SessionFactory { get; }
 #if !NET40 && !NET45
-            DbConnection ISession.Connection => _connection;
+            DbConnection ISession.Connection => _;
 #endif
             public IDbConnection Connection { get; }
             public bool IsOpen { get; }
