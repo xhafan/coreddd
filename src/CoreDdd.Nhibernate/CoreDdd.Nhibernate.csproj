@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;net461;netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net461;netstandard2.0;net8.0</TargetFrameworks>
     <Description>NHibernate persistence for CoreDdd library</Description>
     <PackageTags>CoreDdd Nhibernate</PackageTags>
   </PropertyGroup>
@@ -9,10 +9,8 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.16</Version>
-    <PackageReleaseNotes>Bug fix:
-#38 NhibernateUnitOfWork is not gracefully disposed when begin transaction throws - when disposing NhibernateUnitOfWork, improving the detection that the transaction has not been started to prevent another exception when trying to incorrectly commit
-    </PackageReleaseNotes>
+    <Version>3.2.17</Version>
+    <PackageReleaseNotes>Updating NHibernate and FluentNHibernate references to the latest version for .NET 8 and NET Standard 2.0 to get rid of vulnerability warnings.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
@@ -34,13 +32,13 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="NHibernate" Version="5.1.1" />
-    <PackageReference Include="FluentNHibernate" Version="2.1.2" />
+    <PackageReference Include="NHibernate" Version="5.5.2" />
+    <PackageReference Include="FluentNHibernate" Version="3.4.0" />
   </ItemGroup>
 
-<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-	<PackageReference Include="NHibernate" Version="5.1.1" />
-	<PackageReference Include="FluentNHibernate" Version="2.1.2" />
+<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+	<PackageReference Include="NHibernate" Version="5.5.2" />
+	<PackageReference Include="FluentNHibernate" Version="3.4.0" />
 </ItemGroup>
 
   <ItemGroup>
@@ -48,8 +46,8 @@
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40' Or '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net461'">
+    <Reference Include="System.Transactions" />
   </ItemGroup>
 
 </Project>

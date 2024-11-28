@@ -1,4 +1,4 @@
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
 #nullable enable
 using System.Reflection;
 using CoreUtils;
@@ -29,19 +29,19 @@ namespace CoreDdd.Nhibernate.Conventions
             criteria.Expect(x => x.Nullable, Is.Not.Set);
             criteria.Expect(x =>
             {
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
                 var isNullableReferenceType = _DetermineIsNullableReferenceType(x.EntityType, x.Name);
 #endif
 
                 return !x.Type.GetUnderlyingSystemType().IsSubclassOfRawGeneric(typeof(Nullable<>))
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
                        && !isNullableReferenceType
 #endif
                     ;
             });
         }
 
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
         private bool _DetermineIsNullableReferenceType(Type entityType, string propertyName) // inspired by https://stackoverflow.com/a/68757807/379279
         {
             var propertyInfo = entityType.GetProperty(propertyName);
@@ -54,7 +54,7 @@ namespace CoreDdd.Nhibernate.Conventions
         public void Accept(IAcceptanceCriteria<IManyToOneInspector> criteria)
         {
             criteria.Expect(x => x.Nullable, Is.Not.Set);
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
             criteria.Expect(x =>
             {
                 var isNullableReferenceType = _DetermineIsNullableReferenceType(x.EntityType, x.Name);

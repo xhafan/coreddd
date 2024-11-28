@@ -2,6 +2,11 @@
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
 using IntegrationTestsShared.TestEntities;
+
+#if NET8_0_OR_GREATER
+using NHibernate;
+#endif
+
 using NUnit.Framework;
 using Shouldly;
 
@@ -29,7 +34,11 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 
             void _makeTransactionDisconnected()
             {
+#if NET40 || NET45 || NET461
                 _unitOfWork.Session.Transaction.Dispose();
+#else
+                _unitOfWork.Session.GetCurrentTransaction().Dispose();
+#endif
             }
         }
 

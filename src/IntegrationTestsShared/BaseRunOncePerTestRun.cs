@@ -1,6 +1,10 @@
 using System;
 using System.Data.Common;
+#if NET8_0_OR_GREATER
+using Microsoft.Data.SqlClient;
+#else
 using System.Data.SqlClient;
+#endif
 using System.Data.SQLite;
 using System.Threading;
 using Castle.Windsor;
@@ -21,7 +25,7 @@ namespace IntegrationTestsShared
         private Mutex _mutex;
         private WindsorContainer _container;
 
-        protected abstract string GetSychronizationMutexName();
+        protected abstract string GetSynchronizationMutexName();
 
         [OneTimeSetUp]
         public void SetUp()
@@ -46,7 +50,7 @@ namespace IntegrationTestsShared
 
             void _acquireSynchronizationMutex()
             {
-                var mutexName = GetSychronizationMutexName();
+                var mutexName = GetSynchronizationMutexName();
                 _mutex = new Mutex(false, mutexName);
                 if (!_mutex.WaitOne(TimeSpan.FromSeconds(60)))
                 {

@@ -699,7 +699,9 @@ Begin failed with SQL exception
                 throw new NotImplementedException();
             }
 
+#pragma warning disable CS0618 // Type or member is obsolete
             public IMultiQuery CreateMultiQuery()
+#pragma warning restore CS0618 // Type or member is obsolete
             {
                 throw new NotImplementedException();
             }
@@ -714,7 +716,9 @@ Begin failed with SQL exception
                 throw new NotImplementedException();
             }
 
+#pragma warning disable CS0618 // Type or member is obsolete
             public IMultiCriteria CreateMultiCriteria()
+#pragma warning restore CS0618 // Type or member is obsolete
             {
                 throw new NotImplementedException();
             }
@@ -988,7 +992,9 @@ public ISessionBuilder WithOptions()
                 throw new NotImplementedException();
             }
 
+#pragma warning disable CS0618 // Type or member is obsolete
             public void RegisterSynchronization(ISynchronization synchronization)
+#pragma warning restore CS0618 // Type or member is obsolete
             {
                 throw new NotImplementedException();
             }

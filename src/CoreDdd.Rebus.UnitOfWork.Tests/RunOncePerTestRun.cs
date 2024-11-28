@@ -6,7 +6,7 @@ namespace CoreDdd.Rebus.UnitOfWork.Tests
     [SetUpFixture]
     public class RunOncePerTestRun : BaseRunOncePerTestRun
     {
-        protected override string GetSychronizationMutexName()
+        protected override string GetSynchronizationMutexName()
         {
             return GetType().Namespace;
         }

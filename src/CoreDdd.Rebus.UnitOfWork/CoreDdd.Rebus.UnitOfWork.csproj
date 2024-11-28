@@ -9,14 +9,12 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.1</Version>
-    <PackageReleaseNotes>Breaking change improvement:
-#31 Static classes RebusUnitOfWork and RebusTransactionScopeUnitOfWork not allowing to be used in multiple hosted services within one process
-    </PackageReleaseNotes>
+    <Version>3.2.2</Version>
+    <PackageReleaseNotes>Updating Rebus reference to get rid of vulnerability warnings.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rebus" Version="5.0.1" />
+    <PackageReference Include="Rebus" Version="6.6.2" />
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 
@@ -24,8 +22,8 @@
     <ProjectReference Include="..\CoreDdd\CoreDdd.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net451' Or '$(TargetFramework)' == 'net461'">
+    <Reference Include="System.Transactions" />
   </ItemGroup>
 
 </Project>

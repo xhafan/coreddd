@@ -66,7 +66,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
                 return;
             }
 
-            var tx = Session.Transaction;
+            var tx = _GetTransaction();
             try
             {
                 tx.Commit();
@@ -84,6 +84,18 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             }
         }
 
+        private ITransaction _GetTransaction()
+        {
+#if !NET40 && !NET45
+#pragma warning disable CS0618 // Type or member is obsolete
+            var tx = Session.Transaction; // todo: change this to GetCurrentTransaction - needs fixing some tests
+#pragma warning restore CS0618 // Type or member is obsolete
+#else
+            var tx = Session.Transaction;
+#endif
+            return tx;
+        }
+
         /// <summary>
         /// Rolls back the transaction if there is no ambient transaction scope.
         /// If there is an ambient transaction scope, the rollback is done by the transaction scope.
@@ -99,7 +111,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
                 return;
             }
 
-            var tx = Session.Transaction;
+            var tx = _GetTransaction();
             try
             {
                 tx.Rollback();
@@ -140,7 +152,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
                 return;
             }
 
-            var tx = Session.Transaction;
+            var tx =  _GetTransaction();
             try
             {
                 await tx.CommitAsync().ConfigureAwait(false);
@@ -173,7 +185,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
                 return;
             }
 
-            var tx = Session.Transaction;
+            var tx = _GetTransaction();
             try
             {
                 await tx.RollbackAsync().ConfigureAwait(false);
@@ -236,9 +248,17 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             {
                 return Session != null;
             }
-            
-            return Session?.Transaction != null
-                   && Session.Transaction.IsActive;
+
+            if (Session == null)
+            {
+                return false;
+            }
+
+            var transaction = _GetTransaction();
+
+            return transaction != null 
+                   && transaction.IsActive;
+
         }
     }
 }

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <Description>ASP.NET Core unit of work middlewares for CoreDdd library</Description>
     <PackageTags>CoreDdd aspnetcore unitofwork middleware</PackageTags>
   </PropertyGroup>
@@ -9,14 +9,12 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.2.1</Version>
-    <PackageReleaseNotes>Bug fix:
-#25 Add support for not creating the default request database transaction in CoreDdd.AspNetCore middlewares for certain requests - added support for not creating the default database transaction for given GET or HEAD request paths
-    </PackageReleaseNotes>
+    <Version>3.2.2</Version>
+    <PackageReleaseNotes>Targetting .NET 8 to get rid of 'Microsoft.AspNetCore.Http' vulnerability warning.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.1" />
+	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CoreDdd.AspNetCore.Middlewares;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using NUnit.Framework;
 using Shouldly;
 
@@ -20,15 +19,15 @@ namespace CoreDdd.AspNetCore.Tests.Middlewares.TransactionScopeUnitOfWorkMiddlew
         {
             _nextRequestDelegateIsInvoked = false;
             _middleware = new TransactionScopeUnitOfWorkDependencyInjectionMiddleware(
-                next: context =>
+                next: _ =>
                 {
                     _nextRequestDelegateIsInvoked = true;
                     return Task.CompletedTask;
                 },
-                getOrHeadRequestPathsWithoutTransaction: new []
-                {
-                    new Regex(@"/*.js")
-                }
+                getOrHeadRequestPathsWithoutTransaction:
+                [
+                    new Regex("/*.js")
+                ]
             );
         }
 
@@ -37,7 +36,7 @@ namespace CoreDdd.AspNetCore.Tests.Middlewares.TransactionScopeUnitOfWorkMiddlew
         public async Task next_request_delegate_is_invoked_even_with_unit_of_work_missing(string requestMethod)
         {
             var httpContext = new DefaultHttpContext();
-            var httpRequest = (DefaultHttpRequest)httpContext.Request;
+            var httpRequest = httpContext.Request;
             httpRequest.Method = requestMethod;
             httpRequest.Path = new PathString("/js/main.js");
 
