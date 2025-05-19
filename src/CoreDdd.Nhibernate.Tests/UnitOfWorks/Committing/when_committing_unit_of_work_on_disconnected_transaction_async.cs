@@ -49,7 +49,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.Committing
         {
             var ex = Should.Throw<Exception>(async () => await _unitOfWork.CommitAsync());
             ex.Message.ShouldBe("Transaction not successfully started");
-            ex.StackTrace.ShouldNotContain("RollbackAsync(");
+            ex.StackTrace!.ShouldNotContain("RollbackAsync(");
         }
     }
 }

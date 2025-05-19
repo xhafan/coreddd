@@ -10,7 +10,7 @@ namespace CoreDdd.Rebus.UnitOfWork.Tests.RebusTransactionScopeUnitOfWorks
         [Test]
         public void exception_is_thrown()
         {
-            var rebusTransactionScopeUnitOfWork = new RebusTransactionScopeUnitOfWork(unitOfWorkFactory: null);
+            var rebusTransactionScopeUnitOfWork = new RebusTransactionScopeUnitOfWork(unitOfWorkFactory: null!);
             var fakeMessageContext = new FakeMessageContext();
 
             var ex = Should.Throw<InvalidOperationException>(() => rebusTransactionScopeUnitOfWork.Create(fakeMessageContext));

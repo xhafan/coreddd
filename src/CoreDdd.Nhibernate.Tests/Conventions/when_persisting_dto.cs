@@ -1,12 +1,7 @@
-﻿using CoreDdd.Nhibernate.TestHelpers;
-using IntegrationTestsShared;
+﻿using IntegrationTestsShared;
 using IntegrationTestsShared.TestEntities;
 using NUnit.Framework;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CoreDdd.Nhibernate.Tests.Conventions
 {

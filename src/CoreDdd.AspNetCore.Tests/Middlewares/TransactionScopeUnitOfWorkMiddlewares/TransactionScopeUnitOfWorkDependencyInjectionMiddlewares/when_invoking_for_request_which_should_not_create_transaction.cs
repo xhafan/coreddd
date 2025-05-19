@@ -42,7 +42,7 @@ namespace CoreDdd.AspNetCore.Tests.Middlewares.TransactionScopeUnitOfWorkMiddlew
 
             await _middleware.InvokeAsync(
                 httpContext,
-                unitOfWork: null
+                unitOfWork: null!
             );
 
             _nextRequestDelegateIsInvoked.ShouldBe(true);

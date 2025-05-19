@@ -10,7 +10,7 @@ namespace CoreIoC.Tests
         [Test]
         public void exception_is_thrown()
         {
-            IoC.Initialize(null);
+            IoC.Initialize(null!);
 
             var ex = Should.Throw<InvalidOperationException>(() => IoC.Resolve<object>());
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace IntegrationTestsShared.TestEntities
+﻿namespace IntegrationTestsShared.TestEntities
 {
     public class TestDto
     {

@@ -1,14 +1,19 @@
-﻿using IntegrationTestsShared;
+﻿using System;
+using IntegrationTestsShared;
 using NUnit.Framework;
 
-namespace CoreDdd.Rebus.UnitOfWork.Tests
+namespace CoreDdd.Rebus.UnitOfWork.Tests;
+
+[SetUpFixture]
+public class RunOncePerTestRun : BaseRunOncePerTestRun
 {
-    [SetUpFixture]
-    public class RunOncePerTestRun : BaseRunOncePerTestRun
+    protected override string GetSynchronizationMutexName()
     {
-        protected override string GetSynchronizationMutexName()
+        var synchronizationMutexName = GetType().Namespace;
+        if (synchronizationMutexName == null)
         {
-            return GetType().Namespace;
+            throw new Exception($"{nameof(synchronizationMutexName)} is null");
         }
+        return synchronizationMutexName;
     }
 }

@@ -10,7 +10,7 @@ namespace CoreDdd.Rebus.UnitOfWork.Tests.RebusUnitOfWorks
         [Test]
         public void exception_is_thrown()
         {
-            var rebusUnitOfWork = new RebusUnitOfWork(unitOfWorkFactory: null);
+            var rebusUnitOfWork = new RebusUnitOfWork(unitOfWorkFactory: null!);
             var fakeMessageContext = new FakeMessageContext();
 
             var ex = Should.Throw<InvalidOperationException>(() => rebusUnitOfWork.Create(fakeMessageContext));

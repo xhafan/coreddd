@@ -20,7 +20,7 @@ namespace CoreDdd.Nhibernate.Tests.DomainEventsTests
 
             void _simulateDomainEventsNotInitialized()
             {
-                DomainEvents.Initialize(domainEventHandlerFactory: null);
+                DomainEvents.Initialize(domainEventHandlerFactory: null!);
             }
         }
     }

@@ -11,7 +11,7 @@ namespace CoreIoC.Tests
         [Test]
         public void not_initialized()
         {
-            IoC.Initialize(null);
+            IoC.Initialize(null!);
 
             IoC.IsInitialized().ShouldBe(false);
         }

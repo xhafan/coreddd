@@ -53,7 +53,7 @@ namespace CoreDdd.AspNetCore.Tests.Middlewares.UnitOfWorkMiddlewares.UnitOfWorkM
         {
             public IUnitOfWork Create()
             {
-                return null;
+                return null!;
             }
 
             public void Release(IUnitOfWork unitOfWork)
