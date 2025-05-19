@@ -2,10 +2,15 @@
 using CoreDdd.Nhibernate.UnitOfWorks;
 using NHibernate;
 using IQuery = CoreDdd.Queries.IQuery;
+
 #if !NET40
-using System;
 using System.Threading.Tasks;
 #endif
+
+#if NET45
+using System;
+#endif
+
 
 namespace CoreDdd.Nhibernate.Queries
 {

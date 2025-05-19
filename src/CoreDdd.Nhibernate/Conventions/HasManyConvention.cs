@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CoreUtils;
 using CoreUtils.Extensions;
 using FluentNHibernate;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
+
+#if !NET8_0_OR_GREATER
+#nullable disable
+#endif
 
 namespace CoreDdd.Nhibernate.Conventions
 {
@@ -15,9 +20,11 @@ namespace CoreDdd.Nhibernate.Conventions
     /// </summary>
     public class HasManyConvention : IHasManyConvention
     {
-        private static Action<ICollectionCascadeInstance> _collectionCascadeInstanceAction;
-        private static Func<string, string> _getBackingFieldNameFromPropertyName;
-        private static Action<IAccessInstance> _setCollectionInstanceAccess;
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+        private static Action<ICollectionCascadeInstance>? _collectionCascadeInstanceAction;
+        private static Func<string, string>? _getBackingFieldNameFromPropertyName;
+        private static Action<IAccessInstance>? _setCollectionInstanceAccess;
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
 #pragma warning disable 1591
         public static void Initialize(
@@ -33,13 +40,18 @@ namespace CoreDdd.Nhibernate.Conventions
 
         public void Apply(IOneToManyCollectionInstance instance)
         {
-            _collectionCascadeInstanceAction?.Invoke(instance.Cascade);
+            Guard.Hope(_collectionCascadeInstanceAction != null, nameof(_collectionCascadeInstanceAction) + " is null. Call Initialize() first.");
+            Guard.Hope(_getBackingFieldNameFromPropertyName != null, nameof(_getBackingFieldNameFromPropertyName) + " is null. Call Initialize() first.");
+            Guard.Hope(_setCollectionInstanceAccess != null, nameof(_setCollectionInstanceAccess) + " is null. Call Initialize() first.");
+            
+            _collectionCascadeInstanceAction.Invoke(instance.Cascade);
 
             var propertyName = instance.Member.Name;
             var parentType = instance.Member.DeclaringType;
             var parentCollectionProperty = parentType.GetInstanceProperties().FirstOrDefault(x => x.Name == propertyName);
             if (parentCollectionProperty == null) return;
 
+            
             var parentCollectionPropertyBackingFieldName = _getBackingFieldNameFromPropertyName(propertyName);
 
             var parentCollectionPropertyBackingField = parentType.GetInstanceFields().FirstOrDefault(x => x.Name == parentCollectionPropertyBackingFieldName);

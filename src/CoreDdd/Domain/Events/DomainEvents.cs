@@ -10,9 +10,8 @@ namespace CoreDdd.Domain.Events
     /// </summary>
     public static class DomainEvents // todo: implement async support for event domain handling?
     {
-        private static IDomainEventHandlerFactory _domainEventHandlerFactory;
-        private static readonly AmbientStorage<DelayedDomainEventHandlingItems> DelayedDomainEventHandlingItemsStorage =
-            new AmbientStorage<DelayedDomainEventHandlingItems>();
+        private static IDomainEventHandlerFactory _domainEventHandlerFactory = null!;
+        private static readonly AmbientStorage<DelayedDomainEventHandlingItems> DelayedDomainEventHandlingItemsStorage = new();
 
         private static bool _isDelayedDomainEventHandlingEnabled;
 
@@ -37,10 +36,7 @@ namespace CoreDdd.Domain.Events
         /// </summary>
         public static void ResetDelayedEventsStorage()
         {
-            if (DelayedDomainEventHandlingItemsStorage.Value == null)
-            {
-                DelayedDomainEventHandlingItemsStorage.Value = new DelayedDomainEventHandlingItems();
-            }
+            DelayedDomainEventHandlingItemsStorage.Value ??= new DelayedDomainEventHandlingItems();
         }
         
         /// <summary>
@@ -111,6 +107,8 @@ namespace CoreDdd.Domain.Events
         /// </summary>
         public static void RaiseDelayedEvents()
         {
+            _CheckWasInitialized();
+
             var delayedDomainEventHandlingItems = DelayedDomainEventHandlingItemsStorage.Value;
             if (delayedDomainEventHandlingItems == null) throw new InvalidOperationException("DelayedDomainEventHandlingItems is null.");
 

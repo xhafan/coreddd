@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.Queries;
 using NHibernate;
@@ -22,7 +22,7 @@ namespace CoreDdd.Nhibernate.Queries
         /// <summary>
         /// NHibernate session.
         /// </summary>
-        protected ISession Session;
+        protected readonly ISession Session;
 
         /// <summary>
         /// Initializes the instance.
@@ -30,7 +30,7 @@ namespace CoreDdd.Nhibernate.Queries
         /// <param name="unitOfWork">An instance of NHibernate unit of work</param>
         protected BaseNhibernateQueryHandler(NhibernateUnitOfWork unitOfWork)
         {
-            Session = unitOfWork.Session;
+            Session = unitOfWork.Session ?? throw new Exception("UnitOfWork Session is null");
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace CoreDdd.Nhibernate.Queries
         /// <returns>A collection of query results</returns>
         public virtual IEnumerable<TResult> Execute<TResult>(TQuery query)
         {
-            return Enumerable.Empty<TResult>();
+            return [];
         }
 
 #if !NET40
@@ -55,7 +55,7 @@ namespace CoreDdd.Nhibernate.Queries
         public virtual async Task<IEnumerable<TResult>> ExecuteAsync<TResult>(TQuery query)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            return Enumerable.Empty<TResult>();
+            return [];
         }
 #endif
     }

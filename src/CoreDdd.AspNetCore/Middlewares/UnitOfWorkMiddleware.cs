@@ -24,7 +24,7 @@ namespace CoreDdd.AspNetCore.Middlewares
         public UnitOfWorkMiddleware(
             IUnitOfWorkFactory unitOfWorkFactory,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
-            IEnumerable<Regex> getOrHeadRequestPathsWithoutTransaction = null
+            IEnumerable<Regex>? getOrHeadRequestPathsWithoutTransaction = null
         ) : base(isolationLevel, getOrHeadRequestPathsWithoutTransaction)
         {
             _unitOfWorkFactory = unitOfWorkFactory;

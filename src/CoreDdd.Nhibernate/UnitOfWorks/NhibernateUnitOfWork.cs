@@ -2,10 +2,19 @@
 using System.Transactions;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.UnitOfWorks;
+using CoreUtils;
 using NHibernate;
 
 #if !NET40 && !NET45
 using System.Threading.Tasks;
+#endif
+
+#if NET8_0_OR_GREATER
+using System.Diagnostics.CodeAnalysis;
+#endif
+
+#if !NET8_0_OR_GREATER
+#nullable disable
 #endif
 
 namespace CoreDdd.Nhibernate.UnitOfWorks
@@ -32,7 +41,11 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         /// <summary>
         /// NHibernate session associated with the unit of work.
         /// </summary>
+#if NET8_0_OR_GREATER
+        public ISession? Session { get; private set; }
+#else
         public ISession Session { get; private set; }
+#endif
 
         /// <summary>
         /// Creates a new NHibernate session and starts a transaction if there is no ambient transaction scope.
@@ -57,6 +70,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         /// </summary>
         public void Commit()
         {
+            _CheckSessionIsOpenedAndTransactionStarted();
+            
             Flush();
 
             if (_isInTransactionScope)
@@ -67,6 +82,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             }
 
             var tx = _GetTransaction();
+            Guard.Hope(tx != null, "Transaction not successfully started");
+            
             try
             {
                 tx.Commit();
@@ -84,8 +101,22 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             }
         }
 
-        private ITransaction _GetTransaction()
+#if NET8_0_OR_GREATER
+        [MemberNotNull(nameof(Session))]
+#endif
+        private void _CheckSessionIsOpenedAndTransactionStarted()
         {
+            Guard.Hope(Session != null, "Session not opened. Call BeginTransaction().");
+        }
+
+#if NET8_0_OR_GREATER
+        private ITransaction? _GetTransaction()
+#else
+        private ITransaction _GetTransaction()
+#endif        
+        {
+            _CheckSessionIsOpenedAndTransactionStarted();
+            
 #if !NET40 && !NET45
 #pragma warning disable CS0618 // Type or member is obsolete
             var tx = Session.Transaction; // todo: change this to GetCurrentTransaction - needs fixing some tests
@@ -112,6 +143,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             }
 
             var tx = _GetTransaction();
+            Guard.Hope(tx != null, "Transaction not successfully started");
+            
             try
             {
                 tx.Rollback();
@@ -133,6 +166,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         /// </summary>
         public void Flush()
         {
+            _CheckSessionIsOpenedAndTransactionStarted();
+            
             Session.Flush();
         }
 
@@ -143,6 +178,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         /// </summary>
         public async Task CommitAsync()
         {
+            _CheckSessionIsOpenedAndTransactionStarted();
+            
             await FlushAsync().ConfigureAwait(false);
 
             if (_isInTransactionScope)
@@ -152,7 +189,9 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
                 return;
             }
 
-            var tx =  _GetTransaction();
+            var tx = _GetTransaction();
+            Guard.Hope(tx != null, "Transaction not successfully started");
+            
             try
             {
                 await tx.CommitAsync().ConfigureAwait(false);
@@ -186,6 +225,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             }
 
             var tx = _GetTransaction();
+            Guard.Hope(tx != null, "Transaction not successfully started");
+            
             try
             {
                 await tx.RollbackAsync().ConfigureAwait(false);
@@ -207,6 +248,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         /// </summary>
         public Task FlushAsync()
         {
+            _CheckSessionIsOpenedAndTransactionStarted();
+            
             return Session.FlushAsync();
         }
 #endif
@@ -216,6 +259,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         /// </summary>
         public void Clear()
         {
+            _CheckSessionIsOpenedAndTransactionStarted();
+            
             Session.Clear();
         }
 
@@ -242,6 +287,9 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             }
         }
 
+#if NET8_0_OR_GREATER
+        [MemberNotNullWhen(true, nameof(Session))]
+#endif
         private bool _IsActive()
         {
             if (_isInTransactionScope)

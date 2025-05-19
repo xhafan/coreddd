@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
-
-  <PropertyGroup>
-    <Version>3.2.17</Version>
-    <PackageReleaseNotes>Updating NHibernate and FluentNHibernate references to the latest version for .NET 8 and NET Standard 2.0 to get rid of vulnerability warnings.</PackageReleaseNotes>
-  </PropertyGroup>
+  <Import Project="..\SharedAssemblyInfo.props" />
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="NHibernate" Version="4.1.1.4000" />

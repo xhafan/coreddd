@@ -7,13 +7,7 @@
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
-
-  <PropertyGroup>
-    <Version>3.2.4</Version>
-    <PackageReleaseNotes>Enhancement:  
-#45 Add support for exception data in Guard.Hope - adding back Guard.Hope method with 2 parameters (condition and message) as it was failing during runtime in projects referencing older version of CoreUtils library
-    </PackageReleaseNotes>
-  </PropertyGroup>
+  <Import Project="..\SharedAssemblyInfo.props" />
 
   <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' and '$(TargetFramework)' != 'netstandard2.1'">
     <Reference Include="System.Web" />

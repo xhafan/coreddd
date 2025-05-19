@@ -2,8 +2,9 @@ using CoreDdd.Domain;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using NHibernate;
-#if !NET40
 using System;
+
+#if !NET40
 using System.Threading.Tasks;
 #endif
 
@@ -28,14 +29,28 @@ namespace CoreDdd.Nhibernate.Repositories
             _unitOfWork = unitOfWork;
         }
 
+        private ISession Session
+        {
+            get
+            {
+                var session = _unitOfWork.Session;
+                if (session == null)
+                {
+                    throw new Exception("UnitOfWork Session is null");
+                }
+
+                return session;
+            }
+        }
+
         /// <summary>
         /// Fetches an aggregate root domain entity from the database. Does a database hit.
         /// </summary>
         /// <param name="id">An aggregate root entity id</param>
         /// <returns>An aggregate root entity, or null when not found</returns>
-        public TAggregateRoot Get(TId id)
+        public TAggregateRoot? Get(TId id)
         {
-            return _unitOfWork.Session.Get<TAggregateRoot>(id);
+            return Session.Get<TAggregateRoot>(id);
         }
 
         /// <summary>
@@ -44,9 +59,9 @@ namespace CoreDdd.Nhibernate.Repositories
         /// <param name="id">An aggregate root entity id</param>
         /// <param name="lockMode">Required lock mode</param>
         /// <returns>An aggregate root entity, or null when not found</returns>
-        public TAggregateRoot Get(TId id, LockMode lockMode)
+        public TAggregateRoot? Get(TId id, LockMode lockMode)
         {
-            return _unitOfWork.Session.Get<TAggregateRoot>(id, lockMode);
+            return Session.Get<TAggregateRoot>(id, lockMode);
         }
 
 #if !NET40
@@ -55,14 +70,14 @@ namespace CoreDdd.Nhibernate.Repositories
         /// </summary>
         /// <param name="id">An aggregate root entity id</param>
         /// <returns>An aggregate root entity, or null when not found</returns>
-        public Task<TAggregateRoot> GetAsync(TId id)
+        public Task<TAggregateRoot?> GetAsync(TId id)
         {
 #endif
 #if NET40
 #elif NET45
             throw _GetAsyncNotSupportedException();
 #else
-            return _unitOfWork.Session.GetAsync<TAggregateRoot>(id);
+            return Session.GetAsync<TAggregateRoot>(id)!;
 #endif
 #if !NET40
         }
@@ -75,14 +90,14 @@ namespace CoreDdd.Nhibernate.Repositories
         /// <param name="id">An aggregate root entity id</param>
         /// <param name="lockMode">Required lock mode</param>
         /// <returns>An aggregate root entity, or null when not found</returns>
-        public Task<TAggregateRoot> GetAsync(TId id, LockMode lockMode)
+        public Task<TAggregateRoot?> GetAsync(TId id, LockMode lockMode)
         {
 #endif
 #if NET40
 #elif NET45
             throw _GetAsyncNotSupportedException();
 #else
-            return _unitOfWork.Session.GetAsync<TAggregateRoot>(id, lockMode);
+            return Session.GetAsync<TAggregateRoot>(id, lockMode)!;
 #endif
 #if !NET40
         }
@@ -98,7 +113,7 @@ namespace CoreDdd.Nhibernate.Repositories
         /// <returns>An aggregate root domain entity proxy</returns>
         public TAggregateRoot Load(TId id)
         {
-            return _unitOfWork.Session.Load<TAggregateRoot>(id);
+            return Session.Load<TAggregateRoot>(id);
         }
 
         /// <summary>
@@ -112,7 +127,7 @@ namespace CoreDdd.Nhibernate.Repositories
         /// <returns>An aggregate root domain entity proxy</returns>
         public TAggregateRoot Load(TId id, LockMode lockMode)
         {
-            return _unitOfWork.Session.Load<TAggregateRoot>(id, lockMode);
+            return Session.Load<TAggregateRoot>(id, lockMode);
         }
 
 #if !NET40
@@ -131,7 +146,7 @@ namespace CoreDdd.Nhibernate.Repositories
 #elif NET45
             throw _GetAsyncNotSupportedException();
 #else
-            return _unitOfWork.Session.LoadAsync<TAggregateRoot>(id);
+            return Session.LoadAsync<TAggregateRoot>(id);
 #endif
 #if !NET40
         }
@@ -154,7 +169,7 @@ namespace CoreDdd.Nhibernate.Repositories
 #elif NET45
             throw _GetAsyncNotSupportedException();
 #else
-            return _unitOfWork.Session.LoadAsync<TAggregateRoot>(id, lockMode);
+            return Session.LoadAsync<TAggregateRoot>(id, lockMode);
 #endif
 #if !NET40
         }
@@ -164,12 +179,12 @@ namespace CoreDdd.Nhibernate.Repositories
         /// Saves an aggregate root domain entity into the NHibernate session, and generates the entity Id.
         /// When the session is flushed (commit flushes the session automatically), the entity is inserted or updated in the database.
         /// When the entity is transient (=newed up, not previously saved into the database), and it's Id is generated
-        /// by the database (e.g SQL server identity), the entity is inserted into the DB immediately, and not during the flush.
+        /// by the database (e.g. SQL server identity), the entity is inserted into the DB immediately, and not during the flush.
         /// </summary>
         /// <param name="aggregateRoot">An aggregate root entity</param>
         public void Save(TAggregateRoot aggregateRoot)
         {
-            _unitOfWork.Session.Save(aggregateRoot);
+            Session.Save(aggregateRoot);
         }
 
 #if !NET40
@@ -177,7 +192,7 @@ namespace CoreDdd.Nhibernate.Repositories
         /// Saves an aggregate root domain entity asynchronously into the NHibernate session, and generates the entity Id.
         /// When the session is flushed (commit flushes the session automatically), the entity is inserted or updated in the database.
         /// When the entity is transient (=newed up, not previously saved into the database), and it's Id is generated
-        /// by the database (e.g SQL server identity), the entity is inserted into the DB immediately, and not during the flush.
+        /// by the database (e.g. SQL server identity), the entity is inserted into the DB immediately, and not during the flush.
         /// </summary>
         public Task SaveAsync(TAggregateRoot aggregateRoot)
         {
@@ -186,7 +201,7 @@ namespace CoreDdd.Nhibernate.Repositories
 #elif NET45
             throw _GetAsyncNotSupportedException();
 #else
-            return _unitOfWork.Session.SaveAsync(aggregateRoot);
+            return Session.SaveAsync(aggregateRoot);
 #endif
 #if !NET40
         }
@@ -198,7 +213,7 @@ namespace CoreDdd.Nhibernate.Repositories
         /// </summary>
         public void Delete(TAggregateRoot aggregateRoot)
         {
-            _unitOfWork.Session.Delete(aggregateRoot);
+            Session.Delete(aggregateRoot);
         }
 
 #if !NET40
@@ -213,7 +228,7 @@ namespace CoreDdd.Nhibernate.Repositories
 #elif NET45
             throw _GetAsyncNotSupportedException();
 #else
-            return _unitOfWork.Session.DeleteAsync(aggregateRoot);
+            return Session.DeleteAsync(aggregateRoot);
 #endif
 #if !NET40
         }

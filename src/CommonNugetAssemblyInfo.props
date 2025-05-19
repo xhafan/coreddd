@@ -1,8 +1,8 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>3.2.0</Version>
-    <AssemblyVersion>3.2.0.0</AssemblyVersion>
+    <Version>3.3.0</Version>
+    <AssemblyVersion>3.3.0.0</AssemblyVersion>
     <FileVersion>$(Version).0</FileVersion>
     <Authors>Martin Havlišta</Authors>
     <Company></Company>
@@ -10,8 +10,9 @@
     <PackageProjectUrl>https://github.com/xhafan/coreddd</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>Enabled TransactionScopeUnitOfWorkHttpModule only for .NET 4.5.1 and higher</PackageReleaseNotes>
+    <PackageReleaseNotes>#19 Add support for nullable reference types - enabling nullable</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

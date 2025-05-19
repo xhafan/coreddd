@@ -8,6 +8,6 @@
         /// <summary>
         /// Command executed event data. For instance store here a generated id of a newly created aggregate root entity.
         /// </summary>
-        public object Args { get; set; }
+        public object? Args { get; set; }
     }
 }

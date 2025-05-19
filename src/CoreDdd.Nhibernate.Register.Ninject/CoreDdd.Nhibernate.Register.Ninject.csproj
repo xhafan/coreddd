@@ -7,12 +7,7 @@
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
-
-  <PropertyGroup>
-    <Version>3.2.5</Version>
-    <PackageReleaseNotes>New feature:  
-#8 Cannot load an aggregate root entity with locking using NhibernateRepository -  adding IoC registrations for NhibernateRepository service for Castle, Ninject and DependencyInjection (ServiceProvider)</PackageReleaseNotes>
-  </PropertyGroup>
+  <Import Project="..\SharedAssemblyInfo.props" />
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="Ninject" Version="3.2.2" />

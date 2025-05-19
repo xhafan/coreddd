@@ -9,63 +9,62 @@ using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.UnitOfWorks;
 
-namespace CoreDdd.Nhibernate.Register.Castle
+namespace CoreDdd.Nhibernate.Register.Castle;
+
+/// <summary>
+/// Registers CoreDdd NHibernate services into Castle Windsor IoC container.
+/// </summary>
+public class CoreDddNhibernateInstaller : IWindsorInstaller
 {
+    private static Func<LifestyleGroup<IUnitOfWork>, ComponentRegistration<IUnitOfWork>>? _setUnitOfWorkLifeStyleFunc;
+
     /// <summary>
-    /// Registers CoreDdd NHibernate services into Castle Windsor IoC container.
+    /// Sets NHibernate unit of work lifestyle.
+    /// For a ASP.NET app, set the lifestyle per web request: CoreDddNhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerWebRequest);
+    /// For a ASP.NET Core app, set the lifestyle as scoped: CoreDddNhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.Scoped());
+    /// For an app handling Rebus messages, set the lifestyle per Rebus message: CoreDddNhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerRebusMessage());
     /// </summary>
-    public class CoreDddNhibernateInstaller : IWindsorInstaller
+    /// <param name="setLifeStyleFunc">Set unit of work lifestyle func</param>
+    public static void SetUnitOfWorkLifeStyle(Func<LifestyleGroup<IUnitOfWork>, ComponentRegistration<IUnitOfWork>> setLifeStyleFunc)
     {
-        private static Func<LifestyleGroup<IUnitOfWork>, ComponentRegistration<IUnitOfWork>> _setUnitOfWorkLifeStyleFunc;
+        _setUnitOfWorkLifeStyleFunc = setLifeStyleFunc;
+    }
 
-        /// <summary>
-        /// Sets NHibernate unit of work lifestyle.
-        /// For a ASP.NET app, set the lifestyle per web request: CoreDddNhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerWebRequest);
-        /// For a ASP.NET Core app, set the lifestyle as scoped: CoreDddNhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.Scoped());
-        /// For an app handling Rebus messages, set the lifestyle per Rebus message: CoreDddNhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerRebusMessage());
-        /// </summary>
-        /// <param name="setLifeStyleFunc">Set unit of work lifestyle func</param>
-        public static void SetUnitOfWorkLifeStyle(Func<LifestyleGroup<IUnitOfWork>, ComponentRegistration<IUnitOfWork>> setLifeStyleFunc)
+    /// <summary>
+    /// Registers the services.
+    /// </summary>
+    /// <param name="container">Castle Windsor container</param>
+    /// <param name="store">Castle Windsor configuration store</param>
+    public void Install(IWindsorContainer container, IConfigurationStore store)
+    {
+        if (_setUnitOfWorkLifeStyleFunc == null)
         {
-            _setUnitOfWorkLifeStyleFunc = setLifeStyleFunc;
+            throw new Exception($"First call {nameof(CoreDddNhibernateInstaller)}.{nameof(SetUnitOfWorkLifeStyle)}() to set unit of work lifestyle " +
+                                $"(e.g. {nameof(CoreDddNhibernateInstaller)}.{nameof(SetUnitOfWorkLifeStyle)}(x => x.PerWebRequest)");
         }
 
-        /// <summary>
-        /// Registers the services.
-        /// </summary>
-        /// <param name="container">Castle Windsor container</param>
-        /// <param name="store">Castle Windsor configuration store</param>
-        public void Install(IWindsorContainer container, IConfigurationStore store)
-        {
-            if (_setUnitOfWorkLifeStyleFunc == null)
-            {
-                throw new Exception("First call CoreDddNhibernateInstaller.SetUnitOfWorkLifeStyle() to set unit of work lifestyle " +
-                                    "(e.g. CoreDddNhibernateInstaller.SetUnitOfWorkLifeStyle(x => x.PerWebRequest)");
-            }
+        AddTypedFactoryFacilityHelper.TryAddTypedFactoryFacility(container);
 
-            AddTypedFactoryFacilityHelper.TryAddTypedFactoryFacility(container);
+        container.Register(
 
-            container.Register(
+            Component.For(typeof (IRepository<>))
+                .ImplementedBy(typeof (NhibernateRepository<>))
+                .Forward(typeof(NhibernateRepository<>))
+                .LifeStyle.Transient,
 
-                Component.For(typeof (IRepository<>))
-                    .ImplementedBy(typeof (NhibernateRepository<>))
-                    .Forward(typeof(NhibernateRepository<>))
-                    .LifeStyle.Transient,
+            Component.For(typeof (IRepository<,>))
+                .ImplementedBy(typeof (NhibernateRepository<,>))
+                .Forward(typeof(NhibernateRepository<,>))
+                .LifeStyle.Transient,
 
-                Component.For(typeof (IRepository<,>))
-                    .ImplementedBy(typeof (NhibernateRepository<,>))
-                    .Forward(typeof(NhibernateRepository<,>))
-                    .LifeStyle.Transient,
+            Component.For<IUnitOfWorkFactory>().AsFactory(),
 
-                Component.For<IUnitOfWorkFactory>().AsFactory(),
-
-                _setUnitOfWorkLifeStyleFunc(
-                    Component.For<IUnitOfWork>()
-                        .ImplementedBy<NhibernateUnitOfWork>()
-                        .Forward<NhibernateUnitOfWork>()
-                        .LifeStyle
-                    )
-                );
-        }
+            _setUnitOfWorkLifeStyleFunc(
+                Component.For<IUnitOfWork>()
+                    .ImplementedBy<NhibernateUnitOfWork>()
+                    .Forward<NhibernateUnitOfWork>()
+                    .LifeStyle
+            )
+        );
     }
 }

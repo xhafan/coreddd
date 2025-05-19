@@ -17,7 +17,7 @@ namespace CoreDdd.Rebus.UnitOfWork
     {
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IsolationLevel _isolationLevel;
-        private readonly Action<TransactionScope> _transactionScopeEnlistmentAction;
+        private readonly Action<TransactionScope>? _transactionScopeEnlistmentAction;
 
         /// <summary>
         /// Initializes the class. Needs to be called at the application start.
@@ -29,7 +29,7 @@ namespace CoreDdd.Rebus.UnitOfWork
         public RebusTransactionScopeUnitOfWork(
             IUnitOfWorkFactory unitOfWorkFactory,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
-            Action<TransactionScope> transactionScopeEnlistmentAction = null
+            Action<TransactionScope>? transactionScopeEnlistmentAction = null
             )
         {
             _transactionScopeEnlistmentAction = transactionScopeEnlistmentAction;

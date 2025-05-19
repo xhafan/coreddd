@@ -24,16 +24,16 @@ namespace CoreUtils.AmbientStorages
     public class AmbientStorage<TData>
     {
 #if NETFRAMEWORK
-        private readonly string _key = $"{nameof(AmbientStorage<TData>)}-{Guid.NewGuid()}";
+        private readonly string _key = $"{nameof(AmbientStorage<>)}-{Guid.NewGuid()}";
 #endif
 
 #if !NET40 && !NET45
-        private readonly AsyncLocal<TData> _asyncLocalData = new AsyncLocal<TData>();
+        private readonly AsyncLocal<TData?> _asyncLocalData = new();
 #endif
         /// <summary>
         /// Data value.
         /// </summary>
-        public TData Value
+        public TData? Value
         {
             get
             {

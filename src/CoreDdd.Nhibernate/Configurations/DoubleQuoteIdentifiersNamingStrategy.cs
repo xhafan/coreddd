@@ -36,12 +36,12 @@ namespace CoreDdd.Nhibernate.Configurations
             return $"\"{propertyName}\"";
         }
 
-        public string PropertyToTableName(string className, string propertyName)
+        public string? PropertyToTableName(string className, string propertyName)
         {
             return null;
         }
 
-        public string LogicalColumnName(string columnName, string propertyName)
+        public string? LogicalColumnName(string columnName, string propertyName)
         {
             return null;
         }

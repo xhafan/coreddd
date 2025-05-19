@@ -8,7 +8,7 @@ namespace CoreIoC
     /// </summary>
     public static class IoC
     {
-        private static IContainer _container;
+        private static IContainer? _container;
 
         /// <summary>
         /// Initializes the service locator. Must be called at an application start.

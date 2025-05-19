@@ -27,8 +27,8 @@ namespace CoreDdd.AspNetCore.Middlewares
         public TransactionScopeUnitOfWorkMiddleware(
             IUnitOfWorkFactory unitOfWorkFactory,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
-            IEnumerable<Regex> getOrHeadRequestPathsWithoutTransaction = null,
-            Action<TransactionScope> transactionScopeEnlistmentAction = null
+            IEnumerable<Regex>? getOrHeadRequestPathsWithoutTransaction = null,
+            Action<TransactionScope>? transactionScopeEnlistmentAction = null
             ) : base(isolationLevel, getOrHeadRequestPathsWithoutTransaction, transactionScopeEnlistmentAction)
         {
             _unitOfWorkFactory = unitOfWorkFactory;

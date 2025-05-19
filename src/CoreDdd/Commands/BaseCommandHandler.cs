@@ -24,7 +24,7 @@ namespace CoreDdd.Commands
         /// Command executed event. Can be used for instance to raise an event with generated id for an aggregate root domain entity. 
         /// Commands should not return any values - to return values, use queries instead of commands.
         /// </summary>
-        public event Action<CommandExecutedArgs> CommandExecuted;
+        public event Action<CommandExecutedArgs>? CommandExecuted;
 
         /// <summary>
         /// Raises a command executed event.

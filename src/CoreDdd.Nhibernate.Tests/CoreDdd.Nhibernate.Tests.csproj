@@ -7,6 +7,8 @@
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
 
+  <Import Project="..\SharedAssemblyInfo.props" />
+
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="Npgsql" Version="2.2.7" />
   </ItemGroup>
@@ -25,10 +27,17 @@
     <PackageReference Include="Npgsql" Version="9.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
-	
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40' or '$(TargetFramework)' == 'net45'">
+    <PackageReference Include="Shouldly" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' != 'net40' and '$(TargetFramework)' != 'net45'">
+    <PackageReference Include="Shouldly" Version="4.3.0" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="Shouldly" Version="3.0.0" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.109.2" />
   </ItemGroup>
 

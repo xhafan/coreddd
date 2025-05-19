@@ -14,9 +14,9 @@ namespace CoreDdd.AspNet.HttpModules
         private const string TransactionScopeSessionKey = "CoreDdd_TransactionScopeUnitOfWorkHttpModule_TransactionScope";
         private const string UnitOfWorkSessionKey = "CoreDdd_TransactionScopeUnitOfWorkHttpModule_UnitOfWork";
 
-        private static IUnitOfWorkFactory _unitOfWorkFactory;
+        private static IUnitOfWorkFactory? _unitOfWorkFactory;
         private static IsolationLevel _isolationLevel;
-        private static Action<TransactionScope> _transactionScopeEnlistmentAction;
+        private static Action<TransactionScope>? _transactionScopeEnlistmentAction;
 
         /// <summary>
         /// Initializes the instance.
@@ -32,14 +32,14 @@ namespace CoreDdd.AspNet.HttpModules
         /// <summary>
         /// Initializes the class. Needs to be called when starting the web application.
         /// </summary>
-        /// <param name="unitOfWorkFactory">An unit of work factory to create a new unit of work for each web request</param>
+        /// <param name="unitOfWorkFactory">A unit of work factory to create a new unit of work for each web request</param>
         /// <param name="isolationLevel">An isolation level for the transaction scope</param>
         /// <param name="transactionScopeEnlistmentAction">An enlistment action for the transaction scope. Use to enlist another resource manager
         /// into the transaction scope</param>
         public static void Initialize(
             IUnitOfWorkFactory unitOfWorkFactory,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
-            Action<TransactionScope> transactionScopeEnlistmentAction = null
+            Action<TransactionScope>? transactionScopeEnlistmentAction = null
             )
         {
             _unitOfWorkFactory = unitOfWorkFactory;
@@ -49,7 +49,10 @@ namespace CoreDdd.AspNet.HttpModules
 
         private void Application_BeginRequest(object source, EventArgs e)
         {
-            _CheckWasInitialized();
+            if (_unitOfWorkFactory == null)
+            {
+                throw new Exception("TransactionScopeUnitOfWorkHttpModule was not initialized. Call TransactionScopeUnitOfWorkHttpModule.Initialize(..) first.");
+            }
 
             TransactionScope = _CreateTransactionScope();
             _transactionScopeEnlistmentAction?.Invoke(TransactionScope);
@@ -58,19 +61,20 @@ namespace CoreDdd.AspNet.HttpModules
             UnitOfWork.BeginTransaction();
         }
 
-        private void _CheckWasInitialized()
-        {
-            if (_unitOfWorkFactory == null)
-            {
-                throw new Exception(
-                    "TransactionScopeUnitOfWorkHttpModule was not initialized. Call TransactionScopeUnitOfWorkHttpModule.Initialize(..) first.");
-            }
-        }
-
         private void Application_EndRequest(object source, EventArgs e)
         {
             if (HttpContext.Current.Server.GetLastError() != null) return;
 
+            if (_unitOfWorkFactory == null)
+            {
+                throw new Exception("TransactionScopeUnitOfWorkHttpModule was not initialized. Call TransactionScopeUnitOfWorkHttpModule.Initialize(..) first.");
+            }   
+            
+            if (UnitOfWork == null)
+            {
+                throw new Exception("UnitOfWork is null.");
+            }            
+            
             try
             {
                 UnitOfWork.Commit();
@@ -93,6 +97,11 @@ namespace CoreDdd.AspNet.HttpModules
         {
             if (UnitOfWork == null) return;
 
+            if (_unitOfWorkFactory == null)
+            {
+                throw new Exception("TransactionScopeUnitOfWorkHttpModule was not initialized. Call TransactionScopeUnitOfWorkHttpModule.Initialize(..) first.");
+            }   
+            
             try
             {
                 UnitOfWork.Rollback();
@@ -120,9 +129,9 @@ namespace CoreDdd.AspNet.HttpModules
             set => HttpContext.Current.Items[TransactionScopeSessionKey] = value;
         }
 
-        private IUnitOfWork UnitOfWork
+        private IUnitOfWork? UnitOfWork
         {
-            get => (IUnitOfWork)HttpContext.Current.Items[UnitOfWorkSessionKey];
+            get => (IUnitOfWork?)HttpContext.Current.Items[UnitOfWorkSessionKey];
             set => HttpContext.Current.Items[UnitOfWorkSessionKey] = value;
         }
 

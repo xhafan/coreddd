@@ -45,7 +45,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
         /// <param name="unitOfWork">NHibernate unit of work</param>
         /// <param name="id">An aggregate root domain entity id</param>
         /// <returns>An aggregate root domain entity, or null when not found</returns>
-        public static TAggregateRoot Get<TAggregateRoot>(this NhibernateUnitOfWork unitOfWork, int id) 
+        public static TAggregateRoot? Get<TAggregateRoot>(this NhibernateUnitOfWork unitOfWork, int id) 
             where TAggregateRoot : Entity, IAggregateRoot
         {
             var repository = new NhibernateRepository<TAggregateRoot>(unitOfWork);
@@ -60,7 +60,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
         /// <param name="unitOfWork">NHibernate unit of work</param>
         /// <param name="id">An aggregate root domain entity id</param>
         /// <returns>An aggregate root domain entity, or null when not found</returns>
-        public static TAggregateRoot Get<TAggregateRoot, TId>(this NhibernateUnitOfWork unitOfWork, TId id) 
+        public static TAggregateRoot? Get<TAggregateRoot, TId>(this NhibernateUnitOfWork unitOfWork, TId id) 
             where TAggregateRoot : Entity<TId>, IAggregateRoot
         {
             var repository = new NhibernateRepository<TAggregateRoot, TId>(unitOfWork);

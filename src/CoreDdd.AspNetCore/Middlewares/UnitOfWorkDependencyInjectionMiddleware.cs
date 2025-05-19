@@ -24,7 +24,7 @@ namespace CoreDdd.AspNetCore.Middlewares
         public UnitOfWorkDependencyInjectionMiddleware(
             RequestDelegate next,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
-            IEnumerable<Regex> getOrHeadRequestPathsWithoutTransaction = null
+            IEnumerable<Regex>? getOrHeadRequestPathsWithoutTransaction = null
             ) : base(isolationLevel, getOrHeadRequestPathsWithoutTransaction)
         {
             _next = next;

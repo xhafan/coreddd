@@ -15,20 +15,20 @@ namespace CoreDdd.Domain
         /// <summary>
         /// Entity id.
         /// </summary>
-        public virtual TId Id { get; protected set; }
+        public virtual TId Id { get; protected set; } = default!;
 
         /// <summary>
         /// Determines whether two entity instances are equal.
         /// </summary>
         /// <param name="otherObject">the object to compare with the current entity</param>
         /// <returns>true if the other object is an entity of the same type with the same id, otherwise returns false</returns>
-        public override bool Equals(object otherObject)
+        public override bool Equals(object? otherObject)
         {
             var other = otherObject as Entity<TId>;
             if (ReferenceEquals(other, null)) return false;
             if (ReferenceEquals(other, this)) return true;
 
-            if (!_isTransient(other) && !_isTransient(this) && Id.Equals(other.Id))
+            if (!_isTransient(other) && !_isTransient(this) && Equals(Id, other.Id))
             {
                 var otherType = other.GetUnproxiedType();
                 var thisType = GetUnproxiedType();
@@ -66,13 +66,13 @@ namespace CoreDdd.Domain
         /// <returns>The default hash code for transient (Id == default(TId)) entities, and Id.GetHashCode() for non-transient entities</returns>
         public override int GetHashCode()
         {
-            if (!_originalHashCode.HasValue)
-            {
-                _originalHashCode = Equals(Id, default(TId))
-                    ? base.GetHashCode()
-                    : Id.GetHashCode();
-            }
+            // ReSharper disable NonReadonlyMemberInGetHashCode
+            _originalHashCode ??= Equals(Id, default(TId))
+                // ReSharper disable once BaseObjectGetHashCodeCallInGetHashCode
+                ? base.GetHashCode()
+                : Id!.GetHashCode();
             return _originalHashCode.Value; // hashset/dictionary requires that GetHashCode() returns the same value for the lifetime of the object
+            // ReSharper restore NonReadonlyMemberInGetHashCode
         }
 
         /// <summary>

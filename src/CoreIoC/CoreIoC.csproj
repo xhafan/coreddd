@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
-
-  <PropertyGroup>
-    <Version>3.2.2</Version>
-    <PackageReleaseNotes>Improvement:  
-#43 No way to determine if IoC service locator was initialized - adding a new method IoC.Uninitialize()
-    </PackageReleaseNotes>
-  </PropertyGroup>
+  <Import Project="..\SharedAssemblyInfo.props" />
 
 </Project>

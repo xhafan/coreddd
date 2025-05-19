@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
-
-  <PropertyGroup>
-    <Version>3.2.2</Version>
-    <PackageReleaseNotes>Updating Rebus reference to get rid of vulnerability warnings.</PackageReleaseNotes>
-  </PropertyGroup>
+  <Import Project="..\SharedAssemblyInfo.props" />
 
   <ItemGroup>
     <PackageReference Include="Rebus" Version="6.6.2" />

@@ -6,46 +6,45 @@ using CoreDdd.UnitOfWorks;
 using Ninject.Modules;
 using Ninject.Syntax;
 
-namespace CoreDdd.Nhibernate.Register.Ninject
+namespace CoreDdd.Nhibernate.Register.Ninject;
+
+/// <summary>
+/// Registers CoreDdd NHibernate services into Ninject IoC container.
+/// </summary>
+public class CoreDddNhibernateBindings : NinjectModule
 {
+    private static Func<IBindingInSyntax<NhibernateUnitOfWork>,
+        IBindingNamedWithOrOnSyntax<NhibernateUnitOfWork>>? _setUnitOfWorkLifeStyleFunc;
+
     /// <summary>
-    /// Registers CoreDdd NHibernate services into Ninject IoC container.
+    /// Sets NHibernate unit of work lifestyle.
+    /// For a ASP.NET app, set the lifestyle per web request: CoreDddNhibernateBindings.SetUnitOfWorkLifeStyle(x => x.InRequestScope());
     /// </summary>
-    public class CoreDddNhibernateBindings : NinjectModule
+    /// <param name="setLifeStyleFunc">Set unit of work lifestyle func</param>
+    public static void SetUnitOfWorkLifeStyle(
+        Func<IBindingInSyntax<NhibernateUnitOfWork>,
+            IBindingNamedWithOrOnSyntax<NhibernateUnitOfWork>> setLifeStyleFunc
+    )
     {
-        private static Func<IBindingInSyntax<NhibernateUnitOfWork>,
-            IBindingNamedWithOrOnSyntax<NhibernateUnitOfWork>> _setUnitOfWorkLifeStyleFunc;
+        _setUnitOfWorkLifeStyleFunc = setLifeStyleFunc;
+    }
 
-        /// <summary>
-        /// Sets NHibernate unit of work lifestyle.
-        /// For a ASP.NET app, set the lifestyle per web request: CoreDddNhibernateBindings.SetUnitOfWorkLifeStyle(x => x.InRequestScope());
-        /// </summary>
-        /// <param name="setLifeStyleFunc">Set unit of work lifestyle func</param>
-        public static void SetUnitOfWorkLifeStyle(
-            Func<IBindingInSyntax<NhibernateUnitOfWork>,
-                IBindingNamedWithOrOnSyntax<NhibernateUnitOfWork>> setLifeStyleFunc
-        )
+    /// <summary>
+    /// Registers the services.
+    /// </summary>
+    public override void Load()
+    {
+        if (_setUnitOfWorkLifeStyleFunc == null)
         {
-            _setUnitOfWorkLifeStyleFunc = setLifeStyleFunc;
+            throw new Exception($"First call {nameof(CoreDddNhibernateBindings)}.{nameof(SetUnitOfWorkLifeStyle)}() to set unit of work lifestyle " +
+                                $"(e.g. {nameof(CoreDddNhibernateBindings)}.{nameof(SetUnitOfWorkLifeStyle)}(x => x.InRequestScope())");
         }
 
-        /// <summary>
-        /// Registers the services.
-        /// </summary>
-        public override void Load()
-        {
-            if (_setUnitOfWorkLifeStyleFunc == null)
-            {
-                throw new Exception("First call CoreDddNhibernateBindings.SetUnitOfWorkLifeStyle() to set unit of work lifestyle " +
-                                    "(e.g. CoreDddNhibernateBindings.SetUnitOfWorkLifeStyle(x => x.InRequestScope())");
-            }
+        Bind(typeof(IRepository<>), typeof(NhibernateRepository<>)).To(typeof(NhibernateRepository<>)).InTransientScope();
+        Bind(typeof(IRepository<,>), typeof(NhibernateRepository<,>)).To(typeof(NhibernateRepository<,>)).InTransientScope();
 
-            Bind(typeof(IRepository<>), typeof(NhibernateRepository<>)).To(typeof(NhibernateRepository<>)).InTransientScope();
-            Bind(typeof(IRepository<,>), typeof(NhibernateRepository<,>)).To(typeof(NhibernateRepository<,>)).InTransientScope();
+        Bind<IUnitOfWorkFactory>().To<UnitOfWorkFactory>().InSingletonScope();
 
-            Bind<IUnitOfWorkFactory>().To<UnitOfWorkFactory>().InSingletonScope();
-
-            _setUnitOfWorkLifeStyleFunc(Bind<IUnitOfWork, NhibernateUnitOfWork>().To<NhibernateUnitOfWork>());
-        }
+        _setUnitOfWorkLifeStyleFunc(Bind<IUnitOfWork, NhibernateUnitOfWork>().To<NhibernateUnitOfWork>());
     }
 }

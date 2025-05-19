@@ -27,7 +27,12 @@ namespace CoreDdd.TestHelpers.DomainEvents
         /// <returns>A collection of domain event handlers</returns>
         public IEnumerable<IDomainEventHandler<TDomainEvent>> Create<TDomainEvent>() where TDomainEvent : IDomainEvent
         {
-            yield return new FakeDomainEventHandler<TDomainEvent>(_onDomainEventHandled as Action<TDomainEvent>);
+            var onDomainEventHandled = _onDomainEventHandled as Action<TDomainEvent>;
+            if (onDomainEventHandled == null)
+            {
+                throw new Exception(nameof(onDomainEventHandled) + " is null");
+            }
+            yield return new FakeDomainEventHandler<TDomainEvent>(onDomainEventHandled);
         }
         
         /// <summary>

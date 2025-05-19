@@ -39,8 +39,8 @@ namespace CoreDdd.Nhibernate.Configurations
         /// <param name="connectionString">Connecting string if not present in the XML file</param>
         protected BaseNhibernateConfigurator(
             bool shouldMapDtos = true,
-            string configurationFileName = null,
-            string connectionString = null
+            string? configurationFileName = null,
+            string? connectionString = null
             )
         {
             ConfigureNhibernate(
@@ -65,8 +65,8 @@ namespace CoreDdd.Nhibernate.Configurations
         /// <param name="configuration">NHibernate configuration</param>
         protected virtual void ConfigureNhibernate(
             bool shouldMapDtos, 
-            string configurationFileName,
-            string connectionString,
+            string? configurationFileName,
+            string? connectionString,
             out ISessionFactory sessionFactory,
             out Configuration configuration
             )
@@ -322,7 +322,7 @@ namespace CoreDdd.Nhibernate.Configurations
         /// Gets a path to generate NHibernate mapping xml files.
         /// </summary>
         /// <returns>A path to an existing dictionary</returns>
-        protected virtual string GetExportNhibernateMappingsPath()
+        protected virtual string? GetExportNhibernateMappingsPath()
         {
             return null;
         }

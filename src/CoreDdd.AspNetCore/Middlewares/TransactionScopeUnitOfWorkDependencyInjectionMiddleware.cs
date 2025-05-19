@@ -27,8 +27,8 @@ namespace CoreDdd.AspNetCore.Middlewares
         public TransactionScopeUnitOfWorkDependencyInjectionMiddleware(
             RequestDelegate next,
             IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
-            IEnumerable<Regex> getOrHeadRequestPathsWithoutTransaction = null,
-            Action<TransactionScope> transactionScopeEnlistmentAction = null
+            IEnumerable<Regex>? getOrHeadRequestPathsWithoutTransaction = null,
+            Action<TransactionScope>? transactionScopeEnlistmentAction = null
             ) : base(isolationLevel, getOrHeadRequestPathsWithoutTransaction, transactionScopeEnlistmentAction)
         {
             _next = next;

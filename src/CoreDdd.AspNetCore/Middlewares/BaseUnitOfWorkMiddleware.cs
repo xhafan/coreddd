@@ -19,7 +19,7 @@ namespace CoreDdd.AspNetCore.Middlewares
     public abstract class BaseUnitOfWorkMiddleware
     {
         private readonly IsolationLevel _isolationLevel;
-        private readonly IEnumerable<Regex> _getOrHeadRequestPathsWithoutTransaction;
+        private readonly IEnumerable<Regex>? _getOrHeadRequestPathsWithoutTransaction;
 
         /// <summary>
         /// Initializes the instance.
@@ -28,7 +28,7 @@ namespace CoreDdd.AspNetCore.Middlewares
         /// <param name="getOrHeadRequestPathsWithoutTransaction">List of GET or HEAD request path regexes for which the transaction will not be created</param>
         protected BaseUnitOfWorkMiddleware(
             IsolationLevel isolationLevel,
-            IEnumerable<Regex> getOrHeadRequestPathsWithoutTransaction
+            IEnumerable<Regex>? getOrHeadRequestPathsWithoutTransaction
             )
         {
             _isolationLevel = isolationLevel;
@@ -45,7 +45,8 @@ namespace CoreDdd.AspNetCore.Middlewares
         protected async Task InvokeAsync(HttpContext context, RequestDelegate next, IUnitOfWork unitOfWork)
         {
             if (_getOrHeadRequestPathsWithoutTransaction != null 
-                && (context.Request.Method == WebRequestMethods.Http.Get || context.Request.Method == WebRequestMethods.Http.Head) 
+                && context.Request.Method is WebRequestMethods.Http.Get or WebRequestMethods.Http.Head 
+                && context.Request.Path.Value != null
                 && _getOrHeadRequestPathsWithoutTransaction.Any(x => x.IsMatch(context.Request.Path.Value)))
             {
                 await next.Invoke(context).ConfigureAwait(false);

@@ -82,7 +82,7 @@ namespace CoreUtils
 #endif
             bool condition, 
             string message,
-            IDictionary data
+            IDictionary? data
             )
             where TException : Exception
         {

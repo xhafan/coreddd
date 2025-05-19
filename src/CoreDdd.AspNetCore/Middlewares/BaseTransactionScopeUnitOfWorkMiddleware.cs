@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Http;
 namespace CoreDdd.AspNetCore.Middlewares
 {
     /// <summary>
-    /// This class is a base class for transaction scope middlewares. There are two way to define a middleware:
+    /// This class is a base class for transaction scope middlewares. There are two ways to define a middleware:
     /// 1) A middleware which does not implement a <see cref="IMiddleware"/> interface (used by ASP.NET Core Dependency injection IoC).
     /// 2) A middleware which implements a <see cref="IMiddleware"/> interface (used by Castle Windsor IoC and potentially other IoC containers).
     /// This class contains a code which is shared between those two middleware implementations.
@@ -19,8 +19,8 @@ namespace CoreDdd.AspNetCore.Middlewares
     public abstract class BaseTransactionScopeUnitOfWorkMiddleware
     {
         private readonly IsolationLevel _isolationLevel;
-        private readonly IEnumerable<Regex> _getOrHeadRequestPathsWithoutTransaction;
-        private readonly Action<TransactionScope> _transactionScopeEnlistmentAction;
+        private readonly IEnumerable<Regex>? _getOrHeadRequestPathsWithoutTransaction;
+        private readonly Action<TransactionScope>? _transactionScopeEnlistmentAction;
 
         /// <summary>
         /// Initializes the instance.
@@ -31,8 +31,8 @@ namespace CoreDdd.AspNetCore.Middlewares
         /// into the transaction scope</param>
         protected BaseTransactionScopeUnitOfWorkMiddleware(
             IsolationLevel isolationLevel,
-            IEnumerable<Regex> getOrHeadRequestPathsWithoutTransaction,
-            Action<TransactionScope> transactionScopeEnlistmentAction
+            IEnumerable<Regex>? getOrHeadRequestPathsWithoutTransaction,
+            Action<TransactionScope>? transactionScopeEnlistmentAction
         )
         {
             _isolationLevel = isolationLevel;
@@ -51,6 +51,7 @@ namespace CoreDdd.AspNetCore.Middlewares
         {
             if (_getOrHeadRequestPathsWithoutTransaction != null
                 && (context.Request.Method == WebRequestMethods.Http.Get || context.Request.Method == WebRequestMethods.Http.Head)
+                && context.Request.Path.Value != null
                 && _getOrHeadRequestPathsWithoutTransaction.Any(x => x.IsMatch(context.Request.Path.Value)))
             {
                 await next.Invoke(context).ConfigureAwait(false);

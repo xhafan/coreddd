@@ -17,7 +17,7 @@ namespace CoreDdd.Domain.Repositories
         /// </summary>
         /// <param name="id">An aggregate root entity id</param>
         /// <returns>An aggregate root entity, or null when not found</returns>
-        TAggregateRoot Get(TId id);
+        TAggregateRoot? Get(TId id);
 
         /// <summary>
         /// Returns an aggregate root entity proxy without the repository hit. The aggregate root proxy 
@@ -47,7 +47,7 @@ namespace CoreDdd.Domain.Repositories
         /// </summary>
         /// <param name="id">An aggregate root entity id</param>
         /// <returns>An aggregate root entity, or null when not found</returns>
-        Task<TAggregateRoot> GetAsync(TId id);
+        Task<TAggregateRoot?> GetAsync(TId id);
 
         /// <summary>
         /// Async returns an aggregate root entity proxy without the repository hit. The aggregate root proxy 

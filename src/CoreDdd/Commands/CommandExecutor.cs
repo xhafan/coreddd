@@ -66,6 +66,6 @@ namespace CoreDdd.Commands
         /// <summary>
         /// Command executed event, passed down into a command handler, and optionally raised by a command handler.
         /// </summary>
-        public event Action<CommandExecutedArgs> CommandExecuted;
+        public event Action<CommandExecutedArgs>? CommandExecuted;
     }
 }
