@@ -24,7 +24,7 @@ namespace CoreUtils.AmbientStorages
     public class AmbientStorage<TData>
     {
 #if NETFRAMEWORK
-        private readonly string _key = $"{nameof(AmbientStorage<>)}-{Guid.NewGuid()}";
+        private readonly string _key = $"{nameof(AmbientStorage<TData>)}-{Guid.NewGuid()}";
 #endif
 
 #if !NET40 && !NET45
