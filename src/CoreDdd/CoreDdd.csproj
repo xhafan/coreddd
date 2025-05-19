@@ -15,6 +15,11 @@ ASP.NET MVC and ASP.NET Core MVC demo email marketing app demonstrating CoreDdd 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
   <Import Project="..\SharedAssemblyInfo.props" />
 
+  <PropertyGroup>
+    <Version>3.3.1</Version>
+    <PackageReleaseNotes>#19 Add support for nullable reference types - adding nullable support for Entity's == and != operators</PackageReleaseNotes>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\CoreUtils\CoreUtils.csproj" />
   </ItemGroup>
