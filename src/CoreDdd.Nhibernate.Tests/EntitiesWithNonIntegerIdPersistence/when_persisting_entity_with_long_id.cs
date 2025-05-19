@@ -10,7 +10,7 @@ namespace CoreDdd.Nhibernate.Tests.EntitiesWithNonIntegerIdPersistence
     public class when_persisting_entity_with_long_id : BasePersistenceTest
     {
         [Test]
-        public void entity_with_long_id_can_be_persisted_and_retreieved()
+        public void entity_with_long_id_can_be_persisted_and_retrieved()
         {
             var entityWithLongId = new EntityWithLongId();
 

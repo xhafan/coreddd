@@ -81,7 +81,7 @@ namespace CoreDdd.Domain
         /// <param name="entityOne">Entity one to compare</param>
         /// <param name="entityTwo">Entity two to compare</param>
         /// <returns>True if entities are equal</returns>
-        public static bool operator ==(Entity<TId> entityOne, Entity<TId> entityTwo)
+        public static bool operator ==(Entity<TId>? entityOne, Entity<TId>? entityTwo)
         {
             return Equals(entityOne, entityTwo);
         }
@@ -92,7 +92,7 @@ namespace CoreDdd.Domain
         /// <param name="entityOne">Entity one to compare</param>
         /// <param name="entityTwo">Entity two to compare</param>
         /// <returns>True if entities are not equal</returns>
-        public static bool operator !=(Entity<TId> entityOne, Entity<TId> entityTwo)
+        public static bool operator !=(Entity<TId>? entityOne, Entity<TId>? entityTwo)
         {
             return !Equals(entityOne, entityTwo);
         }
