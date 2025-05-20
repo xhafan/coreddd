@@ -53,6 +53,9 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         /// handled by the transaction scope.
         /// </summary>
         /// <param name="isolationLevel">Isolation level for the transaction</param>
+#if NET8_0_OR_GREATER
+        [MemberNotNull(nameof(Session))]
+#endif
         public void BeginTransaction(System.Data.IsolationLevel isolationLevel = System.Data.IsolationLevel.Unspecified)
         {
             _isInTransactionScope = Transaction.Current != null;
