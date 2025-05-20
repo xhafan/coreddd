@@ -9,6 +9,11 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
   <Import Project="..\SharedAssemblyInfo.props" />
 
+  <PropertyGroup>
+    <Version>3.3.1</Version>
+    <PackageReleaseNotes>#46 CoreDdd.AspNetCore referencing deprecated package 'Microsoft.AspNetCore.Http' 2.1.1 with high severity vulnerability - changing target framework from .NET 8 to .NET Core 3.1 - the minimal .NET Core framework available - in order not to force anybody to upgrade to .NET 8</PackageReleaseNotes>
+  </PropertyGroup>
+
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
