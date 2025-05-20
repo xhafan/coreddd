@@ -10,8 +10,8 @@
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.3.1</Version>
-    <PackageReleaseNotes>#19 Add support for nullable reference types - exposing NhibernateRepository.Session property as not-nullable protected member for derived repositories</PackageReleaseNotes>
+    <Version>3.3.2</Version>
+    <PackageReleaseNotes>#19 Add support for nullable reference types - promising NhibernateUnitOfWork.Session being not null after NhibernateUnitOfWork.BeginTransaction call</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
