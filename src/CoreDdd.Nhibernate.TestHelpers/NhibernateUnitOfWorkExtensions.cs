@@ -1,4 +1,5 @@
-﻿using CoreDdd.Domain;
+﻿using System;
+using CoreDdd.Domain;
 using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
 
@@ -10,7 +11,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
     public static class NhibernateUnitOfWorkExtensions
     {
         /// <summary>
-        /// Saves an aggregate root domain entity using NhibernateRepository.
+        /// Saves an aggregate root domain entity using NhibernateRepository.Save().
         /// </summary>
         /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
         /// <param name="unitOfWork">NHibernate unit of work</param>
@@ -24,7 +25,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
         }
 
         /// <summary>
-        /// Saves an aggregate root domain entity using NhibernateRepository.
+        /// Saves an aggregate root domain entity using NhibernateRepository.Save().
         /// </summary>
         /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
         /// <typeparam name="TId">Entity Id type</typeparam>
@@ -39,7 +40,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
         }
 
         /// <summary>
-        /// Fetches an aggregate root domain entity from the database using NhibernateRepository.
+        /// Fetches an aggregate root domain entity from the database using NhibernateRepository.Get().
         /// </summary>
         /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
         /// <param name="unitOfWork">NHibernate unit of work</param>
@@ -53,7 +54,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
         }
 
         /// <summary>
-        /// Fetches an aggregate root domain entity from the database using NhibernateRepository.
+        /// Fetches an aggregate root domain entity from the database using NhibernateRepository.Get().
         /// </summary>
         /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
         /// <typeparam name="TId">Entity Id type</typeparam>
@@ -66,9 +67,42 @@ namespace CoreDdd.Nhibernate.TestHelpers
             var repository = new NhibernateRepository<TAggregateRoot, TId>(unitOfWork);
             return repository.Get(id);
         }
+        
+        /// <summary>
+        /// Fetches an aggregate root domain entity from the database using NhibernateRepository.LoadById().
+        /// Throws an exception if the aggregate root domain entity is not found.
+        /// </summary>
+        /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
+        /// <param name="unitOfWork">NHibernate unit of work</param>
+        /// <param name="id">An aggregate root domain entity id</param>
+        /// <returns>An aggregate root domain entity</returns>
+        /// <exception cref="Exception">Thrown when the entity with the given id does not exist.</exception>
+        public static TAggregateRoot LoadById<TAggregateRoot>(this NhibernateUnitOfWork unitOfWork, int id) 
+            where TAggregateRoot : Entity, IAggregateRoot
+        {
+            var repository = new NhibernateRepository<TAggregateRoot>(unitOfWork);
+            return repository.LoadById(id);
+        }       
 
         /// <summary>
-        /// Loads an aggregate root domain entity proxy using NhibernateRepository.
+        /// Fetches an aggregate root domain entity from the database using NhibernateRepository.LoadById().
+        /// Throws an exception if the aggregate root domain entity is not found.
+        /// </summary>
+        /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
+        /// <typeparam name="TId">Entity Id type</typeparam>
+        /// <param name="unitOfWork">NHibernate unit of work</param>
+        /// <param name="id">An aggregate root domain entity id</param>
+        /// <returns>An aggregate root domain entity</returns>
+        /// <exception cref="Exception">Thrown when the entity with the given id does not exist.</exception>
+        public static TAggregateRoot LoadById<TAggregateRoot, TId>(this NhibernateUnitOfWork unitOfWork, TId id) 
+            where TAggregateRoot : Entity<TId>, IAggregateRoot
+        {
+            var repository = new NhibernateRepository<TAggregateRoot, TId>(unitOfWork);
+            return repository.LoadById(id);
+        }        
+        
+        /// <summary>
+        /// Loads an aggregate root domain entity proxy using NhibernateRepository.Load().
         /// </summary>
         /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
         /// <param name="unitOfWork">NHibernate unit of work</param>
@@ -82,7 +116,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
         }
 
         /// <summary>
-        /// Loads an aggregate root domain entity proxy using NhibernateRepository.
+        /// Loads an aggregate root domain entity proxy using NhibernateRepository.Load().
         /// </summary>
         /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
         /// <typeparam name="TId">Entity Id type</typeparam>
@@ -97,7 +131,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
         }
 
         /// <summary>
-        /// Deletes an aggregate root domain entity using NhibernateRepository.
+        /// Deletes an aggregate root domain entity using NhibernateRepository.Delete().
         /// </summary>
         /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
         /// <param name="unitOfWork">NHibernate unit of work</param>
@@ -111,7 +145,7 @@ namespace CoreDdd.Nhibernate.TestHelpers
         }
 
         /// <summary>
-        /// Deletes an aggregate root domain entity using NhibernateRepository.
+        /// Deletes an aggregate root domain entity using NhibernateRepository.Delete().
         /// </summary>
         /// <typeparam name="TAggregateRoot">An aggregate root domain entity type</typeparam>
         /// <typeparam name="TId">Entity Id type</typeparam>

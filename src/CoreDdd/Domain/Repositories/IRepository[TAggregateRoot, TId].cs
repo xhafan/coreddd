@@ -1,4 +1,6 @@
-#if !NET40
+
+using System;
+#if !NET40 && !NET45
 using System.Threading.Tasks;
 #endif
 
@@ -20,8 +22,16 @@ namespace CoreDdd.Domain.Repositories
         TAggregateRoot? Get(TId id);
 
         /// <summary>
-        /// Returns an aggregate root entity proxy without the repository hit. The aggregate root proxy 
-        /// does a repository hit to fetch the real data when the aggregate root is accessed.
+        /// Fetches an aggregate root domain entity from the database. Does a database hit. Throws an exception if the aggregate root domain entity is not found.
+        /// </summary>
+        /// <param name="id">An aggregate root entity id</param>
+        /// <returns>An aggregate root entity.</returns>
+        /// <exception cref="Exception">Thrown when the entity with the given id not found</exception>
+        TAggregateRoot LoadById(TId id);
+        
+        /// <summary>
+        /// Returns an aggregate root entity proxy without the database hit. The aggregate root proxy 
+        /// does a database hit to fetch the real data when the aggregate root is accessed.
         /// See https://stackoverflow.com/a/2125711/379279.
         /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
         /// </summary>
@@ -41,7 +51,7 @@ namespace CoreDdd.Domain.Repositories
         /// <param name="aggregateRoot">An aggregate root entity</param>
         void Delete(TAggregateRoot aggregateRoot);
 
-#if !NET40
+#if !NET40 && !NET45
         /// <summary>
         /// Async fetches an aggregate root entity from a repository.
         /// </summary>
@@ -50,8 +60,16 @@ namespace CoreDdd.Domain.Repositories
         Task<TAggregateRoot?> GetAsync(TId id);
 
         /// <summary>
-        /// Async returns an aggregate root entity proxy without the repository hit. The aggregate root proxy 
-        /// does a repository hit to fetch the real data when the aggregate root is accessed.
+        /// Fetches an aggregate root domain entity from the database. Does a database hit. Throws an exception if the aggregate root domain entity is not found.
+        /// </summary>
+        /// <param name="id">An aggregate root entity id</param>
+        /// <returns>An aggregate root entity.</returns>
+        /// <exception cref="Exception">Thrown when the entity with the given id not found.</exception>
+        Task<TAggregateRoot> LoadByIdAsync(TId id);
+        
+        /// <summary>
+        /// Async returns an aggregate root entity proxy without the database hit. The aggregate root proxy 
+        /// does a database hit to fetch the real data when the aggregate root is accessed.
         /// See https://stackoverflow.com/a/2125711/379279.
         /// <remarks>Throws an exception when the object is accessed and the entity is not found</remarks>
         /// </summary>
