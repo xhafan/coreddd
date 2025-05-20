@@ -9,6 +9,11 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
   <Import Project="..\SharedAssemblyInfo.props" />
 
+  <PropertyGroup>
+    <Version>3.3.1</Version>
+    <PackageReleaseNotes>#19 Add support for nullable reference types - adding a new repository methods LoadById and LoadByIdAsync which throws an exception when the aggregate root entity is not found</PackageReleaseNotes>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\CoreDdd.Nhibernate\CoreDdd.Nhibernate.csproj" />
   </ItemGroup>
