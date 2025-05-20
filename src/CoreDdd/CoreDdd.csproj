@@ -16,8 +16,8 @@ ASP.NET MVC and ASP.NET Core MVC demo email marketing app demonstrating CoreDdd 
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.3.1</Version>
-    <PackageReleaseNotes>#19 Add support for nullable reference types - adding nullable support for Entity's == and != operators</PackageReleaseNotes>
+    <Version>3.3.2</Version>
+    <PackageReleaseNotes>#19 Add support for nullable reference types - adding a new repository methods LoadById and LoadByIdAsync which throws an exception when the aggregate root entity is not found</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
