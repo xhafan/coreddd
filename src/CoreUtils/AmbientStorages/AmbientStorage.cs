@@ -28,12 +28,12 @@ namespace CoreUtils.AmbientStorages
 #endif
 
 #if !NET40 && !NET45
-        private readonly AsyncLocal<TData?> _asyncLocalData = new();
+        private readonly AsyncLocal<TData> _asyncLocalData = new();
 #endif
         /// <summary>
         /// Data value.
         /// </summary>
-        public TData? Value
+        public TData Value
         {
             get
             {
