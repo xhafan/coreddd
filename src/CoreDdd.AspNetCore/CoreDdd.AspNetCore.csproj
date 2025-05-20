@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <Description>ASP.NET Core unit of work middlewares for CoreDdd library</Description>
     <PackageTags>CoreDdd aspnetcore unitofwork middleware</PackageTags>
   </PropertyGroup>
@@ -10,7 +10,7 @@
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <ItemGroup>
-	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
