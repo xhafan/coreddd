@@ -16,8 +16,8 @@ ASP.NET MVC and ASP.NET Core MVC demo email marketing app demonstrating CoreDdd 
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.3.2</Version>
-    <PackageReleaseNotes>#19 Add support for nullable reference types - adding a new repository methods LoadById and LoadByIdAsync which throws an exception when the aggregate root entity is not found</PackageReleaseNotes>
+    <Version>3.3.3</Version>
+    <PackageReleaseNotes>#19 Add support for nullable reference types - fixing UnitOfWorkDependencyInjectionMiddleware throwing "domain events not initialized" exception when raising delayed domain events (a bug introduced by the recent nullable refactoring)</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
