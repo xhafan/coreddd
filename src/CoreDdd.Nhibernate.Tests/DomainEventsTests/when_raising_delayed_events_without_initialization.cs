@@ -1,5 +1,7 @@
 using System;
 using CoreDdd.Domain.Events;
+using CoreDdd.TestHelpers.DomainEvents;
+using IntegrationTestsShared.TestEntities;
 using NUnit.Framework;
 using Shouldly;
 
@@ -11,7 +13,20 @@ public class when_raising_delayed_events_without_initialization
     [SetUp]
     public void Context()
     {
-        DomainEvents.Initialize(null!);
+        var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(_ => { });
+        DomainEvents.Initialize(domainEventHandlerFactory, isDelayedDomainEventHandlingEnabled: true);
+        
+        DomainEvents.ResetDelayedEventsStorage();
+        
+        DomainEvents.RaiseEvent(new TestDomainEvent());
+        
+        _simulateDomainEventsNotInitialized();
+        return;
+
+        void _simulateDomainEventsNotInitialized()
+        {
+            DomainEvents.Initialize(null!, isDelayedDomainEventHandlingEnabled: true);
+        }
     }
 
     [Test]

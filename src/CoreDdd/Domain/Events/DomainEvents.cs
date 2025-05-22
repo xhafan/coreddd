@@ -10,8 +10,8 @@ namespace CoreDdd.Domain.Events
     /// </summary>
     public static class DomainEvents // todo: implement async support for event domain handling?
     {
-        private static IDomainEventHandlerFactory _domainEventHandlerFactory = null!;
-        private static readonly AmbientStorage<DelayedDomainEventHandlingItems> DelayedDomainEventHandlingItemsStorage = new();
+        private static IDomainEventHandlerFactory? _domainEventHandlerFactory;
+        private static readonly AmbientStorage<DelayedDomainEventHandlingItems?> DelayedDomainEventHandlingItemsStorage = new();
 
         private static bool _isDelayedDomainEventHandlingEnabled;
 
@@ -46,9 +46,9 @@ namespace CoreDdd.Domain.Events
         /// <typeparam name="TDomainEvent">A domain event type</typeparam>
         /// <param name="domainEvent">A domain event instance</param>
         public static void RaiseEvent<TDomainEvent>(TDomainEvent domainEvent) where TDomainEvent : IDomainEvent
-        {
+        {            
             _CheckWasInitialized();
-
+            
             if (_isDelayedDomainEventHandlingEnabled)
             {
                 _RegisterDelayedEvent(domainEvent);
@@ -58,11 +58,13 @@ namespace CoreDdd.Domain.Events
                 _raiseEventNow();
             }
 
+            return;
+
             void _raiseEventNow()
             {
-
-                var domainEventHandlers = _domainEventHandlerFactory.Create<TDomainEvent>().ToList();
-
+                
+                var domainEventHandlers = _domainEventHandlerFactory!.Create<TDomainEvent>().ToList();
+                
                 try
                 {
                     domainEventHandlers.Each(domainEventHandler => domainEventHandler.Handle(domainEvent));
@@ -73,7 +75,7 @@ namespace CoreDdd.Domain.Events
                 }
             }
         }
-
+      
         private static void _CheckWasInitialized()
         {
             if (_domainEventHandlerFactory == null)
@@ -92,7 +94,7 @@ namespace CoreDdd.Domain.Events
                     "DelayedDomainEventHandlingItems is null. Did you forget to call DomainEvents.ResetDelayedEventsStorage() ?");
             }
 
-            var domainEventHandlers = _domainEventHandlerFactory.Create<TDomainEvent>();
+            var domainEventHandlers = _domainEventHandlerFactory!.Create<TDomainEvent>();
             domainEventHandlers.Each(domainEventHandler =>
             {
                 var delayedDomainEventHandlingItem = new DelayedDomainEventHandlingItem(domainEventHandler, () => domainEventHandler.Handle(domainEvent));
@@ -107,10 +109,8 @@ namespace CoreDdd.Domain.Events
         /// </summary>
         public static void RaiseDelayedEvents()
         {
-            _CheckWasInitialized();
-
             var delayedDomainEventHandlingItems = DelayedDomainEventHandlingItemsStorage.Value;
-            if (delayedDomainEventHandlingItems == null) throw new InvalidOperationException("DelayedDomainEventHandlingItems is null.");
+            if (delayedDomainEventHandlingItems == null) throw new InvalidOperationException("delayedDomainEventHandlingItems is null.");
 
             if (delayedDomainEventHandlingItems.IsEmpty()) return;
 
@@ -119,6 +119,8 @@ namespace CoreDdd.Domain.Events
 
         private static void _ExecuteAllDomainEventHandlers(DelayedDomainEventHandlingItems delayedDomainEventHandlingItems)
         {
+            _CheckWasInitialized();
+
             try
             {
                 while (delayedDomainEventHandlingItems.Any())
@@ -128,7 +130,7 @@ namespace CoreDdd.Domain.Events
             }
             finally
             {
-                delayedDomainEventHandlingItems.Each(x => _domainEventHandlerFactory.Release(x.DomainEventHandler));
+                delayedDomainEventHandlingItems.Each(x => _domainEventHandlerFactory!.Release(x.DomainEventHandler));
             }
 
             void _executeOneHandler()
@@ -141,7 +143,7 @@ namespace CoreDdd.Domain.Events
                 }
                 finally
                 {
-                    _domainEventHandlerFactory.Release(delayedDomainEventHandlingItem.DomainEventHandler);
+                    _domainEventHandlerFactory!.Release(delayedDomainEventHandlingItem.DomainEventHandler);
                 }
             }
         }
