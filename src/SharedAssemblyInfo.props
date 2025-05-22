@@ -3,7 +3,7 @@
   <PropertyGroup>
     <LangVersion>preview</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsNotAsErrors>CS0618;NU1903</WarningsNotAsErrors>
+    <WarningsNotAsErrors>CS0618;NU1903;NU1904</WarningsNotAsErrors>
   </PropertyGroup>
 
 </Project>
