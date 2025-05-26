@@ -10,8 +10,8 @@
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.3.3</Version>
-    <PackageReleaseNotes>#19 Add support for nullable reference types - adding a new repository methods LoadById and LoadByIdAsync which throws an exception when the aggregate root entity is not found</PackageReleaseNotes>
+    <Version>3.3.4</Version>
+    <PackageReleaseNotes>#19 Add support for nullable reference types - adding nullable support to NhibernateUnitOfWork for pre-.NET 8 versions</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
