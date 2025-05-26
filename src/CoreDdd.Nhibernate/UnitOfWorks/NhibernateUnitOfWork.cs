@@ -13,10 +13,6 @@ using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
 #endif
 
-#if !NET8_0_OR_GREATER
-#nullable disable
-#endif
-
 namespace CoreDdd.Nhibernate.UnitOfWorks
 {
     /// <summary>
@@ -41,11 +37,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         /// <summary>
         /// NHibernate session associated with the unit of work.
         /// </summary>
-#if NET8_0_OR_GREATER
         public ISession? Session { get; private set; }
-#else
-        public ISession Session { get; private set; }
-#endif
 
         /// <summary>
         /// Creates a new NHibernate session and starts a transaction if there is no ambient transaction scope.
@@ -79,7 +71,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
             if (_isInTransactionScope)
             {
-                Session.Dispose();
+                Session!.Dispose();
                 Session = null;
                 return;
             }
@@ -89,17 +81,17 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             
             try
             {
-                tx.Commit();
+                tx!.Commit();
             }
             catch
             {
-                try { tx.Rollback(); } catch { /* ignored */ }
+                try { tx!.Rollback(); } catch { /* ignored */ }
                 throw;
             }
             finally
             {
-                tx.Dispose();
-                Session.Dispose();
+                tx!.Dispose();
+                Session!.Dispose();
                 Session = null;
             }
         }
@@ -112,20 +104,16 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             Guard.Hope(Session != null, "Session not opened. Call BeginTransaction().");
         }
 
-#if NET8_0_OR_GREATER
         private ITransaction? _GetTransaction()
-#else
-        private ITransaction _GetTransaction()
-#endif        
         {
             _CheckSessionIsOpenedAndTransactionStarted();
             
 #if !NET40 && !NET45
 #pragma warning disable CS0618 // Type or member is obsolete
-            var tx = Session.Transaction; // todo: change this to GetCurrentTransaction - needs fixing some tests
+            var tx = Session!.Transaction; // todo: change this to GetCurrentTransaction - needs fixing some tests
 #pragma warning restore CS0618 // Type or member is obsolete
 #else
-            var tx = Session.Transaction;
+            var tx = Session!.Transaction;
 #endif
             return tx;
         }
@@ -140,7 +128,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
             if (_isInTransactionScope)
             {
-                Session.Dispose();
+                Session!.Dispose();
                 Session = null;
                 return;
             }
@@ -150,7 +138,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             
             try
             {
-                tx.Rollback();
+                tx!.Rollback();
             }
             catch
             {
@@ -158,8 +146,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             }
             finally
             {
-                tx.Dispose();
-                Session.Dispose();
+                tx!.Dispose();
+                Session!.Dispose();
                 Session = null;
             }
         }
@@ -171,7 +159,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         {
             _CheckSessionIsOpenedAndTransactionStarted();
             
-            Session.Flush();
+            Session!.Flush();
         }
 
 #if !NET40 && !NET45
@@ -187,7 +175,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
             if (_isInTransactionScope)
             {
-                Session.Dispose();
+                Session!.Dispose();
                 Session = null;
                 return;
             }
@@ -197,17 +185,17 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             
             try
             {
-                await tx.CommitAsync().ConfigureAwait(false);
+                await tx!.CommitAsync().ConfigureAwait(false);
             }
             catch
             {
-                try { await tx.RollbackAsync().ConfigureAwait(false); } catch { /* ignored */ }
+                try { await tx!.RollbackAsync().ConfigureAwait(false); } catch { /* ignored */ }
                 throw;
             }
             finally
             {
-                tx.Dispose();
-                Session.Dispose();
+                tx!.Dispose();
+                Session!.Dispose();
                 Session = null;
             }
         }
@@ -222,7 +210,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 
             if (_isInTransactionScope)
             {
-                Session.Dispose();
+                Session!.Dispose();
                 Session = null;
                 return;
             }
@@ -232,7 +220,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             
             try
             {
-                await tx.RollbackAsync().ConfigureAwait(false);
+                await tx!.RollbackAsync().ConfigureAwait(false);
             }
             catch
             {
@@ -240,8 +228,8 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
             }
             finally
             {
-                tx.Dispose();
-                Session.Dispose();
+                tx!.Dispose();
+                Session!.Dispose();
                 Session = null;
             }
         }
@@ -253,7 +241,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         {
             _CheckSessionIsOpenedAndTransactionStarted();
             
-            return Session.FlushAsync();
+            return Session!.FlushAsync();
         }
 #endif
 
@@ -264,7 +252,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         {
             _CheckSessionIsOpenedAndTransactionStarted();
             
-            Session.Clear();
+            Session!.Clear();
         }
 
         /// <summary>
