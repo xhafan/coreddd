@@ -13,21 +13,37 @@ namespace CoreDdd.Queries
         where TQuery : IQuery
     {
         /// <summary>
-        /// Executes a query handling logic for a given query.
+        /// Executes a query handling logic for a given query and returns a collection of results.
         /// </summary>
         /// <typeparam name="TResult">A query result type</typeparam>
         /// <param name="query">An instance of a query with a data</param>
         /// <returns>A collection of query results</returns>
         IEnumerable<TResult> Execute<TResult>(TQuery query);
 
+        /// <summary>
+        /// Executes a query handling logic for a given query and returns a single result.
+        /// </summary>
+        /// <typeparam name="TResult">A query result type</typeparam>
+        /// <param name="query">An instance of a query with a data</param>
+        /// <returns>A single query result</returns>
+        TResult ExecuteSingle<TResult>(TQuery query);
+
 #if !NET40
         /// <summary>
-        /// Executes a query handling logic asynchronously for a given query.
+        /// Executes a query handling logic asynchronously for a given query and returns a collection of results.
         /// </summary>
         /// <typeparam name="TResult">A query result type</typeparam>
         /// <param name="query">An instance of a query with a data</param>
         /// <returns>A collection of query results</returns>
         Task<IEnumerable<TResult>> ExecuteAsync<TResult>(TQuery query);
+
+        /// <summary>
+        /// Executes a query handling logic asynchronously for a given query and returns a single result.
+        /// </summary>
+        /// <typeparam name="TResult">A query result type</typeparam>
+        /// <param name="query">An instance of a query with a data</param>
+        /// <returns>A single query result</returns>        
+        Task<TResult> ExecuteSingleAsync<TResult>(TQuery query);
 #endif
     }
 }

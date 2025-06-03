@@ -19,6 +19,8 @@ namespace CoreDdd.Nhibernate.Queries
     /// <typeparam name="TQuery">A query type</typeparam>
     public abstract class BaseNhibernateQueryHandler<TQuery> : IQueryHandler<TQuery> where TQuery : IQuery
     {
+        private const string NotImplementedExceptionMessage = "Override this method in the query handler.";
+
         /// <summary>
         /// NHibernate session.
         /// </summary>
@@ -34,28 +36,48 @@ namespace CoreDdd.Nhibernate.Queries
         }
 
         /// <summary>
-        /// Executes the query.
+        /// Executes the query and returns a collection of results.
         /// </summary>
         /// <typeparam name="TResult">The query result type</typeparam>
         /// <param name="query">An instance of a query with a data</param>
         /// <returns>A collection of query results</returns>
         public virtual IEnumerable<TResult> Execute<TResult>(TQuery query)
         {
-            return [];
+            throw new NotImplementedException(NotImplementedExceptionMessage);
+        }
+
+        /// <summary>
+        /// Executes the query and returns a single result.
+        /// </summary>
+        /// <typeparam name="TResult">A query result type</typeparam>
+        /// <param name="query">An instance of a query with a data</param>
+        /// <returns>A single query result</returns>
+        public virtual TResult ExecuteSingle<TResult>(TQuery query)
+        {
+            throw new NotImplementedException(NotImplementedExceptionMessage);
         }
 
 #if !NET40
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         /// <summary>
-        /// Executes the query asynchronously.
+        /// Executes the query asynchronously and returns a collection of results.
         /// </summary>
         /// <typeparam name="TResult">The query result type</typeparam>
         /// <param name="query">An instance of a query with a data</param>
         /// <returns>A collection of query results</returns>
-        public virtual async Task<IEnumerable<TResult>> ExecuteAsync<TResult>(TQuery query)
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        public virtual Task<IEnumerable<TResult>> ExecuteAsync<TResult>(TQuery query)
         {
-            return [];
+            throw new NotImplementedException(NotImplementedExceptionMessage);
+        }
+        
+        /// <summary>
+        /// Executes the query asynchronously and returns a single result.
+        /// </summary>
+        /// <typeparam name="TResult">A query result type</typeparam>
+        /// <param name="query">An instance of a query with a data</param>
+        /// <returns>A single query result</returns> 
+        public virtual Task<TResult> ExecuteSingleAsync<TResult>(TQuery query)
+        {
+            throw new NotImplementedException(NotImplementedExceptionMessage);
         }
 #endif
     }

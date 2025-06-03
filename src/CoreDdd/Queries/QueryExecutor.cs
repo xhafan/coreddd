@@ -22,7 +22,7 @@ namespace CoreDdd.Queries
         }
 
         /// <summary>
-        /// Executes a query handler based on the query type.
+        /// Executes a query handling logic for a given query and returns a collection of results.
         /// </summary>
         /// <typeparam name="TQuery">A query type</typeparam>
         /// <typeparam name="TResult">A query result type</typeparam>
@@ -43,9 +43,30 @@ namespace CoreDdd.Queries
             }
         }
 
+        /// <summary>
+        /// Executes a query handling logic asynchronously for a given query and returns a single result.
+        /// </summary>
+        /// <typeparam name="TQuery">A query type</typeparam>
+        /// <typeparam name="TResult">A result type</typeparam>
+        /// <param name="query">An instance of a query with a data</param>
+        /// <returns>A single query result</returns>        
+        public TResult ExecuteSingle<TQuery, TResult>(TQuery query) where TQuery : IQuery
+        {
+            var queryHandler = _queryHandlerFactory.Create<TQuery>();
+
+            try
+            {
+                return queryHandler.ExecuteSingle<TResult>(query);
+            }
+            finally
+            {
+                _queryHandlerFactory.Release(queryHandler);
+            }
+        }
+
 #if !NET40
         /// <summary>
-        /// Executes a query handler asynchronously based on the query type.
+        /// Executes a query handling logic asynchronously for a given query and returns a collection of results.
         /// </summary>
         /// <typeparam name="TQuery">A query type</typeparam>
         /// <typeparam name="TResult">A query result type</typeparam>
@@ -59,6 +80,27 @@ namespace CoreDdd.Queries
             try
             {
                 return queryHandler.ExecuteAsync<TResult>(query);
+            }
+            finally
+            {
+                _queryHandlerFactory.Release(queryHandler);
+            }
+        }
+
+        /// <summary>
+        /// Executes a query handling logic asynchronously for a given query and returns a single result.
+        /// </summary>
+        /// <typeparam name="TQuery">A query type</typeparam>
+        /// <typeparam name="TResult">A result type</typeparam>
+        /// <param name="query">An instance of a query with a data</param>
+        /// <returns>A single query result</returns>            
+        public Task<TResult> ExecuteSingleAsync<TQuery, TResult>(TQuery query) where TQuery : IQuery
+        {
+            var queryHandler = _queryHandlerFactory.Create<TQuery>();
+
+            try
+            {
+                return queryHandler.ExecuteSingleAsync<TResult>(query);
             }
             finally
             {

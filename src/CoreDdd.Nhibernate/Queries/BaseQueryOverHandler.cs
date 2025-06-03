@@ -38,7 +38,7 @@ namespace CoreDdd.Nhibernate.Queries
         protected abstract IQueryOver GetQueryOver<TResult>(TQuery query);
 
         /// <summary>
-        /// Executes the QueryOver query.
+        /// Executes the QueryOver query and returns a collection of results.
         /// </summary>
         /// <typeparam name="TResult">A query result type</typeparam>
         /// <param name="query">An instance of a query with a data</param>
@@ -48,9 +48,20 @@ namespace CoreDdd.Nhibernate.Queries
             return GetQueryOver<TResult>(query).UnderlyingCriteria.Future<TResult>();
         }
 
+        /// <summary>
+        /// Executes the QueryOver query and returns a single result.
+        /// </summary>
+        /// <typeparam name="TResult">A query result type</typeparam>
+        /// <param name="query">An instance of a query with a data</param>
+        /// <returns>A single query result</returns>
+        public override TResult ExecuteSingle<TResult>(TQuery query)
+        {
+            return GetQueryOver<TResult>(query).UnderlyingCriteria.FutureValue<TResult>().Value;
+        }        
+
 #if !NET40
         /// <summary>
-        /// Executes the QueryOver query asynchronously.
+        /// Executes the QueryOver query asynchronously and returns a collection of results.
         /// </summary>
         /// <typeparam name="TResult">A query result type</typeparam>
         /// <param name="query">An instance of a query with a data</param>
@@ -63,6 +74,26 @@ namespace CoreDdd.Nhibernate.Queries
             throw _GetAsyncNotSupportedException();
 #else
             return GetQueryOver<TResult>(query).UnderlyingCriteria.Future<TResult>().GetEnumerableAsync();
+#endif
+#if !NET40
+        }
+#endif
+        
+#if !NET40
+        /// <summary>
+        /// Executes the QueryOver query asynchronously and returns a single result.
+        /// </summary>
+        /// <typeparam name="TResult">A query result type</typeparam>
+        /// <param name="query">An instance of a query with a data</param>
+        /// <returns>A single query result</returns>
+        public override Task<TResult> ExecuteSingleAsync<TResult>(TQuery query)
+        {
+#endif
+#if NET40
+#elif NET45
+            throw _GetAsyncNotSupportedException();
+#else
+            return GetQueryOver<TResult>(query).UnderlyingCriteria.FutureValue<TResult>().GetValueAsync();
 #endif
 #if !NET40
         }
