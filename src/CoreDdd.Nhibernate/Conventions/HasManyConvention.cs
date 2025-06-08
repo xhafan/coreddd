@@ -7,10 +7,6 @@ using FluentNHibernate;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.Instances;
 
-#if !NET8_0_OR_GREATER
-#nullable disable
-#endif
-
 namespace CoreDdd.Nhibernate.Conventions
 {
     /// <summary>
@@ -20,11 +16,9 @@ namespace CoreDdd.Nhibernate.Conventions
     /// </summary>
     public class HasManyConvention : IHasManyConvention
     {
-#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         private static Action<ICollectionCascadeInstance>? _collectionCascadeInstanceAction;
         private static Func<string, string>? _getBackingFieldNameFromPropertyName;
         private static Action<IAccessInstance>? _setCollectionInstanceAccess;
-#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
 #pragma warning disable 1591
         public static void Initialize(
@@ -44,7 +38,7 @@ namespace CoreDdd.Nhibernate.Conventions
             Guard.Hope(_getBackingFieldNameFromPropertyName != null, nameof(_getBackingFieldNameFromPropertyName) + " is null. Call Initialize() first.");
             Guard.Hope(_setCollectionInstanceAccess != null, nameof(_setCollectionInstanceAccess) + " is null. Call Initialize() first.");
             
-            _collectionCascadeInstanceAction.Invoke(instance.Cascade);
+            _collectionCascadeInstanceAction!.Invoke(instance.Cascade);
 
             var propertyName = instance.Member.Name;
             var parentType = instance.Member.DeclaringType;
@@ -52,12 +46,12 @@ namespace CoreDdd.Nhibernate.Conventions
             if (parentCollectionProperty == null) return;
 
             
-            var parentCollectionPropertyBackingFieldName = _getBackingFieldNameFromPropertyName(propertyName);
+            var parentCollectionPropertyBackingFieldName = _getBackingFieldNameFromPropertyName!(propertyName);
 
             var parentCollectionPropertyBackingField = parentType.GetInstanceFields().FirstOrDefault(x => x.Name == parentCollectionPropertyBackingFieldName);
             if (parentCollectionPropertyBackingField != null)
             {
-                _setCollectionInstanceAccess(instance.Access);
+                _setCollectionInstanceAccess!(instance.Access);
                 _markAsInverseIfPossibleAndSetAsSetOrAsListOrMap(parentCollectionPropertyBackingField.PropertyType);
             }
             else
