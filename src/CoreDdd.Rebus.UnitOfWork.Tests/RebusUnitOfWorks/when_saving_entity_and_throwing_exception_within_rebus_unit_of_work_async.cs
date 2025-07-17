@@ -1,5 +1,7 @@
-﻿using System;
-using System.Transactions;
+﻿#if !NET451 
+using System;
+using System.Data;
+using System.Threading.Tasks;
 using CoreDdd.Domain.Events;
 using CoreDdd.Domain.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
@@ -7,38 +9,34 @@ using CoreDdd.TestHelpers.DomainEvents;
 using CoreDdd.UnitOfWorks;
 using CoreIoC;
 using IntegrationTestsShared.TestEntities;
-using IntegrationTestsShared.TransactionScopes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Rebus.UnitOfWork.Tests.RebusTransactionScopeUnitOfWorks;
+namespace CoreDdd.Rebus.UnitOfWork.Tests.RebusUnitOfWorks;
 
 [TestFixture]
-public class when_saving_entity_and_throwing_exception_within_rebus_transaction_scope_unit_of_work
+public class when_saving_entity_and_throwing_exception_within_rebus_unit_of_work_async
 {
-    private VolatileResourceManager _volatileResourceManager;
     private IRepository<TestEntityWithDomainEvent> _entityRepository;
     private TestEntityWithDomainEvent _entity;
     private TestDomainEvent _raisedDomainEvent;
     private FakeMessageContext _fakeMessageContext;
-    private (TransactionScope transactionScope, IUnitOfWork unitOfWork) _transactionScopeUnitOfWork;
+    private IUnitOfWork _unitOfWork;
 
     [SetUp]
-    public void Context()
+    public async Task Context()
     {
         var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
         DomainEvents.Initialize(domainEventHandlerFactory);
-
-        _volatileResourceManager = new VolatileResourceManager();
+        DomainEvents.ResetDelayedEventsStorage();
 
         var unitOfWorkFactory = IoC.Resolve<IUnitOfWorkFactory>();
-        var rebusTransactionScopeUnitOfWork = new RebusTransactionScopeUnitOfWork(
+        var rebusUnitOfWork = new RebusUnitOfWork(
             unitOfWorkFactory: unitOfWorkFactory,
-            isolationLevel: IsolationLevel.ReadCommitted,
-            transactionScopeEnlistmentAction: transactionScope => _volatileResourceManager.EnlistIntoTransactionScope(transactionScope)
+            isolationLevel: IsolationLevel.ReadCommitted
         );
         _fakeMessageContext = new FakeMessageContext();
-        _transactionScopeUnitOfWork = rebusTransactionScopeUnitOfWork.Create(_fakeMessageContext);
+        _unitOfWork = await rebusUnitOfWork.CreateAsync(_fakeMessageContext);
 
         try
         {
@@ -46,8 +44,8 @@ public class when_saving_entity_and_throwing_exception_within_rebus_transaction_
         }
         catch
         {
-            rebusTransactionScopeUnitOfWork.Rollback(_fakeMessageContext, _transactionScopeUnitOfWork);
-            rebusTransactionScopeUnitOfWork.Cleanup(_fakeMessageContext, _transactionScopeUnitOfWork);
+            await rebusUnitOfWork.RollbackAsync(_fakeMessageContext, _unitOfWork);
+            await rebusUnitOfWork.CleanupAsync(_fakeMessageContext, _unitOfWork);
         }
     }
 
@@ -56,11 +54,7 @@ public class when_saving_entity_and_throwing_exception_within_rebus_transaction_
         _entityRepository = IoC.Resolve<IRepository<TestEntityWithDomainEvent>>();
 
         _entity = new TestEntityWithDomainEvent();
-        _entity.BehaviouralMethodWithRaisingDomainEvent();
-
         _entityRepository.Save(_entity);
-
-        _volatileResourceManager.SetMemberValue(23);
 
         throw new NotSupportedException("test exception");
     }
@@ -82,17 +76,9 @@ public class when_saving_entity_and_throwing_exception_within_rebus_transaction_
     }
 
     [Test]
-    public void volatile_resource_manager_value_is_not_set_after_transaction_scope_rollback()
+    public void domain_event_is_not_handled()
     {
-        _volatileResourceManager.MemberValue.ShouldNotBe(23);
-    }
-
-    [Test]
-    public void domain_event_is_still_handled_even_though_the_transaction_is_rolled_back()
-    {
-        // the domain event handler is executed, but developer needs to make sure that domain event handler execution results 
-        // are rolled back if the transaction scope is rolled back. For instance when sending a bus message from the domain event handler
-        // the message should not be sent when the transaction scope rolls back.
-        _raisedDomainEvent.ShouldNotBeNull();
+        _raisedDomainEvent.ShouldBeNull();
     }
 }
+#endif

@@ -1,11 +1,12 @@
-﻿using System;
+﻿#if !NET451 
+using System;
 using NUnit.Framework;
 using Shouldly;
 
 namespace CoreDdd.Rebus.UnitOfWork.Tests.RebusTransactionScopeUnitOfWorks;
 
 [TestFixture]
-public class when_using_rebus_transaction_scope_unit_of_work_without_initialization
+public class when_using_rebus_transaction_scope_unit_of_work_without_initialization_async
 {
     [Test]
     public void exception_is_thrown()
@@ -13,8 +14,9 @@ public class when_using_rebus_transaction_scope_unit_of_work_without_initializat
         var rebusTransactionScopeUnitOfWork = new RebusTransactionScopeUnitOfWork(unitOfWorkFactory: null!);
         var fakeMessageContext = new FakeMessageContext();
 
-        var ex = Should.Throw<InvalidOperationException>(() => rebusTransactionScopeUnitOfWork.Create(fakeMessageContext));
+        var ex = Should.Throw<InvalidOperationException>(async () => await rebusTransactionScopeUnitOfWork.CreateAsync(fakeMessageContext));
 
         ex.Message.ShouldBe("UnitOfWork factory is not set.");
     }
 }
+#endif

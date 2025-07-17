@@ -1,41 +1,91 @@
 ﻿using System;
 using System.Data;
+#if !NET451
+using System.Threading.Tasks;
+#endif
 using CoreDdd.UnitOfWorks;
 using Rebus.Pipeline;
 
-namespace CoreDdd.Rebus.UnitOfWork
+namespace CoreDdd.Rebus.UnitOfWork;
+
+/// <summary>
+/// Support for CoreDdd's unit of work for Rebus.UnitOfWork package.
+/// For a unit of work within a transaction scope, please see <see cref="RebusTransactionScopeUnitOfWork"/>.
+/// Please note that messages published or sent from a message handler 
+/// are not published or sent when there is an error during the message handling.
+/// </summary>
+public class RebusUnitOfWork
 {
+    private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+    private readonly IsolationLevel _isolationLevel;
+
     /// <summary>
-    /// Support for CoreDdd's unit of work for Rebus.UnitOfWork package.
-    /// For a unit of work within a transaction scope, please see <see cref="RebusTransactionScopeUnitOfWork"/>.
-    /// Please note that messages published or sent from a message handler 
-    /// are not published or sent when there is an error during the message handling.
+    /// Initializes the class. Needs to be called at the application start.
     /// </summary>
-    public class RebusUnitOfWork
+    /// <param name="unitOfWorkFactory">A unit of work factory</param>
+    /// <param name="isolationLevel">Isolation level for the transaction</param>
+    public RebusUnitOfWork(
+        IUnitOfWorkFactory unitOfWorkFactory,
+        IsolationLevel isolationLevel = IsolationLevel.ReadCommitted
+    )
     {
-        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
-        private readonly IsolationLevel _isolationLevel;
+        _unitOfWorkFactory = unitOfWorkFactory;
+        _isolationLevel = isolationLevel;
+    }
 
-        /// <summary>
-        /// Initializes the class. Needs to be called at the application start.
-        /// </summary>
-        /// <param name="unitOfWorkFactory">A unit of work factory</param>
-        /// <param name="isolationLevel">Isolation level for the transaction</param>
-        public RebusUnitOfWork(
-            IUnitOfWorkFactory unitOfWorkFactory,
-            IsolationLevel isolationLevel = IsolationLevel.ReadCommitted
-        )
+    /// <summary>
+    /// Creates a new unit of work.
+    /// </summary>
+    /// <param name="messageContext">Rebus message context</param>
+    /// <returns>The unit of work</returns>
+    public IUnitOfWork Create(IMessageContext messageContext)
+    {
+        if (_unitOfWorkFactory == null)
         {
-            _unitOfWorkFactory = unitOfWorkFactory;
-            _isolationLevel = isolationLevel;
+            throw new InvalidOperationException("UnitOfWork factory is not set.");
         }
+        var unitOfWork = _unitOfWorkFactory.Create();
+        unitOfWork.BeginTransaction(_isolationLevel);
+        return unitOfWork;
+    }
 
+    /// <summary>
+    /// Commits the unit of work.
+    /// </summary>
+    /// <param name="messageContext">Rebus message context</param>
+    /// <param name="unitOfWork">The unit of work</param>
+    public void Commit(IMessageContext messageContext, IUnitOfWork unitOfWork)
+    {
+        unitOfWork.Commit();
+    }
+
+    /// <summary>
+    /// Rolls back the unit of work.
+    /// </summary>
+    /// <param name="messageContext">Rebus message context</param>
+    /// <param name="unitOfWork">The unit of work</param>
+    public void Rollback(IMessageContext messageContext, IUnitOfWork unitOfWork)
+    {
+        unitOfWork.Rollback();
+    }
+
+    /// <summary>
+    /// Cleans the unit of work.
+    /// </summary>
+    /// <param name="messageContext">Rebus message context</param>
+    /// <param name="unitOfWork">The unit of work</param>
+    public void Cleanup(IMessageContext messageContext, IUnitOfWork unitOfWork)
+    {
+        _unitOfWorkFactory.Release(unitOfWork);
+    }
+
+#if !NET451   
         /// <summary>
         /// Creates a new unit of work.
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <returns>The unit of work</returns>
-        public IUnitOfWork Create(IMessageContext messageContext)
+        public Task<IUnitOfWork> CreateAsync(IMessageContext messageContext)
         {
             if (_unitOfWorkFactory == null)
             {
@@ -43,37 +93,38 @@ namespace CoreDdd.Rebus.UnitOfWork
             }
             var unitOfWork = _unitOfWorkFactory.Create();
             unitOfWork.BeginTransaction(_isolationLevel);
-            return unitOfWork;
+            return Task.FromResult(unitOfWork);
         }
-
+        
         /// <summary>
         /// Commits the unit of work.
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <param name="unitOfWork">The unit of work</param>
-        public void Commit(IMessageContext messageContext, IUnitOfWork unitOfWork)
+        public async Task CommitAsync(IMessageContext messageContext, IUnitOfWork unitOfWork)
         {
-            unitOfWork.Commit();
+            await unitOfWork.CommitAsync();
         }
-
+        
         /// <summary>
         /// Rolls back the unit of work.
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <param name="unitOfWork">The unit of work</param>
-        public void Rollback(IMessageContext messageContext, IUnitOfWork unitOfWork)
+        public async Task RollbackAsync(IMessageContext messageContext, IUnitOfWork unitOfWork)
         {
-            unitOfWork.Rollback();
-        }
-
+            await unitOfWork.RollbackAsync();
+        }          
+        
         /// <summary>
         /// Cleans the unit of work.
         /// </summary>
         /// <param name="messageContext">Rebus message context</param>
         /// <param name="unitOfWork">The unit of work</param>
-        public void Cleanup(IMessageContext messageContext, IUnitOfWork unitOfWork)
+        public Task CleanupAsync(IMessageContext messageContext, IUnitOfWork unitOfWork)
         {
             _unitOfWorkFactory.Release(unitOfWork);
-        }
-    }
+            return Task.CompletedTask;
+        }        
+#endif
 }

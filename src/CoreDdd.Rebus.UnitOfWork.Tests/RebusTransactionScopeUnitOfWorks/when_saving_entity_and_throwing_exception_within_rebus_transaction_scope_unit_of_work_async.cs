@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !NET451 
+using System;
+using System.Threading.Tasks;
 using System.Transactions;
 using CoreDdd.Domain.Events;
 using CoreDdd.Domain.Repositories;
@@ -14,7 +16,7 @@ using Shouldly;
 namespace CoreDdd.Rebus.UnitOfWork.Tests.RebusTransactionScopeUnitOfWorks;
 
 [TestFixture]
-public class when_saving_entity_and_throwing_exception_within_rebus_transaction_scope_unit_of_work
+public class when_saving_entity_and_throwing_exception_within_rebus_transaction_scope_unit_of_work_async
 {
     private VolatileResourceManager _volatileResourceManager;
     private IRepository<TestEntityWithDomainEvent> _entityRepository;
@@ -24,7 +26,7 @@ public class when_saving_entity_and_throwing_exception_within_rebus_transaction_
     private (TransactionScope transactionScope, IUnitOfWork unitOfWork) _transactionScopeUnitOfWork;
 
     [SetUp]
-    public void Context()
+    public async Task Context()
     {
         var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = (TestDomainEvent)domainEvent);
         DomainEvents.Initialize(domainEventHandlerFactory);
@@ -38,7 +40,7 @@ public class when_saving_entity_and_throwing_exception_within_rebus_transaction_
             transactionScopeEnlistmentAction: transactionScope => _volatileResourceManager.EnlistIntoTransactionScope(transactionScope)
         );
         _fakeMessageContext = new FakeMessageContext();
-        _transactionScopeUnitOfWork = rebusTransactionScopeUnitOfWork.Create(_fakeMessageContext);
+        _transactionScopeUnitOfWork = await rebusTransactionScopeUnitOfWork.CreateAsync(_fakeMessageContext);
 
         try
         {
@@ -46,8 +48,8 @@ public class when_saving_entity_and_throwing_exception_within_rebus_transaction_
         }
         catch
         {
-            rebusTransactionScopeUnitOfWork.Rollback(_fakeMessageContext, _transactionScopeUnitOfWork);
-            rebusTransactionScopeUnitOfWork.Cleanup(_fakeMessageContext, _transactionScopeUnitOfWork);
+            await rebusTransactionScopeUnitOfWork.RollbackAsync(_fakeMessageContext, _transactionScopeUnitOfWork);
+            await rebusTransactionScopeUnitOfWork.CleanupAsync(_fakeMessageContext, _transactionScopeUnitOfWork);
         }
     }
 
@@ -96,3 +98,4 @@ public class when_saving_entity_and_throwing_exception_within_rebus_transaction_
         _raisedDomainEvent.ShouldNotBeNull();
     }
 }
+#endif
