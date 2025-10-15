@@ -10,8 +10,8 @@
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.3.6</Version>
-    <PackageReleaseNotes>#50 NhibernateUnitOfWork incorrectly commits an active transaction during dispose when an exception is thrown - when disposing NhibernateUnitOfWork with an active transaction, the transaction is newly rolled back and it throws an exception, forcing calling Commit() or Rollback() explicitly</PackageReleaseNotes>
+    <Version>3.3.7</Version>
+    <PackageReleaseNotes>#50 NhibernateUnitOfWork incorrectly commits an active transaction during dispose when an exception is thrown - adding NhibernateUnitOfWorkRunner to run an operation inside a unit of work with automatic transaction handling which commits on success, rolls back on failure, and disposes the session safely</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
