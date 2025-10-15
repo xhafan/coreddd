@@ -10,8 +10,8 @@
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.3.5</Version>
-    <PackageReleaseNotes>#48 Query handler returning a single result needs to wrap the single result into a collection - adding new query executor/query handler methods ExecuteSingle/ExecuteSingleAsync</PackageReleaseNotes>
+    <Version>3.3.6</Version>
+    <PackageReleaseNotes>#50 NhibernateUnitOfWork incorrectly commits an active transaction during dispose when an exception is thrown - when disposing NhibernateUnitOfWork with an active transaction, the transaction is newly rolled back and it throws an exception, forcing calling Commit() or Rollback() explicitly</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
