@@ -50,7 +50,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
 
             public Configuration GetConfiguration()
             {
-                throw new System.NotImplementedException();
+                throw new NotImplementedException();
             }
         }
 

@@ -1,5 +1,4 @@
-﻿#if !NET40 && !NET45
-using CoreDdd.Nhibernate.Repositories;
+﻿using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
 using IntegrationTestsShared.TestEntities;
@@ -11,10 +10,10 @@ using NHibernate;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
+namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.RollingBack
 {
     [TestFixture]
-    public class when_rolling_back_unit_of_work_on_disconnected_transaction_async
+    public class when_rolling_back_unit_of_work_on_disconnected_transaction
     {
         private NhibernateUnitOfWork _unitOfWork;
         private TestEntity _testEntity;
@@ -46,8 +45,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
         [Test]
         public void rollback_does_not_throw()
         {
-            Should.NotThrow(async() => await _unitOfWork.RollbackAsync());
+            Should.NotThrow(() => _unitOfWork.Rollback());
         }
     }
 }
-#endif

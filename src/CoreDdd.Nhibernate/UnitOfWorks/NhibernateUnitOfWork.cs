@@ -17,8 +17,10 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
 {
     /// <summary>
     /// Unit of work wrapper around NHibernate session, which can start a transaction, commit it or roll it back.
+    /// When disposing a unit of work with an active transaction, the transaction is rolled back, and it throws an exception - forcing calling
+    /// Commit() or Rollback() explicitly.
     /// When an ambient transaction scope is detected, the transaction is not started on the session, and is not 
-    /// committed or rolled back, as these are handled by the transaction scope.
+    /// committed or rolled back, as these are handled by the transaction scope. 
     /// </summary>
     public class NhibernateUnitOfWork : IUnitOfWork
     {
@@ -256,7 +258,7 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         }
 
         /// <summary>
-        /// Disposes resources.
+        /// Disposes resources. If the transaction is still active, it rolls it back and throws an exception.
         /// </summary>
         public void Dispose() // https://stackoverflow.com/a/898867/379279
         {
@@ -265,17 +267,18 @@ namespace CoreDdd.Nhibernate.UnitOfWorks
         }
 
         /// <summary>
-        /// Overridable dispose method. 
+        /// Overridable dispose method. If the transaction is still active, it rolls it back and throws an exception.
         /// </summary>
         /// <param name="disposing">true - the method call comes from a Dispose method; false - the method call comes from a finalizer</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                if (!_IsActive()) return;
-                
-                Commit();
-            }
+            if (!disposing) return;
+
+            if (!_IsActive()) return;
+
+            Rollback();
+
+            throw new InvalidOperationException("Unit of work disposed without committing or rolling back.");
         }
 
 #if NET8_0_OR_GREATER

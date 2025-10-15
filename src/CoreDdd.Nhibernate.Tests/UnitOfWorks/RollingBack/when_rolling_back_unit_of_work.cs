@@ -1,23 +1,21 @@
-﻿#if !NET40 && !NET45
-using System.Threading.Tasks;
-using CoreDdd.Nhibernate.Repositories;
+﻿using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreIoC;
 using IntegrationTestsShared.TestEntities;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
+namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.RollingBack
 {
     [TestFixture]
-    public class when_rolling_back_unit_of_work_async
+    public class when_rolling_back_unit_of_work
     {
         private NhibernateUnitOfWork _unitOfWork;
         private TestEntity _testEntity;
         private NhibernateRepository<TestEntity> _testEntityRepository;
 
         [SetUp]
-        public async Task Context()
+        public void Context()
         {
             _unitOfWork = IoC.Resolve<NhibernateUnitOfWork>();
             _unitOfWork.BeginTransaction();
@@ -27,7 +25,7 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
             _testEntity = new TestEntity();
             _testEntityRepository.Save(_testEntity);
 
-            await _unitOfWork.RollbackAsync();
+            _unitOfWork.Rollback();
         }
 
         [Test]
@@ -48,4 +46,3 @@ namespace CoreDdd.Nhibernate.Tests.UnitOfWorks
         }
     }
 }
-#endif

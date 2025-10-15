@@ -7,10 +7,9 @@ using Shouldly;
 
 namespace CoreDdd.Nhibernate.Tests.UnitOfWorks.Committing
 {
-    [TestFixture(TypeArgs = new[] { typeof(CommittingUnitOfWorkSpecification) })]
-    [TestFixture(TypeArgs = new[] { typeof(DisposingUnitOfWorkSpecification) })]
+    [TestFixture(TypeArgs = [typeof(CommittingUnitOfWorkSpecification)])]
 #if !NET40 && !NET45
-    [TestFixture(TypeArgs = new[] { typeof(CommittingAsyncUnitOfWorkSpecification) })]
+    [TestFixture(TypeArgs = [typeof(CommittingAsyncUnitOfWorkSpecification)])]
 #endif
     public class when_committing_unit_of_work<TCommittingUnitOfWorkSpecification>
         where TCommittingUnitOfWorkSpecification : ICommittingUnitOfWorkSpecification, new()
