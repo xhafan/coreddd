@@ -35,6 +35,7 @@ namespace CoreDdd.Nhibernate.Queries
             Session = unitOfWork.Session ?? throw new Exception("UnitOfWork Session is null");
         }
 
+#if NET40
         /// <summary>
         /// Executes the query and returns a collection of results.
         /// </summary>
@@ -56,6 +57,7 @@ namespace CoreDdd.Nhibernate.Queries
         {
             throw new NotImplementedException(NotImplementedExceptionMessage);
         }
+#endif
 
 #if !NET40
         /// <summary>
