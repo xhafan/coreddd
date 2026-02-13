@@ -16,10 +16,10 @@ CoreDdd documentation: https://github.com/xhafan/coreddd/wiki
 
 CoreDdd samples: https://github.com/xhafan/coreddd-sample  
 
-ASP.NET Core MVC and ASP.NET MVC demo email marketing app demonstrating CoreDdd usage: https://github.com/xhafan/emailmaker
-
 CoreDdd powers:
 * [SmartGuide](https://www.smartguide.app/) app backend and [SmartGuide CMS](https://cms.smart-guide.org/) since 2019
 * [Mr Watchdog](https://mrwatchdog.com/) since 2025 - see [source code](https://github.com/xhafan/MrWatchdog) for real-world CoreDdd usage
+
+ASP.NET Core MVC and ASP.NET MVC demo email marketing app demonstrating CoreDdd usage: https://github.com/xhafan/emailmaker
 
 Blog posts about CoreDdd: https://xhafan.com/blog/tags.html#coreddd
