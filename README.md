@@ -1,16 +1,16 @@
 A set of open-source .NET libraries helping with [domain-driven design](https://stackoverflow.com/questions/1222392/can-someone-explain-domain-driven-design-ddd-in-plain-english-please) (DDD) and [CQRS](https://martinfowler.com/bliki/CQRS.html).
 
 Available on nuget:  
-https://www.nuget.org/packages/CoreDdd  
-https://www.nuget.org/packages/CoreDdd.Nhibernate  
-https://www.nuget.org/packages/CoreDdd.AspNetCore  
-https://www.nuget.org/packages/CoreDdd.AspNet  
-https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Castle  
-https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.DependencyInjection  
-https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Ninject  
-https://www.nuget.org/packages/CoreDdd.Register.Castle  
-https://www.nuget.org/packages/CoreDdd.Register.DependencyInjection  
-https://www.nuget.org/packages/CoreDdd.Register.Ninject  
+* [CoreDdd](https://www.nuget.org/packages/CoreDdd)
+* [CoreDdd.Nhibernate](https://www.nuget.org/packages/CoreDdd.Nhibernate)
+* [CoreDdd.AspNetCore](https://www.nuget.org/packages/CoreDdd.AspNetCore)
+* [CoreDdd.AspNet](https://www.nuget.org/packages/CoreDdd.AspNet)
+* [CoreDdd.Nhibernate.Register.Castle](https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Castle)
+* [CoreDdd.Nhibernate.Register.DependencyInjection](https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.DependencyInjection)
+* [CoreDdd.Nhibernate.Register.Ninject](https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Ninject)
+* [CoreDdd.Register.Castle](https://www.nuget.org/packages/CoreDdd.Register.Castle)
+* [CoreDdd.Register.DependencyInjection](https://www.nuget.org/packages/CoreDdd.Register.DependencyInjection)
+* [CoreDdd.Register.Ninject](https://www.nuget.org/packages/CoreDdd.Register.Ninject)
 
 CoreDdd documentation: https://github.com/xhafan/coreddd/wiki  
 
@@ -18,8 +18,8 @@ CoreDdd samples: https://github.com/xhafan/coreddd-sample
 
 ASP.NET Core MVC and ASP.NET MVC demo email marketing app demonstrating CoreDdd usage: https://github.com/xhafan/emailmaker
 
-CoreDdd powers [SmartGuide](https://smart-guide.org/) app backend and [SmartGuide CMS](https://cms.smart-guide.org/) since 2019
-
-Join the chat about CoreDdd on gitter [![Join the chat at https://gitter.im/coreddd/Lobby](https://badges.gitter.im/coreddd/Lobby.svg)](https://gitter.im/coreddd/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+CoreDdd powers:
+* [SmartGuide](https://www.smartguide.app/) app backend and [SmartGuide CMS](https://cms.smart-guide.org/) since 2019
+* [Mr Watchdog](https://mrwatchdog.com/) since 2025 - see [source code](https://github.com/xhafan/MrWatchdog) for real-world CoreDdd usage
 
 Blog posts about CoreDdd: https://xhafan.com/blog/tags.html#coreddd
