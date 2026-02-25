@@ -6,14 +6,10 @@ using NHibernate.Criterion;
 
 namespace CoreDdd.Nhibernate.Tests.Queries;
 
-public class GetTestEntityCountTestQueryOverQueryHandler : BaseQueryOverHandler<GetTestEntityCountTestQueryOverQuery>
+public class GetTestEntityCountTestQueryOverQueryHandler(NhibernateUnitOfWork unitOfWork)
+    : BaseQueryOverHandler<GetTestEntityCountTestQueryOverQuery, int>(unitOfWork)
 {
-    public GetTestEntityCountTestQueryOverQueryHandler(NhibernateUnitOfWork unitOfWork)
-        : base(unitOfWork)
-    {
-    }
-
-    protected override IQueryOver GetQueryOver<TResult>(GetTestEntityCountTestQueryOverQuery query)
+    protected override IQueryOver GetQueryOver(GetTestEntityCountTestQueryOverQuery query)
     {
         return Session.QueryOver<TestEntity>().Select(Projections.RowCount());
     }

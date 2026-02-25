@@ -29,13 +29,13 @@ namespace CoreDdd.Queries
         /// <param name="query">An instance of a query with data</param>
         /// <returns>A collection of query results</returns>
         public IEnumerable<TResult> Execute<TQuery, TResult>(TQuery query) 
-            where TQuery : IQuery
+            where TQuery : IQuery<TResult>
         {
-            var queryHandler = _queryHandlerFactory.Create<TQuery>();
+            var queryHandler = _queryHandlerFactory.Create<TQuery, TResult>();
 
             try
             {
-                return queryHandler.Execute<TResult>(query);
+                return queryHandler.Execute(query);
             }
             finally
             {
@@ -50,13 +50,13 @@ namespace CoreDdd.Queries
         /// <typeparam name="TResult">A result type</typeparam>
         /// <param name="query">An instance of a query with a data</param>
         /// <returns>A single query result</returns>        
-        public TResult ExecuteSingle<TQuery, TResult>(TQuery query) where TQuery : IQuery
+        public TResult ExecuteSingle<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>
         {
-            var queryHandler = _queryHandlerFactory.Create<TQuery>();
+            var queryHandler = _queryHandlerFactory.Create<TQuery, TResult>();
 
             try
             {
-                return queryHandler.ExecuteSingle<TResult>(query);
+                return queryHandler.ExecuteSingle(query);
             }
             finally
             {
@@ -73,13 +73,13 @@ namespace CoreDdd.Queries
         /// <param name="query">An instance of a query with data</param>
         /// <returns>A collection of query results</returns>
         public Task<IEnumerable<TResult>> ExecuteAsync<TQuery, TResult>(TQuery query) 
-            where TQuery : IQuery
+            where TQuery : IQuery<TResult>
         {
-            var queryHandler = _queryHandlerFactory.Create<TQuery>();
+            var queryHandler = _queryHandlerFactory.Create<TQuery, TResult>();
 
             try
             {
-                return queryHandler.ExecuteAsync<TResult>(query);
+                return queryHandler.ExecuteAsync(query);
             }
             finally
             {
@@ -94,13 +94,13 @@ namespace CoreDdd.Queries
         /// <typeparam name="TResult">A result type</typeparam>
         /// <param name="query">An instance of a query with a data</param>
         /// <returns>A single query result</returns>            
-        public Task<TResult> ExecuteSingleAsync<TQuery, TResult>(TQuery query) where TQuery : IQuery
+        public Task<TResult> ExecuteSingleAsync<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>
         {
-            var queryHandler = _queryHandlerFactory.Create<TQuery>();
+            var queryHandler = _queryHandlerFactory.Create<TQuery, TResult>();
 
             try
             {
-                return queryHandler.ExecuteSingleAsync<TResult>(query);
+                return queryHandler.ExecuteSingleAsync(query);
             }
             finally
             {

@@ -1,5 +1,5 @@
 ﻿using CoreDdd.Nhibernate.UnitOfWorks;
-using IQuery = CoreDdd.Queries.IQuery;
+using CoreDdd.Queries;
 
 #if NET40 || NET45
 using System.Data;
@@ -15,7 +15,8 @@ namespace CoreDdd.Nhibernate.Queries
     /// and you need to do SQL queries.
     /// </summary>
     /// <typeparam name="TQuery">A query type</typeparam>
-    public abstract class BaseAdoNetQueryHandler<TQuery> : BaseNhibernateQueryHandler<TQuery> where TQuery : IQuery
+    /// <typeparam name="TResult">A query result type</typeparam>
+    public abstract class BaseAdoNetQueryHandler<TQuery, TResult> : BaseNhibernateQueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {
         /// <summary>
         /// Database connection taken from NHibernate session.

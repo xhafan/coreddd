@@ -13,12 +13,12 @@ namespace CoreDdd.Register.DependencyInjection
             _serviceProvider = serviceProvider;
         }
 
-        public IQueryHandler<TQuery> Create<TQuery>() where TQuery : IQuery
+        public IQueryHandler<TQuery, TResult> Create<TQuery, TResult>() where TQuery : IQuery<TResult>
         {
-            return _serviceProvider.GetService<IQueryHandler<TQuery>>();
+            return _serviceProvider.GetService<IQueryHandler<TQuery, TResult>>();
         }
 
-        public void Release<TQuery>(IQueryHandler<TQuery> queryHandler) where TQuery : IQuery
+        public void Release<TQuery, TResult>(IQueryHandler<TQuery, TResult> queryHandler) where TQuery : IQuery<TResult>
         {
         }
     }

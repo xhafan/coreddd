@@ -10,35 +10,35 @@ using System.Threading.Tasks;
 namespace CoreDdd.Nhibernate.Tests.Queries;
 
 public class GetTestEntityCountTestNhibernateQueryHandler(NhibernateUnitOfWork unitOfWork)
-    : BaseNhibernateQueryHandler<GetTestEntityCountTestNhibernateQuery>(unitOfWork)
+    : BaseNhibernateQueryHandler<GetTestEntityCountTestNhibernateQuery, int>(unitOfWork)
 {
-    public override IEnumerable<TResult> Execute<TResult>(GetTestEntityCountTestNhibernateQuery query)
+    public override IEnumerable<int> Execute(GetTestEntityCountTestNhibernateQuery query)
     {
         return Session.CreateCriteria<TestEntity>()
             .SetProjection(Projections.Count(Projections.Id()))
-            .Future<TResult>();
+            .Future<int>();
     }
         
-    public override TResult ExecuteSingle<TResult>(GetTestEntityCountTestNhibernateQuery query)
+    public override int ExecuteSingle(GetTestEntityCountTestNhibernateQuery query)
     {
         return Session.CreateCriteria<TestEntity>()
             .SetProjection(Projections.Count(Projections.Id()))
-            .FutureValue<TResult>().Value;
+            .FutureValue<int>().Value;
     }        
 
 #if !NET40 && !NET45
-    public override Task<IEnumerable<TResult>> ExecuteAsync<TResult>(GetTestEntityCountTestNhibernateQuery query)
+    public override Task<IEnumerable<int>> ExecuteAsync(GetTestEntityCountTestNhibernateQuery query)
     {
         return Session.CreateCriteria<TestEntity>()
             .SetProjection(Projections.Count(Projections.Id()))
-            .Future<TResult>().GetEnumerableAsync();
+            .Future<int>().GetEnumerableAsync();
     }
     
-    public override Task<TResult> ExecuteSingleAsync<TResult>(GetTestEntityCountTestNhibernateQuery query)
+    public override Task<int> ExecuteSingleAsync(GetTestEntityCountTestNhibernateQuery query)
     {
         return Session.CreateCriteria<TestEntity>()
             .SetProjection(Projections.Count(Projections.Id()))
-            .FutureValue<TResult>().GetValueAsync();
+            .FutureValue<int>().GetValueAsync();
     }    
 #endif
 }

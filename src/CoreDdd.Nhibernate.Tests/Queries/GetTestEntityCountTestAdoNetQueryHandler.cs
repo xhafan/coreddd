@@ -14,71 +14,63 @@ using System.Threading.Tasks;
 namespace CoreDdd.Nhibernate.Tests.Queries;
 
 public class GetTestEntityCountTestAdoNetQueryHandler(NhibernateUnitOfWork unitOfWork)
-    : BaseAdoNetQueryHandler<GetTestEntityCountTestAdoNetQuery>(unitOfWork)
+    : BaseAdoNetQueryHandler<GetTestEntityCountTestAdoNetQuery, int>(unitOfWork)
 {
-    public override IEnumerable<TResult> Execute<TResult>(GetTestEntityCountTestAdoNetQuery query)
+    public override IEnumerable<int> Execute(GetTestEntityCountTestAdoNetQuery query)
     {
-        using (var cmd = Connection.CreateCommand())
-        {
-            cmd.CommandText = "select count(\"Id\") from \"TestEntity\"";
+        using var cmd = Connection.CreateCommand();
+        cmd.CommandText = "select count(\"Id\") from \"TestEntity\"";
 #if NET40 || NET45 || NET461
-            Session.Transaction.Enlist(cmd);
+        Session.Transaction.Enlist(cmd);
 #else
-                Session.GetCurrentTransaction().Enlist(cmd);
+        Session.GetCurrentTransaction().Enlist(cmd);
 #endif
 
-            var result = cmd.ExecuteScalar();
-            return [(TResult)(object)Convert.ToInt32(result)];
-        }
+        var result = cmd.ExecuteScalar();
+        return [Convert.ToInt32(result)];
     }
         
-    public override TResult ExecuteSingle<TResult>(GetTestEntityCountTestAdoNetQuery query)
+    public override int ExecuteSingle(GetTestEntityCountTestAdoNetQuery query)
     {
-        using (var cmd = Connection.CreateCommand())
-        {
-            cmd.CommandText = "select count(\"Id\") from \"TestEntity\"";
+        using var cmd = Connection.CreateCommand();
+        cmd.CommandText = "select count(\"Id\") from \"TestEntity\"";
 #if NET40 || NET45 || NET461
-            Session.Transaction.Enlist(cmd);
+        Session.Transaction.Enlist(cmd);
 #else
-                Session.GetCurrentTransaction().Enlist(cmd);
+        Session.GetCurrentTransaction().Enlist(cmd);
 #endif
 
-            var result = cmd.ExecuteScalar();
-            return (TResult)(object)Convert.ToInt32(result);
-        }
+        var result = cmd.ExecuteScalar();
+        return Convert.ToInt32(result);
     }        
 
 #if !NET40
-    public override async Task<IEnumerable<TResult>> ExecuteAsync<TResult>(GetTestEntityCountTestAdoNetQuery query)
+    public override async Task<IEnumerable<int>> ExecuteAsync(GetTestEntityCountTestAdoNetQuery query)
     {
-        using (var cmd = Connection.CreateCommand())
-        {
-            cmd.CommandText = "select count(\"Id\") from \"TestEntity\"";
+        using var cmd = Connection.CreateCommand();
+        cmd.CommandText = "select count(\"Id\") from \"TestEntity\"";
 #if NET40 || NET45 || NET461
-            Session.Transaction.Enlist(cmd);
+        Session.Transaction.Enlist(cmd);
 #else
-                Session.GetCurrentTransaction().Enlist(cmd);
+        Session.GetCurrentTransaction().Enlist(cmd);
 #endif
-            var result = await ((DbCommand)cmd).ExecuteScalarAsync();
-            return [(TResult)(object)Convert.ToInt32(result)];
-        }
+        var result = await ((DbCommand)cmd).ExecuteScalarAsync();
+        return [Convert.ToInt32(result)];
     }
 #endif
         
 #if !NET40
-    public override async Task<TResult> ExecuteSingleAsync<TResult>(GetTestEntityCountTestAdoNetQuery query)
+    public override async Task<int> ExecuteSingleAsync(GetTestEntityCountTestAdoNetQuery query)
     {
-        using (var cmd = Connection.CreateCommand())
-        {
-            cmd.CommandText = "select count(\"Id\") from \"TestEntity\"";
+        using var cmd = Connection.CreateCommand();
+        cmd.CommandText = "select count(\"Id\") from \"TestEntity\"";
 #if NET40 || NET45 || NET461
-            Session.Transaction.Enlist(cmd);
+        Session.Transaction.Enlist(cmd);
 #else
-                Session.GetCurrentTransaction().Enlist(cmd);
+        Session.GetCurrentTransaction().Enlist(cmd);
 #endif
-            var result = await ((DbCommand)cmd).ExecuteScalarAsync();
-            return (TResult)(object)Convert.ToInt32(result);
-        }
+        var result = await ((DbCommand)cmd).ExecuteScalarAsync();
+        return Convert.ToInt32(result);
     }
 #endif        
 }
