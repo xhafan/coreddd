@@ -10,8 +10,8 @@
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.3.7</Version>
-    <PackageReleaseNotes>#50 NhibernateUnitOfWork incorrectly commits an active transaction during dispose when an exception is thrown - adding NhibernateUnitOfWorkRunner to run an operation inside a unit of work with automatic transaction handling which commits on success, rolls back on failure, and disposes the session safely</PackageReleaseNotes>
+    <Version>4.0.0</Version>
+    <PackageReleaseNotes>#51 Cumbersome casting of the query results (TResult)(object) in the query handlers - adding TReturn generic parameter into the IQuery interface to define the query return type; #52 Change the default Entity Id type from int to long - breaking change -> Entity has newly Id of type long (use EntityInt to keep using Id of type int)</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">

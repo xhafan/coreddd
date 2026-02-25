@@ -16,8 +16,8 @@ ASP.NET MVC and ASP.NET Core MVC demo email marketing app demonstrating CoreDdd 
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.3.5</Version>
-    <PackageReleaseNotes>#48 Query handler returning a single result needs to wrap the single result into a collection - adding new query executor/query handler methods ExecuteSingle/ExecuteSingleAsync</PackageReleaseNotes>
+    <Version>4.0.0</Version>
+    <PackageReleaseNotes>#51 Cumbersome casting of the query results (TResult)(object) in the query handlers - adding TReturn generic parameter into the IQuery interface to define the query return type; #52 Change the default Entity Id type from int to long - breaking change -> Entity has newly Id of type long (use EntityInt to keep using Id of type int)</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

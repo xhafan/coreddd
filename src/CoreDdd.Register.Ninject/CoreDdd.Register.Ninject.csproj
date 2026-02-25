@@ -9,6 +9,11 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
   <Import Project="..\SharedAssemblyInfo.props" />
 
+  <PropertyGroup>
+    <Version>4.0.0</Version>
+    <PackageReleaseNotes>#51 Cumbersome casting of the query results (TResult)(object) in the query handlers - adding TReturn generic parameter into the IQuery interface to define the query return type</PackageReleaseNotes>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="Ninject" Version="3.2.2" />
   </ItemGroup>
