@@ -41,6 +41,17 @@ public class CastleContainer : IContainer
     }
 
     /// <summary>
+    /// Resolve a service by a name.
+    /// </summary>
+    /// <param name="name">A service name</param>
+    /// <typeparam name="TService">A service type</typeparam>
+    /// <returns>A service implementation</returns>
+    public TService Resolve<TService>(string name)
+    {
+        return _windsorContainer.Resolve<TService>(name);
+    }
+
+    /// <summary>
     /// Resolve all services for a given service type.
     /// </summary>
     /// <typeparam name="TService">A service type</typeparam>

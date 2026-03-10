@@ -23,6 +23,14 @@ namespace CoreIoC
         TService Resolve<TService>();
 
         /// <summary>
+        /// Resolve a service by a name.
+        /// </summary>
+        /// <param name="name">A service name</param>
+        /// <typeparam name="TService">A service type</typeparam>
+        /// <returns>A service implementation</returns>
+        TService Resolve<TService>(string name);
+
+        /// <summary>
         /// Resolve all services for a given service type.
         /// </summary>
         /// <typeparam name="TService">A service type</typeparam>

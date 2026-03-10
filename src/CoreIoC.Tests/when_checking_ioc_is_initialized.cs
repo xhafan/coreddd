@@ -36,6 +36,11 @@ namespace CoreIoC.Tests
                 throw new NotImplementedException();
             }
 
+            public TService Resolve<TService>(string name)
+            {
+                throw new NotImplementedException();
+            }
+
             public IEnumerable<TService> ResolveAll<TService>()
             {
                 throw new NotImplementedException();
