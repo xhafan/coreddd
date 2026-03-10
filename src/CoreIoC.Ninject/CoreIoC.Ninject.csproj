@@ -9,6 +9,11 @@
   <Import Project="..\CommonNugetAssemblyInfo.props" />
   <Import Project="..\SharedAssemblyInfo.props" />
 
+  <PropertyGroup>
+    <Version>3.4.0</Version>
+    <PackageReleaseNotes>#53 CoreIoC.IContainer cannot resolve services by a name - adding support to CoreIoC.IContainer to resolve services by a name</PackageReleaseNotes>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="Ninject" Version="3.2.2" />
   </ItemGroup>
