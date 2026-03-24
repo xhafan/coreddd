@@ -10,8 +10,8 @@
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>4.0.0</Version>
-    <PackageReleaseNotes>#51 Cumbersome casting of the query results (TResult)(object) in the query handlers - adding TReturn generic parameter into the IQuery interface to define the query return type</PackageReleaseNotes>
+    <Version>4.0.1</Version>
+    <PackageReleaseNotes>#54 Add CoreIoC.IContainer implementation for ServiceProvider - adding a new project CoreDdd.Register.ServiceProvider implementing CoreIoC.IContainer for ServiceProvider; renaming CoreDdd.Nhibernate.Register.DependencyInjection to CoreDdd.Nhibernate.Register.ServiceProvider; renaming CoreDdd.Register.DependencyInjection to CoreDdd.Register.ServcieProvider</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

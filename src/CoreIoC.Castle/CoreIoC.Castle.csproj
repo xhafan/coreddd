@@ -10,8 +10,8 @@
   <Import Project="..\SharedAssemblyInfo.props" />
 
   <PropertyGroup>
-    <Version>3.4.0</Version>
-    <PackageReleaseNotes>#53 CoreIoC.IContainer cannot resolve services by a name - adding support to CoreIoC.IContainer to resolve services by a name</PackageReleaseNotes>
+    <Version>4.0.1</Version>
+    <PackageReleaseNotes>#54 Add CoreIoC.IContainer implementation for ServiceProvider - adding a new project CoreDdd.Register.ServiceProvider implementing CoreIoC.IContainer for ServiceProvider; renaming CoreDdd.Nhibernate.Register.DependencyInjection to CoreDdd.Nhibernate.Register.ServiceProvider; renaming CoreDdd.Register.DependencyInjection to CoreDdd.Register.ServcieProvider</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
