@@ -54,9 +54,20 @@ namespace CoreIoC
         /// </summary>
         /// <typeparam name="TService">A service type</typeparam>
         /// <returns>A service implementation</returns>
-        public static TService Resolve<TService>()
+        public static TService Resolve<TService>() where TService : notnull
         {
             return _getContainer().Resolve<TService>();
+        }
+
+        /// <summary>
+        /// Resolve a service by a name.
+        /// </summary>
+        /// <param name="name">A service name</param>
+        /// <typeparam name="TService">A service type</typeparam>
+        /// <returns>A service implementation</returns>
+        public static TService Resolve<TService>(string name) where TService : notnull
+        {
+            return _getContainer().Resolve<TService>(name);
         }
 
         /// <summary>

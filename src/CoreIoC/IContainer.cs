@@ -20,7 +20,7 @@ namespace CoreIoC
         /// </summary>
         /// <typeparam name="TService">A service type</typeparam>
         /// <returns>A service implementation</returns>
-        TService Resolve<TService>();
+        TService Resolve<TService>() where TService : notnull;
 
         /// <summary>
         /// Resolve a service by a name.
@@ -28,7 +28,7 @@ namespace CoreIoC
         /// <param name="name">A service name</param>
         /// <typeparam name="TService">A service type</typeparam>
         /// <returns>A service implementation</returns>
-        TService Resolve<TService>(string name);
+        TService Resolve<TService>(string name) where TService : notnull;
 
         /// <summary>
         /// Resolve all services for a given service type.

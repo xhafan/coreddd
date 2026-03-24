@@ -35,7 +35,7 @@ public class CastleContainer : IContainer
     /// </summary>
     /// <typeparam name="TService">A service type</typeparam>
     /// <returns>A service implementation</returns>
-    public TService Resolve<TService>()
+    public TService Resolve<TService>() where TService : notnull
     {
         return _windsorContainer.Resolve<TService>();
     }
@@ -46,7 +46,7 @@ public class CastleContainer : IContainer
     /// <param name="name">A service name</param>
     /// <typeparam name="TService">A service type</typeparam>
     /// <returns>A service implementation</returns>
-    public TService Resolve<TService>(string name)
+    public TService Resolve<TService>(string name) where TService : notnull
     {
         return _windsorContainer.Resolve<TService>(name);
     }

@@ -6,10 +6,10 @@ Available on nuget:
 * [CoreDdd.AspNetCore](https://www.nuget.org/packages/CoreDdd.AspNetCore)
 * [CoreDdd.AspNet](https://www.nuget.org/packages/CoreDdd.AspNet)
 * [CoreDdd.Nhibernate.Register.Castle](https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Castle)
-* [CoreDdd.Nhibernate.Register.DependencyInjection](https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.DependencyInjection)
+* [CoreDdd.Nhibernate.Register.ServiceProvider](https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.ServiceProvider)
 * [CoreDdd.Nhibernate.Register.Ninject](https://www.nuget.org/packages/CoreDdd.Nhibernate.Register.Ninject)
 * [CoreDdd.Register.Castle](https://www.nuget.org/packages/CoreDdd.Register.Castle)
-* [CoreDdd.Register.DependencyInjection](https://www.nuget.org/packages/CoreDdd.Register.DependencyInjection)
+* [CoreDdd.Register.ServiceProvider](https://www.nuget.org/packages/CoreDdd.Register.ServiceProvider)
 * [CoreDdd.Register.Ninject](https://www.nuget.org/packages/CoreDdd.Register.Ninject)
 
 CoreDdd documentation: https://github.com/xhafan/coreddd/wiki  

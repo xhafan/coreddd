@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-    <Description>ASP.NET Core Dependency Injection IoC registration for CoreDdd library</Description>
-    <PackageTags>CoreDdd aspnetcore Dependency Injection ServiceProvider IoC</PackageTags>
+    <Description>ASP.NET Core ServiceProvider IoC registration for CoreDdd library</Description>
+    <PackageTags>CoreDdd aspnetcore ServiceProvider IoC</PackageTags>
   </PropertyGroup>
 
   <Import Project="..\CommonNugetAssemblyInfo.props" />
