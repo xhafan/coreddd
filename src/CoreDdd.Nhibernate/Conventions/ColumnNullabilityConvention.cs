@@ -46,7 +46,7 @@ namespace CoreDdd.Nhibernate.Conventions
             var propertyInfo = entityType.GetProperty(propertyName);
             Guard.Hope(propertyInfo != null, $"Cannot get property info for {entityType.Name}.{propertyName}");
             var propertyNullabilityInfo = new NullabilityInfoContext().Create(propertyInfo);
-            return propertyNullabilityInfo.WriteState is NullabilityState.Nullable;
+            return propertyNullabilityInfo.ReadState is NullabilityState.Nullable;
         }
 #endif
 
